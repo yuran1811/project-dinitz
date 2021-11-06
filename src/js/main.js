@@ -14,6 +14,9 @@ document.querySelector('.log-in').addEventListener('click', (e) => {
   else {
     alert('Log In Successful');
     sign_up_btn.classList.add('active');
-    $('#sign-in-btn a').attr('href', 'http://www.google.com/');
+    $('#sign-in-btn a').attr(
+      'href',
+      'https://yuran1811.github.io/project-dinitz/'
+    );
   }
 });
