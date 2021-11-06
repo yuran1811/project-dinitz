@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="Library/Dinitz_Logo.png" />
+    <link rel="stylesheet" href="src/style/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Project: Dinitz</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Form Container -->
+      <div class="forms-container">
+        <div class="signin-menulist">
+          <!-- Sign In -->
+          <div id="form" class="sign-in">
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input class="user-name" type="text" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input class="password" type="password" placeholder="Password" />
+            </div>
+            <input type="submit" value="Log in" class="log-in btn solid" />
+          </div>
+          <!-- Menu -->
+          <div id="form" class="sign-up">
+            <h2 class="title">
+              Here are all the Challenge that You will pass:
+            </h2>
+            <div class="list-item">
+              <ul>
+                <li class="item01">
+                  <a href="#">Challenge 01</a>
+                </li>
+                <li class="item02">
+                  <a href="#">Challenge 02</a>
+                </li>
+                <li class="item03">
+                  <a href="#">Challenge 03</a>
+                </li>
+                <li class="item04">
+                  <a href="#">Challenge 04</a>
+                </li>
+                <li class="item05">
+                  <a href="#">Challenge 05</a>
+                </li>
+                <li class="item06">
+                  <a href="#">Challenge 06</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel -->
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>Sign In to Continue</h3>
+            <p>Have Great Time With Us !!!</p>
+            <div class="btn transparent" id="sign-up-btn">
+              See List Challenge
+            </div>
+          </div>
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>Are you ready ?</h3>
+            <br />
+            <div class="btn transparent" id="sign-in-btn">
+              <a href="#"> Get Started </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/js/main.js"></script>
+  </body>
+</html>
