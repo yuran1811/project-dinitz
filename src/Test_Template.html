@@ -26,8 +26,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Template</title>
@@ -54,6 +52,15 @@
         --background-color: rgb(48, 48, 48);
         --navbar-color: rgb(117, 181, 253);
         --navbar-background-color: rgb(0, 58, 97);
+      }
+
+      body::-webkit-scrollbar {
+        width: 0.5rem;
+      }
+      body::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        outline: 0.1px solid slategrey;
+        border-radius: 5px;
       }
 
       .to-top {
@@ -106,6 +113,7 @@
       }
 
       .nav-bar {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.164);
         width: 100%;
         height: auto;
         display: flex;
@@ -123,18 +131,44 @@
       }
 
       .lk a {
-        font-size: 1.2rem;
         background-color: var(--navbar-background-color);
-        padding: 1rem 2rem;
-        cursor: pointer;
-        margin: 0 5px;
-        transition: background 0.5s ease;
-        display: inline-block;
-        text-decoration: none;
         color: var(--navbar-color);
-        font-weight: bold;
-        letter-spacing: 1.7px;
+        cursor: pointer;
         text-align: center;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 1rem 2rem;
+        margin: 0 5px;
+        display: inline-block;
+        letter-spacing: 1.7px;
+        transition: background 0.5s ease;
+      }
+
+      .lk a::after {
+        background-color: var(--navbar-background-color);
+        position: relative;
+      }
+      .title::after {
+        background-color: var(--navbar-color);
+        position: absolute;
+      }
+
+      .lk a::after,
+      .title::after {
+        content: '';
+        display: block;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0px;
+        height: 5px;
+        transition: width 0.3s ease-in-out;
+      }
+      .lk a:hover::after {
+        width: 50px;
+      }
+      .title:hover::after {
+        width: 180px;
       }
 
       .lk:hover a {
@@ -150,26 +184,30 @@
       /* Content */
       .main {
         width: 100%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
       }
 
       .title {
+        width: auto;
         text-align: center;
       }
 
       section {
-        border: 1px solid blue;
-        width: 100%;
+        /* border: 1px solid blue; */
+        max-width: 100%;
         padding: 5%;
+        margin: 3%;
         display: flex;
         font-size: 1.5rem;
         flex-direction: column;
+        align-items: center;
         color: var(--color);
       }
 
       /* Footer */
       footer {
         font-size: 1.7rem;
+        text-align: center;
         color: var(--color);
       }
     </style>
@@ -309,7 +347,7 @@
     </div>
 
     <footer>
-      <p>From THHV with LOVE</p>
+      <p>Made by Yuran Legends</p>
     </footer>
 
     <script>
