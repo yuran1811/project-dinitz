@@ -15,18 +15,58 @@ input {
   font-family: 'Poppins', sans-serif;
 }
 
+.item-info {
+  background-color: #2c5294;
+  color: #fff;
+  border-radius: 50px;
+  position: absolute;
+  visibility: hidden;
+  text-align: center;
+  font-size: 1.7rem;
+  top: 0;
+  left: 104%;
+  z-index: 1;
+  width: 275px;
+  height: 350px;
+  padding: 5px 0;
+  display: inline-block;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.item-info::after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 5px;
+  background-color: white;
+  transition: width 0.5s ease;
+}
+.list-item ul li:hover .item-info::after {
+  width: 100px;
+}
+
+.list-item ul li:hover .item-info {
+  visibility: visible;
+  opacity: 1;
+}
+
 .list-item {
   position: relative;
-  left: 12%;
+  left: 5%;
 }
 .list-item ul li {
   list-style: none;
-  margin: 1rem;
+  margin: 1rem 0.2rem;
 }
 .list-item ul li a {
   font-size: 1.7rem;
   text-decoration: none;
   padding: 1rem;
+  letter-spacing: 2px;
   transition: background 0.5s ease;
 }
 
@@ -34,7 +74,7 @@ input {
 .list-item ul li a:visited,
 .list-item ul li a:active,
 .list-item ul li a:focus {
-  color: rgb(73, 137, 255);
+  color: #2c5294;
   text-decoration: none;
 }
 .list-item ul li a:hover {
@@ -59,12 +99,17 @@ input {
 }
 
 #sign-up-btn {
-  display: none;
+  /* display: none; */
   font-size: 1.2rem;
+  width: 0px;
+  opacity: 0;
+  transition: 1 ease, width 1.2s ease;
 }
 
 #sign-up-btn.active {
-  display: block;
+  /* display: block; */
+  width: auto;
+  opacity: 1;
 }
 
 .container {
@@ -165,11 +210,12 @@ input {
 
 #log-in {
   background-color: #2e528f;
-  transition: width 0.3s ease;
+  width: 100px;
+  transition: width 0.7s ease;
 }
 #log-in:hover {
   color: white;
-  padding: 0 3rem;
+  width: 250px;
 }
 
 .btn {
