@@ -28,255 +28,34 @@
 
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../src/style/Tmpl.css" />
     <title>Template</title>
-    <style>
-      :root {
-        --color: rgb(48, 48, 48);
-        --background-color: white;
-        --navbar-color: rgb(0, 58, 97);
-        --navbar-background-color: rgb(117, 181, 253);
-        --border-color: rgba(0, 0, 0, 0.164);
-      }
-
-      * {
-        font-family: 'Oswald', sans-serif;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-size: 62.5%;
-        background-color: var(--background-color);
-      }
-
-      body.dark {
-        --color: white;
-        --background-color: rgb(48, 48, 48);
-        --navbar-color: rgb(117, 181, 253);
-        --navbar-background-color: rgb(0, 58, 97);
-        --border-color: white;
-      }
-
-      body::-webkit-scrollbar {
-        width: 0.5rem;
-      }
-      body::-webkit-scrollbar-thumb {
-        background-color: darkgrey;
-        outline: 0.1px solid slategrey;
-        border-radius: 5px;
-      }
-
-      .to-top {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        margin: 15px;
-        color: var(--background-color);
-        transition: color 0.7s ease;
-        cursor: pointer;
-        z-index: 1000;
-      }
-
-      .to-top:hover {
-        color: var(--color);
-      }
-
-      /* Nav bar */
-      .toggle-theme {
-        position: absolute;
-        left: 2%;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .moon,
-      .sun {
-        color: rgb(255, 186, 37);
-      }
-
-      .moon {
-        display: none;
-      }
-
-      .sun {
-        display: block;
-      }
-
-      .moon.active {
-        display: block;
-      }
-
-      .sun.active {
-        display: none;
-      }
-
-      .nav-bar {
-        border-bottom: 1px solid var(--border-color);
-        width: 100%;
-        height: auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .nav-bar ul {
-        width: 100%;
-        height: auto;
-        list-style-type: none;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-      }
-
-      .lk a {
-        background-color: var(--navbar-background-color);
-        color: var(--navbar-color);
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: bold;
-        padding: 1rem 2rem;
-        margin: 0 5px;
-        display: inline-block;
-        letter-spacing: 1.7px;
-        transition: background 0.5s ease;
-      }
-
-      .lk a::after {
-        background-color: var(--navbar-background-color);
-        position: relative;
-      }
-
-      .title {
-        width: auto;
-        text-align: center;
-      }
-
-      .title::after {
-        background-color: var(--navbar-color);
-        position: absolute;
-      }
-
-      .title .fa-info-circle {
-        opacity: 0;
-        transition: 0.7s ease;
-      }
-      /*
-      .title .fa-info-circle:hover {
-        /*
-        .title {
-          font-size: 6rem;
-          letter-spacing: 5px;
-          opacity: 0;
-          transform: translateY(-200px);
-          transition: 1.2s ease, transform 1.7s;
-        }
-        .title::after {
-          content: ' ';
-          display: block;
-          position: absolute;
-          height: 5px;
-          width: 0px;
-          left: 50%;
-          opacity: 0;
-          background-color: white;
-          transform: translateX(-50%);
-          transition: width 1.7s ease;
-        }
-      }
-      */
-      .title:hover .fa-info-circle {
-        opacity: 1;
-      }
-
-      .title:hover::after {
-        width: 200px;
-      }
-
-      .lk a::after,
-      .title::after {
-        content: '';
-        display: block;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0px;
-        height: 5px;
-        transition: width 0.3s ease-in-out;
-      }
-
-      .lk:hover a {
-        color: var(--navbar-background-color);
-        background-color: var(--navbar-color);
-      }
-
-      .liactive a {
-        background-color: var(--navbar-color);
-        color: var(--navbar-background-color);
-      }
-
-      .liactive a::after,
-      .lk a:hover::after {
-        width: 50px;
-      }
-
-      /* Content */
-      .main {
-        width: 100%;
-        /* border: 1px solid red; */
-      }
-
-      input[class='answer'] {
-        min-width: 170px;
-        height: 50px;
-        font-size: 1.5rem;
-      }
-      button[class='submit'] {
-        margin: 5px;
-        font-size: 1.5rem;
-      }
-
-      section {
-        /* border: 1px solid blue; */
-        max-width: 100%;
-        padding: 5%;
-        margin: 3%;
-        display: flex;
-        font-size: 1.5rem;
-        flex-direction: column;
-        align-items: center;
-        color: var(--color);
-      }
-
-      /* Footer */
-      footer {
-        font-size: 1.7rem;
-        text-align: center;
-        color: var(--color);
-      }
-    </style>
   </head>
 
   <body>
     <header class="header" id="top">
-      <div class="nav-bar">
+      <nav class="nav-bar">
         <div class="toggle-theme">
           <span class="moon"><i class="fa-4x fas fa-moon"></i></span>
           <span class="sun"><i class="fa-4x fas fa-sun"></i></span>
         </div>
-        <ul>
-          <li class="lk liactive"><a href="#No1">No1</a></li>
-          <li class="lk"><a href="#No2">No2</a></li>
-          <li class="lk"><a href="#No3">No3</a></li>
-          <li class="lk"><a href="#No4">No4</a></li>
-          <li class="lk"><a href="#No5">No5</a></li>
-          <li class="lk"><a href="#No6">No6</a></li>
-          <li class="lk"><a href="#No7">No7</a></li>
-        </ul>
+        <div class="nav-links">
+          <ul>
+            <li class="lk liactive"><a href="#No1">No1</a></li>
+            <li class="lk"><a href="#No2">No2</a></li>
+            <li class="lk"><a href="#No3">No3</a></li>
+            <li class="lk"><a href="#No4">No4</a></li>
+            <li class="lk"><a href="#No5">No5</a></li>
+            <li class="lk"><a href="#No6">No6</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="menu">
+        <i class="fa-3x fas fa-bars menu-icon" id="menu-bar1"></i>
+        <i class="fa-3x fas fa-times menu-icon" id="menu-bar2"></i>
       </div>
     </header>
 
@@ -467,71 +246,11 @@
           </span>
         </div>
       </section>
-      <section id="No7" class="No7">
-        <h2 class="title">
-          <i class="fas fa-award"></i> Challenge No 7
-          <i class="fas fa-info-circle"></i>
-        </h2>
-        <div class="content">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Repudiandae ab perferendis vel, ipsa, placeat maiores vitae,
-            corporis eum aut quae vero! Repellendus voluptatem consequuntur a?
-            Doloribus cupiditate quibusdam dolorem soluta. <br />
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus,
-            labore fuga iure voluptates, voluptate commodi perspiciatis eaque
-            quaerat tempore minus placeat veniam vel alias dolor illum modi
-            consequuntur rerum dolores.
-          </p>
-        </div>
-        <div class="answer-area">
-          <span class="help"><i class="fas fa-plus-circle"></i></span>
-          <input
-            type="text"
-            name="answer"
-            class="answer"
-            placeholder="Type Your Answer"
-          />
-          <span>
-            <button class="submit">Submit</button>
-          </span>
-        </div>
-      </section>
     </div>
 
     <footer>
       <p>Made by Yuran Legends</p>
     </footer>
-
-    <script>
-      var linkList = document
-        .querySelector('.nav-bar')
-        .getElementsByClassName('lk');
-      for (var i = 0; i < linkList.length; i++) {
-        linkList[i].addEventListener('click', function () {
-          var current = document.getElementsByClassName('liactive');
-          current[0].className = current[0].className.replace(' liactive', '');
-          this.className += ' liactive';
-        });
-      }
-
-      $('.nav-bar a').on('click', function (e) {
-        e.preventDefault();
-        const href = $(this).attr('href');
-        $('html, body').animate({ scrollTop: $(href).offset().top }, 900);
-      });
-
-      $('.to-top a').on('click', function (e) {
-        e.preventDefault();
-        const href = $(this).attr('href');
-        $('html, body').animate({ scrollTop: $(href).offset().top }, 900);
-      });
-
-      $('.toggle-theme').on('click', function (e) {
-        $('body').toggleClass('dark');
-        $('.moon').toggleClass('active');
-        $('.sun').toggleClass('active');
-      });
-    </script>
+    <script src="../src/js/Tmpl.js"></script>
   </body>
 </html>
