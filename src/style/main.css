@@ -400,9 +400,10 @@ input {
     min-height: 800px;
     height: 100vh;
   }
+
   .signin-menulist {
-    width: 100%;
-    top: 80%;
+    width: 80%;
+    top: 74%;
     transform: translate(-50%, -100%);
     transition: 1s 0.8s ease-in-out;
   }
@@ -473,7 +474,7 @@ input {
 
   .container.sign-up-mode:before {
     transform: translate(-50%, 100%);
-    bottom: 32%;
+    bottom: 45%;
     right: initial;
   }
 
@@ -499,8 +500,12 @@ input {
 }
 
 @media (max-width: 600px) {
+  .signin-menulist {
+    width: 95%;
+  }
+
   .container {
-    padding: 1em 8% 1em;
+    padding: 1em 6% 1em;
   }
 
   .container:before {
@@ -522,7 +527,7 @@ input {
   }
 
   #form2 {
-    margin: 0;
+    margin: 5px;
   }
 }
 
