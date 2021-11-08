@@ -14,9 +14,6 @@ document.querySelector('.log-in').addEventListener('click', (e) => {
   else {
     alert('Log In Successful');
     sign_up_btn.classList.add('active');
-    $('#sign-in-btn a').attr(
-      'href',
-      'https://github.com/yuran1811/project-dinitz/blob/main/src/Test_Template.html'
-    );
+    $('#sign-in-btn a').attr('href', 'src/Test_Template.html');
   }
 });
