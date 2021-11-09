@@ -21,7 +21,7 @@ body.dark {
   --background-color: rgb(48, 48, 48);
   --navbar-color: rgb(117, 181, 253);
   --navbar-background-color: rgb(0, 58, 97);
-  --border-color: white;
+  --border-color: rgba(255, 255, 255, 0.514);
 }
 
 body::-webkit-scrollbar {
@@ -239,6 +239,42 @@ th,
 td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+/* Info Edit */
+.info-btn,
+.hint-btn1,
+.challenge-btn {
+  transform: rotateZ(-90deg);
+  cursor: pointer;
+  color: var(--color);
+}
+.hint-btn1.active {
+  opacity: 0;
+}
+
+.info-btn.active,
+.challenge-btn.active,
+.hint-btn1.active {
+  transform: rotateZ(0deg);
+}
+
+.info,
+.challenge-content,
+.hint {
+  display: none;
+}
+.info.active,
+.challenge-content.active,
+.hint.active {
+  display: block;
+}
+
+button[class='submit'] {
+  border-radius: 50px;
+  border: 0px solid black;
+  padding: 5px 15px;
+  cursor: pointer;
 }
 
 /* Footer */
