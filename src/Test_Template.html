@@ -1,562 +1,720 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="icon"
-      href="https://cdn.pixabay.com/photo/2012/04/18/00/20/globe-36242_640.png"
-    />
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="icon"
+			href="https://cdn.pixabay.com/photo/2012/04/18/00/20/globe-36242_640.png"
+		/>
 
-    <!-- Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap"
-      rel="stylesheet"
-    />
+		<!-- Google -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap"
+			rel="stylesheet"
+		/>
 
-    <!-- Font Awesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    />
+		<!-- Font Awesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+		/>
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<!-- jQuery -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../src/style/Tmpl.css" />
-    <title>Template</title>
-  </head>
-  <body>
-    <header class="header" id="top">
-      <nav class="nav-bar">
-        <div class="toggle-theme">
-          <span class="moon"><i class="fa-4x fas fa-moon"></i></span>
-          <span class="sun"><i class="fa-4x fas fa-sun"></i></span>
-        </div>
-        <div class="nav-links">
-          <ul>
-            <li class="lk liactive"><a href="#No1">No1</a></li>
-            <li class="lk"><a href="#No2">No2</a></li>
-            <li class="lk"><a href="#No3">No3</a></li>
-            <li class="lk"><a href="#No4">No4</a></li>
-            <li class="lk"><a href="#No5">No5</a></li>
-            <li class="lk"><a href="#No6">No6</a></li>
-          </ul>
-        </div>
-      </nav>
-      <div class="menu">
-        <i class="fa-3x fas fa-bars menu-icon" id="menu-bar1"></i>
-        <i class="fa-3x fas fa-times menu-icon" id="menu-bar2"></i>
-      </div>
-    </header>
+		<!-- CSS -->
+		<link rel="stylesheet" href="../src/style/Tmpl.css" />
+		<title>Template</title>
+	</head>
+	<body>
+		<header class="header" id="top">
+			<nav class="nav-bar">
+				<div class="toggle-theme">
+					<span class="moon"><i class="fa-4x fas fa-moon"></i></span>
+					<span class="sun"><i class="fa-4x fas fa-sun"></i></span>
+				</div>
+				<div class="nav-links">
+					<ul>
+						<li class="lk liactive"><a href="#No1">No1</a></li>
+						<li class="lk"><a href="#No2">No2</a></li>
+						<li class="lk"><a href="#No3">No3</a></li>
+						<li class="lk"><a href="#No4">No4</a></li>
+						<li class="lk"><a href="#No5">No5</a></li>
+						<li class="lk"><a href="#No6">No6</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div class="menu">
+				<i class="fa-3x fas fa-bars menu-icon" id="menu-bar1"></i>
+				<i class="fa-3x fas fa-times menu-icon" id="menu-bar2"></i>
+			</div>
+		</header>
 
-    <div class="to-top">
-      <a class="to-top" href="#top"
-        ><i class="fa-5x fas fa-chevron-circle-up"></i
-      ></a>
-    </div>
+		<div class="to-top">
+			<a class="to-top" href="#top"
+				><i class="fa-5x fas fa-chevron-circle-up"></i
+			></a>
+		</div>
 
-    <div class="main">
-      <!-- No 1 -->
-      <section id="No1" class="No1">
-        <h2 class="title"><i class="fas fa-award"></i> Nim Game</h2>
-        <div class="content">
-          <h2>Kiến thức nền <i class="fas fa-sort-down info-btn"></i></h2>
-          <div class="info">
-            <h3>Tổng xor</h3>
-            <p>
-              Tổng xor là một trong những phép toán trên bit rất phổ biến trong
-              tin học nói chung. Các phép toán trên bit sẽ được thực hiện trên
-              dạng biểu diễn cơ số 2 và thực hiện lần lượt các phép toán theo
-              thứ tự từ phải sang trái. Khi nói đến tổng xor, phép toán được
-              thực hiện giữa 2 bit tuân theo bảng sau:
-            </p>
-            <table>
-              <thead>
-                <tr>
-                  <th><code>a</code></th>
-                  <th><code>b</code></th>
-                  <th style="text-align: center"><code>a xor b</code></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>0</code></td>
-                  <td><code>0</code></td>
-                  <td style="text-align: center"><code>0</code></td>
-                </tr>
-                <tr>
-                  <td><code>0</code></td>
-                  <td><code>1</code></td>
-                  <td style="text-align: center"><code>1</code></td>
-                </tr>
-                <tr>
-                  <td><code>1</code></td>
-                  <td><code>0</code></td>
-                  <td style="text-align: center"><code>1</code></td>
-                </tr>
-                <tr>
-                  <td><code>1</code></td>
-                  <td><code>1</code></td>
-                  <td style="text-align: center"><code>0</code></td>
-                </tr>
-              </tbody>
-            </table>
-            <p>
-              Có thể hiểu phép xor như phép cộng không nhớ. <br />
-              <em><strong>Ví dụ:</strong></em> <br />
-              <em><strong>Yêu cầu:</strong></em> Tính tổng xor của 2 số (đang ở
-              dạng biểu diễn cơ số 10) lần lượt là 9 và 18. <br />
-              <em><strong>Cách làm:</strong></em>
-            </p>
+		<div class="main">
+			<!-- No 1 -->
+			<section id="No1" class="No1">
+				<h2 class="title"><i class="fas fa-award"></i> Nim Game</h2>
+				<div class="content">
+					<h2>
+						Kiến thức nền <i class="fas fa-sort-down info-btn"></i>
+					</h2>
+					<div class="info">
+						<h3>Tổng xor</h3>
+						<p>
+							Tổng xor là một trong những phép toán trên bit rất
+							phổ biến trong tin học nói chung. Các phép toán trên
+							bit sẽ được thực hiện trên dạng biểu diễn cơ số 2 và
+							thực hiện lần lượt các phép toán theo thứ tự từ phải
+							sang trái. Khi nói đến tổng xor, phép toán được thực
+							hiện giữa 2 bit tuân theo bảng sau:
+						</p>
+						<table>
+							<thead>
+								<tr>
+									<th><code>a</code></th>
+									<th><code>b</code></th>
+									<th style="text-align: center">
+										<code>a xor b</code>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><code>0</code></td>
+									<td><code>0</code></td>
+									<td style="text-align: center">
+										<code>0</code>
+									</td>
+								</tr>
+								<tr>
+									<td><code>0</code></td>
+									<td><code>1</code></td>
+									<td style="text-align: center">
+										<code>1</code>
+									</td>
+								</tr>
+								<tr>
+									<td><code>1</code></td>
+									<td><code>0</code></td>
+									<td style="text-align: center">
+										<code>1</code>
+									</td>
+								</tr>
+								<tr>
+									<td><code>1</code></td>
+									<td><code>1</code></td>
+									<td style="text-align: center">
+										<code>0</code>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							Có thể hiểu phép xor như phép cộng không nhớ. <br />
+							<em><strong>Ví dụ:</strong></em> <br />
+							<em><strong>Yêu cầu:</strong></em> Tính tổng xor của
+							2 số (đang ở dạng biểu diễn cơ số 10) lần lượt là 9
+							và 18. <br />
+							<em><strong>Cách làm:</strong></em>
+						</p>
 
-            <ul>
-              <li>
-                Đưa 2 số trên từ dạng biểu diễn cơ số 10 thành dạng biểu diễn cơ
-                số 2:<br />9 (cơ số 10) = 1001 (cơ số 2)<br />18(cơ số 10) =
-                10010 (cơ số 2)
-              </li>
-              <li>Thực hiện lần lượt phép xor từ phải sang trái:</li>
-            </ul>
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>0</td>
-                </tr>
-                <tr>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                </tr>
-                <tr>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>1</td>
-                </tr>
-              </tbody>
-            </table>
-            <ul>
-              <li>
-                Chuyển kết quả cộng lại thành cơ số 10:<br />11011 (cơ số 2) =
-                27
-              </li>
-            </ul>
-            <p>
-              <em><strong>Kết luận:</strong></em> 9 xor 18 = 27
-            </p>
-            <p>Một số tính chất quan trọng của phép xor:</p>
-            <ul>
-              <li>
-                Tính giao hoán: x <code>xor</code> y = y <code>xor</code> x
-              </li>
-              <li>
-                Tính phân phối (cộng): (x <code>xor</code> y) <code>xor</code> z
-                = x <code>xor</code> (y <code>xor</code> z)
-              </li>
-              <li>Tính tự triệt: x <code>xor</code> x = 0</li>
-            </ul>
-            <p>
-              <em><strong>Lưu ý:</strong></em> Tổng xor của một dãy n số hoàn
-              toàn có thể tính được dựa trên các tính chất đã nêu trên
-            </p>
-          </div>
+						<ul>
+							<li>
+								Đưa 2 số trên từ dạng biểu diễn cơ số 10 thành
+								dạng biểu diễn cơ số 2:<br />9 (cơ số 10) = 1001
+								(cơ số 2)<br />18(cơ số 10) = 10010 (cơ số 2)
+							</li>
+							<li>
+								Thực hiện lần lượt phép xor từ phải sang trái:
+							</li>
+						</ul>
+						<table>
+							<thead>
+								<tr>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td></td>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>0</td>
+									<td>0</td>
+									<td>1</td>
+									<td>0</td>
+								</tr>
+								<tr>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+									<td>-</td>
+								</tr>
+								<tr>
+									<td>1</td>
+									<td>1</td>
+									<td>0</td>
+									<td>1</td>
+									<td>1</td>
+								</tr>
+							</tbody>
+						</table>
+						<ul>
+							<li>
+								Chuyển kết quả cộng lại thành cơ số 10:<br />11011
+								(cơ số 2) = 27
+							</li>
+						</ul>
+						<p>
+							<em><strong>Kết luận:</strong></em> 9 xor 18 = 27
+						</p>
+						<p>Một số tính chất quan trọng của phép xor:</p>
+						<ul>
+							<li>
+								Tính giao hoán: x <code>xor</code> y = y
+								<code>xor</code> x
+							</li>
+							<li>
+								Tính phân phối (cộng): (x <code>xor</code> y)
+								<code>xor</code> z = x <code>xor</code> (y
+								<code>xor</code> z)
+							</li>
+							<li>Tính tự triệt: x <code>xor</code> x = 0</li>
+						</ul>
+						<p>
+							<em><strong>Lưu ý:</strong></em> Tổng xor của một
+							dãy n số hoàn toàn có thể tính được dựa trên các
+							tính chất đã nêu trên
+						</p>
+					</div>
 
-          <!-- De bai -->
-          <h2>Đề bài <i class="fas fa-sort-down challenge-btn"></i></h2>
-          <div class="challenge-content">
-            <p>
-              “Chào mừng các thành viên của đội chơi đã đến với thử thách “Emag
-              min”, vì sợ các bạn nhàm chán nên chúng tôi - “Tổ chức điểm cộng
-              phi lợi nhuận giấu tên không ai biết đại diện cho những nhân vật
-              phản diện đầy khả ái và ngây ngất lòng người” - đã chuẩn bị trước
-              một số trò chơi cho các bạn cùng thưởng thức.”
-            </p>
-            <p>
-              Giọng nói ồn ào phát ra từ vô định vang lên ngay sau khi chúng tôi
-              hoàn thành thử thách, cánh cửa của trạm đóng sầm lại, Naot hoảng
-              loạn chạy ra kiểm tra cửa thì thấy rằng trên cửa có một khóa mật
-              khẩu bao gồm các ký tự số từ 1 đến 9. Đang loay hoay không biết
-              mật khẩu mở như thế nào thì có thành viên phát hiện một mẩu giấy
-              trên bàn được đặt giữa trạm được viết bằng tiếng Trung. Hoang mang
-              không biết mẫu giấy viết gì thì Naot đã tự nhận mình là “Pháp sư
-              Trung Hoa” và dịch mẫu giấy như sau:
-            </p>
-            <p>
-              “Emag min” là một trò chơi có từ thời nào không biết, thế nhưng
-              Emag min lại là một trong những trò chơi cơ sở đặt nền móng cho
-              lĩnh vực lý thuyết trò chơi hết sức quan trọng, Emag min trong đề
-              bài lần này được phát biểu như sau:
-            </p>
-            <p>
-              Trước mặt bạn là n chồng sỏi, chồng sỏi thứ i có a_i viên sỏi
-              (1&lt;=i&lt;=n), Emag min sẽ bao gồm 2 người chơi luân phiên thực
-              hiện các bước đi, một bước đi hợp lệ phát biểu như sau:
-            </p>
-            <ul>
-              <li>Chọn duy nhất một chồng sỏi bất kì có dương số sỏi</li>
-              <li>Bốc ra một số nguyên dương viên sỏi ra khỏi chồng sỏi</li>
-              <li>Kết thúc lượt đi</li>
-            </ul>
-            <p>
-              Trò chơi sẽ kết thúc nếu người chơi không thể thực hiện thêm bất
-              kỳ bước đi hợp lệ nào nữa, người thua cuộc sẽ là người không thể
-              thực hiện bước đi, người còn lại sẽ là người thắng cuộc.
-            </p>
-            <p>
-              Ví dụ về một Emag min với 3 chồng sỏi (lưu ý, 2 người chơi không
-              tối ưu):
-            </p>
-            <ul>
-              <li>Trạng thái ban đầu: 3 3 3</li>
-              <li>Lượt 1: 3 3 1 (người chơi 1 bốc 2 viên sỏi ở chồng sỏi 3)</li>
-              <li>Lượt 2: 0 3 1 (người chơi 2 bốc 3 viên sỏi ở chồng sỏi 1)</li>
-              <li>Lượt 3: 0 1 1 (người chơi 1 bốc 2 viên sỏi ở chồng sỏi 2)</li>
-              <li>Lượt 4: 0 0 1 (người chơi 2 bốc 1 viên sỏi ở chồng sỏi 2)</li>
-              <li>Lượt 5: 0 0 0 (người chơi 1 bốc 1 viên sỏi ở chồng sỏi 3)</li>
-              <li>
-                Lượt 6: 0 0 0, người chơi 2 không thể thực hiện bước đi hợp lệ,
-                thua cuộc
-              </li>
-            </ul>
-            <p>Kết quả: Người chơi 1 chiến thắng.</p>
-            <p>
-              Vừa dịch xong mẫu giấy, một cánh cửa khác mở ra dẫn đội chơi đến
-              với một căn phòng gồm 8 bàn được đánh số từ 1 đến 8, mỗi bàn được
-              bày sẵn một Emag min với 4 chồng sỏi, nhiệm vụ của đội chơi là tìm
-              ra 4 bàn khác nhau với chỉ số các bàn là bé nhất sao cho khi đội
-              của bạn chơi Emag min trên 4 bàn đó với vai trò là người đi đầu
-              tiên thì chắc chắn chiến thắng, biết rằng đối thủ của bạn luôn
-              luôn thực hiện các bước đi tối ưu.
-            </p>
-            <p>
-              Mật khẩu trên cánh cửa bao gồm 4 chữ số được viết theo thứ tự tăng
-              dần, chỉ có một mật khẩu duy nhất có thể vượt qua được cánh cửa
-              đó.
-            </p>
-            <p>
-              Nếu các bạn đang bối rối về việc tại sao chỉ có thể có một mật
-              khẩu duy nhất thì chứng minh được rằng với mỗi Emag min biết trước
-              trạng thái ban đầu thì luôn xác định được thắng thua trước khi
-              chơi.
-            </p>
-            <p>
-              Nào, vì điểm cộng, các bạn hãy cố gắng vượt qua trạm này nhé!!!
-            </p>
-            <ul>
-              <li>Trạng thái các chồng sỏi bàn 1: 4 1 1 4</li>
-              <li>Trạng thái các chồng sỏi bàn 2: 1 3 3 6</li>
-              <li>Trạng thái các chồng sỏi bàn 3: 3 4 2 5</li>
-              <li>Trạng thái các chồng sỏi bàn 4: 8 6 6 6</li>
-              <li>Trạng thái các chồng sỏi bàn 5: 6 6 1 3</li>
-              <li>Trạng thái các chồng sỏi bàn 6: 4 4 7 7</li>
-              <li>Trạng thái các chồng sỏi bàn 7: 6 2 3 7</li>
-              <li>Trạng thái các chồng sỏi bàn 8: 1 1 1 2</li>
-            </ul>
-          </div>
+					<!-- De bai -->
+					<h2>
+						Đề bài <i class="fas fa-sort-down challenge-btn"></i>
+					</h2>
+					<div class="challenge-content">
+						<p>
+							“Chào mừng các thành viên của đội chơi đã đến với
+							thử thách “Emag min”, vì sợ các bạn nhàm chán nên
+							chúng tôi - “Tổ chức điểm cộng phi lợi nhuận giấu
+							tên không ai biết đại diện cho những nhân vật phản
+							diện đầy khả ái và ngây ngất lòng người” - đã chuẩn
+							bị trước một số trò chơi cho các bạn cùng thưởng
+							thức.”
+						</p>
+						<p>
+							Giọng nói ồn ào phát ra từ vô định vang lên ngay sau
+							khi chúng tôi hoàn thành thử thách, cánh cửa của
+							trạm đóng sầm lại, Naot hoảng loạn chạy ra kiểm tra
+							cửa thì thấy rằng trên cửa có một khóa mật khẩu bao
+							gồm các ký tự số từ 1 đến 9. Đang loay hoay không
+							biết mật khẩu mở như thế nào thì có thành viên phát
+							hiện một mẩu giấy trên bàn được đặt giữa trạm được
+							viết bằng tiếng Trung. Hoang mang không biết mẫu
+							giấy viết gì thì Naot đã tự nhận mình là “Pháp sư
+							Trung Hoa” và dịch mẫu giấy như sau:
+						</p>
+						<p>
+							“Emag min” là một trò chơi có từ thời nào không
+							biết, thế nhưng Emag min lại là một trong những trò
+							chơi cơ sở đặt nền móng cho lĩnh vực lý thuyết trò
+							chơi hết sức quan trọng, Emag min trong đề bài lần
+							này được phát biểu như sau:
+						</p>
+						<p>
+							Trước mặt bạn là n chồng sỏi, chồng sỏi thứ i có a_i
+							viên sỏi (1&lt;=i&lt;=n), Emag min sẽ bao gồm 2
+							người chơi luân phiên thực hiện các bước đi, một
+							bước đi hợp lệ phát biểu như sau:
+						</p>
+						<ul>
+							<li>
+								Chọn duy nhất một chồng sỏi bất kì có dương số
+								sỏi
+							</li>
+							<li>
+								Bốc ra một số nguyên dương viên sỏi ra khỏi
+								chồng sỏi
+							</li>
+							<li>Kết thúc lượt đi</li>
+						</ul>
+						<p>
+							Trò chơi sẽ kết thúc nếu người chơi không thể thực
+							hiện thêm bất kỳ bước đi hợp lệ nào nữa, người thua
+							cuộc sẽ là người không thể thực hiện bước đi, người
+							còn lại sẽ là người thắng cuộc.
+						</p>
+						<p>
+							Ví dụ về một Emag min với 3 chồng sỏi (lưu ý, 2
+							người chơi không tối ưu):
+						</p>
+						<ul>
+							<li>Trạng thái ban đầu: 3 3 3</li>
+							<li>
+								Lượt 1: 3 3 1 (người chơi 1 bốc 2 viên sỏi ở
+								chồng sỏi 3)
+							</li>
+							<li>
+								Lượt 2: 0 3 1 (người chơi 2 bốc 3 viên sỏi ở
+								chồng sỏi 1)
+							</li>
+							<li>
+								Lượt 3: 0 1 1 (người chơi 1 bốc 2 viên sỏi ở
+								chồng sỏi 2)
+							</li>
+							<li>
+								Lượt 4: 0 0 1 (người chơi 2 bốc 1 viên sỏi ở
+								chồng sỏi 2)
+							</li>
+							<li>
+								Lượt 5: 0 0 0 (người chơi 1 bốc 1 viên sỏi ở
+								chồng sỏi 3)
+							</li>
+							<li>
+								Lượt 6: 0 0 0, người chơi 2 không thể thực hiện
+								bước đi hợp lệ, thua cuộc
+							</li>
+						</ul>
+						<p>Kết quả: Người chơi 1 chiến thắng.</p>
+						<p>
+							Vừa dịch xong mẫu giấy, một cánh cửa khác mở ra dẫn
+							đội chơi đến với một căn phòng gồm 8 bàn được đánh
+							số từ 1 đến 8, mỗi bàn được bày sẵn một Emag min với
+							4 chồng sỏi, nhiệm vụ của đội chơi là tìm ra 4 bàn
+							khác nhau với chỉ số các bàn là bé nhất sao cho khi
+							đội của bạn chơi Emag min trên 4 bàn đó với vai trò
+							là người đi đầu tiên thì chắc chắn chiến thắng, biết
+							rằng đối thủ của bạn luôn luôn thực hiện các bước đi
+							tối ưu.
+						</p>
+						<p>
+							Mật khẩu trên cánh cửa bao gồm 4 chữ số được viết
+							theo thứ tự tăng dần, chỉ có một mật khẩu duy nhất
+							có thể vượt qua được cánh cửa đó.
+						</p>
+						<p>
+							Nếu các bạn đang bối rối về việc tại sao chỉ có thể
+							có một mật khẩu duy nhất thì chứng minh được rằng
+							với mỗi Emag min biết trước trạng thái ban đầu thì
+							luôn xác định được thắng thua trước khi chơi.
+						</p>
+						<p>
+							Nào, vì điểm cộng, các bạn hãy cố gắng vượt qua trạm
+							này nhé!!!
+						</p>
+						<ul>
+							<li>Trạng thái các chồng sỏi bàn 1: 4 1 1 4</li>
+							<li>Trạng thái các chồng sỏi bàn 2: 1 3 3 6</li>
+							<li>Trạng thái các chồng sỏi bàn 3: 3 4 2 5</li>
+							<li>Trạng thái các chồng sỏi bàn 4: 8 6 6 6</li>
+							<li>Trạng thái các chồng sỏi bàn 5: 6 6 1 3</li>
+							<li>Trạng thái các chồng sỏi bàn 6: 4 4 7 7</li>
+							<li>Trạng thái các chồng sỏi bàn 7: 6 2 3 7</li>
+							<li>Trạng thái các chồng sỏi bàn 8: 1 1 1 2</li>
+						</ul>
+					</div>
 
-          <h2>Gợi ý <i class="fas fa-sort-down hint-btn1"></i></h2>
-          <div class="allhint">
-            <div class="hint">
-              <h3>Gợi ý 1</h3>
-              <p>
-                Naot đã liệt kê ra được <strong>một số</strong> trạng thái chiến
-                thắng và một số trạng thái thua cuộc dành cho người chơi đầu
-                tiên với Emag min với 3 chồng sỏi:
-              </p>
-              <ul>
-                <li>
-                  Trạng thái chiến thắng:
-                  <ul>
-                    <li>1 1 1</li>
-                    <li>1 1 2</li>
-                    <li>1 1 3</li>
-                    <li>1 1 4</li>
-                    <li>1 2 1</li>
-                    <li>1 2 2</li>
-                    <li>1 2 4</li>
-                    <li>1 3 1</li>
-                    <li>1 3 3</li>
-                    <li>1 3 4</li>
-                    <li>1 4 1</li>
-                    <li>1 4 2</li>
-                    <li>1 4 3</li>
-                    <li>1 4 4</li>
-                    <li>2 1 1</li>
-                    <li>2 1 2</li>
-                    <li>2 1 4</li>
-                    <li>2 2 1</li>
-                    <li>2 2 2</li>
-                  </ul>
-                </li>
-                <li>
-                  Trạng thái thua cuộc:
-                  <ul>
-                    <li>0 0 0</li>
-                    <li>0 1 1</li>
-                    <li>0 2 2</li>
-                    <li>0 3 3</li>
-                    <li>0 4 4</li>
-                    <li>1 0 1</li>
-                    <li>1 1 0</li>
-                    <li>1 2 3</li>
-                    <li>1 3 2</li>
-                    <li>2 0 2</li>
-                    <li>2 1 3</li>
-                    <li>2 2 0</li>
-                    <li>2 3 1</li>
-                    <li>3 0 3</li>
-                    <li>3 1 2</li>
-                    <li>3 2 1</li>
-                    <li>3 3 0</li>
-                    <li>4 0 4</li>
-                    <li>4 4 0</li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+					<h2>Gợi ý <i class="fas fa-sort-down hint-btn"></i></h2>
+					<div class="allhint">
+						<div class="hint">
+							<h3>Gợi ý 1</h3>
+							<p>
+								Naot đã liệt kê ra được
+								<strong>một số</strong> trạng thái chiến thắng
+								và một số trạng thái thua cuộc dành cho người
+								chơi đầu tiên với Emag min với 3 chồng sỏi:
+							</p>
+							<ul>
+								<li>
+									Trạng thái chiến thắng:
+									<ul>
+										<li>1 1 1</li>
+										<li>1 1 2</li>
+										<li>1 1 3</li>
+										<li>1 1 4</li>
+										<li>1 2 1</li>
+										<li>1 2 2</li>
+										<li>1 2 4</li>
+										<li>1 3 1</li>
+										<li>1 3 3</li>
+										<li>1 3 4</li>
+										<li>1 4 1</li>
+										<li>1 4 2</li>
+										<li>1 4 3</li>
+										<li>1 4 4</li>
+										<li>2 1 1</li>
+										<li>2 1 2</li>
+										<li>2 1 4</li>
+										<li>2 2 1</li>
+										<li>2 2 2</li>
+									</ul>
+								</li>
+								<li>
+									Trạng thái thua cuộc:
+									<ul>
+										<li>0 0 0</li>
+										<li>0 1 1</li>
+										<li>0 2 2</li>
+										<li>0 3 3</li>
+										<li>0 4 4</li>
+										<li>1 0 1</li>
+										<li>1 1 0</li>
+										<li>1 2 3</li>
+										<li>1 3 2</li>
+										<li>2 0 2</li>
+										<li>2 1 3</li>
+										<li>2 2 0</li>
+										<li>2 3 1</li>
+										<li>3 0 3</li>
+										<li>3 1 2</li>
+										<li>3 2 1</li>
+										<li>3 3 0</li>
+										<li>4 0 4</li>
+										<li>4 4 0</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
 
-            <div class="hint">
-              <h3>Gợi ý 2</h3>
-              <p>
-                Trong ví dụ 1, hãy tính tổng xor 3 số trong các trạng thái chiến
-                thắng, nhận xét các tổng xor đó với tổng xor của các trạng thái
-                thua cuộc, nhận xét tổng xor của các trạng thái chiến thắng và
-                thua cuộc rồi từ đó suy ra kết quả.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="answer-area">
-          <input
-            type="text"
-            name="answer"
-            class="answer"
-            placeholder="Type Your Answer"
-          />
-          <span>
-            <button class="submit">Submit</button>
-          </span>
-        </div>
-      </section>
+						<div class="hint">
+							<h3>Gợi ý 2</h3>
+							<p>
+								Trong ví dụ 1, hãy tính tổng xor 3 số trong các
+								trạng thái chiến thắng, nhận xét các tổng xor đó
+								với tổng xor của các trạng thái thua cuộc, nhận
+								xét tổng xor của các trạng thái chiến thắng và
+								thua cuộc rồi từ đó suy ra kết quả.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="answer-area">
+					<input
+						type="text"
+						name="answer"
+						class="answer"
+						placeholder="Type Your Answer"
+					/>
+					<span>
+						<button class="submit">Submit</button>
+					</span>
+				</div>
+			</section>
 
-      <!-- No 2 -->
-      <section id="No2" class="No2">
-        <h2 class="title"><i class="fas fa-award"></i> IE</h2>
-        <div class="content2">
-          <h2>Kiến thức nền <i class="fas fa-sort-down info-btn"></i></h2>
-          <div class="info">
-            <h3>
-              Nhắc lại về các khái niệm và ký hiệu cơ bản trong lý thuyết tập
-              hợp
-            </h3>
-            <h4>Quan hệ giữa các tập hợp</h4>
-            <ul>
-              <li>
-                Quan hệ bao hàm<br />Nếu tất cả các thành viên của tập A cũng là
-                thành viên của tập B , thì A là một Tập hợp con của B , được
-                biểu thị A ⊆ B, và tập hợp B bao hàm tập hợp A. Ví dụ, {1, 2} là
-                một tập hợp con của {1, 2, 3}, và {2} cũng vậy, nhưng {1, 4} thì
-                không.
-              </li>
-              <li>
-                Quan hệ bằng nhau<br />Hai tập hợp A và B được gọi là bằng nhau
-                nếu A là tập hợp con của B và B cũng là tập hợp con của A, ký
-                hiệu A = B.
-              </li>
-            </ul>
-            <p>
-              Theo định nghĩa, mọi tập hợp đều là tập con của chính nó; tập rỗng
-              là tập con của mọi tập hợp. Mọi tập hợp A không rỗng có ít nhất
-              hai tập con là rỗng và chính nó. Chúng được gọi là các tập con tầm
-              thường của tập A. Nếu tập con B của A khác với chính A, nghĩa là
-              có ít nhất một phần tử của A không thuộc B thì B được gọi là tập
-              con thực sự hay tập con chân chính của tập A.
-            </p>
-            <p>
-              Chú ý rằng 1 và 2 và 3 là các thành viên của tập {1, 2, 3} nhưng
-              không phải là tập con, các tập con chẳng hạn như {1} không phải là
-              thành viên của tập {1, 2, 3}.
-            </p>
-            <h4>Các phép toán trên các tập hợp</h4>
-            <ul>
-              <li>
-                Hợp (Union): Hợp của A và B là tập hợp gồm tất cả các phần tử
-                thuộc ít nhất một trong hai tập hợp A và B, ký hiệu A ⋃ B<br />Ta
-                có A ⋃ B = {x: x , hợp của {1, 2, 3} và {2, 3, 4} là tập {1, 2,
-                3, 4}.
-              </li>
-              <li>
-                Giao (Intersection): Giao của hai tập hợp A và B là tập hợp tất
-                cả các phần tử vừa thuộc A, vừa thuộc B, ký hiệu A ⋂ B<br />Ta
-                có A ⋂ B = {x: x ∈ A và x ∈ B}, giao của {1, 2, 3} và {2, 3, 4}
-                là tập {2, 3}.
-              </li>
-              <li>
-                Hiệu (Difference): Hiệu của tập hợp A với tập hợp B là tập hợp
-                tất cả các phần tử thuộc A nhưng không thuộc B, ký hiệu A \ B<br />Ta
-                có: A \ B = {x: x ∈ A và x ∉ B}<br /><strong>Lưu ý:</strong> A \
-                B ≠ B \ A
-              </li>
-              <li>
-                Phần bù (Complement): là hiệu của tập hợp con. Nếu A ⊂ B thì B \
-                A được gọi là phần bù của A trong B, ký hiệu C_A^B (hay C_B^A).
-              </li>
-            </ul>
-            <h4>Bao hàm loại trừ</h4>
-            <p>Cho 3 tập hợp:</p>
-            <p>A = {1, 2, 3, 5}<br />B = {2, 4, 6, 8}<br />C = {1, 2, 4, 6}</p>
-            <p>
-              Để tính số phần tử khác nhau trong hợp của 3 tập trên, ta dựng
-              biểu đồ Venn sau:
-            </p>
-            <p>
-              <img
-                src="https://cdn.discordapp.com/attachments/724194394475069461/907134198299623465/unknown.png"
-                alt="venn"
-              />
-            </p>
-            <p>
-              Ta nhận thấy có một số phần tử là giao của nhiều tập hợp: phần tử
-              chỉ thuộc 1 tập hợp, phần tử thuộc là giao của 2 tập hợp, phần tử
-              là giao của cả 3 tập hợp.
-            </p>
-            <p>
-              <img
-                src="https://media.discordapp.net/attachments/724194394475069461/907134513971335168/unknown.png"
-                alt="coloredvenn"
-              />
-            </p>
-            <p>
-              Vì thế, việc lấy tổng số phần tử của từng tập sẽ cho kết quả không
-              đúng (vì 1, 6 bị lặp 1 lần và 2 bị lặp 2 lần). Để giải quyết vấn
-              đề này, ta sẽ trừ đi số phần tử là giao của 2 tập hợp (các phần tử
-              1, 6 không bị lặp nữa,
-              <strong
-                >nhưng phần tử 2 vô tình bị trừ đi 2 lần =&gt; không còn được
-                tính</strong
-              >). Do đó, ta phải cộng vào kết quả số phần tử là giao của 3 tập
-              hợp.
-            </p>
-            <p>
-              Qua ví dụ trên, ta rút ra được cách tính bao hàm loại trừ như sau:
-            </p>
-            <ol>
-              <li>Tính tổng kích thước các tập hợp cần xét</li>
-              <li>Trừ đi kích thước của các giao của 2 tập hợp</li>
-              <li>Cộng tổng kích thước của các giao của 3 tập hợp</li>
-              <li>Trừ tổng kích thước của các giao của 4 tập hợp</li>
-              <li>Cộng tổng kích thước của các giao của 5 tập hợp</li>
-              <li>...</li>
-            </ol>
-            <p>
-              <img
-                src="https://media.discordapp.net/attachments/724194394475069461/907134651687141376/unknown.png"
-                alt="bhlt"
-              />
-            </p>
-          </div>
+			<!-- No 2 -->
+			<section id="No2" class="No2">
+				<h2 class="title"><i class="fas fa-award"></i> IE</h2>
+				<div class="content2">
+					<h2>
+						Kiến thức nền <i class="fas fa-sort-down info-btn"></i>
+					</h2>
+					<div class="info">
+						<h3>
+							Nhắc lại về các khái niệm và ký hiệu cơ bản trong lý
+							thuyết tập hợp
+						</h3>
+						<h4>Quan hệ giữa các tập hợp</h4>
+						<ul>
+							<li>
+								Quan hệ bao hàm<br />Nếu tất cả các thành viên
+								của tập A cũng là thành viên của tập B , thì A
+								là một Tập hợp con của B , được biểu thị A ⊆ B,
+								và tập hợp B bao hàm tập hợp A. Ví dụ, {1, 2} là
+								một tập hợp con của {1, 2, 3}, và {2} cũng vậy,
+								nhưng {1, 4} thì không.
+							</li>
+							<li>
+								Quan hệ bằng nhau<br />Hai tập hợp A và B được
+								gọi là bằng nhau nếu A là tập hợp con của B và B
+								cũng là tập hợp con của A, ký hiệu A = B.
+							</li>
+						</ul>
+						<p>
+							Theo định nghĩa, mọi tập hợp đều là tập con của
+							chính nó; tập rỗng là tập con của mọi tập hợp. Mọi
+							tập hợp A không rỗng có ít nhất hai tập con là rỗng
+							và chính nó. Chúng được gọi là các tập con tầm
+							thường của tập A. Nếu tập con B của A khác với chính
+							A, nghĩa là có ít nhất một phần tử của A không thuộc
+							B thì B được gọi là tập con thực sự hay tập con chân
+							chính của tập A.
+						</p>
+						<p>
+							Chú ý rằng 1 và 2 và 3 là các thành viên của tập {1,
+							2, 3} nhưng không phải là tập con, các tập con chẳng
+							hạn như {1} không phải là thành viên của tập {1, 2,
+							3}.
+						</p>
+						<h4>Các phép toán trên các tập hợp</h4>
+						<ul>
+							<li>
+								Hợp (Union): Hợp của A và B là tập hợp gồm tất
+								cả các phần tử thuộc ít nhất một trong hai tập
+								hợp A và B, ký hiệu A ⋃ B<br />Ta có A ⋃ B = {x:
+								x , hợp của {1, 2, 3} và {2, 3, 4} là tập {1, 2,
+								3, 4}.
+							</li>
+							<li>
+								Giao (Intersection): Giao của hai tập hợp A và B
+								là tập hợp tất cả các phần tử vừa thuộc A, vừa
+								thuộc B, ký hiệu A ⋂ B<br />Ta có A ⋂ B = {x: x
+								∈ A và x ∈ B}, giao của {1, 2, 3} và {2, 3, 4}
+								là tập {2, 3}.
+							</li>
+							<li>
+								Hiệu (Difference): Hiệu của tập hợp A với tập
+								hợp B là tập hợp tất cả các phần tử thuộc A
+								nhưng không thuộc B, ký hiệu A \ B<br />Ta có: A
+								\ B = {x: x ∈ A và x ∉ B}<br /><strong
+									>Lưu ý:</strong
+								>
+								A \ B ≠ B \ A
+							</li>
+							<li>
+								Phần bù (Complement): là hiệu của tập hợp con.
+								Nếu A ⊂ B thì B \ A được gọi là phần bù của A
+								trong B, ký hiệu C_A^B (hay C_B^A).
+							</li>
+						</ul>
+						<h4>Bao hàm loại trừ</h4>
+						<p>Cho 3 tập hợp:</p>
+						<p>
+							A = {1, 2, 3, 5}<br />B = {2, 4, 6, 8}<br />C = {1,
+							2, 4, 6}
+						</p>
+						<p>
+							Để tính số phần tử khác nhau trong hợp của 3 tập
+							trên, ta dựng biểu đồ Venn sau:
+						</p>
+						<p>
+							<img
+								src="https://cdn.discordapp.com/attachments/724194394475069461/907134198299623465/unknown.png"
+								alt="venn"
+							/>
+						</p>
+						<p>
+							Ta nhận thấy có một số phần tử là giao của nhiều tập
+							hợp: phần tử chỉ thuộc 1 tập hợp, phần tử thuộc là
+							giao của 2 tập hợp, phần tử là giao của cả 3 tập
+							hợp.
+						</p>
+						<p>
+							<img
+								src="https://media.discordapp.net/attachments/724194394475069461/907134513971335168/unknown.png"
+								alt="coloredvenn"
+							/>
+						</p>
+						<p>
+							Vì thế, việc lấy tổng số phần tử của từng tập sẽ cho
+							kết quả không đúng (vì 1, 6 bị lặp 1 lần và 2 bị lặp
+							2 lần). Để giải quyết vấn đề này, ta sẽ trừ đi số
+							phần tử là giao của 2 tập hợp (các phần tử 1, 6
+							không bị lặp nữa,
+							<strong
+								>nhưng phần tử 2 vô tình bị trừ đi 2 lần =&gt;
+								không còn được tính</strong
+							>). Do đó, ta phải cộng vào kết quả số phần tử là
+							giao của 3 tập hợp.
+						</p>
+						<p>
+							Qua ví dụ trên, ta rút ra được cách tính bao hàm
+							loại trừ như sau:
+						</p>
+						<ol>
+							<li>Tính tổng kích thước các tập hợp cần xét</li>
+							<li>
+								Trừ đi kích thước của các giao của 2 tập hợp
+							</li>
+							<li>
+								Cộng tổng kích thước của các giao của 3 tập hợp
+							</li>
+							<li>
+								Trừ tổng kích thước của các giao của 4 tập hợp
+							</li>
+							<li>
+								Cộng tổng kích thước của các giao của 5 tập hợp
+							</li>
+							<li>...</li>
+						</ol>
+						<p>
+							<img
+								src="https://media.discordapp.net/attachments/724194394475069461/907134651687141376/unknown.png"
+								alt="bhlt"
+							/>
+						</p>
+					</div>
 
-          <h2>Đề bài <i class="fas fa-sort-down challenge-btn"></i></h2>
-          <div class="challenge-content">
-            <p>
-              “Chào mừng các thành viên của đội chơi đã đến với thử thách “IE”,
-              vì sợ các bạn nhàm chán nên chúng tôi - “Tổ chức điểm cộng phi lợi
-              nhuận giấu tên không ai biết đại diện cho những nhân vật phản diện
-              đầy khả ái và ngây ngất lòng người” - đã chuẩn bị trước một trò
-              chơi cho các bạn cùng thưởng thức.”
-            </p>
-            <p>
-              Các bạn đã được đưa tới 1 cây cầu trên không được tạo nên từ các
-              ván gỗ đánh số từ 1 tới 100000000. Vì cây cầu đã được xây dựng
-              nhiều năm về trước nên một số ván gỗ đã bị mục, có thể gãy nếu có
-              người đứng trên nó. Các bạn đang đứng ở một bên cầu (được đánh số
-              0) và muốn đi sang phía bên kia cầu (được đánh số 100000001). Biết
-              rằng các ván được đánh số chia hết cho 2, 3 hoặc 5 thì vẫn còn
-              chắc chắn và có thể qua được), hãy cho biết số ván gỗ còn chắc
-              chắn trên cây cầu để đảm bảo các bạn có thể qua được bờ bên kia.
-            </p>
-            <h2>Cách trả lời</h2>
-            <p>
-              Đội chơi điền duy nhất 1 số hệ thập phân là kết quả của trò chơi
-              trên.
-            </p>
-          </div>
+					<h2>
+						Đề bài <i class="fas fa-sort-down challenge-btn"></i>
+					</h2>
+					<div class="challenge-content">
+						<p>
+							“Chào mừng các thành viên của đội chơi đã đến với
+							thử thách “IE”, vì sợ các bạn nhàm chán nên chúng
+							tôi - “Tổ chức điểm cộng phi lợi nhuận giấu tên
+							không ai biết đại diện cho những nhân vật phản diện
+							đầy khả ái và ngây ngất lòng người” - đã chuẩn bị
+							trước một trò chơi cho các bạn cùng thưởng thức.”
+						</p>
+						<p>
+							Các bạn đã được đưa tới 1 cây cầu trên không được
+							tạo nên từ các ván gỗ đánh số từ 1 tới 100000000. Vì
+							cây cầu đã được xây dựng nhiều năm về trước nên một
+							số ván gỗ đã bị mục, có thể gãy nếu có người đứng
+							trên nó. Các bạn đang đứng ở một bên cầu (được đánh
+							số 0) và muốn đi sang phía bên kia cầu (được đánh số
+							100000001). Biết rằng các ván được đánh số chia hết
+							cho 2, 3 hoặc 5 thì vẫn còn chắc chắn và có thể qua
+							được), hãy cho biết số ván gỗ còn chắc chắn trên cây
+							cầu để đảm bảo các bạn có thể qua được bờ bên kia.
+						</p>
+						<h2>Cách trả lời</h2>
+						<p>
+							Đội chơi điền duy nhất 1 số hệ thập phân là kết quả
+							của trò chơi trên.
+						</p>
+					</div>
 
-          <h2>Gợi ý <i class="fas fa-sort-down hint-btn1"></i></h2>
-          <div class="allhint">
-            <div class="hint">
-              <h3>Gợi ý 1</h3>
-              <p>
-                Các bạn có thể áp dụng kiến thức về bao hàm loại trừ như trên
-                hoặc là viết chương trình đơn giản để tính kết quả bài toán
-              </p>
-            </div>
+					<h2>Gợi ý <i class="fas fa-sort-down hint-btn"></i></h2>
 
-            <div class="hint">
-              <h3>Gợi ý 2</h3>
-              <p>
-                Số lượng số chia hết cho một số x trong đoạn từ 1 đến n là: ⌊n /
-                x⌋.<br /><strong>Note:</strong>
-                ⌊u⌋: làm tròn xuống số nguyên lớn nhất bé hơn hoặc bằng u. Vd:
-                ⌊2.3⌋ = 2, ⌊2.7⌋ = 2.
-              </p>
-            </div>
+					<div class="allhint">
+						<div class="hint">
+							<h3>Gợi ý 1</h3>
+							<p>
+								Các bạn có thể áp dụng kiến thức về bao hàm loại
+								trừ như trên hoặc là viết chương trình đơn giản
+								để tính kết quả bài toán
+							</p>
+						</div>
 
-            <div class="hint">
-              <h3>Gợi ý 3</h3>
-              <p>
-                Gọi f(n) là số số chia hết cho n trong đoạn từ 1 đến
-                100000000.<br />Đáp án của bài toán là: f(2) + f(3) + f(5) - f(2
-                ⋂ 3) - f(3 ⋂ 5) - f(2 ⋂ 5) + f(2 ⋂ 3 ⋂ 5)
-              </p>
-            </div>
-          </div>
-        </div>
+						<div class="hint">
+							<h3>Gợi ý 2</h3>
+							<p>
+								Số lượng số chia hết cho một số x trong đoạn từ
+								1 đến n là: ⌊n / x⌋.<br /><strong>Note:</strong>
+								⌊u⌋: làm tròn xuống số nguyên lớn nhất bé hơn
+								hoặc bằng u. Vd: ⌊2.3⌋ = 2, ⌊2.7⌋ = 2.
+							</p>
+						</div>
 
-        <div class="answer-area">
-          <input
-            type="text"
-            name="answer"
-            class="answer"
-            placeholder="Type Your Answer"
-          />
-          <span>
-            <button class="submit">Submit</button>
-          </span>
-        </div>
-      </section>
-    </div>
+						<div class="hint">
+							<h3>Gợi ý 3</h3>
+							<p>
+								Gọi f(n) là số số chia hết cho n trong đoạn từ 1
+								đến 100000000.<br />Đáp án của bài toán là: f(2)
+								+ f(3) + f(5) - f(2 ⋂ 3) - f(3 ⋂ 5) - f(2 ⋂ 5) +
+								f(2 ⋂ 3 ⋂ 5)
+							</p>
+						</div>
+					</div>
+				</div>
 
-    <footer>
-      <p>Made by Yuran Legends</p>
-    </footer>
-    <script src="../src/js/Tmpl.js"></script>
-  </body>
+				<div class="answer-area">
+					<input
+						type="text"
+						name="answer"
+						class="answer"
+						placeholder="Type Your Answer"
+					/>
+					<span>
+						<button class="submit">Submit</button>
+					</span>
+				</div>
+			</section>
+
+			<!-- No 3 -->
+			<section id="No3" class="No3">
+				<h2 class="title">
+					<i class="fas fa-award"></i> Mật khẩu là gì?
+				</h2>
+
+				<div class="content">
+					<!-- Đề bài -->
+					<h2>
+						Đề bài <i class="fas fa-sort-down challenge-btn"></i>
+					</h2>
+					<div class="challenge-content">
+						Năm châu bốn bể thật nhiều nơi để đi qua. Bạn được BTC
+						cung cấp sơ đồ giản lược của một số quốc gia và chi phí
+						tương ứng để bay giữa các quốc gia. Naot muốn đi qua các
+						nước sau: Việt Nam -> Thái Lan -> Ấn Độ. Đi thẳng từ
+						nước này sang nước khác cũng được thôi, nhưng Naot muốn
+						tiết kiệm tiền để còn đi paylak toàn cầu, nên hãy thiết
+						kế cho Naot một lộ trình đi qua các nước sao cho tổng
+						chi phí bay là nhỏ nhất nhé.
+					</div>
+
+					<!-- How to answer -->
+					<div class="how-to-answer">
+						<h2>Cách trả lời</h2>
+						Đội chơi trả lời lộ trình tốt nhất và số tiền dự tính
+						theo VNĐ, làm tròn đến 2 chữ số có nghĩa.
+					</div>
+
+					<!-- Phần 1 -->
+					<h2>
+						Phần 1 <i class="fas fa-sort-down challenge-btn2"></i>
+					</h2>
+					<div class="challenge-content-p1">
+						<p>
+							<img
+								src="https://cdn.discordapp.com/attachments/724194394475069461/907134741160022026/unknown.png"
+								alt="map1"
+							/>
+						</p>
+					</div>
+
+					<!-- Phần 2 -->
+					<h2>
+						Phần 2 <i class="fas fa-sort-down challenge-btn3"></i>
+					</h2>
+					<div class="challenge-content-p2">
+						<p>
+							<img
+								src="https://cdn.discordapp.com/attachments/724194394475069461/907134763859587123/unknown.png"
+								alt="map2"
+							/>
+						</p>
+					</div>
+				</div>
+
+				<!-- Submit -->
+				<div class="answer-area">
+					<input
+						type="text"
+						name="answer"
+						class="answer"
+						placeholder="Type Your Answer"
+					/>
+					<span>
+						<button class="submit">Submit</button>
+					</span>
+				</div>
+			</section>
+		</div>
+
+		<footer>
+			<p>Made by Yuran Legends</p>
+		</footer>
+		<script src="../src/js/Tmpl.js"></script>
+	</body>
 </html>
