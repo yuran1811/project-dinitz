@@ -1,3 +1,27 @@
+$('.nav-bar a').on('click', function (e) {
+	e.preventDefault();
+	const href = $(this).attr('href');
+	$('html, body').animate({ scrollTop: $(href).offset().top }, 900);
+});
+
+$('.to-top a').on('click', function (e) {
+	e.preventDefault();
+	const href = $(this).attr('href');
+	$('html, body').animate({ scrollTop: $(href).offset().top }, 900);
+});
+
+$('.toggle-theme').on('click', function (e) {
+	$('body').toggleClass('dark');
+	$('.moon').toggleClass('active');
+	$('.sun').toggleClass('active');
+});
+
+$('.menu').on('click', function (e) {
+	$('.nav-bar').toggleClass('active');
+	$('#menu-bar1').toggleClass('active');
+	$('#menu-bar2').toggleClass('active');
+});
+
 // Link Effect
 var linkList = document.querySelector('.nav-bar').getElementsByClassName('lk');
 for (var i = 0; i < linkList.length; i++) {
@@ -23,7 +47,7 @@ function getHint(sectionContent) {
 			console.log(indexHint, hintCnt);
 			if (indexHint >= hintCnt) clearInterval(x);
 			else hintContent[indexHint++].classList.add('active');
-		}, 1000);
+		}, 5000);
 	}
 }
 
@@ -43,10 +67,12 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	let challengeBtn = sectionList[itemIndex].querySelector('.challenge-btn');
 	let challengeContent =
 		sectionList[itemIndex].querySelector('.challenge-content');
-	challengeBtn.addEventListener('click', (e) => {
-		challengeBtn.classList.toggle('active');
-		challengeContent.classList.toggle('active');
-	});
+	if (challengeContent) {
+		challengeBtn.addEventListener('click', (e) => {
+			challengeBtn.classList.toggle('active');
+			challengeContent.classList.toggle('active');
+		});
+	}
 
 	let hintBtn = sectionList[itemIndex].querySelector('.hint-btn');
 	if (hintBtn) {
@@ -56,31 +82,11 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 		});
 	}
 
-	$('sectionList[itemIndex] input[class="answer"]').on('keydown', (e) => {
-		if (e.keyCode === 13) console.log(1);
-	});
+	let answerInput =
+		sectionList[itemIndex].querySelector('input[type="text"]');
+	if (answerInput) {
+		answerInput.addEventListener('keydown', (e) => {
+			if (e.keyCode === 13) console.log('Enter is pressed');
+		});
+	}
 }
-
-$('.nav-bar a').on('click', function (e) {
-	e.preventDefault();
-	const href = $(this).attr('href');
-	$('html, body').animate({ scrollTop: $(href).offset().top }, 900);
-});
-
-$('.to-top a').on('click', function (e) {
-	e.preventDefault();
-	const href = $(this).attr('href');
-	$('html, body').animate({ scrollTop: $(href).offset().top }, 900);
-});
-
-$('.toggle-theme').on('click', function (e) {
-	$('body').toggleClass('dark');
-	$('.moon').toggleClass('active');
-	$('.sun').toggleClass('active');
-});
-
-$('.menu').on('click', function (e) {
-	$('.nav-bar').toggleClass('active');
-	$('#menu-bar1').toggleClass('active');
-	$('#menu-bar2').toggleClass('active');
-});
