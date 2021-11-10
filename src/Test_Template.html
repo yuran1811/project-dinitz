@@ -38,12 +38,36 @@
 				</div>
 				<div class="nav-links">
 					<ul>
-						<li class="lk liactive"><a href="#No1">No1</a></li>
-						<li class="lk"><a href="#No2">No2</a></li>
-						<li class="lk"><a href="#No3">No3</a></li>
-						<li class="lk"><a href="#No4">No4</a></li>
-						<li class="lk"><a href="#No5">No5</a></li>
-						<li class="lk"><a href="#No6">No6</a></li>
+						<li class="lk liactive">
+							<a href="#No1"
+								><i class="passed fas fa-award"></i> No1</a
+							>
+						</li>
+						<li class="lk">
+							<a href="#No2"
+								><i class="passed fas fa-award"></i> No2</a
+							>
+						</li>
+						<li class="lk">
+							<a href="#No3"
+								><i class="passed fas fa-award"></i> No3</a
+							>
+						</li>
+						<li class="lk">
+							<a href="#No4"
+								><i class="passed fas fa-award"></i> No4</a
+							>
+						</li>
+						<li class="lk">
+							<a href="#No5"
+								><i class="passed fas fa-award"></i> No5</a
+							>
+						</li>
+						<li class="lk">
+							<a href="#No6"
+								><i class="passed fas fa-award"></i> No6</a
+							>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -79,134 +103,172 @@
 							sang trái. Khi nói đến tổng xor, phép toán được thực
 							hiện giữa 2 bit tuân theo bảng sau:
 						</p>
-						<table>
+						<table style="width: 45%">
 							<thead>
 								<tr>
-									<th><code>a</code></th>
-									<th><code>b</code></th>
-									<th style="text-align: center">
+									<th style="width: 20%"><code>a</code></th>
+									<th style="width: 20%"><code>b</code></th>
+									<th style="width: 30%">
 										<code>a xor b</code>
 									</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td><code>0</code></td>
-									<td><code>0</code></td>
-									<td style="text-align: center">
+									<td style="width: 20%"><code>0</code></td>
+									<td style="width: 20%"><code>0</code></td>
+									<td style="width: 30%">
 										<code>0</code>
 									</td>
 								</tr>
 								<tr>
-									<td><code>0</code></td>
-									<td><code>1</code></td>
-									<td style="text-align: center">
+									<td style="width: 20%"><code>0</code></td>
+									<td style="width: 20%"><code>1</code></td>
+									<td style="width: 30%">
 										<code>1</code>
 									</td>
 								</tr>
 								<tr>
-									<td><code>1</code></td>
-									<td><code>0</code></td>
-									<td style="text-align: center">
+									<td style="width: 20%"><code>1</code></td>
+									<td style="width: 20%"><code>0</code></td>
+									<td style="width: 30%">
 										<code>1</code>
 									</td>
 								</tr>
 								<tr>
-									<td><code>1</code></td>
-									<td><code>1</code></td>
-									<td style="text-align: center">
+									<td style="width: 20%"><code>1</code></td>
+									<td style="width: 20%"><code>1</code></td>
+									<td style="width: 30%">
 										<code>0</code>
 									</td>
 								</tr>
 							</tbody>
 						</table>
-						<p>
-							Có thể hiểu phép xor như phép cộng không nhớ. <br />
-							<em><strong>Ví dụ:</strong></em> <br />
-							<em><strong>Yêu cầu:</strong></em> Tính tổng xor của
-							2 số (đang ở dạng biểu diễn cơ số 10) lần lượt là 9
-							và 18. <br />
-							<em><strong>Cách làm:</strong></em>
-						</p>
 
+						<p>Có thể hiểu phép xor như phép cộng không nhớ.</p>
+						<em><strong>Ví dụ</strong></em>
 						<ul>
 							<li>
-								Đưa 2 số trên từ dạng biểu diễn cơ số 10 thành
-								dạng biểu diễn cơ số 2:<br />9 (cơ số 10) = 1001
-								(cơ số 2)<br />18(cơ số 10) = 10010 (cơ số 2)
+								<em><strong>Yêu cầu:</strong></em>
+								Tính tổng xor của 2 số (đang ở dạng biểu diễn cơ
+								số 10) lần lượt là 9 và 18.
 							</li>
 							<li>
-								Thực hiện lần lượt phép xor từ phải sang trái:
+								<em><strong>Cách làm</strong></em>
+								<ul>
+									<li>
+										Đưa 2 số trên từ dạng biểu diễn cơ số 10
+										thành dạng biểu diễn cơ số 2:
+										<ul style="list-style-type: disc">
+											<li>
+												9 (cơ số 10) = 1001 (cơ số 2)
+											</li>
+											<li>
+												18(cơ số 10) = 10010 (cơ số 2)
+											</li>
+										</ul>
+									</li>
+									<li>
+										Thực hiện lần lượt phép xor từ phải sang
+										trái:
+										<table id="tb2">
+											<tbody>
+												<tr>
+													<td style="width: 10%"></td>
+													<td style="width: 10%">
+														1
+													</td>
+													<td style="width: 10%">
+														0
+													</td>
+													<td style="width: 10%">
+														0
+													</td>
+													<td style="width: 10%">
+														1
+													</td>
+												</tr>
+												<tr>
+													<td style="width: 10%">
+														1
+													</td>
+													<td style="width: 10%">
+														0
+													</td>
+													<td style="width: 10%">
+														0
+													</td>
+													<td style="width: 10%">
+														1
+													</td>
+													<td style="width: 10%">
+														0
+													</td>
+												</tr>
+												<tr>
+													<td style="width: 10%"></td>
+													<td style="width: 10%"></td>
+													<td style="width: 10%"></td>
+													<td style="width: 10%"></td>
+													<td style="width: 10%"></td>
+												</tr>
+												<tr>
+													<td style="width: 10%">
+														1
+													</td>
+													<td style="width: 10%">
+														1
+													</td>
+													<td style="width: 10%">
+														0
+													</td>
+													<td style="width: 10%">
+														1
+													</td>
+													<td style="width: 10%">
+														1
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</li>
+									<li>
+										Chuyển kết quả cộng lại thành cơ số
+										10:<br />11011 (cơ số 2) = 27
+									</li>
+								</ul>
+							</li>
+							<li>
+								<em><strong>Kết luận:</strong></em> 9 xor 18 =
+								27
+							</li>
+							<li>
+								<em
+									><strong
+										>Một số tính chất quan trọng của phép
+										xor:</strong
+									></em
+								>
+								<ul>
+									<li>
+										Tính giao hoán: x <code>xor</code> y = y
+										<code>xor</code> x
+									</li>
+									<li>
+										Tính phân phối (cộng): (x
+										<code>xor</code> y) <code>xor</code> z =
+										x <code>xor</code> (y
+										<code>xor</code> z)
+									</li>
+									<li>
+										Tính tự triệt: x <code>xor</code> x = 0
+									</li>
+								</ul>
 							</li>
 						</ul>
-						<table>
-							<thead>
-								<tr>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td></td>
-									<td>1</td>
-									<td>0</td>
-									<td>0</td>
-									<td>1</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>0</td>
-									<td>0</td>
-									<td>1</td>
-									<td>0</td>
-								</tr>
-								<tr>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-									<td>-</td>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>1</td>
-									<td>0</td>
-									<td>1</td>
-									<td>1</td>
-								</tr>
-							</tbody>
-						</table>
-						<ul>
-							<li>
-								Chuyển kết quả cộng lại thành cơ số 10:<br />11011
-								(cơ số 2) = 27
-							</li>
-						</ul>
-						<p>
-							<em><strong>Kết luận:</strong></em> 9 xor 18 = 27
-						</p>
-						<p>Một số tính chất quan trọng của phép xor:</p>
-						<ul>
-							<li>
-								Tính giao hoán: x <code>xor</code> y = y
-								<code>xor</code> x
-							</li>
-							<li>
-								Tính phân phối (cộng): (x <code>xor</code> y)
-								<code>xor</code> z = x <code>xor</code> (y
-								<code>xor</code> z)
-							</li>
-							<li>Tính tự triệt: x <code>xor</code> x = 0</li>
-						</ul>
-						<p>
-							<em><strong>Lưu ý:</strong></em> Tổng xor của một
-							dãy n số hoàn toàn có thể tính được dựa trên các
-							tính chất đã nêu trên
-						</p>
+						<em><strong>Lưu ý:</strong></em> Tổng xor của một dãy n
+						số hoàn toàn có thể tính được dựa trên các tính chất đã
+						nêu trên
 					</div>
 
 					<!-- De bai -->
@@ -336,7 +398,6 @@
 						<div class="answer-area">
 							<i class="fa-2x fas fa-check-circle correct"></i>
 							<i class="fa-2x fas fa-times-circle wrong"></i>
-
 							<input
 								type="text"
 								name="answer"
@@ -356,56 +417,68 @@
 								và một số trạng thái thua cuộc dành cho người
 								chơi đầu tiên với Emag min với 3 chồng sỏi:
 							</p>
-							<ul>
-								<li>
-									Trạng thái chiến thắng:
-									<ul>
-										<li>1 1 1</li>
-										<li>1 1 2</li>
-										<li>1 1 3</li>
-										<li>1 1 4</li>
-										<li>1 2 1</li>
-										<li>1 2 2</li>
-										<li>1 2 4</li>
-										<li>1 3 1</li>
-										<li>1 3 3</li>
-										<li>1 3 4</li>
-										<li>1 4 1</li>
-										<li>1 4 2</li>
-										<li>1 4 3</li>
-										<li>1 4 4</li>
-										<li>2 1 1</li>
-										<li>2 1 2</li>
-										<li>2 1 4</li>
-										<li>2 2 1</li>
-										<li>2 2 2</li>
-									</ul>
-								</li>
-								<li>
-									Trạng thái thua cuộc:
-									<ul>
-										<li>0 0 0</li>
-										<li>0 1 1</li>
-										<li>0 2 2</li>
-										<li>0 3 3</li>
-										<li>0 4 4</li>
-										<li>1 0 1</li>
-										<li>1 1 0</li>
-										<li>1 2 3</li>
-										<li>1 3 2</li>
-										<li>2 0 2</li>
-										<li>2 1 3</li>
-										<li>2 2 0</li>
-										<li>2 3 1</li>
-										<li>3 0 3</li>
-										<li>3 1 2</li>
-										<li>3 2 1</li>
-										<li>3 3 0</li>
-										<li>4 0 4</li>
-										<li>4 4 0</li>
-									</ul>
-								</li>
-							</ul>
+							<table id="No1-hint1">
+								<tr>
+									<th colspan="2">Trạng thái chiến thắng</th>
+									<th colspan="2">Trạng thái thua cuộc</th>
+								</tr>
+								<tr>
+									<td>
+										<p>
+											1 1 1 <br />
+											1 1 2 <br />
+											1 1 3 <br />
+											1 1 4 <br />
+											1 2 1 <br />
+											1 2 2 <br />
+											1 2 4 <br />
+											1 3 1 <br />
+											1 3 3
+										</p>
+									</td>
+									<td>
+										<p>
+											1 3 4 <br />
+											1 4 1 <br />
+											1 4 2 <br />
+											1 4 3 <br />
+											1 4 4 <br />
+											2 1 1 <br />
+											2 1 2 <br />
+											2 1 4 <br />
+											2 2 1 <br />
+											2 2 2
+										</p>
+									</td>
+									<td>
+										<p>
+											0 0 0 <br />
+											0 1 1 <br />
+											0 2 2 <br />
+											0 3 3 <br />
+											0 4 4 <br />
+											1 0 1 <br />
+											1 1 0 <br />
+											1 2 3 <br />
+											1 3 2
+										</p>
+									</td>
+									<td>
+										<p>
+											2 0 2 <br />
+											2 1 3 <br />
+											2 2 0 <br />
+											2 3 1 <br />
+											3 0 3 <br />
+											3 1 2 <br />
+											3 2 1 <br />
+											3 3 0 <br />
+											4 0 4 <br />
+											4 4 0
+										</p>
+									</td>
+								</tr>
+							</table>
 						</div>
 
 						<div class="hint">
@@ -511,6 +584,7 @@
 							<img
 								src="https://cdn.discordapp.com/attachments/724194394475069461/907134198299623465/unknown.png"
 								alt="venn"
+								style="max-width: 80%; height: auto"
 							/>
 						</p>
 						<p>
@@ -523,6 +597,7 @@
 							<img
 								src="https://media.discordapp.net/attachments/724194394475069461/907134513971335168/unknown.png"
 								alt="coloredvenn"
+								style="max-width: 80%; height: auto"
 							/>
 						</p>
 						<p>
@@ -561,6 +636,7 @@
 							<img
 								src="https://media.discordapp.net/attachments/724194394475069461/907134651687141376/unknown.png"
 								alt="bhlt"
+								style="max-width: 100%; height: auto"
 							/>
 						</p>
 					</div>
@@ -668,7 +744,36 @@
 									alt="map1"
 								/>
 							</p>
+							<!-- Start API -->
+							<div
+								id="div1"
+								ondrop="drop(event)"
+								ondragover="allowDrop(event)"
+							>
+								<img
+									src="https://thumbs.dreamstime.com/b/digital-art-illustrator-background-repeat-cube-used-as-background-image-painting-advertising-media-digital-art-140012508.jpg"
+									draggable="true"
+									ondragstart="drag(event)"
+									id="drag1"
+									width="88"
+									height="31"
+								/>
+							</div>
+							<i class="fa-2x fas fa-long-arrow-alt-right al"></i>
+							<div
+								id="div2"
+								ondrop="drop(event)"
+								ondragover="allowDrop(event)"
+							></div>
+							<i class="fa-2x fas fa-long-arrow-alt-right al"></i>
+							<div
+								id="div3"
+								ondrop="drop(event)"
+								ondragover="allowDrop(event)"
+							></div>
+							<!-- End API -->
 						</div>
+
 						<div class="answer-area">
 							<i class="fa-2x fas fa-check-circle correct"></i>
 							<i class="fa-2x fas fa-times-circle wrong"></i>
@@ -682,6 +787,8 @@
 							/>
 						</div>
 
+						<br />
+
 						<!-- Phần 2 -->
 						<h2>Phần 2</h2>
 						<div>
@@ -691,7 +798,36 @@
 									alt="map2"
 								/>
 							</p>
+							<!-- Start API -->
+							<div
+								id="div1"
+								ondrop="drop(event)"
+								ondragover="allowDrop(event)"
+							>
+								<img
+									src="https://thumbs.dreamstime.com/b/digital-art-illustrator-background-repeat-cube-used-as-background-image-painting-advertising-media-digital-art-140012508.jpg"
+									draggable="true"
+									ondragstart="drag(event)"
+									id="drag1"
+									width="88"
+									height="31"
+								/>
+							</div>
+							<i class="fa-2x fas fa-long-arrow-alt-right al"></i>
+							<div
+								id="div2"
+								ondrop="drop(event)"
+								ondragover="allowDrop(event)"
+							></div>
+							<i class="fa-2x fas fa-long-arrow-alt-right al"></i>
+							<div
+								id="div3"
+								ondrop="drop(event)"
+								ondragover="allowDrop(event)"
+							></div>
+							<!-- End API -->
 						</div>
+
 						<div class="answer-area">
 							<i class="fa-2x fas fa-check-circle correct"></i>
 							<i class="fa-2x fas fa-times-circle wrong"></i>
@@ -778,162 +914,197 @@
 					<h2>
 						Đề bài <i class="fas fa-sort-down challenge-btn"></i>
 					</h2>
-					<div class="challenge-content">
+					<div
+						class="challenge-content"
+						style="
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+						"
+					>
 						<p>
 							<img
 								src="https://media.discordapp.net/attachments/724194394475069461/907134798923989002/unknown.png"
 								alt="map"
+								style="max-width: 100%; height: auto"
 							/>
 						</p>
 						<p>
 							<img
 								src="https://media.discordapp.net/attachments/724194394475069461/907134961969164328/unknown.png"
 								alt="key"
+								style="max-width: 100%; height: auto"
 							/>
 						</p>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="0"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="1"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="2"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="3"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="4"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="5"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="6"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="7"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="8"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="9"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="10"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
-						</div>
-						<div class="answer-area">
-							<i class="fa-2x fas fa-check-circle correct"></i>
-							<i class="fa-2x fas fa-times-circle wrong"></i>
-
-							<input
-								id="11"
-								type="text"
-								name="answer"
-								class="answer"
-								placeholder="Type Your Answer"
-							/>
+						<div class="whole-answerarea">
+							<div class="answer-area">
+								<p>Câu 1</p>
+								<input
+									id="0"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 2</p>
+								<input
+									id="1"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 3</p>
+								<input
+									id="2"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 4</p>
+								<input
+									id="3"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 5</p>
+								<input
+									id="4"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 6</p>
+								<input
+									id="5"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 7</p>
+								<input
+									id="6"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 8</p>
+								<input
+									id="7"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 9</p>
+								<input
+									id="8"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 10</p>
+								<input
+									id="9"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 11</p>
+								<input
+									id="10"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
+							<div class="answer-area">
+								<p>Câu 12</p>
+								<input
+									id="11"
+									type="text"
+									name="answer"
+									class="answer"
+									placeholder="Type Your Answer"
+								/>
+								<i
+									class="fa-2x fas fa-check-circle correct"
+								></i>
+								<i class="fa-2x fas fa-times-circle wrong"></i>
+							</div>
 						</div>
 					</div>
 				</div>
