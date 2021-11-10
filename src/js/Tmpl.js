@@ -44,7 +44,7 @@ function getHint(sectionContent) {
 		let x = setInterval(() => {
 			if (indexHint >= hintCnt) clearInterval(x);
 			else hintContent[indexHint++].classList.add('active');
-		}, 5000);
+		}, 1);
 	}
 }
 
@@ -104,22 +104,6 @@ function deCode(ansArray) {
 	return res.join('');
 }
 
-// Bin Search
-
-function checkanswer() {
-	var a = Number(document.querySelector('input').value),
-		b = Number(thisfunctionissocool(ans4));
-	if (!(1 <= a && a <= 8192))
-		alert('Vui lòng nhập một số trong khoảng [1; 8192]');
-	else {
-		if (a > b) alert('Mật khẩu sai. Số vừa nhập lớn hơn mật khẩu gốc.');
-		else if (a < b) alert('Mật khẩu sai. Số vừa nhập bé hơn mật khẩu gốc.');
-		else alert('Chúc mừng, mật khẩu chính xác.');
-	}
-}
-
-// End
-
 var sectionList = document.querySelectorAll('section');
 var sectionListLth = sectionList.length;
 for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
@@ -172,13 +156,25 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.add('active');
+							e.path[1]
+								.querySelector('.correct')
+								.classList.remove('active');
 						} else if (userAnswer < sysAnswer) {
 							console.log('Smaller');
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.add('active');
+							e.path[1]
+								.querySelector('.correct')
+								.classList.remove('active');
 						} else {
 							console.log('AC');
+							let navFin = e.path[6]
+								.querySelector('.nav-links')
+								.getElementsByClassName('lk')[path];
+							console.log(navFin);
+							navFin.classList.add('finish');
+							navFin.classList.add('lifin');
 							e.path[4].classList.add('finish');
 							e.path[1]
 								.querySelector('.wrong')
@@ -211,12 +207,21 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							passCheck[indexInput] = 1;
 							if (passCheck[0] === passCheck[1] && passCheck[0]) {
 								sectionXXXX.classList.add('finish');
+								let navFin = e.path[6]
+									.querySelector('.nav-links')
+									.getElementsByClassName('lk')[path];
+								console.log(navFin);
+								navFin.classList.add('finish');
+								navFin.classList.add('lifin');
 							}
 						} else {
 							console.log('WA');
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.add('active');
+							e.path[1]
+								.querySelector('.correct')
+								.classList.remove('active');
 						}
 					}
 				});
@@ -233,7 +238,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					(e) => {
 						if (e.keyCode === 13) {
 							let userAnswer = e.path[0].value.trim();
-							let path = e.path[4].getAttribute('sectionId');
+							let path = e.path[5].getAttribute('sectionId');
 							let idAnswer = Number(e.path[0].id);
 							let sysAnswer = deCode(ansAll[path][idAnswer]);
 							console.log(userAnswer, sysAnswer);
@@ -250,13 +255,23 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								for (let idCheck = 0; idCheck < 12; idCheck++) {
 									if (passCheck[idCheck] === 1) cntCheck++;
 								}
-								if (cntCheck === 12)
-									e.path[4].classList.add('finish');
+								if (cntCheck === 12) {
+									e.path[5].classList.add('finish');
+									let navFin = e.path[7]
+										.querySelector('.nav-links')
+										.getElementsByClassName('lk')[path];
+									console.log(navFin);
+									navFin.classList.add('finish');
+									navFin.classList.add('lifin');
+								}
 							} else {
 								console.log('WA');
 								e.path[1]
 									.querySelector('.wrong')
 									.classList.add('active');
+								e.path[1]
+									.querySelector('.correct')
+									.classList.remove('active');
 							}
 						}
 					}
@@ -270,6 +285,14 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let sysAnswer = deCode(ansAll[path]);
 					if (userAnswer == sysAnswer) {
 						console.log('AC');
+						// console.log(e.path[6]);
+						let navFin = e.path[6]
+							.querySelector('.nav-links')
+							.getElementsByClassName('lk')[path];
+						console.log(navFin);
+						navFin.classList.add('finish');
+						navFin.classList.add('lifin');
+
 						e.path[4].classList.add('finish');
 						e.path[1]
 							.querySelector('.wrong')
@@ -282,9 +305,26 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						e.path[1]
 							.querySelector('.wrong')
 							.classList.add('active');
+						e.path[1]
+							.querySelector('.correct')
+							.classList.remove('active');
 					}
 				}
 			});
 		}
 	}
+}
+
+function allowDrop(ev) {
+	ev.preventDefault();
+}
+
+function drag(ev) {
+	ev.dataTransfer.setData('text', ev.target.id);
+}
+
+function drop(ev) {
+	ev.preventDefault();
+	var data = ev.dataTransfer.getData('text');
+	ev.target.appendChild(document.getElementById(data));
 }
