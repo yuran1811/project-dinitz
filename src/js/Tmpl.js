@@ -104,6 +104,22 @@ function deCode(ansArray) {
 	return res.join('');
 }
 
+// Bin Search
+
+function checkanswer() {
+	var a = Number(document.querySelector('input').value),
+		b = Number(thisfunctionissocool(ans4));
+	if (!(1 <= a && a <= 8192))
+		alert('Vui lòng nhập một số trong khoảng [1; 8192]');
+	else {
+		if (a > b) alert('Mật khẩu sai. Số vừa nhập lớn hơn mật khẩu gốc.');
+		else if (a < b) alert('Mật khẩu sai. Số vừa nhập bé hơn mật khẩu gốc.');
+		else alert('Chúc mừng, mật khẩu chính xác.');
+	}
+}
+
+// End
+
 var sectionList = document.querySelectorAll('section');
 var sectionListLth = sectionList.length;
 for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
@@ -139,7 +155,31 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	let answerLength = answerInputList.length;
 	if (answerLength) {
 		if (itemIndex === 3) {
-			// another Function
+			answerInputList[0].addEventListener('keydown', (e) => {
+				if (e.keyCode === 13) {
+					let userAnswer = e.path[0].value.trim();
+					let path = e.path[4].getAttribute('sectionId');
+					let sysAnswer = deCode(ansAll[path]);
+					console.log(userAnswer, sysAnswer);
+					if (userAnswer == sysAnswer) console.log('AC');
+					else console.log('WA');
+					if (!(1 <= userAnswer && userAnswer <= 8192))
+						console.log(
+							'Vui lòng nhập một số trong khoảng [1; 8192]'
+						);
+					else {
+						if (userAnswer > sysAnswer)
+							console.log(
+								'Mật khẩu sai. Số vừa nhập lớn hơn mật khẩu gốc.'
+							);
+						else if (userAnswer < sysAnswer)
+							console.log(
+								'Mật khẩu sai. Số vừa nhập bé hơn mật khẩu gốc.'
+							);
+						else console.log('Chúc mừng, mật khẩu chính xác.');
+					}
+				}
+			});
 		} else if (itemIndex === 2 || itemIndex === 5) {
 			for (let indexInput = 0; indexInput < 2; indexInput++) {
 				answerInputList[indexInput].addEventListener('keydown', (e) => {
