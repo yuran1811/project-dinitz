@@ -225,21 +225,72 @@ button[class='submit'] {
 section {
 	max-width: 100%;
 	padding: 5%;
-	margin: 3%;
+	margin: 2% 3%;
 	display: flex;
 	font-size: 1.5rem;
 	flex-direction: column;
 	align-items: center;
 	color: var(--color);
 
-	padding-top: 8vw;
-	border: 5px dashed var(--background-color);
+	padding-top: calc(10vw + 5vh);
+	/* border: 5px dashed var(--background-color);
 	border-top: none;
-	transition: border-color 1.2s ease;
+	transition: border-color 1.2s ease; */
 }
-section:hover {
-	border-color: var(--navbar-background-color);
+/* section:hover {
+	border-color: var(--navbar-color);
 	border-top: none;
+} */
+
+/* Animated Border */
+section {
+	--borderWidth: 8px;
+	background-color: var(--background-color);
+	position: relative;
+	border-radius: var(--borderWidth);
+}
+/* section::after {
+	background: var(--background-color);
+} */
+section:hover::after {
+	content: '';
+	position: absolute;
+	top: calc(-1 * var(--borderWidth));
+	left: calc(-1 * var(--borderWidth));
+	height: calc(100% + var(--borderWidth) * 2);
+	width: calc(100% + var(--borderWidth) * 2);
+	background: linear-gradient(
+		60deg,
+		#f79533,
+		#f37055,
+		#ef4e7b,
+		#a166ab,
+		#5073b8,
+		#1098ad,
+		#07b39b,
+		#6fba82
+	);
+	border-radius: calc(2 * var(--borderWidth));
+	background-size: 300% 300%;
+	animation: animatedgradient 3s ease alternate infinite;
+	z-index: -1;
+}
+
+@keyframes animatedgradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+section .title,
+section .content {
+	margin: 0 5vw;
 }
 
 section .wrong {
@@ -297,7 +348,7 @@ section.finish .passed {
 table,
 th,
 td {
-	border: 1px solid black;
+	border: 1px solid var(--color);
 	border-collapse: collapse;
 	text-align: center;
 }
@@ -356,17 +407,93 @@ footer {
 	color: var(--color);
 }
 
-/* API */
-#div1,
-#div2,
-#div3,
-.al {
+#No3 .answer-area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.allBox,
+.allItem {
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.itemBox,
+.box {
 	float: left;
-	width: 150px;
-	height: 70px;
-	margin: 10px;
-	padding: 20px;
-	border: 1px solid black;
+	width: 20%;
+	height: 100px;
+	border: 1px solid var(--color);
+	margin: 5px;
+}
+
+.item {
+	margin: auto;
+	width: 100%;
+	height: 100px;
+	background-clip: border-box;
+}
+#item1 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/230px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png')
+		center;
+	background-size: inherit inherit;
+}
+#item7,
+#item2 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/225px-Flag_of_the_People%27s_Republic_of_China.svg.png')
+		top left;
+	background-size: inherit inherit;
+}
+#item3 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Flag_of_Laos.svg/225px-Flag_of_Laos.svg.png')
+		center;
+	background-size: inherit inherit;
+}
+#item4 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_Cambodia.svg/235px-Flag_of_Cambodia.svg.png')
+		center;
+	background-size: inherit inherit;
+}
+#item6,
+#item5 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_Thailand.svg/1280px-Flag_of_Thailand.svg.png')
+		center;
+	background-size: cover;
+}
+
+#item8 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Flag_of_Myanmar.svg/225px-Flag_of_Myanmar.svg.png')
+		center;
+	background-size: inherit inherit;
+}
+#item9 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Flag_of_Bhutan.svg/225px-Flag_of_Bhutan.svg.png')
+		center;
+	background-size: inherit auto;
+}
+#item10 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/250px-Flag_of_Bangladesh.svg.png')
+		center;
+	background-size: inherit auto;
+}
+#item11 {
+	background: no-repeat
+		url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/225px-Flag_of_India.svg.png')
+		center;
+	background-size: inherit auto;
 }
 
 .al {
@@ -427,7 +554,7 @@ footer {
 	}
 
 	section {
-		padding-top: 70px;
+		padding-top: 100px;
 	}
 
 	#No1-hint1 {
@@ -435,5 +562,11 @@ footer {
 	}
 	#tb2 {
 		width: 50%;
+	}
+
+	.itemBox,
+	.box,
+	.item {
+		height: 70px;
 	}
 }
