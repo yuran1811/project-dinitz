@@ -123,6 +123,7 @@ function checkanswer() {
 var sectionList = document.querySelectorAll('section');
 var sectionListLth = sectionList.length;
 for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
+	var sectionXXXX = sectionList[itemIndex];
 	let infoBtn = sectionList[itemIndex].querySelector('.info-btn');
 	let infoContent = sectionList[itemIndex].querySelector('.info');
 
@@ -164,23 +165,33 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					if (userAnswer == sysAnswer) console.log('AC');
 					else console.log('WA');
 					if (!(1 <= userAnswer && userAnswer <= 8192))
-						console.log(
-							'Vui lòng nhập một số trong khoảng [1; 8192]'
-						);
+						console.log('Out of range [1; 8192]');
 					else {
-						if (userAnswer > sysAnswer)
-							console.log(
-								'Mật khẩu sai. Số vừa nhập lớn hơn mật khẩu gốc.'
-							);
-						else if (userAnswer < sysAnswer)
-							console.log(
-								'Mật khẩu sai. Số vừa nhập bé hơn mật khẩu gốc.'
-							);
-						else console.log('Chúc mừng, mật khẩu chính xác.');
+						if (userAnswer > sysAnswer) {
+							console.log('Larger');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.add('active');
+						} else if (userAnswer < sysAnswer) {
+							console.log('Smaller');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.add('active');
+						} else {
+							console.log('AC');
+							e.path[4].classList.add('finish');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.correct')
+								.classList.add('active');
+						}
 					}
 				}
 			});
 		} else if (itemIndex === 2 || itemIndex === 5) {
+			var passCheck = [0, 0];
 			for (let indexInput = 0; indexInput < 2; indexInput++) {
 				answerInputList[indexInput].addEventListener('keydown', (e) => {
 					if (e.keyCode === 13) {
@@ -188,13 +199,30 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						let path = e.path[4].getAttribute('sectionId');
 						let idAnswer = Number(e.path[0].id);
 						let sysAnswer = deCode(ansAll[path][idAnswer]);
-						console.log(userAnswer, sysAnswer);
-						if (userAnswer == sysAnswer) console.log('AC');
-						else console.log('WA');
+						console.log(sysAnswer);
+						if (userAnswer == sysAnswer) {
+							console.log('AC');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.correct')
+								.classList.add('active');
+							passCheck[indexInput] = 1;
+							if (passCheck[0] === passCheck[1] && passCheck[0]) {
+								sectionXXXX.classList.add('finish');
+							}
+						} else {
+							console.log('WA');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.add('active');
+						}
 					}
 				});
 			}
 		} else if (itemIndex === 4) {
+			var passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 			for (
 				let indexAnswer = 0;
 				indexAnswer < answerLength;
@@ -209,8 +237,27 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							let idAnswer = Number(e.path[0].id);
 							let sysAnswer = deCode(ansAll[path][idAnswer]);
 							console.log(userAnswer, sysAnswer);
-							if (userAnswer == sysAnswer) console.log('AC');
-							else console.log('WA');
+							if (userAnswer == sysAnswer) {
+								console.log('AC');
+								e.path[1]
+									.querySelector('.wrong')
+									.classList.remove('active');
+								e.path[1]
+									.querySelector('.correct')
+									.classList.add('active');
+								passCheck[indexAnswer] = 1;
+								let cntCheck = 0;
+								for (let idCheck = 0; idCheck < 12; idCheck++) {
+									if (passCheck[idCheck] === 1) cntCheck++;
+								}
+								if (cntCheck === 12)
+									e.path[4].classList.add('finish');
+							} else {
+								console.log('WA');
+								e.path[1]
+									.querySelector('.wrong')
+									.classList.add('active');
+							}
 						}
 					}
 				);
@@ -221,9 +268,21 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let userAnswer = answerInputList[0].value.trim();
 					let path = e.path[4].getAttribute('sectionId');
 					let sysAnswer = deCode(ansAll[path]);
-					console.log(userAnswer, sysAnswer);
-					if (userAnswer == sysAnswer) console.log('AC');
-					else console.log('WA');
+					if (userAnswer == sysAnswer) {
+						console.log('AC');
+						e.path[4].classList.add('finish');
+						e.path[1]
+							.querySelector('.wrong')
+							.classList.remove('active');
+						e.path[1]
+							.querySelector('.correct')
+							.classList.add('active');
+					} else {
+						console.log('WA');
+						e.path[1]
+							.querySelector('.wrong')
+							.classList.add('active');
+					}
 				}
 			});
 		}
