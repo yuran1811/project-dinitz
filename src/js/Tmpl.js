@@ -235,33 +235,49 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let userAnswer = e.path[0].value.trim();
 					let path = e.path[4].getAttribute('sectionId');
 					let sysAnswer = deCode(ansAll[path]);
-					console.log(userAnswer, sysAnswer);
-					if (userAnswer == sysAnswer) {
-						console.log('AC');
-					} else {
-						console.log('WA');
-					}
 					if (!(1 <= userAnswer && userAnswer <= 8192))
-						console.log('Out of range [1; 8192]');
+					{
+							e.path[1]
+								.querySelector('.increase')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.decrease')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.correct')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.add('active');
+					}
 					else {
 						if (userAnswer > sysAnswer) {
-							console.log('Larger');
 							e.path[1]
-								.querySelector('.wrong')
+								.querySelector('.increase')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.decrease')
 								.classList.add('active');
 							e.path[1]
 								.querySelector('.correct')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.wrong')
 								.classList.remove('active');
 						} else if (userAnswer < sysAnswer) {
-							console.log('Smaller');
 							e.path[1]
-								.querySelector('.wrong')
+								.querySelector('.increase')
 								.classList.add('active');
+							e.path[1]
+								.querySelector('.decrease')
+								.classList.remove('active');
 							e.path[1]
 								.querySelector('.correct')
 								.classList.remove('active');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.remove('active');
 						} else {
-							// console.log('AC');
 							let navFin = e.path[6]
 								.querySelector('.nav-links')
 								.getElementsByClassName('lk')[path];
@@ -269,11 +285,17 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							navFin.classList.add('lifin');
 							e.path[4].classList.add('finish');
 							e.path[1]
+								.querySelector('.correct')
+								.classList.add('active');
+							e.path[1]
 								.querySelector('.wrong')
 								.classList.remove('active');
 							e.path[1]
-								.querySelector('.correct')
-								.classList.add('active');
+								.querySelector('.increase')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.decrease')
+								.classList.remove('active');
 						}
 					}
 				}
