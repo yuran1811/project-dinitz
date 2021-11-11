@@ -323,6 +323,22 @@ section .correct.active {
 	display: inline;
 }
 
+section .increase {
+	color: var(--color);
+	display: none;
+}
+section .increase.active {
+	display: inline;
+}
+
+section .decrease {
+	color: var(--color);
+	display: none;
+}
+section .decrease.active {
+	display: inline;
+}
+
 .lk .passed,
 section .passed {
 	display: none;
