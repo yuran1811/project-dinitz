@@ -173,36 +173,59 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 			for (let indexInput = 0; indexInput < 2; indexInput++) {
 				answerInputList[indexInput].addEventListener('keydown', (e) => {
 					if (e.keyCode === 13) {
+						// console.log(e.path);
+						let boxList = e.path[2].querySelectorAll('.box');
+						let boxListSize = boxList.length;
+						let itemList = e.path[1].querySelectorAll('.item');
+						let itemListSize = itemList.length;
 						let userAnswer = e.path[0].value.trim();
-						let path = e.path[4].getAttribute('sectionId');
+						let path = e.path[6].getAttribute('sectionId');
 						let idAnswer = Number(e.path[0].id);
-						let sysAnswer = ansAll[path][idAnswer];
-						console.log(sysAnswer);
-						// if (userAnswer == sysAnswer) {
-						// 	e.path[1]
-						// 		.querySelector('.wrong')
-						// 		.classList.remove('active');
-						// 	e.path[1]
-						// 		.querySelector('.correct')
-						// 		.classList.add('active');
-						// 	passCheck[indexInput] = 1;
-						// 	if (passCheck[0] === passCheck[1] && passCheck[0]) {
-						// 		sectionXXXX.classList.add('finish');
-						// 		let navFin = e.path[6]
-						// 			.querySelector('.nav-links')
-						// 			.getElementsByClassName('lk')[path];
-						// 		navFin.classList.add('finish');
-						// 		navFin.classList.add('lifin');
-						// 	}
-						// } else {
-						// 	// console.log('WA');
-						// 	e.path[1]
-						// 		.querySelector('.wrong')
-						// 		.classList.add('active');
-						// 	e.path[1]
-						// 		.querySelector('.correct')
-						// 		.classList.remove('active');
-						// }
+						let sysAnswer = ansAll[path][indexInput];
+						if (userAnswer == sysAnswer) {
+							let checkRoute = 0;
+							if (itemListSize === boxListSize)
+							{							
+								for (let boxItem of boxList) {
+									let itemInBox = boxItem.getElementsByClassName('item')[0];
+									if (itemInBox.getAttribute('catch') === boxItem.getAttribute('try'))
+										checkRoute++;
+								}
+							}
+
+							if (checkRoute === boxListSize)
+							{
+								e.path[2]
+									.querySelector('.wrong')
+									.classList.remove('active');
+								e.path[2]
+									.querySelector('.correct')
+									.classList.add('active');
+								passCheck[indexInput] = 1;
+								if (passCheck[0] === passCheck[1] && passCheck[0]) {
+									let navFin = e.path[8]
+										.querySelector('.nav-links')
+										.getElementsByClassName('lk')[path];
+									navFin.classList.add('finish');
+									navFin.classList.add('lifin');
+									e.path[6].classList.add('finish');
+								}
+							} else {
+								e.path[2]
+									.querySelector('.wrong')
+									.classList.add('active');
+								e.path[2]
+									.querySelector('.correct')
+									.classList.remove('active');
+							}
+						} else {
+							e.path[2]
+								.querySelector('.wrong')
+								.classList.add('active');
+							e.path[2]
+								.querySelector('.correct')
+								.classList.remove('active');
+						}
 					}
 				});
 			}
