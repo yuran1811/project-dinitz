@@ -5,7 +5,7 @@
 	--navbar-background-color: rgb(117, 181, 253);
 	--border-color: rgba(0, 0, 0, 0.164);
 	--award-color: #fff77a;
-	--award-background-color: #fcc201;
+	--award-background-color: rgb(245, 173, 17);
 }
 
 * {
@@ -24,7 +24,7 @@ body.dark {
 	--navbar-color: rgb(117, 181, 253);
 	--navbar-background-color: rgb(0, 58, 97);
 	--border-color: rgba(255, 255, 255, 0.514);
-	--award-color: #fcc201;
+	--award-color: rgb(245, 173, 17);
 	--award-background-color: #fff77a;
 }
 
@@ -197,13 +197,22 @@ body::-webkit-scrollbar-thumb {
 	background-color: var(--navbar-color);
 }
 
+.liactive a {
+	background-color: var(--navbar-color);
+	color: var(--navbar-background-color);
+}
+
 .lifin a {
 	color: var(--award-background-color);
 	background-color: var(--award-color);
 }
-.liactive a {
-	background-color: var(--navbar-color);
-	color: var(--navbar-background-color);
+
+.lifin .lk:hover a {
+	color: var(--award-background-color);
+	background-color: var(--award-background-color);
+}
+.lifin a::after {
+	background-color: var(--award-background-color);
 }
 
 .lifin a::after,
@@ -321,7 +330,7 @@ section .passed {
 .lk.finish .passed,
 section.finish .passed {
 	display: inline;
-	color: var(--award-color);
+	color: var(--award-background-color);
 }
 
 .answer-area {
@@ -388,13 +397,11 @@ td {
 }
 
 .info,
-.challenge-content,
-.hint {
+.challenge-content {
 	display: none;
 }
 .info.active,
-.challenge-content.active,
-.hint.active {
+.challenge-content.active {
 	display: block;
 }
 
@@ -426,20 +433,28 @@ footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-flow: row wrap;
 }
 
 .itemBox,
 .box {
 	float: left;
-	width: 20%;
+	width: 170px;
 	height: 100px;
 	border: 1px solid var(--color);
 	margin: 5px;
+	border-radius: 27px;
+}
+
+.box-answer {
+	text-align: center;
+	background-color: rgb(211, 28, 28);
 }
 
 .item {
+	border-radius: 27px;
 	margin: auto;
-	width: 100%;
+	width: 170px;
 	height: 100px;
 	background-clip: border-box;
 }
@@ -536,8 +551,6 @@ footer {
 		z-index: 100;
 		position: fixed;
 		margin: auto;
-		/* top: 0;
-		bottom: 0; */
 	}
 
 	#menu-bar1 {
@@ -570,8 +583,13 @@ footer {
 	}
 
 	.itemBox,
-	.box,
+	.box {
+		width: 135px;
+		height: 80px;
+	}
+
 	.item {
-		height: 70px;
+		width: 135px;
+		height: 80px;
 	}
 }
