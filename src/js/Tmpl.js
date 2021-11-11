@@ -146,8 +146,11 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let path = e.path[4].getAttribute('sectionId');
 					let sysAnswer = deCode(ansAll[path]);
 					console.log(userAnswer, sysAnswer);
-					if (userAnswer == sysAnswer) console.log('AC');
-					else console.log('WA');
+					if (userAnswer == sysAnswer) {
+						console.log('AC');
+					} else {
+						console.log('WA');
+					}
 					if (!(1 <= userAnswer && userAnswer <= 8192))
 						console.log('Out of range [1; 8192]');
 					else {
@@ -168,11 +171,10 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								.querySelector('.correct')
 								.classList.remove('active');
 						} else {
-							console.log('AC');
+							// console.log('AC');
 							let navFin = e.path[6]
 								.querySelector('.nav-links')
 								.getElementsByClassName('lk')[path];
-							console.log(navFin);
 							navFin.classList.add('finish');
 							navFin.classList.add('lifin');
 							e.path[4].classList.add('finish');
@@ -197,7 +199,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						let sysAnswer = deCode(ansAll[path][idAnswer]);
 						console.log(sysAnswer);
 						if (userAnswer == sysAnswer) {
-							console.log('AC');
+							// console.log('AC');
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.remove('active');
@@ -210,12 +212,11 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								let navFin = e.path[6]
 									.querySelector('.nav-links')
 									.getElementsByClassName('lk')[path];
-								console.log(navFin);
 								navFin.classList.add('finish');
 								navFin.classList.add('lifin');
 							}
 						} else {
-							console.log('WA');
+							// console.log('WA');
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.add('active');
@@ -237,13 +238,14 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					'keydown',
 					(e) => {
 						if (e.keyCode === 13) {
+							console.log(e.path);
 							let userAnswer = e.path[0].value.trim();
-							let path = e.path[5].getAttribute('sectionId');
+							let path = e.path[6].getAttribute('sectionId');
 							let idAnswer = Number(e.path[0].id);
 							let sysAnswer = deCode(ansAll[path][idAnswer]);
 							console.log(userAnswer, sysAnswer);
 							if (userAnswer == sysAnswer) {
-								console.log('AC');
+								// console.log('AC');
 								e.path[1]
 									.querySelector('.wrong')
 									.classList.remove('active');
@@ -256,16 +258,15 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 									if (passCheck[idCheck] === 1) cntCheck++;
 								}
 								if (cntCheck === 12) {
-									e.path[5].classList.add('finish');
+									e.path[6].classList.add('finish');
 									let navFin = e.path[7]
 										.querySelector('.nav-links')
 										.getElementsByClassName('lk')[path];
-									console.log(navFin);
 									navFin.classList.add('finish');
 									navFin.classList.add('lifin');
 								}
 							} else {
-								console.log('WA');
+								// console.log('WA');
 								e.path[1]
 									.querySelector('.wrong')
 									.classList.add('active');
@@ -284,12 +285,11 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let path = e.path[4].getAttribute('sectionId');
 					let sysAnswer = deCode(ansAll[path]);
 					if (userAnswer == sysAnswer) {
-						console.log('AC');
+						// console.log('AC');
 						// console.log(e.path[6]);
 						let navFin = e.path[6]
 							.querySelector('.nav-links')
 							.getElementsByClassName('lk')[path];
-						console.log(navFin);
 						navFin.classList.add('finish');
 						navFin.classList.add('lifin');
 
@@ -301,7 +301,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							.querySelector('.correct')
 							.classList.add('active');
 					} else {
-						console.log('WA');
+						// console.log('WA');
 						e.path[1]
 							.querySelector('.wrong')
 							.classList.add('active');
@@ -315,16 +315,16 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	}
 }
 
-function allowDrop(ev) {
-	ev.preventDefault();
+function allowDrop(e) {
+	e.preventDefault();
 }
 
-function drag(ev) {
-	ev.dataTransfer.setData('text', ev.target.id);
+function drag(e) {
+	e.dataTransfer.setData('text', e.target.id);
 }
 
-function drop(ev) {
-	ev.preventDefault();
-	var data = ev.dataTransfer.getData('text');
-	ev.target.appendChild(document.getElementById(data));
+function drop(e) {
+	e.preventDefault();
+	var data = e.dataTransfer.getData('text');
+	e.target.appendChild(document.getElementById(data));
 }
