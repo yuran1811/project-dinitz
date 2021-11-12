@@ -219,9 +219,36 @@ body::-webkit-scrollbar-thumb {
 	width: 50px;
 }
 
+/* Banner */
+.banner {
+	margin-top: calc(5vw + 5vh);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.avatar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+}
+.avatar p {
+	font-size: 2rem;
+	color: var(--color);
+}
+
+.banner input {
+	font-size: 1.5rem;
+	width: 30%;
+}
+
 /* Content */
 .main {
 	width: 100%;
+	/* margin-top: calc(17vw + 5vh); */
 }
 
 input[class='answer'] {
@@ -229,22 +256,20 @@ input[class='answer'] {
 	height: 50px;
 	font-size: 1.5rem;
 }
-button[class='submit'] {
+button[class='submit-btn'] {
 	margin: 5px;
 	font-size: 1.5rem;
 }
 
 section {
 	max-width: 100%;
-	padding: 5%;
+	padding: 3%;
 	margin: 2% 3%;
 	display: flex;
 	font-size: 1.5rem;
 	flex-direction: column;
 	align-items: center;
 	color: var(--color);
-
-	padding-top: calc(10vw + 5vh);
 	/* border: 5px dashed var(--background-color);
 	border-top: none;
 	transition: border-color 1.2s ease; */
@@ -252,6 +277,17 @@ section {
 /* section:hover {
 	border-color: var(--navbar-color);
 	border-top: none;
+} */
+
+/* section::before,
+section::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: grey;
+	opacity: 0.5;
+	padding: 2%;
 } */
 
 /* Animated Border */
@@ -264,7 +300,8 @@ section {
 /* section::after {
 	background: var(--background-color);
 } */
-section:hover::after {
+section:hover::after,
+section.finish::after {
 	content: '';
 	position: absolute;
 	top: calc(-1 * var(--borderWidth));
@@ -298,6 +335,15 @@ section:hover::after {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+.locked {
+	background-color: grey;
+	opacity: 1;
+}
+.locked .content,
+.locked .title {
+	display: none;
 }
 
 section .title,
@@ -494,7 +540,7 @@ body.dark #box8 {
 	border-radius: 15px;
 	cursor: pointer;
 	background-color: var(--color);
-	color: var(--background-color)
+	color: var(--background-color);
 }
 
 .itemBox,
@@ -631,10 +677,6 @@ body.dark #box8 {
 		opacity: 1;
 	}
 
-	section {
-		padding-top: 100px;
-	}
-
 	#No1-hint1 {
 		width: 100%;
 	}
@@ -651,5 +693,9 @@ body.dark #box8 {
 	.item {
 		width: 135px;
 		height: 80px;
+	}
+
+	.banner {
+		margin-top: 20%;
 	}
 }
