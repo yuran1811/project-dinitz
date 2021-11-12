@@ -469,7 +469,7 @@ document
 						keyItem[1]
 					].className.replace(' locked', '');
 					$('html, body').animate(
-						{ scrollTop: $(`#No${keyItem[1]}`).offset().top - 50 },
+						{ scrollTop: $(`#No${keyItem[1]+1}`).offset().top - 100},
 						900
 					);
 				}
