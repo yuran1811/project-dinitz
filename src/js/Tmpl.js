@@ -22,13 +22,11 @@ $('.menu').on('click', function (e) {
 	$('#menu-bar2').toggleClass('active');
 });
 
-var linkList = document.querySelector('.nav-bar').getElementsByClassName('lk');
-for (var i = 0; i < linkList.length; i++) {
-	linkList[i].addEventListener('click', function () {
-		var current = document.getElementsByClassName('liactive');
-		current[0].className = current[0].className.replace(' liactive', '');
-		this.className += ' liactive';
-	});
+window.onscroll = () => {
+	const toTop = document.querySelector('.to-top');
+	if (document.body.scrollTop > 210 || document.documentElement.scrollTop > 210)
+		toTop.style.display = 'block';
+	else toTop.style.display = 'none';
 }
 
 const hintNo1 = [
@@ -63,20 +61,43 @@ const hintNo4 = [
 ];
 const allHint = [hintNo1, hintNo2, 0, hintNo4, 0, 0];
 
-function getHint(sectionContent, sectionId) {
-	let hintBtn = sectionContent.querySelector('.hint-btn');
+function getHint(sectionItem, sectionId) {
+	let hintBtn = sectionItem.querySelector('.hint-btn');
 	hintBtn.classList.toggle('active');
 
-	let hintContent = sectionContent.querySelector('.allhint');
+	let hintContent = sectionItem.querySelector('.allhint');
 	let hintList = allHint[sectionId];
-	let hintCnt = hintList.length;
-	let indexHint = 0;
+	var hintCnt = hintList.length;
+	var indexHint = 0;
+
+	const timerCountdown = sectionItem.querySelector('.timer');
+	const hintTime = 3;
+	let countDown = 2;
+	let hintRemain = hintList.length;
+
 	if (hintCnt > 0) {
-		let x = setInterval(() => {
+		timerCountdown.style.display = "inline";
+	}
+
+	let y = setInterval(() => {
+		timerCountdown.innerHTML = countDown--;
+		if (countDown < 0) {
+			if (indexHint === hintCnt - 1)
+			{
+				clearInterval(y);
+				let z = setTimeout(() => {
+					timerCountdown.innerHTML += " Hết gợi ý rồi";
+				}, 1000)
+			} else countDown = hintTime;
+		}
+	}, 1000)
+
+	let x = setInterval(() => {
+		if (hintCnt > 0) {
 			if (indexHint >= hintCnt) clearInterval(x);
 			else hintContent.innerHTML += hintList[indexHint++][0];
-		}, 3000);
-	}
+		}
+	}, 4000);
 }
 
 const ans1 = [53355, 13863, 29646, 447];
@@ -136,7 +157,6 @@ function deCode(ansArray) {
 var sectionList = document.querySelectorAll('section');
 var sectionListLth = sectionList.length;
 for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
-	var sectionXXXX = sectionList[itemIndex];
 	let infoBtn = sectionList[itemIndex].querySelector('.info-btn');
 	let infoContent = sectionList[itemIndex].querySelector('.info');
 
@@ -164,75 +184,64 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 		});
 	}
 
-	let answerInputList =
-		sectionList[itemIndex].querySelectorAll('input[type="text"]');
+	let answerInputList = sectionList[itemIndex].querySelectorAll('input[type="text"]');
 	let answerLength = answerInputList.length;
-	if (answerLength) {
+	let submitBtnList = sectionList[itemIndex].querySelectorAll('.submit-btn');
+	let submitListLength = submitBtnList.length;
+
+	if (answerLength || submitListLength) {
 		if (itemIndex === 2) {
 			var passCheck = [0, 0];
-			for (let indexInput = 0; indexInput < 2; indexInput++) {
-				answerInputList[indexInput].addEventListener('keydown', (e) => {
-					if (e.keyCode === 13) {
-						// console.log(e.path);
-						let boxList = e.path[2].querySelectorAll('.box');
-						let boxListSize = boxList.length;
-						let itemList = e.path[1].querySelectorAll('.item');
-						let itemListSize = itemList.length;
-						let userAnswer = e.path[0].value.trim();
-						let path = e.path[6].getAttribute('sectionId');
-						let idAnswer = Number(e.path[0].id);
-						let sysAnswer = ansAll[path][indexInput];
-						if (userAnswer == sysAnswer) {
-							let checkRoute = 0;
-							if (itemListSize === boxListSize)
-							{							
-								for (let boxItem of boxList) {
-									let itemInBox = boxItem.getElementsByClassName('item')[0];
-									if (itemInBox.getAttribute('catch') === boxItem.getAttribute('try'))
-										checkRoute++;
-								}
-							}
+			for (var submitBtn of submitBtnList)
+			{
+				submitBtn.addEventListener('click', (e) => {
+					var indexSubmitBtn = Number(e.path[0].getAttribute('idSubmit'));
 
-							if (checkRoute === boxListSize)
-							{
-								e.path[2]
-									.querySelector('.wrong')
-									.classList.remove('active');
-								e.path[2]
-									.querySelector('.correct')
-									.classList.add('active');
-								passCheck[indexInput] = 1;
-								if (passCheck[0] === passCheck[1] && passCheck[0]) {
-									let navFin = e.path[8]
-										.querySelector('.nav-links')
-										.getElementsByClassName('lk')[path];
-									navFin.classList.add('finish');
-									navFin.classList.add('lifin');
-									e.path[6].classList.add('finish');
-								}
-							} else {
-								e.path[2]
-									.querySelector('.wrong')
-									.classList.add('active');
-								e.path[2]
-									.querySelector('.correct')
-									.classList.remove('active');
-							}
-						} else {
+					let boxList = e.path[1].querySelectorAll('.box');
+					let boxListSize = boxList.length;
+
+					let itemList = e.path[2].querySelectorAll('.allItem .item');
+					let itemListSize = itemList.length;
+
+					let path = e.path[6].getAttribute('sectionId');
+
+					let countNumFillBox = 0;
+					for (let boxItem of boxList) {
+						let itemInBox = boxItem.getElementsByClassName('item')[0];
+						if (itemInBox.getAttribute('catch') === boxItem.getAttribute('try'))
+							countNumFillBox++;
+					}
+
+					if (countNumFillBox === boxListSize) {
 							e.path[2]
 								.querySelector('.wrong')
-								.classList.add('active');
+								.classList.remove('active');
 							e.path[2]
 								.querySelector('.correct')
-								.classList.remove('active');
-						}
+								.classList.add('active');
+							passCheck[indexSubmitBtn] = 1;
+							if (passCheck[0] === passCheck[1] && passCheck[0]) {
+								let navFin = e.path[8]
+									.querySelector('.nav-links')
+									.getElementsByClassName('lk')[path];
+								navFin.classList.add('finish');
+								navFin.classList.add('lifin');
+								e.path[6].classList.add('finish');
+							}
+					} else {
+						e.path[2]
+							.querySelector('.wrong')
+							.classList.add('active');
+						e.path[2]
+							.querySelector('.correct')
+							.classList.remove('active');
 					}
 				});
 			}
 		} else if (itemIndex === 3) {
 			answerInputList[0].addEventListener('keydown', (e) => {
 				if (e.keyCode === 13) {
-					let userAnswer = e.path[0].value.trim();
+					let userAnswer = (e.path[0].value.trim()).toLowerCase();
 					let path = e.path[4].getAttribute('sectionId');
 					let sysAnswer = deCode(ansAll[path]);
 					if (!(1 <= userAnswer && userAnswer <= 8192))
@@ -305,13 +314,11 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 			for (let indexInput = 0; indexInput < 2; indexInput++) {
 				answerInputList[indexInput].addEventListener('keydown', (e) => {
 					if (e.keyCode === 13) {
-						let userAnswer = e.path[0].value.trim();
+						let userAnswer = (e.path[0].value.trim()).toLowerCase();
 						let path = e.path[4].getAttribute('sectionId');
 						let idAnswer = Number(e.path[0].id);
 						let sysAnswer = deCode(ansAll[path][idAnswer]);
-						console.log(sysAnswer);
 						if (userAnswer == sysAnswer) {
-							// console.log('AC');
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.remove('active');
@@ -320,7 +327,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								.classList.add('active');
 							passCheck[indexInput] = 1;
 							if (passCheck[0] === passCheck[1] && passCheck[0]) {
-								sectionXXXX.classList.add('finish');
+								e.path[4].classList.add('finish');
 								let navFin = e.path[6]
 									.querySelector('.nav-links')
 									.getElementsByClassName('lk')[path];
@@ -328,7 +335,6 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								navFin.classList.add('lifin');
 							}
 						} else {
-							// console.log('WA');
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.add('active');
@@ -350,12 +356,10 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					'keydown',
 					(e) => {
 						if (e.keyCode === 13) {
-							console.log(e.path);
-							let userAnswer = e.path[0].value.trim();
+							let userAnswer = (e.path[0].value.trim()).toLowerCase();
 							let path = e.path[6].getAttribute('sectionId');
 							let idAnswer = Number(e.path[0].id);
 							let sysAnswer = deCode(ansAll[path][idAnswer]);
-							console.log(userAnswer, sysAnswer);
 							if (userAnswer == sysAnswer) {
 								e.path[1]
 									.querySelector('.wrong')
@@ -391,12 +395,10 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 		} else {
 			answerInputList[0].addEventListener('keydown', (e) => {
 				if (e.keyCode === 13) {
-					let userAnswer = answerInputList[0].value.trim();
+					let userAnswer = (answerInputList[0].value.trim()).toLowerCase();
 					let path = e.path[4].getAttribute('sectionId');
 					let sysAnswer = deCode(ansAll[path]);
 					if (userAnswer == sysAnswer) {
-						// console.log('AC');
-						console.log(e.path[6]);
 						let navFin = e.path[6]
 							.querySelector('.nav-links')
 							.getElementsByClassName('lk')[path];
@@ -411,7 +413,6 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							.querySelector('.correct')
 							.classList.add('active');
 					} else {
-						// console.log('WA');
 						e.path[1]
 							.querySelector('.wrong')
 							.classList.add('active');
