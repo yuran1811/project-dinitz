@@ -6,6 +6,7 @@
 	--border-color: rgba(0, 0, 0, 0.164);
 	--award-color: #fff77a;
 	--award-background-color: rgb(245, 173, 17);
+	--hint-color: rgb(238, 21, 21);
 }
 
 * {
@@ -26,6 +27,7 @@ body.dark {
 	--border-color: rgba(255, 255, 255, 0.514);
 	--award-color: rgb(245, 173, 17);
 	--award-background-color: #fff77a;
+	--hint-color: rgb(235, 66, 66);
 }
 
 body::-webkit-scrollbar {
