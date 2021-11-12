@@ -1,13 +1,13 @@
 $('.nav-bar a').on('click', function (e) {
 	e.preventDefault();
 	const href = $(this).attr('href');
-	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 900);
+	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 });
 
 $('.to-top a').on('click', function (e) {
 	e.preventDefault();
 	const href = $(this).attr('href');
-	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 900);
+	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 });
 
 $('.toggle-theme').on('click', function (e) {
