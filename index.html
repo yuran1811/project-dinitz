@@ -1,107 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.6" />
-    <link rel="icon" href="Library/Dinitz_Logo.png" />
-    <link rel="stylesheet" href="src/style/main.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Project: Dinitz</title>
-  </head>
-  <body>
-    <div class="container">
-      <!-- Form Container -->
-      <div class="forms-container">
-        <div class="signin-menulist">
-          <!-- Sign In -->
-          <div id="form1" class="sign-in">
-            <h2 class="title">Sign in</h2>
-            <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input
-                class="user-name"
-                type="text"
-                placeholder="Username"
-                required
-              />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input
-                class="password"
-                type="password"
-                placeholder="Password"
-                required
-              />
-            </div>
-            <input
-              type="submit"
-              value="Log in"
-              class="log-in btn solid"
-              id="log-in"
-            />
-          </div>
-          <!-- Menu -->
-          <div id="form2" class="sign-up">
-            <h2 class="title">
-              Here are all the Challenges that You will pass:
-            </h2>
-            <div class="list-item">
-              <ul>
-                <li class="item01">
-                  <a href="#"> <i class="fas fa-check"></i> Challenge 01</a>
-                  <span class="item-info">About</span>
-                </li>
-                <li class="item02">
-                  <a href="#"> <i class="fas fa-check"></i> Challenge 02</a>
-                  <span class="item-info">About</span>
-                </li>
-                <li class="item03">
-                  <a href="#"> <i class="fas fa-check"></i> Challenge 03</a>
-                  <span class="item-info">About</span>
-                </li>
-                <li class="item04">
-                  <a href="#"> <i class="fas fa-check"></i> Challenge 04</a>
-                  <span class="item-info">About</span>
-                </li>
-                <li class="item05">
-                  <a href="#"> <i class="fas fa-check"></i> Challenge 05</a>
-                  <span class="item-info">About</span>
-                </li>
-                <li class="item06">
-                  <a href="#"> <i class="fas fa-check"></i> Challenge 06</a>
-                  <span class="item-info">About</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=0.6" />
+		<link rel="icon" href="Library/Dinitz_Logo.png" />
+		<link rel="stylesheet" href="src/style/main.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<title>Project: Dinitz</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="forms-container">
+				<div class="signin-menulist">
+					<!-- Sign In -->
+					<div id="form1" class="sign-in">
+						<h2 class="title">Sign in</h2>
+						<div class="input-field">
+							<i class="fas fa-user"></i>
+							<input
+								class="user-name"
+								type="text"
+								placeholder="Username"
+								required
+							/>
+						</div>
+						<div class="input-field">
+							<i class="fas fa-lock"></i>
+							<input
+								class="password"
+								type="password"
+								placeholder="Password"
+								required
+							/>
+						</div>
+						<input
+							type="submit"
+							value="Log in"
+							class="log-in btn solid"
+							id="log-in"
+						/>
+					</div>
+					<!-- Menu -->
+					<div id="form2" class="sign-up">
+						<h2 class="title">
+							Here are all the Challenges that You will pass:
+						</h2>
+						<div class="list-item">
+							<ul>
+								<li class="item01">
+									<a href="#">
+										<i class="fas fa-check"></i> Challenge
+										01</a
+									>
+									<span class="item-info">About</span>
+								</li>
+								<li class="item02">
+									<a href="#">
+										<i class="fas fa-check"></i> Challenge
+										02</a
+									>
+									<span class="item-info">About</span>
+								</li>
+								<li class="item03">
+									<a href="#">
+										<i class="fas fa-check"></i> Challenge
+										03</a
+									>
+									<span class="item-info">About</span>
+								</li>
+								<li class="item04">
+									<a href="#">
+										<i class="fas fa-check"></i> Challenge
+										04</a
+									>
+									<span class="item-info">About</span>
+								</li>
+								<li class="item05">
+									<a href="#">
+										<i class="fas fa-check"></i> Challenge
+										05</a
+									>
+									<span class="item-info">About</span>
+								</li>
+								<li class="item06">
+									<a href="#">
+										<i class="fas fa-check"></i> Challenge
+										06</a
+									>
+									<span class="item-info">About</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 
-      <!-- Panel -->
-      <div class="panels-container">
-        <div class="panel left-panel">
-          <div class="content">
-            <h3 class="panel-title">Sign In to Continue</h3>
-            <p>Have Great Time With Us !!!</p>
-            <div class="btn" id="sign-up-btn">See List Challenges</div>
-          </div>
-        </div>
-        <div class="panel right-panel">
-          <div class="content">
-            <h3 class="panel-title">Are you ready ?</h3>
-            <br />
-            <div class="btn" id="sign-in-btn">
-              <a href="#"> Get Started </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="src/js/main.js"></script>
-  </body>
+			<!-- Panel -->
+			<div class="panels-container">
+				<div class="panel left-panel">
+					<div class="content">
+						<h3 class="panel-title">Sign In to Continue</h3>
+						<p>Have Great Time With Us !!!</p>
+						<div class="btn" id="sign-up-btn">
+							See List Challenges
+						</div>
+					</div>
+				</div>
+				<div class="panel right-panel">
+					<div class="content">
+						<h3 class="panel-title">Are you ready ?</h3>
+						<br />
+						<div class="btn" id="sign-in-btn">
+							<a href="#"> Get Started </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="src/js/main.js"></script>
+	</body>
 </html>
