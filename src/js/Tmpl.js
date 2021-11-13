@@ -479,7 +479,7 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 				sectionList[keyItem[1]].className = sectionList[
 					keyItem[1]
 				].className.replace(' locked', '');
-				e.path[1].querySelector('p').style.color = 'green';
+				e.path[1].querySelector('p').style.color = '#32D700';
 				e.path[1].querySelector('p').innerHTML = `Key of ${
 					keyItem[1] + 1
 				}`;
