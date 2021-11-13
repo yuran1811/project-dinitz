@@ -215,12 +215,21 @@ input {
 
 #log-in {
 	background-color: #2e528f;
+	color: white;
 	width: 100px;
 	transition: width 0.7s ease;
 }
 #log-in:hover {
-	color: white;
 	width: 250px;
+	color: white;
+}
+
+#log-in.wrong {
+	background-color: red;
+}
+#log-in.correct {
+	background-color: greenyellow;
+	color: green;
 }
 
 .btn {
