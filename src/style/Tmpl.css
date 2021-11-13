@@ -223,28 +223,48 @@ body::-webkit-scrollbar-thumb {
 
 /* Banner */
 .banner {
-	margin-top: calc(5vw + 5vh);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	position: relative;
+	margin-top: 7rem;
 }
 
 .avatar {
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	margin: auto;
-}
-.avatar p {
-	font-size: 2rem;
-	color: var(--color);
+	position: relative;
 }
 
 .banner input {
+	margin-top: 15px;
 	font-size: 1.5rem;
-	width: 30%;
+	max-width: 130px;
+}
+
+.banner .avatar::after {
+	content: 'Admin';
+	position: absolute;
+	font-size: 2rem;
+	text-align: center;
+	background-color: black;
+	color: white;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	opacity: 0;
+	transition: opacity .5s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.banner .avatar:hover::after {
+	opacity: 0.7;
 }
 
 /* Content */
@@ -299,11 +319,8 @@ section {
 	position: relative;
 	border-radius: var(--borderWidth);
 }
-/* section::after {
-	background: var(--background-color);
-} */
-section:hover::after,
-section.finish::after {
+section.finish::after,
+section:hover::after {
 	content: '';
 	position: absolute;
 	top: calc(-1 * var(--borderWidth));
@@ -326,7 +343,27 @@ section.finish::after {
 	animation: animatedgradient 3s ease alternate infinite;
 	z-index: -1;
 }
-
+/*
+section.finish::after {
+	content: '';
+	position: absolute;
+	top: calc(-1 * var(--borderWidth));
+	left: calc(-1 * var(--borderWidth));
+	height: calc(100% + var(--borderWidth) * 2);
+	width: calc(100% + var(--borderWidth) * 2);
+	background: linear-gradient(
+		60deg,
+		#DC9202,
+		#ffb404,
+		#fcc201,
+		#fff77A,
+	);
+	border-radius: calc(2 * var(--borderWidth));
+	background-size: 300% 300%;
+	animation: animatedgradient 3s ease alternate infinite;
+	z-index: -1;
+}
+*/
 @keyframes animatedgradient {
 	0% {
 		background-position: 0% 50%;
@@ -341,6 +378,7 @@ section.finish::after {
 
 .locked {
 	background-color: grey;
+	min-height: 100px;
 	opacity: 1;
 }
 .locked .content,
@@ -630,6 +668,12 @@ body.dark #box8 {
 }
 
 /* Media Queries */
+@media (max-width: 500px) {
+	section {
+		margin: 40px 3%;
+	}
+}
+
 @media (max-width: 820px) {
 	.nav-bar ul {
 		position: absolute;
