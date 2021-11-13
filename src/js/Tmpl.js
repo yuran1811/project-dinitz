@@ -240,6 +240,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							e.path[6].classList.add('finish');
 						}
 					} else {
+						console.log(e);
 						e.path[2]
 							.querySelector('.wrong')
 							.classList.add('active');
@@ -438,6 +439,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							.querySelector('.correct')
 							.classList.add('active');
 					} else {
+						document.querySelector('audio').play();
 						e.path[1]
 							.querySelector('.wrong')
 							.classList.add('active');
@@ -473,14 +475,11 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 				e.path[1].querySelector('p').innerHTML = `Key of ${
 					keyItem[1] + 1
 				}`;
-				console.log('Correct');
-				// $('html, body').animate(
-				// 	{ scrollTop: $(`#No${keyItem[1] + 1}`).offset().top - 100 },
-				// 	900
-				// );
-			} else {
-				cntWrong++;
-			}
+				$('html, body').animate(
+					{ scrollTop: $(`#No${keyItem[1] + 1}`).offset().top - 100 },
+					900
+				);
+			} else cntWrong++;
 		}
 		if (cntWrong === 6) {
 			e.path[1].querySelector('p').style.color = 'red';
