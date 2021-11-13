@@ -238,11 +238,8 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							.classList.add('active');
 						passCheck[indexSubmitBtn] = 1;
 						if (passCheck[0] === passCheck[1] && passCheck[0]) {
-							let navFin = e.path[8]
-								.querySelector('.nav-links')
-								.getElementsByClassName('lk')[path];
-							navFin.classList.add('finish');
-							navFin.classList.add('lifin');
+							let navFin = e.path[8].querySelector('.nav-links').getElementsByClassName('lk')[path];
+							navFin.classList.add('finish', 'lifin');
 							e.path[6].classList.add('finish');
 						}
 					} else {
@@ -317,8 +314,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							let navFin = e.path[6]
 								.querySelector('.nav-links')
 								.getElementsByClassName('lk')[path];
-							navFin.classList.add('finish');
-							navFin.classList.add('lifin');
+							navFin.classList.add('finish', 'lifin');
 							e.path[4].classList.add('finish');
 							e.path[1]
 								.querySelector('.correct')
@@ -372,8 +368,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 									let navFin = e.path[8]
 										.querySelector('.nav-links')
 										.getElementsByClassName('lk')[path];
-									navFin.classList.add('finish');
-									navFin.classList.add('lifin');
+									navFin.classList.add('finish', 'lifin');
 								}
 							} else {
 								document.querySelector('audio').play();
@@ -410,8 +405,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								let navFin = e.path[6]
 									.querySelector('.nav-links')
 									.getElementsByClassName('lk')[path];
-								navFin.classList.add('finish');
-								navFin.classList.add('lifin');
+								navFin.classList.add('finish', 'lifin');
 							}
 						} else {
 							document.querySelector('audio').play();
@@ -437,8 +431,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						let navFin = e.path[6]
 							.querySelector('.nav-links')
 							.getElementsByClassName('lk')[path];
-						navFin.classList.add('finish');
-						navFin.classList.add('lifin');
+						navFin.classList.add('finish', 'lifin');
 						e.path[4].classList.add('finish');
 						e.path[1]
 							.querySelector('.wrong')
