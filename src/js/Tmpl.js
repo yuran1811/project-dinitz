@@ -197,10 +197,10 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 
 	if (answerLength || submitListLength) {
 		if (itemIndex === 2) {
-			var passCheck = [0, 0];
+			let passCheck = [0, 0];
 			for (var submitBtn of submitBtnList) {
 				submitBtn.addEventListener('click', (e) => {
-					var indexSubmitBtn = Number(
+					let indexSubmitBtn = Number(
 						e.path[0].getAttribute('idSubmit')
 					);
 
@@ -240,6 +240,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							e.path[6].classList.add('finish');
 						}
 					} else {
+						document.querySelector('audio').play();
 						console.log(e);
 						e.path[2]
 							.querySelector('.wrong')
@@ -253,7 +254,6 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 		} else if (itemIndex === 3) {
 			answerInputList[0].addEventListener('keydown', (e) => {
 				if (e.keyCode === 13) {
-					// console.log(e.path);
 					let userAnswer = Number(
 						e.path[0].value.trim().toLowerCase()
 					);
@@ -333,7 +333,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 				}
 			});
 		} else if (itemIndex === 4) {
-			var passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+			let passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 			for (
 				let indexAnswer = 0;
 				indexAnswer < answerLength;
@@ -370,6 +370,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 									navFin.classList.add('lifin');
 								}
 							} else {
+								document.querySelector('audio').play();
 								e.path[1]
 									.querySelector('.wrong')
 									.classList.add('active');
@@ -382,7 +383,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 				);
 			}
 		} else if (itemIndex === 5) {
-			var passCheck = [0, 0];
+			let passCheck = [0, 0];
 			for (let indexInput = 0; indexInput < 2; indexInput++) {
 				answerInputList[indexInput].addEventListener('keydown', (e) => {
 					if (e.keyCode === 13) {
@@ -407,6 +408,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								navFin.classList.add('lifin');
 							}
 						} else {
+							document.querySelector('audio').play();
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.add('active');
