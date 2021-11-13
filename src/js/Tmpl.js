@@ -1,13 +1,14 @@
 $('.nav-bar a').on('click', function (e) {
 	e.preventDefault();
 	const href = $(this).attr('href');
+	const id = Number(href[href.length - 1]);
 	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 });
 
 $('.to-top a').on('click', function (e) {
 	e.preventDefault();
 	const href = $(this).attr('href');
-	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
+	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 900 * 4);
 });
 
 $('.toggle-theme').on('click', function (e) {
@@ -427,8 +428,6 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							.getElementsByClassName('lk')[path];
 						navFin.classList.add('finish');
 						navFin.classList.add('lifin');
-
-						console.log(e.path);
 						e.path[4].classList.add('finish');
 						e.path[1]
 							.querySelector('.wrong')
@@ -459,7 +458,7 @@ const unlockedKey = [
 	[6, 5],
 ];
 document
-	.querySelector('.banner input[type="text"]')
+	.querySelector('.banner input')
 	.addEventListener('keydown', (e) => {
 		if (e.keyCode === 13) {
 			const keyReceive = Number(e.path[0].value.trim());
@@ -469,7 +468,7 @@ document
 						keyItem[1]
 					].className.replace(' locked', '');
 					$('html, body').animate(
-						{ scrollTop: $(`#No${keyItem[1]+1}`).offset().top - 100},
+						{ scrollTop: $(`#No${keyItem[1] + 1}`).offset().top - 100},
 						900
 					);
 				}
