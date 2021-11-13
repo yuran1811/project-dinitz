@@ -1,5 +1,9 @@
-$('.input-field').on('keydown', function (event) {LogIn(event);});
-$('#log-in').on('click', function (event) {LogIn(event);});
+$('.input-field').on('keydown', function (event) {
+	LogIn(event);
+});
+$('#log-in').on('click', function (event) {
+	LogIn(event);
+});
 
 const sign_in_btn = document.querySelector('#sign-in-btn');
 const sign_up_btn = document.querySelector('#sign-up-btn');
@@ -13,8 +17,7 @@ function LogIn(e) {
 	const userName = document.querySelector('.user-name').value;
 	const Password = document.querySelector('.password').value;
 	if (userName !== 'Admin' || Password !== '1234') {
-		if (e.keyCode === 13)
-		{
+		if (e.keyCode === 13) {
 			$('#log-in').removeClass('correct');
 			$('#log-in').addClass('wrong');
 		}

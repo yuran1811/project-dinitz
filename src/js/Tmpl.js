@@ -1,3 +1,5 @@
+'use strict';
+
 $('.nav-bar a').on('click', function (e) {
 	e.preventDefault();
 	const href = $(this).attr('href');
@@ -8,7 +10,7 @@ $('.nav-bar a').on('click', function (e) {
 $('.to-top a').on('click', function (e) {
 	e.preventDefault();
 	const href = $(this).attr('href');
-	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 900 * 4);
+	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 });
 
 $('.toggle-theme').on('click', function (e) {
@@ -457,24 +459,38 @@ const unlockedKey = [
 	[5, 4],
 	[6, 5],
 ];
-document
-	.querySelector('.banner input')
-	.addEventListener('keydown', (e) => {
-		if (e.keyCode === 13) {
-			const keyReceive = Number(e.path[0].value.trim());
-			for (let keyItem of unlockedKey) {
-				if (keyReceive === keyItem[0]) {
-					sectionList[keyItem[1]].className = sectionList[
-						keyItem[1]
-					].className.replace(' locked', '');
-					$('html, body').animate(
-						{ scrollTop: $(`#No${keyItem[1] + 1}`).offset().top - 100},
-						900
-					);
-				}
+
+document.querySelector('.banner input').addEventListener('keydown', (e) => {
+	if (e.keyCode === 13) {
+		const keyReceive = Number(e.path[0].value.trim());
+		let cntWrong = 0;
+		for (let keyItem of unlockedKey) {
+			if (keyReceive == keyItem[0]) {
+				sectionList[keyItem[1]].className = sectionList[
+					keyItem[1]
+				].className.replace(' locked', '');
+				e.path[1].querySelector('p').style.color = 'green';
+				e.path[1].querySelector('p').innerHTML = `Key of ${
+					keyItem[1] + 1
+				}`;
+				console.log('Correct');
+				// $('html, body').animate(
+				// 	{ scrollTop: $(`#No${keyItem[1] + 1}`).offset().top - 100 },
+				// 	900
+				// );
+			} else {
+				cntWrong++;
 			}
 		}
-	});
+		if (cntWrong === 6) {
+			e.path[1].querySelector('p').style.color = 'red';
+			e.path[1].querySelector('p').innerHTML = 'Key is invalid';
+			setTimeout(function () {
+				e.path[1].querySelector('p').innerHTML = '';
+			}, 2000);
+		}
+	}
+});
 
 function allowDrop(e) {
 	e.preventDefault();
