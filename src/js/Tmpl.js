@@ -25,6 +25,12 @@ $('.menu').on('click', function (e) {
 	$('#menu-bar2').toggleClass('active');
 });
 
+$('.nav-overlay').on('click', function (e) {
+	$('.nav-bar').removeClass('active');
+	$('#menu-bar1').removeClass('active');
+	$('#menu-bar2').removeClass('active');
+});
+
 window.onscroll = () => {
 	const toTop = document.querySelector('.to-top');
 	if (
