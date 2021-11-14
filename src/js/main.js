@@ -20,11 +20,14 @@ function LogIn(e) {
 		if (e.keyCode === 13) {
 			$('#log-in').removeClass('correct');
 			$('#log-in').addClass('wrong');
+			document.querySelector('#log-in').value = 'Log In Failed';
 		}
 		return;
 	}
 	sign_up_btn.classList.add('active');
 	$('#sign-in-btn a').attr('href', 'src/Test_Template.html');
+	
+	document.querySelector('#log-in').value = 'Log In Successful';
 	$('#log-in').removeClass('wrong');
 	$('#log-in').addClass('correct');
 }
