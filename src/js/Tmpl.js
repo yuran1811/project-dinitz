@@ -62,13 +62,13 @@ const hintNo2 = [
 ];
 const hintNo4 = [
 	[
-		`<div class="hint"> Số lần phải nhập mật khẩu nếu nhập tối ưu là 13 lần. </div><br/>`,
+		`<div class="hint"> <h3>Gợi ý 1</h3> Số lần phải nhập mật khẩu nếu nhập tối ưu là 13 lần. </div><br/>`,
 	],
 	[
-		`<div class="hint"> Nếu số bạn nhập vào lớn hơn mật khẩu gốc nghĩa là các số trong khoảng [1; số vừa nhập] sẽ không phải là mật khẩu, hãy tìm cách loại trừ nhiều số phải kiểm tra nhất có thể. </div><br/>`,
+		`<div class="hint"> <h3>Gợi ý 2</h3> Nếu số bạn nhập vào lớn hơn mật khẩu gốc nghĩa là các số trong khoảng [1; số vừa nhập] sẽ không phải là mật khẩu, hãy tìm cách loại trừ nhiều số phải kiểm tra nhất có thể. </div><br/>`,
 	],
 	[
-		`<div class="hint"> Gọi đoạn chứa mật khẩu là [l; r] thì hãy nhập vào số mid = (l + r)/2 (trung bình cộng), nếu: <ul> <li> Thông báo là “Lớn hơn mật khẩu gốc” thì đoạn chứa mật khẩu mới là [mid+1; r] </li> <li> Thông báo là “Bé hơn mật khẩu gốc” thì đoạn chứa mật khẩu mới là [l, mid-1] </li> <li> Thông báo là “Mật khẩu chính xác” thì mid chính là mật khẩu. </li> </ul> </div>`,
+		`<div class="hint"> <h3>Gợi ý 3</h3> Gọi đoạn chứa mật khẩu là [l; r] thì hãy nhập vào số mid = (l + r)/2 (trung bình cộng), nếu: <ul> <li> Thông báo là “Lớn hơn mật khẩu gốc” thì đoạn chứa mật khẩu mới là [mid+1; r] </li> <li> Thông báo là “Bé hơn mật khẩu gốc” thì đoạn chứa mật khẩu mới là [l, mid-1] </li> <li> Thông báo là “Mật khẩu chính xác” thì mid chính là mật khẩu. </li> </ul> </div>`,
 	],
 ];
 const allHint = [hintNo1, hintNo2, 0, hintNo4, 0, 0];
@@ -110,6 +110,12 @@ function getHint(sectionItem, sectionId) {
 		}
 	}, 4000);
 }
+
+const challengeNo6 = [
+	`<h3>Phần 1</h3> <p> Tưởng tượng bạn muốn gửi tin nhắn tỏ tình B. Bạn muốn chỉ B mới có thể đọc được tin nhắn này, còn lại không ai có thể đọc được, nên bạn tìm một cách để “mã hoá” nội dung tin nhắn. Bạn sẽ làm thế nào? </p> <p> Thật ra, bạn sẽ không phải nghĩ nhiều đâu, bởi, 3 học giả người Mỹ và Israel đã phát minh ra thuật toán Rivest–Shamir–Adleman (RSA). Đây là một thuật toán được sử dụng rộng rãi trong việc truyền thông tin dữ liệu một cách bảo mật. Một phép so sánh thực tế có thể được hiểu như sau: </p> <p> Bạn viết thư gửi cho B, để an toàn thì bạn cho bức thư vào một chiếc hộp có khóa, rồi khóa nó lại. Bạn gửi chiếc hộp đã khoá cho B.<br />Với tình huống này, nếu có người ăn cắp được chiếc hộp, người ta cũng không có cách nào mở khoá để đọc được nội dung bức thư vì không có chìa khoá.<br />Tuy nhiên vấn đề phát sinh lúc này là bạn phải tìm cách đưa chiếc chìa khoá cho B. Ta quay lại vấn đề ban đầu, bởi vì nếu một kẻ gian có thể ăn cắp được chiếc chìa khoá này, hắn ta cũng có thể mở khoá chiếc hộp rồi đọc nội dung thư.<br />Bạn có thể nghĩ ra một cách làm tốt hơn chứ? </p> <p> Trước tiên, bạn nhờ B gửi cho bạn một ổ khoá có thể khoá được mà không cần chìa (nhưng đã khoá rồi thì muốn mở khóa thì phải có chìa khoá - đương nhiên rồi). Bạn viết bức thư, cho vào hộp và khóa hộp bằng ổ của B, rồi đưa hộp cho B. Bây giờ, nếu có kẻ gian nào lấy được chiếc hộp thì hắn cũng không thể mở hộp, bởi người duy nhất có thể mở hộp là B vì B là người duy nhất có chìa khoá. Dễ thấy là B không cần cho bạn chiếc chìa khoá (thật ra là không thể gửi cho bạn chiếc chìa khoá). Do đó để ý rằng, khi bạn đã khoá chiếc hộp rồi thì chính bạn cũng không thể mở nó. </p> <p> Bạn muốn gửi tin nhắn “IUB” đến B. B cho bạn ổ khoá toán học là cặp số<br />(n, e) = (114791, 13) </p> <p> Bạn hãy tính toán phiên bản bị mã hoá của tin nhắn “IUB” bằng thuật toán sau: </p> <p> Bước 1: Chuyển nội dung tin nhắn từ dạng chữ sang dạng số. Ở đây ta quy ước A = 01, B = 02, …, Z = 26. Ví dụ như: “HAO” được chuyển sang dạng số thành 080115, còn “ABCXYZ” thì thành 010203242526. Gọi kết quả tính được là m. </p> <p> Bước 2: Tính<br /> c = m^e mod n.<br />Trong đó phép tính mod có nghĩa là phần dư của phép chia.<br />Ví dụ: 10 mod 3 = 1 vì 10 chia 3 dư 1; 2^10 mod 100 = 24 vì 2^10 = 1024, sau đó 1024 chia 100 thì dư 24. </p> <p>Bước 3: Gửi kết quả c cho B.</p>`,
+
+	`<h3>Phần 2</h3> <p> Oh, B đã đọc được tâm tư tình cảm của bạn và phản hồi bạn bằng một lá thư… cũng bị mã hoá. À, bạn nhớ ra rằng bạn cũng từng đưa cho B một ổ khoá, là một cặp số (n’, p’) = (135931, 87353). Tin chắc rằng B đã khoá tin nhắn bằng chính chiếc ổ khoá này, bạn mò tìm lại chìa khóa của ổ, và may mắn thay bạn đã tìm ra chìa khoá, chính là q = 17<br />Tin nhắn đã mã hoá mà bạn nhận được từ B là c’ = 101811, bạn hãy theo dõi thuật toán sau để tìm lại thông điệp mà B đã nhắn cho bạn! </p> <p> Bước 1: Tính<br /> m = c’^q mod n’ </p> <p> Bước 2: Chuyển số m vừa nhận được về dạng văn bản.<br />Ví dụ nếu số nhận được là 12251225 thì ta giải được văn bản là LYLY </p>`,
+];
 
 const ans1 = [53355, 13863, 29646, 447];
 const ans2 = [75807, 16720, 16720, 16720, 16720, 16720, 16720, 13863];
@@ -167,6 +173,13 @@ function deCode(ansArray) {
 
 var sectionList = document.querySelectorAll('section');
 var sectionListLth = sectionList.length;
+
+for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
+	sectionList[
+		itemIndex
+	].innerHTML += `<i class="fas fa-lock lock" style="display: block"></i>`;
+}
+
 for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	let infoBtn = sectionList[itemIndex].querySelector('.info-btn');
 	let infoContent = sectionList[itemIndex].querySelector('.info');
@@ -185,6 +198,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 		challengeBtn.addEventListener('click', (e) => {
 			challengeBtn.classList.toggle('active');
 			challengeContent.classList.toggle('active');
+			if (itemIndex === 5) {
+				document.querySelector('.no6-part1').style.display = 'block';
+			}
 		});
 	}
 
@@ -214,16 +230,14 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let boxListSize = boxList.length;
 
 					let itemList = e.path[2].querySelectorAll('.allItem .item');
-					let itemListSize = itemList.length;
 
 					let path = e.path[6].getAttribute('sectionId');
 
 					let countNumFillBox = 0;
 					for (let boxItem of boxList) {
-						let itemInBox =
-							boxItem.getElementsByClassName('item')[0];
+						let itemInBox = boxItem.getElementsByClassName('item');
 						if (
-							itemInBox.getAttribute('catch') ===
+							itemInBox[0].getAttribute('catch') ===
 							boxItem.getAttribute('try')
 						)
 							countNumFillBox++;
@@ -236,9 +250,16 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						e.path[2]
 							.querySelector('.correct')
 							.classList.add('active');
+						if (indexSubmitBtn === 0) {
+							document.querySelector(
+								'#No3 .part2'
+							).style.display = 'block';
+						}
 						passCheck[indexSubmitBtn] = 1;
 						if (passCheck[0] === passCheck[1] && passCheck[0]) {
-							let navFin = e.path[8].querySelector('.nav-links').getElementsByClassName('lk')[path];
+							let navFin = e.path[8]
+								.querySelector('.nav-links')
+								.getElementsByClassName('lk')[path];
 							navFin.classList.add('finish', 'lifin');
 							e.path[6].classList.add('finish');
 						}
@@ -389,10 +410,18 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 				answerInputList[indexInput].addEventListener('keydown', (e) => {
 					if (e.keyCode === 13) {
 						let userAnswer = e.path[0].value.trim().toLowerCase();
-						let path = e.path[4].getAttribute('sectionId');
+						let path = e.path[5].getAttribute('sectionId');
 						let idAnswer = Number(e.path[0].id);
 						let sysAnswer = deCode(ansAll[path][idAnswer]);
 						if (userAnswer == sysAnswer) {
+							if (!passCheck[0]) {
+								e.path[5].querySelector(
+									'.no6-part2 .contentp2'
+								).innerHTML += challengeNo6[1];
+								e.path[5].querySelector(
+									'.no6-part2 input'
+								).style.display = 'block';
+							}
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.remove('active');
@@ -401,8 +430,8 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								.classList.add('active');
 							passCheck[indexInput] = 1;
 							if (passCheck[0] === passCheck[1] && passCheck[0]) {
-								e.path[4].classList.add('finish');
-								let navFin = e.path[6]
+								e.path[5].classList.add('finish');
+								let navFin = document
 									.querySelector('.nav-links')
 									.getElementsByClassName('lk')[path];
 								navFin.classList.add('finish', 'lifin');
@@ -464,6 +493,9 @@ const unlockedKey = [
 ];
 
 document.querySelector('.banner input').addEventListener('keydown', (e) => {
+	if (e.keyCode === 8) {
+		$('html, body').animate({ scrollTop: $('#top').offset().top - 100 }, 1);
+	}
 	if (e.keyCode === 13) {
 		const keyReceive = Number(e.path[0].value.trim());
 		let cntWrong = 0;
@@ -472,6 +504,12 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 				sectionList[keyItem[1]].className = sectionList[
 					keyItem[1]
 				].className.replace(' locked', '');
+				const thisLink =
+					document.querySelectorAll('.nav-links .lk')[keyItem[1]];
+				thisLink.className = thisLink.className.replace(
+					' lilocked',
+					''
+				);
 				e.path[1].querySelector('p').style.color = '#32D700';
 				e.path[1].querySelector('p').innerHTML = `Key of ${
 					keyItem[1] + 1
@@ -480,6 +518,16 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 					{ scrollTop: $(`#No${keyItem[1] + 1}`).offset().top - 100 },
 					900
 				);
+				if (keyItem[1] === 5) {
+					document.querySelector('#No6 .contentp1').innerHTML +=
+						challengeNo6[0];
+				}
+				if (keyItem[1] === 2)
+					document.querySelector('#No3 .part1').style.display =
+						'block';
+
+				sectionList[keyItem[1]].querySelector('.lock').style.display =
+					'none';
 			} else cntWrong++;
 		}
 		if (cntWrong === 6) {
@@ -491,6 +539,25 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 		}
 	}
 });
+
+const allLinks = document.querySelectorAll('.lk');
+for (var link of allLinks) {
+	link.classList.add('lilocked');
+	link.addEventListener('click', (e) => {
+		if (e.path[1].className.includes('lilocked')) {
+			document.querySelector('.banner p').style.color = 'black';
+			document.querySelector('.banner p').innerHTML =
+				'Vui lòng điền key để làm bài này!!!';
+			setTimeout((e) => {
+				document.querySelector('.banner p').innerHTML = '';
+			}, 1300);
+			$('html, body').animate(
+				{ scrollTop: $('#top').offset().top - 100 },
+				1
+			);
+		}
+	});
+}
 
 function allowDrop(e) {
 	e.preventDefault();
