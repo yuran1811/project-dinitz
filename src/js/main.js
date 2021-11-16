@@ -20,14 +20,14 @@ function LogIn(e) {
 		if (e.keyCode === 13) {
 			$('#log-in').removeClass('correct');
 			$('#log-in').addClass('wrong');
-			document.querySelector('#log-in').value = 'Log In Failed';
+			document.querySelector('#log-in').value = 'Đăng nhập thất bại';
 		}
 		return;
 	}
 	sign_up_btn.classList.add('active');
 	$('#sign-in-btn a').attr('href', 'src/Test_Template.html');
-	
-	document.querySelector('#log-in').value = 'Log In Successful';
+
+	document.querySelector('#log-in').value = 'Đăng nhập thành công';
 	$('#log-in').removeClass('wrong');
 	$('#log-in').addClass('correct');
 }
