@@ -231,7 +231,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 
 					let itemList = e.path[2].querySelectorAll('.allItem .item');
 
-					let path = e.path[6].getAttribute('sectionId');
+					let path = Number(e.path[6].getAttribute('sectionId'));
 
 					let countNumFillBox = 0;
 					for (let boxItem of boxList) {
@@ -281,7 +281,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let userAnswer = Number(
 						e.path[0].value.trim().toLowerCase()
 					);
-					let path = e.path[4].getAttribute('sectionId');
+					let path = Number(e.path[4].getAttribute('sectionId'));
 					let sysAnswer = Number(deCode(ansAll[path]));
 					if (!(1 <= userAnswer && userAnswer <= 8192)) {
 						e.path[1]
@@ -299,6 +299,20 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 
 						e.path[1].querySelector('p').innerHTML =
 							'Em đi xa quá, em đi đi xa Dinitz quá!!!';
+
+						$(`#No${path + 1} input[type='text']`).attr(
+							'disabled',
+							'disabled'
+						);
+						setTimeout(() => {
+							$(`#No${path + 1} input[type='text']`).removeAttr(
+								'disabled'
+							);
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.remove('active');
+							e.path[1].querySelector('p').innerHTML = '';
+						}, 3000);
 					} else {
 						if (userAnswer > sysAnswer) {
 							e.path[1]
@@ -316,6 +330,20 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 
 							e.path[1].querySelector('p').innerHTML =
 								'Xuống đi, cao quá!!!';
+
+							$(`#No${path + 1} input[type='text']`).attr(
+								'disabled',
+								'disabled'
+							);
+							setTimeout(() => {
+								$(
+									`#No${path + 1} input[type='text']`
+								).removeAttr('disabled');
+								e.path[1]
+									.querySelector('.decrease')
+									.classList.remove('active');
+								e.path[1].querySelector('p').innerHTML = '';
+							}, 3000);
 						} else if (userAnswer < sysAnswer) {
 							e.path[1]
 								.querySelector('.increase')
@@ -331,6 +359,20 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								.classList.remove('active');
 							e.path[1].querySelector('p').innerHTML =
 								'Lên đi em ưi!!!';
+
+							$(`#No${path + 1} input[type='text']`).attr(
+								'disabled',
+								'disabled'
+							);
+							setTimeout(() => {
+								$(
+									`#No${path + 1} input[type='text']`
+								).removeAttr('disabled');
+								e.path[1]
+									.querySelector('.increase')
+									.classList.remove('active');
+								e.path[1].querySelector('p').innerHTML = '';
+							}, 3000);
 						} else {
 							let navFin = e.path[6]
 								.querySelector('.nav-links')
@@ -369,7 +411,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							let userAnswer = e.path[0].value
 								.trim()
 								.toLowerCase();
-							let path = e.path[6].getAttribute('sectionId');
+							let path = Number(
+								e.path[6].getAttribute('sectionId')
+							);
 							let idAnswer = Number(e.path[0].id);
 							let sysAnswer = deCode(ansAll[path][idAnswer]);
 							if (userAnswer == sysAnswer) {
@@ -392,13 +436,26 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 									navFin.classList.add('finish', 'lifin');
 								}
 							} else {
-								document.querySelector('audio').play();
-								e.path[1]
-									.querySelector('.wrong')
-									.classList.add('active');
+								// document.querySelector('audio').play();
+								// e.path[1]
+								// 	.querySelector('.wrong')
+								// 	.classList.add('active');
 								e.path[1]
 									.querySelector('.correct')
 									.classList.remove('active');
+
+								$(`#No${path + 1} input[type='text']`).attr(
+									'disabled',
+									'disabled'
+								);
+								setTimeout(() => {
+									$(
+										`#No${path + 1} input[type='text']`
+									).removeAttr('disabled');
+									e.path[1]
+										.querySelector('.wrong')
+										.classList.remove('active');
+								}, 3000);
 							}
 						}
 					}
@@ -410,7 +467,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 				answerInputList[indexInput].addEventListener('keydown', (e) => {
 					if (e.keyCode === 13) {
 						let userAnswer = e.path[0].value.trim().toLowerCase();
-						let path = e.path[5].getAttribute('sectionId');
+						let path = Number(e.path[5].getAttribute('sectionId'));
 						let idAnswer = Number(e.path[0].id);
 						let sysAnswer = deCode(ansAll[path][idAnswer]);
 						if (userAnswer == sysAnswer) {
@@ -444,6 +501,19 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							e.path[1]
 								.querySelector('.correct')
 								.classList.remove('active');
+
+							$(`#No${path + 1} input[type='text']`).attr(
+								'disabled',
+								'disabled'
+							);
+							setTimeout(() => {
+								$(
+									`#No${path + 1} input[type='text']`
+								).removeAttr('disabled');
+								e.path[1]
+									.querySelector('.wrong')
+									.classList.remove('active');
+							}, 3000);
 						}
 					}
 				});
@@ -454,7 +524,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let userAnswer = answerInputList[0].value
 						.trim()
 						.toLowerCase();
-					let path = e.path[4].getAttribute('sectionId');
+					let path = Number(e.path[4].getAttribute('sectionId'));
 					let sysAnswer = deCode(ansAll[path]);
 					if (userAnswer == sysAnswer) {
 						let navFin = e.path[6]
@@ -476,6 +546,19 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						e.path[1]
 							.querySelector('.correct')
 							.classList.remove('active');
+
+						$(`#No${path + 1} input[type='text']`).attr(
+							'disabled',
+							'disabled'
+						);
+						setTimeout(() => {
+							$(`#No${path + 1} input[type='text']`).removeAttr(
+								'disabled'
+							);
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.remove('active');
+						}, 3000);
 					}
 				}
 			});
@@ -511,9 +594,9 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 					''
 				);
 				e.path[1].querySelector('p').style.color = '#32D700';
-				e.path[1].querySelector('p').innerHTML = `Key of ${
+				e.path[1].querySelector('p').innerHTML = `No${
 					keyItem[1] + 1
-				}`;
+				} đã mở khóa`;
 				$('html, body').animate(
 					{ scrollTop: $(`#No${keyItem[1] + 1}`).offset().top - 100 },
 					900
