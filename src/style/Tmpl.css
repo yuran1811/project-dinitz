@@ -46,14 +46,15 @@ body::-webkit-scrollbar-thumb {
 	bottom: 0;
 	right: 0;
 	margin: 15px;
-	transition: color 0.7s ease;
 	cursor: pointer;
 	z-index: 1000;
-	color: rgba(0, 0, 0, 0.3);
+	opacity: 0.6;
+	color: var(--color);
+	transition: opacity 0.65s ease;
 }
 
 .to-top:hover {
-	color: var(--color);
+	opacity: 1;
 }
 
 /* Toggle Theme */
@@ -115,6 +116,7 @@ body::-webkit-scrollbar-thumb {
 
 .nav-bar {
 	border-bottom: 1px solid var(--border-color);
+	background-color: var(--background-color);
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -127,7 +129,6 @@ body::-webkit-scrollbar-thumb {
 	top: 0;
 	left: 0;
 	right: 0;
-	background-color: var(--background-color);
 	z-index: 50;
 }
 
@@ -315,21 +316,6 @@ section {
 	border-top: none;
 	transition: border-color 1.2s ease; */
 }
-/* section:hover {
-	border-color: var(--navbar-color);
-	border-top: none;
-} */
-
-/* section::before,
-section::after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	background-color: grey;
-	opacity: 0.5;
-	padding: 2%;
-} */
 
 /* Animated Border */
 section {
@@ -408,6 +394,23 @@ section.finish::after {
 section .title,
 section .content {
 	margin: 0 5vw;
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+section .wrong,
+section .increase,
+section .decrease {
+	animation-name: blink;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease;
 }
 
 section .wrong {
@@ -701,8 +704,8 @@ body.dark #box8 {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: var(--color);
-		opacity: 0.5;
+		background-color: var(--background-color);
+		opacity: 0.85;
 		z-index: 10;
 	}
 
