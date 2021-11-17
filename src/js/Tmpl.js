@@ -628,7 +628,7 @@ for (var link of allLinks) {
 	link.classList.add('lilocked');
 	link.addEventListener('click', (e) => {
 		if (e.path[1].className.includes('lilocked')) {
-			document.querySelector('.banner p').style.color = 'black';
+			document.querySelector('.banner p').style.color = 'var(--color)';
 			document.querySelector('.banner p').innerHTML =
 				'Vui lòng điền key để làm bài này!!!';
 			setTimeout((e) => {
