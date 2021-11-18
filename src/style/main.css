@@ -269,6 +269,28 @@ body {
 	display: block;
 	width: auto;
 	opacity: 1;
+	animation: blink 1.2s ease infinite;
+}
+#sign-up-btn.active:hover {
+	animation: none;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0.5;
+		border: 1px solid white;
+		color: #fff;
+	}
+	50% {
+		opacity: 1;
+		background-color: white;
+		color: #2c5294;
+	}
+	100% {
+		opacity: 0.5;
+		border: 1px solid white;
+		color: #fff;
+	}
 }
 
 .panels-container {
