@@ -31,6 +31,10 @@ $('.nav-overlay').on('click', function (e) {
 	$('#menu-bar2').removeClass('active');
 });
 
+const correctAudio = document.querySelector('.correct-sound');
+const wrongAudio = document.querySelector('.fail-sound');
+const finishAudio = document.querySelector('.finish-sound');
+
 window.onscroll = () => {
 	const toTop = document.querySelector('.to-top');
 	if (
@@ -41,6 +45,7 @@ window.onscroll = () => {
 	else toTop.style.display = 'none';
 };
 
+// Hint Handle
 const hintNo1 = [
 	[
 		`<div class="hint"><h3>Gợi ý 1</h3><p> Naot đã liệt kê ra được <strong>một số</strong> trạng thái chiến thắng và một số trạng thái thua cuộc dành cho người chơi đầu tiên với Emag min với 3 chồng sỏi: </p> <table id="${'No1-hint1'}"> <tr> <th colspan="2">Trạng thái chiến thắng</th> <th colspan="2">Trạng thái thua cuộc</th> </tr> <tr> <td> <p> 1 1 1 <br /> 1 1 2 <br /> 1 1 3 <br /> 1 1 4 <br /> 1 2 1 <br /> 1 2 2 <br /> 1 2 4 <br /> 1 3 1 <br /> 1 3 3 </p> </td> <td> <p> 1 3 4 <br /> 1 4 1 <br /> 1 4 2 <br /> 1 4 3 <br /> 1 4 4 <br /> 2 1 1 <br /> 2 1 2 <br /> 2 1 4 <br /> 2 2 1 <br /> 2 2 2 </p> </td> <td> <p> 0 0 0 <br /> 0 1 1 <br /> 0 2 2 <br /> 0 3 3 <br /> 0 4 4 <br /> 1 0 1 <br /> 1 1 0 <br /> 1 2 3 <br /> 1 3 2 </p> </td> <td> <p> 2 0 2 <br /> 2 1 3 <br /> 2 2 0 <br /> 2 3 1 <br /> 3 0 3 <br /> 3 1 2 <br /> 3 2 1 <br /> 3 3 0 <br /> 4 0 4 <br /> 4 4 0 </p> </td> </tr> </table> </div>`,
@@ -74,10 +79,10 @@ const hintNo4 = [
 const allHint = [hintNo1, hintNo2, 0, hintNo4, 0, 0];
 
 function getHint(sectionItem, sectionId) {
-	let hintBtn = sectionItem.querySelector('.hint-btn');
+	const hintBtn = sectionItem.querySelector('.hint-btn');
 	hintBtn.classList.toggle('active');
 
-	let hintContent = sectionItem.querySelector('.allhint');
+	const hintContent = sectionItem.querySelector('.allhint');
 	let hintList = allHint[sectionId];
 	var hintCnt = hintList.length;
 	var indexHint = 0;
@@ -111,6 +116,7 @@ function getHint(sectionItem, sectionId) {
 	}, 4000);
 }
 
+// Challenge Handle
 const challengeNo6 = [
 	`<h3>Phần 1</h3> <p> Tưởng tượng bạn muốn gửi tin nhắn tỏ tình B. Bạn muốn chỉ B mới có thể đọc được tin nhắn này, còn lại không ai có thể đọc được, nên bạn tìm một cách để “mã hoá” nội dung tin nhắn. Bạn sẽ làm thế nào? </p> <p> Thật ra, bạn sẽ không phải nghĩ nhiều đâu, bởi, 3 học giả người Mỹ và Israel đã phát minh ra thuật toán Rivest–Shamir–Adleman (RSA). Đây là một thuật toán được sử dụng rộng rãi trong việc truyền thông tin dữ liệu một cách bảo mật. Một phép so sánh thực tế có thể được hiểu như sau: </p> <p> Bạn viết thư gửi cho B, để an toàn thì bạn cho bức thư vào một chiếc hộp có khóa, rồi khóa nó lại. Bạn gửi chiếc hộp đã khoá cho B.<br />Với tình huống này, nếu có người ăn cắp được chiếc hộp, người ta cũng không có cách nào mở khoá để đọc được nội dung bức thư vì không có chìa khoá.<br />Tuy nhiên vấn đề phát sinh lúc này là bạn phải tìm cách đưa chiếc chìa khoá cho B. Ta quay lại vấn đề ban đầu, bởi vì nếu một kẻ gian có thể ăn cắp được chiếc chìa khoá này, hắn ta cũng có thể mở khoá chiếc hộp rồi đọc nội dung thư.<br />Bạn có thể nghĩ ra một cách làm tốt hơn chứ? </p> <p> Trước tiên, bạn nhờ B gửi cho bạn một ổ khoá có thể khoá được mà không cần chìa (nhưng đã khoá rồi thì muốn mở khóa thì phải có chìa khoá - đương nhiên rồi). Bạn viết bức thư, cho vào hộp và khóa hộp bằng ổ của B, rồi đưa hộp cho B. Bây giờ, nếu có kẻ gian nào lấy được chiếc hộp thì hắn cũng không thể mở hộp, bởi người duy nhất có thể mở hộp là B vì B là người duy nhất có chìa khoá. Dễ thấy là B không cần cho bạn chiếc chìa khoá (thật ra là không thể gửi cho bạn chiếc chìa khoá). Do đó để ý rằng, khi bạn đã khoá chiếc hộp rồi thì chính bạn cũng không thể mở nó. </p> <p> Bạn muốn gửi tin nhắn “IUB” đến B. B cho bạn ổ khoá toán học là cặp số<br />(n, e) = (114791, 13) </p> <p> Bạn hãy tính toán phiên bản bị mã hoá của tin nhắn “IUB” bằng thuật toán sau: </p> <p> Bước 1: Chuyển nội dung tin nhắn từ dạng chữ sang dạng số. Ở đây ta quy ước A = 01, B = 02, …, Z = 26. Ví dụ như: “HAO” được chuyển sang dạng số thành 080115, còn “ABCXYZ” thì thành 010203242526. Gọi kết quả tính được là m. </p> <p> Bước 2: Tính<br /> c = m^e mod n.<br />Trong đó phép tính mod có nghĩa là phần dư của phép chia.<br />Ví dụ: 10 mod 3 = 1 vì 10 chia 3 dư 1; 2^10 mod 100 = 24 vì 2^10 = 1024, sau đó 1024 chia 100 thì dư 24. </p> <p>Bước 3: Gửi kết quả c cho B.</p>`,
 
@@ -166,23 +172,21 @@ function PowPow(a, b, p) {
 
 function deCode(ansArray) {
 	let res = [];
-	for (var item of ansArray)
+	for (let item of ansArray)
 		res.push(String.fromCharCode(PowPow(item, 42143, 98473)));
 	return res.join('');
 }
 
-var sectionList = document.querySelectorAll('section');
-var sectionListLth = sectionList.length;
+// Content Handle
+const sectionList = document.querySelectorAll('section');
+const sectionListLth = sectionList.length;
+
+for (let item of sectionList)
+	item.innerHTML += `<i class="fas fa-lock lock" style="display: block"></i>`;
 
 for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
-	sectionList[
-		itemIndex
-	].innerHTML += `<i class="fas fa-lock lock" style="display: block"></i>`;
-}
-
-for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
-	let infoBtn = sectionList[itemIndex].querySelector('.info-btn');
-	let infoContent = sectionList[itemIndex].querySelector('.info');
+	const infoBtn = sectionList[itemIndex].querySelector('.info-btn');
+	const infoContent = sectionList[itemIndex].querySelector('.info');
 
 	if (infoBtn && infoContent) {
 		infoBtn.addEventListener('click', (e) => {
@@ -191,8 +195,8 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 		});
 	}
 
-	let challengeBtn = sectionList[itemIndex].querySelector('.challenge-btn');
-	let challengeContent =
+	const challengeBtn = sectionList[itemIndex].querySelector('.challenge-btn');
+	const challengeContent =
 		sectionList[itemIndex].querySelector('.challenge-content');
 	if (challengeContent) {
 		challengeBtn.addEventListener('click', (e) => {
@@ -214,6 +218,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	let answerInputList =
 		sectionList[itemIndex].querySelectorAll('input[type="text"]');
 	let answerLength = answerInputList.length;
+
 	let submitBtnList = sectionList[itemIndex].querySelectorAll('.submit-btn');
 	let submitListLength = submitBtnList.length;
 
@@ -250,6 +255,8 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						e.path[2]
 							.querySelector('.correct')
 							.classList.add('active');
+						correctAudio.play();
+
 						if (indexSubmitBtn === 0) {
 							document.querySelector(
 								'#No3 .part2'
@@ -262,10 +269,10 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								.getElementsByClassName('lk')[path];
 							navFin.classList.add('finish', 'lifin');
 							e.path[6].classList.add('finish');
+							finishAudio.play();
 						}
 					} else {
-						document.querySelector('audio').play();
-						console.log(e);
+						wrongAudio.play();
 						e.path[2]
 							.querySelector('.wrong')
 							.classList.add('active');
@@ -296,6 +303,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						e.path[1]
 							.querySelector('.wrong')
 							.classList.add('active');
+						wrongAudio.play();
 
 						e.path[1].querySelector('p').innerHTML =
 							'Em đi xa quá, em đi đi xa Dinitz quá!!!';
@@ -327,6 +335,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.remove('active');
+							wrongAudio.play();
 
 							e.path[1].querySelector('p').innerHTML =
 								'Xuống đi, cao quá!!!';
@@ -359,6 +368,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								.classList.remove('active');
 							e.path[1].querySelector('p').innerHTML =
 								'Lên đi em ưi!!!';
+							wrongAudio.play();
 
 							$(`#No${path + 1} input[type='text']`).attr(
 								'disabled',
@@ -393,6 +403,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								.classList.remove('active');
 							e.path[1].querySelector('p').innerHTML =
 								'Ghêk Ghêk';
+							finishAudio.play();
 						}
 					}
 				}
@@ -434,9 +445,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 										.querySelector('.nav-links')
 										.getElementsByClassName('lk')[path];
 									navFin.classList.add('finish', 'lifin');
+									finishAudio.play();
 								}
 							} else {
-								// document.querySelector('audio').play();
 								// e.path[1]
 								// 	.querySelector('.wrong')
 								// 	.classList.add('active');
@@ -485,6 +496,8 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							e.path[1]
 								.querySelector('.correct')
 								.classList.add('active');
+							correctAudio.play();
+
 							passCheck[indexInput] = 1;
 							if (passCheck[0] === passCheck[1] && passCheck[0]) {
 								e.path[5].classList.add('finish');
@@ -492,9 +505,10 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 									.querySelector('.nav-links')
 									.getElementsByClassName('lk')[path];
 								navFin.classList.add('finish', 'lifin');
+								finishAudio.play();
 							}
 						} else {
-							document.querySelector('audio').play();
+							wrongAudio.play();
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.add('active');
@@ -531,6 +545,8 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							.querySelector('.nav-links')
 							.getElementsByClassName('lk')[path];
 						navFin.classList.add('finish', 'lifin');
+
+						finishAudio.play();
 						e.path[4].classList.add('finish');
 						e.path[1]
 							.querySelector('.wrong')
@@ -539,7 +555,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							.querySelector('.correct')
 							.classList.add('active');
 					} else {
-						document.querySelector('audio').play();
+						wrongAudio.play();
 						e.path[1]
 							.querySelector('.wrong')
 							.classList.add('active');
@@ -623,24 +639,27 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 	}
 });
 
-const allLinks = document.querySelectorAll('.lk');
-for (var link of allLinks) {
-	link.classList.add('lilocked');
-	link.addEventListener('click', (e) => {
-		if (e.path[1].className.includes('lilocked')) {
-			document.querySelector('.banner p').style.color = 'var(--color)';
-			document.querySelector('.banner p').innerHTML =
-				'Vui lòng điền key để làm bài này!!!';
-			setTimeout((e) => {
-				document.querySelector('.banner p').innerHTML = '';
-			}, 1300);
-			$('html, body').animate(
-				{ scrollTop: $('#top').offset().top - 100 },
-				1
-			);
-		}
-	});
-}
+(function () {
+	const allLinks = document.querySelectorAll('.lk');
+	for (var link of allLinks) {
+		link.classList.add('lilocked');
+		link.addEventListener('click', (e) => {
+			if (e.path[1].className.includes('lilocked')) {
+				document.querySelector('.banner p').style.color =
+					'var(--color)';
+				document.querySelector('.banner p').innerHTML =
+					'Vui lòng điền key để làm bài này!!!';
+				setTimeout((e) => {
+					document.querySelector('.banner p').innerHTML = '';
+				}, 1300);
+				$('html, body').animate(
+					{ scrollTop: $('#top').offset().top - 100 },
+					1
+				);
+			}
+		});
+	}
+})();
 
 function allowDrop(e) {
 	e.preventDefault();
