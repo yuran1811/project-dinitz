@@ -13,19 +13,19 @@ $('.to-top a').on('click', function (e) {
 	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 });
 
-$('.toggle-theme').on('click', function (e) {
+$('.toggle-theme').on('click', function () {
 	$('body').toggleClass('dark');
 	$('.moon').toggleClass('active');
 	$('.sun').toggleClass('active');
 });
 
-$('.menu').on('click', function (e) {
+$('.menu').on('click', function () {
 	$('.nav-bar').toggleClass('active');
 	$('#menu-bar1').toggleClass('active');
 	$('#menu-bar2').toggleClass('active');
 });
 
-$('.nav-overlay').on('click', function (e) {
+$('.nav-overlay').on('click', function () {
 	$('.nav-bar').removeClass('active');
 	$('#menu-bar1').removeClass('active');
 	$('#menu-bar2').removeClass('active');
