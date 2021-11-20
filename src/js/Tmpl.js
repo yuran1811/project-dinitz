@@ -45,6 +45,14 @@ window.onscroll = () => {
 	else toTop.style.display = 'none';
 };
 
+// Cooldown
+function setWrongCD(item, countDown) {
+	let x = setInterval(() => {
+		item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
+		if (countDown < 0) clearInterval(x);
+	}, 1000);
+}
+
 // Hint Handle
 const hintNo1 = [
 	[
@@ -90,14 +98,13 @@ function getHint(sectionItem, sectionId) {
 	const timerCountdown = sectionItem.querySelector('.timer');
 	const hintTime = 3;
 	let countDown = 2;
-	let hintRemain = hintList.length;
 
 	if (hintCnt > 0) {
 		timerCountdown.style.display = 'inline';
 	}
 
 	let y = setInterval(() => {
-		timerCountdown.innerHTML = countDown--;
+		timerCountdown.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
 		if (countDown < 0) {
 			if (indexHint === hintCnt - 1) {
 				clearInterval(y);
@@ -217,38 +224,41 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 
 	let answerInputList =
 		sectionList[itemIndex].querySelectorAll('input[type="text"]');
-	let answerLength = answerInputList.length;
+	let ansLth = answerInputList.length;
 
 	let submitBtnList = sectionList[itemIndex].querySelectorAll('.submit-btn');
 	let submitListLength = submitBtnList.length;
 
-	if (answerLength || submitListLength) {
+	let wrongCD = sectionList[itemIndex].querySelector('.wrong-cd');
+
+	if (ansLth || submitListLength) {
 		if (itemIndex === 2) {
+			const numPath = [3, 4];
 			let passCheck = [0, 0];
-			for (var submitBtn of submitBtnList) {
+			for (let submitBtn of submitBtnList) {
 				submitBtn.addEventListener('click', (e) => {
+					const path = Number(e.path[6].getAttribute('sectionId'));
 					let indexSubmitBtn = Number(
 						e.path[0].getAttribute('idSubmit')
 					);
-
 					let boxList = e.path[1].querySelectorAll('.box');
-					let boxListSize = boxList.length;
+					let cntCorrectBox = 0;
+					let cntCillBox = 0;
 
-					let itemList = e.path[2].querySelectorAll('.allItem .item');
-
-					let path = Number(e.path[6].getAttribute('sectionId'));
-
-					let countNumFillBox = 0;
 					for (let boxItem of boxList) {
-						let itemInBox = boxItem.getElementsByClassName('item');
-						if (
-							itemInBox[0].getAttribute('catch') ===
-							boxItem.getAttribute('try')
-						)
-							countNumFillBox++;
+						let itemInBox = boxItem.querySelector('.item');
+						if (!itemInBox) continue;
+
+						let numberItem = itemInBox.getAttribute('catch');
+						let numberBox = boxItem.getAttribute('try');
+						if (numberItem == numberBox) cntCorrectBox++;
+						cntCillBox++;
 					}
 
-					if (countNumFillBox === boxListSize) {
+					if (
+						cntCorrectBox === numPath[indexSubmitBtn] &&
+						cntCillBox === cntCorrectBox
+					) {
 						e.path[2]
 							.querySelector('.wrong')
 							.classList.remove('active');
@@ -279,6 +289,19 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						e.path[2]
 							.querySelector('.correct')
 							.classList.remove('active');
+
+						submitBtn.style.display = 'none';
+						e.path[3].querySelector('.wrong-cd').style.display =
+							'block';
+						setWrongCD(e.path[3].querySelector('.wrong-cd'), 2);
+						setTimeout(() => {
+							e.path[2]
+								.querySelector('.wrong')
+								.classList.remove('active');
+							submitBtn.style.display = 'block';
+							e.path[3].querySelector('.wrong-cd').style.display =
+								'none';
+						}, 3000);
 					}
 				});
 			}
@@ -312,6 +335,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							'disabled',
 							'disabled'
 						);
+
+						wrongCD.style.display = 'block';
+						setWrongCD(wrongCD, 2);
 						setTimeout(() => {
 							$(`#No${path + 1} input[type='text']`).removeAttr(
 								'disabled'
@@ -320,6 +346,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								.querySelector('.wrong')
 								.classList.remove('active');
 							e.path[1].querySelector('p').innerHTML = '';
+							wrongCD.style.display = 'none';
 						}, 3000);
 					} else {
 						if (userAnswer > sysAnswer) {
@@ -344,6 +371,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								'disabled',
 								'disabled'
 							);
+
+							wrongCD.style.display = 'block';
+							setWrongCD(wrongCD, 2);
 							setTimeout(() => {
 								$(
 									`#No${path + 1} input[type='text']`
@@ -352,6 +382,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 									.querySelector('.decrease')
 									.classList.remove('active');
 								e.path[1].querySelector('p').innerHTML = '';
+								wrongCD.style.display = 'none';
 							}, 3000);
 						} else if (userAnswer < sysAnswer) {
 							e.path[1]
@@ -374,6 +405,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								'disabled',
 								'disabled'
 							);
+
+							wrongCD.style.display = 'block';
+							setWrongCD(wrongCD, 2);
 							setTimeout(() => {
 								$(
 									`#No${path + 1} input[type='text']`
@@ -382,6 +416,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 									.querySelector('.increase')
 									.classList.remove('active');
 								e.path[1].querySelector('p').innerHTML = '';
+								wrongCD.style.display = 'none';
 							}, 3000);
 						} else {
 							let navFin = e.path[6]
@@ -410,68 +445,66 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 			});
 		} else if (itemIndex === 4) {
 			let passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-			for (
-				let indexAnswer = 0;
-				indexAnswer < answerLength;
-				indexAnswer++
-			) {
-				answerInputList[indexAnswer].addEventListener(
-					'keydown',
-					(e) => {
-						if (e.keyCode === 13) {
-							let userAnswer = e.path[0].value
-								.trim()
-								.toLowerCase();
-							let path = Number(
-								e.path[6].getAttribute('sectionId')
-							);
-							let idAnswer = Number(e.path[0].id);
-							let sysAnswer = deCode(ansAll[path][idAnswer]);
-							if (userAnswer == sysAnswer) {
-								e.path[1]
-									.querySelector('.wrong')
-									.classList.remove('active');
-								e.path[1]
-									.querySelector('.correct')
-									.classList.add('active');
-								passCheck[indexAnswer] = 1;
-								let cntCheck = 0;
-								for (let idCheck = 0; idCheck < 12; idCheck++) {
-									if (passCheck[idCheck] === 1) cntCheck++;
-								}
-								if (cntCheck === 12) {
-									e.path[6].classList.add('finish');
-									let navFin = e.path[8]
-										.querySelector('.nav-links')
-										.getElementsByClassName('lk')[path];
-									navFin.classList.add('finish', 'lifin');
-									finishAudio.play();
-								}
-							} else {
-								// e.path[1]
-								// 	.querySelector('.wrong')
-								// 	.classList.add('active');
-								e.path[1]
-									.querySelector('.correct')
-									.classList.remove('active');
+			const submitBtn =
+				sectionList[itemIndex].querySelector('.submit-btn');
+			submitBtn.addEventListener('click', (e) => {
+				const path = Number(e.path[4].getAttribute('sectionId'));
+				const correctCnt = e.path[4].querySelector('.cnt-correct');
+				const wrongCnt = e.path[4].querySelector('.cnt-wrong');
 
-								$(`#No${path + 1} input[type='text']`).attr(
-									'disabled',
-									'disabled'
-								);
-								setTimeout(() => {
-									$(
-										`#No${path + 1} input[type='text']`
-									).removeAttr('disabled');
-									e.path[1]
-										.querySelector('.wrong')
-										.classList.remove('active');
-								}, 3000);
-							}
-						}
+				for (let idAns = 0; idAns < ansLth; idAns++) {
+					let userAnswer = answerInputList[idAns].value
+						.trim()
+						.toLowerCase();
+					let idAnswer = Number(answerInputList[idAns].id);
+					let sysAnswer = deCode(ansAll[path][idAnswer]);
+					if (userAnswer == sysAnswer) {
+						passCheck[idAns] = 1;
 					}
-				);
-			}
+				}
+
+				let cntAC = 0;
+				let cntWA = 0;
+				for (let idCheck = 0; idCheck < 12; idCheck++) {
+					if (passCheck[idCheck] === 1) cntAC++;
+					else cntWA++;
+				}
+				if (cntAC === 12) {
+					sectionList[path].classList.add('finish');
+					let navFin = document
+						.querySelector('.nav-links')
+						.getElementsByClassName('lk')[path];
+					navFin.classList.add('finish', 'lifin');
+
+					correctCnt.querySelector('p').innerHTML = '';
+					wrongCnt.querySelector('p').innerHTML = '';
+					wrongCnt.querySelector('.wrong').classList.remove('active');
+					finishAudio.play();
+				} else {
+					wrongAudio.play();
+
+					$(`#No${path + 1} input[type='text']`).attr(
+						'disabled',
+						'disabled'
+					);
+
+					correctCnt.querySelector('p').innerHTML = cntAC;
+					wrongCnt.querySelector('p').innerHTML = cntWA;
+					correctCnt
+						.querySelector('.correct')
+						.classList.add('active');
+					wrongCnt.querySelector('.wrong').classList.add('active');
+
+					wrongCD.style.display = 'block';
+					setWrongCD(wrongCD, 2);
+					setTimeout(() => {
+						$(`#No${path + 1} input[type='text']`).removeAttr(
+							'disabled'
+						);
+						wrongCD.style.display = 'none';
+					}, 3000);
+				}
+			});
 		} else if (itemIndex === 5) {
 			let passCheck = [0, 0];
 			for (let indexInput = 0; indexInput < 2; indexInput++) {
@@ -520,6 +553,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								'disabled',
 								'disabled'
 							);
+
+							wrongCD.style.display = 'block';
+							setWrongCD(wrongCD, 2);
 							setTimeout(() => {
 								$(
 									`#No${path + 1} input[type='text']`
@@ -527,6 +563,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								e.path[1]
 									.querySelector('.wrong')
 									.classList.remove('active');
+								wrongCD.style.display = 'none';
 							}, 3000);
 						}
 					}
@@ -541,12 +578,12 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					let path = Number(e.path[4].getAttribute('sectionId'));
 					let sysAnswer = deCode(ansAll[path]);
 					if (userAnswer == sysAnswer) {
+						finishAudio.play();
 						let navFin = e.path[6]
 							.querySelector('.nav-links')
 							.getElementsByClassName('lk')[path];
 						navFin.classList.add('finish', 'lifin');
 
-						finishAudio.play();
 						e.path[4].classList.add('finish');
 						e.path[1]
 							.querySelector('.wrong')
@@ -567,6 +604,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							'disabled',
 							'disabled'
 						);
+
+						wrongCD.style.display = 'block';
+						setWrongCD(wrongCD, 2);
 						setTimeout(() => {
 							$(`#No${path + 1} input[type='text']`).removeAttr(
 								'disabled'
@@ -574,6 +614,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							e.path[1]
 								.querySelector('.wrong')
 								.classList.remove('active');
+							wrongCD.style.display = 'none';
 						}, 3000);
 					}
 				}
