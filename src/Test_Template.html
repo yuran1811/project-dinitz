@@ -4,7 +4,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" href="../Library/Dinitz_Logo.png" />
-
 		<!-- Google -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,13 +11,16 @@
 			href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap"
 			rel="stylesheet"
 		/>
-
+		<!-- Box Icon -->
+		<link
+			href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+			rel="stylesheet"
+		/>
 		<!-- Font Awesome -->
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
 		/>
-
 		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -335,10 +337,14 @@
 							này được phát biểu như sau:
 						</p>
 						<p>
-							Trước mặt bạn là n chồng sỏi, chồng sỏi thứ i có a_i
-							viên sỏi (1&lt;=i&lt;=n), Emag min sẽ bao gồm 2
-							người chơi luân phiên thực hiện các bước đi, một
-							bước đi hợp lệ phát biểu như sau:
+							Trước mặt bạn là <i>n</i> chồng sỏi, chồng sỏi thứ
+							<i>i</i> có
+							<i> a<sub>i</sub> </i>
+							viên sỏi
+							<i> (1 &le; i &le; n) </i>
+							, Emag min sẽ bao gồm 2 người chơi luân phiên thực
+							hiện các bước đi, một bước đi hợp lệ phát biểu như
+							sau:
 						</p>
 						<ul>
 							<li>
@@ -440,17 +446,14 @@
 								placeholder="Type Your Answer"
 							/>
 						</div>
+						<span class="wrong-cd"
+							><i class="bx bx-alarm bx-tada"></i> 3</span
+						>
 					</div>
 
 					<h2>Gợi ý <i class="fas fa-sort-down hint-btn"></i></h2>
-					<span
-						class="timer"
-						style="
-							color: var(--hint-color);
-							font-size: 1.5em;
-							display: none;
-						"
-						>3</span
+					<span class="timer"
+						><i class="bx bx-alarm bx-tada"></i> 3</span
 					>
 					<div class="allhint"></div>
 				</div>
@@ -469,17 +472,19 @@
 						<h4>Quan hệ giữa các tập hợp</h4>
 						<ul>
 							<li>
-								Quan hệ bao hàm<br />Nếu tất cả các thành viên
-								của tập A cũng là thành viên của tập B , thì A
-								là một Tập hợp con của B , được biểu thị A ⊆ B,
-								và tập hợp B bao hàm tập hợp A. Ví dụ, {1, 2} là
-								một tập hợp con của {1, 2, 3}, và {2} cũng vậy,
-								nhưng {1, 4} thì không.
+								<b><i> Quan hệ bao hàm </i></b>
+								<br />Nếu tất cả các thành viên của tập A cũng
+								là thành viên của tập B , thì A là một Tập hợp
+								con của B , được biểu thị A &sub; B, và tập hợp
+								B bao hàm tập hợp A. Ví dụ, {1, 2} là một tập
+								hợp con của {1, 2, 3}, và {2} cũng vậy, nhưng
+								{1, 4} thì không.
 							</li>
 							<li>
-								Quan hệ bằng nhau<br />Hai tập hợp A và B được
-								gọi là bằng nhau nếu A là tập hợp con của B và B
-								cũng là tập hợp con của A, ký hiệu A = B.
+								<b><i> Quan hệ bằng nhau</i></b>
+								<br />Hai tập hợp A và B được gọi là bằng nhau
+								nếu A là tập hợp con của B và B cũng là tập hợp
+								con của A, ký hiệu A = B.
 							</li>
 						</ul>
 						<p>
@@ -526,7 +531,8 @@
 							<li>
 								Phần bù (Complement): là hiệu của tập hợp con.
 								Nếu A ⊂ B thì B \ A được gọi là phần bù của A
-								trong B, ký hiệu C_A^B (hay C_B^A).
+								trong B, ký hiệu C<sub>B</sub>A (hay
+								C<sub>A</sub>B).
 							</li>
 						</ul>
 						<h4>Bao hàm loại trừ</h4>
@@ -640,17 +646,14 @@
 								placeholder="Type Your Answer"
 							/>
 						</div>
+						<span class="wrong-cd"
+							><i class="bx bx-alarm bx-tada"></i> 3</span
+						>
 					</div>
 
 					<h2>Gợi ý <i class="fas fa-sort-down hint-btn"></i></h2>
-					<span
-						class="timer"
-						style="
-							color: var(--hint-color);
-							font-size: 1.5em;
-							display: none;
-						"
-						>3</span
+					<span class="timer"
+						><i class="bx bx-alarm bx-tada"></i> 3</span
 					>
 					<div class="allhint"></div>
 				</div>
@@ -676,6 +679,8 @@
 							<h2>Cách trả lời</h2>
 							Đội chơi trả lời lộ trình tốt nhất và số tiền dự
 							tính theo VNĐ, làm tròn đến 2 chữ số có nghĩa.
+							<br />
+							<i><b>Lưu ý: </b></i>
 						</div>
 						<div class="part1" style="display: none">
 							<div class="contentp1">
@@ -716,6 +721,20 @@
 										ondrop="drop(event)"
 										ondragover="allowDrop(event)"
 									></div>
+									<div
+										try="4"
+										class="box box-answer"
+										id="box4"
+										ondrop="drop(event)"
+										ondragover="allowDrop(event)"
+									></div>
+									<div
+										try="5"
+										class="box box-answer"
+										id="box5"
+										ondrop="drop(event)"
+										ondragover="allowDrop(event)"
+									></div>
 									<div class="submit-btn" idSubmit="0">
 										Submit
 									</div>
@@ -752,6 +771,7 @@
 										ondragover="allowDrop(event)"
 									>
 										<div
+											catch="99"
 											class="item"
 											id="item2"
 											draggable="true"
@@ -765,6 +785,7 @@
 										ondragover="allowDrop(event)"
 									>
 										<div
+											catch="99"
 											class="item"
 											id="item3"
 											draggable="true"
@@ -802,6 +823,9 @@
 									</div>
 								</div>
 							</div>
+							<span class="wrong-cd"
+								><i class="bx bx-alarm bx-tada"></i> 3</span
+							>
 							<br />
 						</div>
 						<div class="part2" style="display: none">
@@ -823,30 +847,38 @@
 								<i class="fa-2x fas fa-times-circle wrong"></i>
 								<div class="allBox">
 									<div
-										try="4"
-										class="box box-answer"
-										id="box5"
-										ondrop="drop(event)"
-										ondragover="allowDrop(event)"
-									></div>
-									<div
-										try="5"
+										try="6"
 										class="box box-answer"
 										id="box6"
 										ondrop="drop(event)"
 										ondragover="allowDrop(event)"
 									></div>
 									<div
-										try="6"
+										try="7"
 										class="box box-answer"
 										id="box7"
 										ondrop="drop(event)"
 										ondragover="allowDrop(event)"
 									></div>
 									<div
-										try="7"
+										try="8"
 										class="box box-answer"
 										id="box8"
+										ondrop="drop(event)"
+										ondragover="allowDrop(event)"
+									></div>
+									<div
+										try="9"
+										class="box box-answer"
+										id="box9"
+										ondrop="drop(event)"
+										ondragover="allowDrop(event)"
+										style="text-align: center"
+									></div>
+									<div
+										try="10"
+										class="box box-answer"
+										id="box10"
 										ondrop="drop(event)"
 										ondragover="allowDrop(event)"
 										style="text-align: center"
@@ -873,7 +905,7 @@
 										ondragover="allowDrop(event)"
 									>
 										<div
-											catch="4"
+											catch="6"
 											class="item"
 											id="item6"
 											draggable="true"
@@ -887,7 +919,7 @@
 										ondragover="allowDrop(event)"
 									>
 										<div
-											catch="5"
+											catch="7"
 											class="item"
 											id="item7"
 											draggable="true"
@@ -901,6 +933,7 @@
 										ondragover="allowDrop(event)"
 									>
 										<div
+											catch="99"
 											class="item"
 											id="item8"
 											draggable="true"
@@ -914,7 +947,7 @@
 										ondragover="allowDrop(event)"
 									>
 										<div
-											catch="6"
+											catch="8"
 											class="item"
 											id="item9"
 											draggable="true"
@@ -928,6 +961,7 @@
 										ondragover="allowDrop(event)"
 									>
 										<div
+											catch="99"
 											class="item"
 											id="item10"
 											draggable="true"
@@ -941,7 +975,7 @@
 										ondragover="allowDrop(event)"
 									>
 										<div
-											catch="7"
+											catch="9"
 											class="item"
 											id="item11"
 											draggable="true"
@@ -951,6 +985,9 @@
 									</div>
 								</div>
 							</div>
+							<span class="wrong-cd"
+								><i class="bx bx-alarm bx-tada"></i> 3</span
+							>
 						</div>
 					</div>
 				</div>
@@ -983,16 +1020,13 @@
 							/>
 							<p></p>
 						</div>
+						<span class="wrong-cd"
+							><i class="bx bx-alarm bx-tada"></i> 3</span
+						>
 					</div>
 					<h2>Gợi ý <i class="fas fa-sort-down hint-btn"></i></h2>
-					<span
-						class="timer"
-						style="
-							color: var(--hint-color);
-							font-size: 1.5em;
-							display: none;
-						"
-						>3</span
+					<span class="timer"
+						><i class="bx bx-alarm bx-tada"></i> 3</span
 					>
 					<div class="allhint"></div>
 				</div>
@@ -1037,17 +1071,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 2</p>
@@ -1058,17 +1081,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 3</p>
@@ -1079,17 +1091,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 4</p>
@@ -1100,17 +1101,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 5</p>
@@ -1121,17 +1111,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 6</p>
@@ -1142,17 +1121,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 7</p>
@@ -1163,17 +1131,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 8</p>
@@ -1184,17 +1141,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 9</p>
@@ -1205,17 +1151,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 10</p>
@@ -1226,17 +1161,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 11</p>
@@ -1247,17 +1171,6 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
 								</div>
 								<div class="answer-area">
 									<p>Câu 12</p>
@@ -1268,6 +1181,16 @@
 										class="answer"
 										placeholder="Type Your Answer"
 									/>
+								</div>
+							</div>
+
+							<span class="wrong-cd"
+								><i class="bx bx-alarm bx-tada"></i> 3</span
+							>
+
+							<div class="submit-btn">Submit All</div>
+							<div class="status-log">
+								<div class="cnt-correct">
 									<i
 										class="
 											fa-2x
@@ -1276,9 +1199,13 @@
 											correct
 										"
 									></i>
+									<p></p>
+								</div>
+								<div class="cnt-wrong">
 									<i
 										class="fa-2x fas fa-times-circle wrong"
 									></i>
+									<p></p>
 								</div>
 							</div>
 						</div>
@@ -1315,6 +1242,9 @@
 									placeholder="Type Your Answer"
 								/>
 							</div>
+							<span class="wrong-cd"
+								><i class="bx bx-alarm bx-tada"></i> 3</span
+							>
 						</div>
 						<br />
 						<div class="no6-part2">
@@ -1333,6 +1263,9 @@
 									placeholder="Type Your Answer"
 								/>
 							</div>
+							<span class="wrong-cd"
+								><i class="bx bx-alarm bx-tada"></i> 3</span
+							>
 						</div>
 					</div>
 				</div>
