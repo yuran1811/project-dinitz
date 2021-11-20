@@ -704,6 +704,10 @@ footer {
 }
 
 @media (max-width: 820px) {
+	.nav-bar.active {
+		height: 417px;
+	}
+
 	.nav-overlay {
 		display: none;
 		position: fixed;
@@ -711,14 +715,14 @@ footer {
 		bottom: 0;
 		left: 0;
 		right: 0;
-		background-color: var(--background-color);
+		background-color: black;
 		opacity: 0.85;
 		z-index: 10;
 	}
-
 	.nav-bar.active .nav-overlay {
 		display: block;
 	}
+
 	.nav-bar ul {
 		position: absolute;
 		flex-flow: column wrap;
@@ -731,10 +735,6 @@ footer {
 		left: 0;
 		right: 0;
 		opacity: 1;
-	}
-
-	.nav-bar.active {
-		height: 417px;
 	}
 
 	.lk a {
@@ -750,12 +750,12 @@ footer {
 	}
 
 	#menu-bar1 {
-		opacity: 1;
 		transition: opacity 0.3s ease, transform 0.3s ease;
+		opacity: 1;
 	}
 	#menu-bar1.active {
-		opacity: 0;
 		transform: rotateZ(-180deg);
+		opacity: 0;
 	}
 
 	#menu-bar2 {
@@ -765,6 +765,7 @@ footer {
 	#menu-bar2.active {
 		transform: rotateZ(-180deg);
 		opacity: 1;
+		color: white;
 	}
 
 	#No1-hint1 {
@@ -772,6 +773,10 @@ footer {
 	}
 	#tb2 {
 		width: 50%;
+	}
+
+	.banner {
+		margin-top: clamp(150px, 170px, 20%);
 	}
 
 	.itemBox,
@@ -783,9 +788,5 @@ footer {
 	.item {
 		width: 135px;
 		height: 80px;
-	}
-
-	.banner {
-		margin-top: clamp(150px, 170px, 20%);
 	}
 }
