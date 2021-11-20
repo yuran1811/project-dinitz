@@ -12,7 +12,35 @@ body {
 	font-size: 62.5%;
 }
 
-/* List Item */
+/* <-- List Item --> */
+.list-item {
+	position: relative;
+	left: 4%;
+}
+.list-item ul li {
+	list-style: none;
+	margin: 1.8rem 0.2rem;
+}
+.list-item ul li a {
+	font-size: 1.7rem;
+	text-decoration: none;
+	padding: 1rem;
+	letter-spacing: 1.2px;
+	transition: background 0.5s ease;
+}
+.list-item ul li a:link,
+.list-item ul li a:visited,
+.list-item ul li a:active,
+.list-item ul li a:focus {
+	color: #2c5294;
+	text-decoration: none;
+}
+.list-item ul li a:hover {
+	background-color: #2c5294;
+	color: white;
+}
+
+/* <-- List Item --> */
 .item-info {
 	background-color: #2c5294;
 	color: #fff;
@@ -58,34 +86,7 @@ body {
 	width: 100px;
 }
 
-.list-item {
-	position: relative;
-	left: 4%;
-}
-.list-item ul li {
-	list-style: none;
-	margin: 1.8rem 0.2rem;
-}
-.list-item ul li a {
-	font-size: 1.7rem;
-	text-decoration: none;
-	padding: 1rem;
-	letter-spacing: 1.2px;
-	transition: background 0.5s ease;
-}
-.list-item ul li a:link,
-.list-item ul li a:visited,
-.list-item ul li a:active,
-.list-item ul li a:focus {
-	color: #2c5294;
-	text-decoration: none;
-}
-.list-item ul li a:hover {
-	background-color: #2c5294;
-	color: white;
-}
-
-/* Container */
+/* <-- Container --> */
 .content a {
 	display: block;
 	width: 100%;
@@ -102,7 +103,6 @@ body {
 	text-decoration: none;
 }
 
-/*  */
 .container {
 	position: relative;
 	width: 100%;
@@ -374,8 +374,7 @@ body {
 	transform: translateX(800px);
 }
 
-/* Animation */
-
+/* <-- Animation --> */
 .container.sign-up-mode:before {
 	transform: translate(100%, -50%);
 	right: 52%;
@@ -413,7 +412,7 @@ body {
 	pointer-events: all;
 }
 
-/* Media Queries */
+/* <-- Media Queries --> */
 @media (max-width: 1200px) {
 	.item-info {
 		font-size: calc(1.2vw + 1.2vh);
