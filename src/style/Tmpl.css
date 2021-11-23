@@ -632,57 +632,57 @@ body.dark #box10 {
 	height: 100px;
 	background-clip: border-box;
 }
-#item1 {
+#drag1 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/230px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png')
 		center;
 	background-size: inherit inherit;
 }
-#item7,
-#item2 {
+#drag7,
+#drag2 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/225px-Flag_of_the_People%27s_Republic_of_China.svg.png')
 		top left;
 	background-size: inherit inherit;
 }
-#item3 {
+#drag3 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Flag_of_Laos.svg/225px-Flag_of_Laos.svg.png')
 		center;
 	background-size: inherit inherit;
 }
-#item4 {
+#drag4 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_Cambodia.svg/235px-Flag_of_Cambodia.svg.png')
 		center;
 	background-size: inherit inherit;
 }
-#item6,
-#item5 {
+#drag6,
+#drag5 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_Thailand.svg/1280px-Flag_of_Thailand.svg.png')
 		center;
 	background-size: cover;
 }
-#item8 {
+#drag8 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Flag_of_Myanmar.svg/225px-Flag_of_Myanmar.svg.png')
 		center;
 	background-size: inherit inherit;
 }
-#item9 {
+#drag9 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Flag_of_Bhutan.svg/225px-Flag_of_Bhutan.svg.png')
 		center;
 	background-size: inherit auto;
 }
-#item10 {
+#drag10 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/250px-Flag_of_Bangladesh.svg.png')
 		center;
 	background-size: inherit auto;
 }
-#item11 {
+#drag11 {
 	background: no-repeat
 		url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/225px-Flag_of_India.svg.png')
 		center;
