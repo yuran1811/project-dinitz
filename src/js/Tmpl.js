@@ -50,6 +50,7 @@ window.onscroll = () => {
 
 // Cooldown
 function setWrongCD(item, countDown) {
+	item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> 3`;
 	let x = setInterval(() => {
 		item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
 		if (countDown < 0) clearInterval(x);
