@@ -50,7 +50,7 @@ window.onscroll = () => {
 
 // Cooldown
 function setWrongCD(item, countDown) {
-	item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> 3`;
+	item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
 	let x = setInterval(() => {
 		item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
 		if (countDown < 0) clearInterval(x);
@@ -297,7 +297,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						submitBtn.style.display = 'none';
 						e.path[3].querySelector('.wrong-cd').style.display =
 							'block';
-						setWrongCD(e.path[3].querySelector('.wrong-cd'), 2);
+						setWrongCD(e.path[3].querySelector('.wrong-cd'), 3);
 						setTimeout(() => {
 							e.path[2]
 								.querySelector('.wrong')
@@ -341,7 +341,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						);
 
 						wrongCD.style.display = 'block';
-						setWrongCD(wrongCD, 2);
+						setWrongCD(wrongCD, 3);
 						setTimeout(() => {
 							$(`#No${path + 1} input[type='text']`).removeAttr(
 								'disabled'
@@ -377,7 +377,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							);
 
 							wrongCD.style.display = 'block';
-							setWrongCD(wrongCD, 2);
+							setWrongCD(wrongCD, 3);
 							setTimeout(() => {
 								$(
 									`#No${path + 1} input[type='text']`
@@ -411,7 +411,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							);
 
 							wrongCD.style.display = 'block';
-							setWrongCD(wrongCD, 2);
+							setWrongCD(wrongCD, 3);
 							setTimeout(() => {
 								$(
 									`#No${path + 1} input[type='text']`
@@ -500,7 +500,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					wrongCnt.querySelector('.wrong').classList.add('active');
 
 					wrongCD.style.display = 'block';
-					setWrongCD(wrongCD, 2);
+					setWrongCD(wrongCD, 3);
 					setTimeout(() => {
 						$(`#No${path + 1} input[type='text']`).removeAttr(
 							'disabled'
@@ -558,8 +558,8 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								'disabled'
 							);
 
-							wrongCD.style.display = 'block';
-							setWrongCD(wrongCD, 2);
+							e.path[2].querySelector('.wrong-cd').style.display = 'block';
+							setWrongCD(e.path[2].querySelector('.wrong-cd'), 3);
 							setTimeout(() => {
 								$(
 									`#No${path + 1} input[type='text']`
@@ -567,7 +567,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								e.path[1]
 									.querySelector('.wrong')
 									.classList.remove('active');
-								wrongCD.style.display = 'none';
+								e.path[2].querySelector('.wrong-cd').style.display = 'none';
 							}, 3000);
 						}
 					}
@@ -610,7 +610,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						);
 
 						wrongCD.style.display = 'block';
-						setWrongCD(wrongCD, 2);
+						setWrongCD(wrongCD, 3);
 						setTimeout(() => {
 							$(`#No${path + 1} input[type='text']`).removeAttr(
 								'disabled'
