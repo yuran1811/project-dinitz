@@ -516,7 +516,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 					if (e.keyCode === 13) {
 						let userAnswer = e.path[0].value.trim().toLowerCase();
 						let path = Number(e.path[5].getAttribute('sectionId'));
-						let idAnswer = Number(e.path[0].id);
+						let idAnswer = Number(e.path[0].getAttribute('idAns'));
 						let sysAnswer = deCode(ansAll[path][idAnswer]);
 						if (userAnswer == sysAnswer) {
 							if (!passCheck[0]) {
