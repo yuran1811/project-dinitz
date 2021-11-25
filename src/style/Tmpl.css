@@ -14,6 +14,11 @@
 	box-sizing: border-box;
 }
 
+::selection {
+	background-color: var(--color);
+	color: var(--background-color);
+}
+
 body {
 	font-size: 62.5%;
 	background-color: var(--background-color);
@@ -31,11 +36,13 @@ body.dark {
 }
 
 body::-webkit-scrollbar {
-	width: 0.5rem;
+	/* width: 0.5rem; */
+	width: 0;
 }
 body::-webkit-scrollbar-thumb {
+	outline: 0px solid slategrey;
+	/* outline: 0.1px solid slategrey; */
 	background-color: darkgrey;
-	outline: 0.1px solid slategrey;
 	border-radius: 5px;
 }
 
@@ -437,6 +444,11 @@ section .passed {
 section.finish .passed {
 	display: inline;
 	color: var(--award-background-color);
+}
+
+section.finish ::selection {
+	color: var(--award-color);
+	background-color: var(--award-background-color);
 }
 
 .answer-area {
