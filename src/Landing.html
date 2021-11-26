@@ -138,47 +138,54 @@
 		</div>
 		<script>
 			document.body.addEventListener('mouseover', (e) => {
-				document.querySelector('.header').classList.add('active');
-				var countDownDate = new Date('Nov 18, 2021 7:00:00').getTime();
-				setTimeout(function () {
-					document.body.classList.add('active');
-					var x = setInterval(function () {
-						var now = new Date().getTime();
+				setTimeout(() => {
+					document.querySelector('.header').classList.add('active');
+					var countDownDate = new Date(
+						'Nov 18, 2021 7:00:00'
+					).getTime();
+					setTimeout(function () {
+						document.body.classList.add('active');
+						var x = setInterval(function () {
+							var now = new Date().getTime();
 
-						var distance = countDownDate - now;
-						var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-						var hours = Math.floor(
-							(distance % (1000 * 60 * 60 * 24)) /
-								(1000 * 60 * 60)
-						);
-						var minutes = Math.floor(
-							(distance % (1000 * 60 * 60)) / (1000 * 60)
-						);
-						var seconds = Math.floor(
-							(distance % (1000 * 60)) / 1000
-						);
-
-						document.querySelector('.count-down').innerHTML =
-							days +
-							'd ' +
-							hours +
-							'h ' +
-							minutes +
-							'm ' +
-							seconds +
-							's ';
-
-						if (distance < 0) {
-							clearInterval(x);
-							document.querySelector('.count-down').innerHTML =
-								'Get Started';
-							$('.content a').attr(
-								'href',
-								'https://yuran1811.github.io/project-dinitz/'
+							var distance = countDownDate - now;
+							var days = Math.floor(
+								distance / (1000 * 60 * 60 * 24)
 							);
-						}
-					}, 1000);
-				}, 300);
+							var hours = Math.floor(
+								(distance % (1000 * 60 * 60 * 24)) /
+									(1000 * 60 * 60)
+							);
+							var minutes = Math.floor(
+								(distance % (1000 * 60 * 60)) / (1000 * 60)
+							);
+							var seconds = Math.floor(
+								(distance % (1000 * 60)) / 1000
+							);
+
+							document.querySelector('.count-down').innerHTML =
+								days +
+								'd ' +
+								hours +
+								'h ' +
+								minutes +
+								'm ' +
+								seconds +
+								's ';
+
+							if (distance < 0) {
+								clearInterval(x);
+								document.querySelector(
+									'.count-down'
+								).innerHTML = 'Get Started';
+								$('.content a').attr(
+									'href',
+									'https://yuran1811.github.io/project-dinitz/'
+								);
+							}
+						}, 1000);
+					}, 300);
+				}, 700);
 			});
 		</script>
 	</body>
