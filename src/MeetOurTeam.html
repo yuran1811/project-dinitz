@@ -216,6 +216,7 @@
 				margin: 0;
 				padding: 0;
 				height: auto;
+				overflow: hidden;
 				font-family: 'Barlow', sans-serif;
 				background: white;
 			}
@@ -1270,19 +1271,20 @@
 			</section>
 		</div>
 
-		<script>
-			window.console = window.console || function (t) {};
-			if (document.location.search.match(/type=embed/gi)) {
-				window.parent.postMessage('resize', '*');
-			}
-		</script>
 		<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69d01441f36c0ea791ae2d4469f0f8ff5326f00ae2d00e4bb7d20e24edb.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 		<script id="rendered-js">
+			const $ = document.querySelector.bind(document);
+			const $$ = document.querySelectorAll.bind(document);
+
+			window.console = window.console || function (t) {};
+			if (document.location.search.match(/type=embed/gi)) {
+				window.parent.postMessage('resize', '*');
+			}
+
 			window.addEventListener('load', (event) => {
-				var swiperWrapper = document.querySelector('.swiper-wrapper');
-				var team = [
+				const team = [
 					{
 						name: 'Yuran',
 						role: 'Designer / Web Developer',
@@ -1290,19 +1292,19 @@
 						photo: 'https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.6435-9/121107552_978084246037100_2302379323063758212_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=1C8axliVZbkAX_sh1GF&_nc_ht=scontent.fsgn5-6.fna&oh=3fdb645004eada2f8e55e97fd42ab7dc&oe=61B7CE15',
 						website: 'https://www.facebook.com/YuranLegends/',
 						email: 'mailto:trieuvanbd123@gmail.com',
-						linkedin: 'https://www.linkedin.com/in/rafaelalucas/',
-						dribbble: 'https://dribbble.com/rafaelalucas',
+						linkedin: '#',
+						dribbble: '#',
 					},
 
 					{
-						name: 'Adam Turner',
+						name: 'Toan Vong',
 						role: 'Project Manager',
 						desc: 'Far far away, behind the world mountains, far from the countries Vokalia and Consonantia, theres live the blind texts.',
 						photo: 'https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9?auto=compress&cs=tinysrgb&dpr=2&h=300&w=300',
 						website: 'https://rafaelalucas.com',
 						email: 'mailto:rafaelavlucas@gmail.com',
-						linkedin: 'https://www.linkedin.com/in/rafaelalucas/',
-						dribbble: 'https://dribbble.com/rafaelalucas',
+						linkedin: '#',
+						dribbble: '#',
 					},
 
 					{
@@ -1312,8 +1314,8 @@
 						photo: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=300',
 						website: 'https://rafaelalucas.com',
 						email: 'mailto:rafaelavlucas@gmail.com',
-						linkedin: 'https://www.linkedin.com/in/rafaelalucas/',
-						dribbble: 'https://dribbble.com/rafaelalucas',
+						linkedin: '#',
+						dribbble: '#',
 					},
 
 					{
@@ -1323,8 +1325,8 @@
 						photo: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=300',
 						website: 'https://rafaelalucas.com',
 						email: 'mailto:rafaelavlucas@gmail.com',
-						linkedin: 'https://www.linkedin.com/in/rafaelalucas/',
-						dribbble: 'https://dribbble.com/rafaelalucas',
+						linkedin: '#',
+						dribbble: '#',
 					},
 
 					{
@@ -1334,8 +1336,8 @@
 						photo: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=300&w=300',
 						website: 'https://rafaelalucas.com',
 						email: 'mailto:rafaelavlucas@gmail.com',
-						linkedin: 'https://www.linkedin.com/in/rafaelalucas/',
-						dribbble: 'https://dribbble.com/rafaelalucas',
+						linkedin: '#',
+						dribbble: '#',
 					},
 
 					{
@@ -1345,12 +1347,11 @@
 						photo: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9?auto=compress&cs=tinysrgb&dpr=2&h=300&w=300',
 						website: 'https://rafaelalucas.com',
 						email: 'mailto:rafaelavlucas@gmail.com',
-						linkedin: 'https://www.linkedin.com/in/rafaelalucas/',
-						dribbble: 'https://dribbble.com/rafaelalucas',
+						linkedin: '#',
+						dribbble: '#',
 					},
 				];
-
-				var icons = [
+				const icons = [
 					{
 						iWebsite:
 							'https://rafaelalucas.com/dailyui/6/assets/link.svg',
@@ -1367,11 +1368,10 @@
 					iLinkedin = icons[0].iLinkedin,
 					iDribbble = icons[0].iDribbble;
 
-				function addTeam() {
+				(() => {
 					for (let i = 0; i < team.length; i++) {
 						if (window.CP.shouldStopExecution(0)) break;
 
-						/* Variables for the team */
 						var name = team[i].name,
 							role = team[i].role,
 							desc = team[i].desc,
@@ -1381,14 +1381,36 @@
 							linkedin = team[i].linkedin,
 							dribbble = team[i].dribbble;
 
-						var template = ` <div class="swiper-slide"> <div class="card"> <span class="bg"></span> <span class="more"></span> <figure class="photo"><img src="${photo}"></figure> <article class="text"> <p class="name">${name}</p> <p class="role">${role}</p> <p class="desc">${desc}</p> </article> <div class="social"> <span class="pointer"></span> <div class="icons"> <a class="icon" href="${website}" target="_blank" data-index="0"><img src="${iWebsite}"></a> <a class="icon" href="${email}" target="_blank" data-index="1"><img src="${iEmail}"></a> <a class="icon" href="${linkedin}" target="_blank" data-index="2"><img src="${iLinkedin}"></a> <a class="icon" href="${dribbble}" target="_blank" data-index="3"><img src="${iDribbble}"></a> </div> </div> </div> </div>`;
+						const html = `
+							<div class="swiper-slide">
+								<div class="card">
+									<span class="bg"></span>
+									<span class="more"></span>
+									<figure class="photo"><img src="${photo}"></figure>
+									<article class="text">
+										<p class="name">${name}</p>
+										<p class="role">${role}</p>
+										<p class="desc">${desc}</p>
+									</article>
+									<div class="social">
+										<span class="pointer"></span>
+										<div class="icons">
+											<a class="icon" href="${website}" target="_blank" data-index="0"><img src="${iWebsite}"></a>
+											<a class="icon" href="${email}" target="_blank" data-index="1"><img src="${iEmail}"></a>
+											<a class="icon" href="${linkedin}" target="_blank" data-index="2"><img src="${iLinkedin}"></a>
+											<a class="icon" href="${dribbble}" target="_blank" data-index="3"><img src="${iDribbble}"></a>
+										</div>
+									</div>
+								</div>
+							</div>`;
 
-						swiperWrapper.insertAdjacentHTML('beforeend', template);
+						$('.swiper-wrapper').insertAdjacentHTML(
+							'beforeend',
+							html
+						);
 					}
 					window.CP.exitedLoop(0);
-				}
-
-				addTeam();
+				})();
 
 				var mySwiper = new Swiper('.swiper-container', {
 					direction: 'horizontal',
@@ -1425,37 +1447,24 @@
 					},
 				});
 
-				var btnShow = document.querySelectorAll('.more');
-
-				btnShow.forEach(function (el) {
-					el.addEventListener('click', showMore);
+				$$('.more').forEach(function (item) {
+					item.addEventListener('click', (e) => {
+						let card = e.target.closest('.swiper-slide');
+						if (card.classList.contains('show-more'))
+							card.classList.remove('show-more');
+						else card.classList.add('show-more');
+					});
 				});
-
-				function showMore(event) {
-					var card = event.target.closest('.swiper-slide');
-
-					if (card.classList.contains('show-more')) {
-						card.classList.remove('show-more');
-					} else {
-						card.classList.add('show-more');
-					}
-				}
-
-				var icon = document.querySelectorAll('.icon');
-
-				icon.forEach(function (el) {
-					el.addEventListener('mouseenter', followCursor);
+				$$('.icon').forEach((item) => {
+					item.addEventListener('mouseenter', (e) => {
+						let pointer = e.currentTarget
+								.closest('.swiper-slide')
+								.querySelector('.pointer'),
+							index = e.currentTarget.dataset.index,
+							sizeIcon = 60 * index + 25;
+						pointer.style.transform = `translateX(${sizeIcon}px)`;
+					});
 				});
-
-				function followCursor(event) {
-					var pointer = event.currentTarget
-							.closest('.swiper-slide')
-							.querySelector('.pointer'),
-						index = event.currentTarget.dataset.index,
-						sizeIcon = 60 * index + 25;
-
-					pointer.style.transform = `translateX(${sizeIcon}px)`;
-				}
 			});
 		</script>
 	</body>
