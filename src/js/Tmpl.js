@@ -3,7 +3,7 @@
 $('.nav-bar a').on('click', function (e) {
 	e.preventDefault();
 	const href = $(this).attr('href');
-	const id = Number(href[href.length - 1]);
+	// const id = Number(href[href.length - 1]);
 	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 });
 
@@ -173,18 +173,17 @@ const ans6 = [
 ];
 const ansAll = [ans1, ans2, ans3, ans4, ans5, ans6];
 
-function PowPow(a, b, p) {
-	if (!b) return 1;
-	let c = PowPow(a, b / 2, p);
-	c = (c * c) % p;
-	if (b & 1) c = (c * a) % p;
-	return c;
-}
-
 function deCode(ansArray) {
+	function getPow(a, b, p) {
+		if (!b) return 1;
+		let c = getPow(a, b / 2, p);
+		c = (c * c) % p;
+		if (b & 1) c = (c * a) % p;
+		return c;
+	}
 	let res = [];
 	for (let item of ansArray)
-		res.push(String.fromCharCode(PowPow(item, 42143, 98473)));
+		res.push(String.fromCharCode(getPow(item, 42143, 98473)));
 	return res.join('');
 }
 
@@ -200,7 +199,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	const infoContent = sectionList[itemIndex].querySelector('.info');
 
 	if (infoBtn && infoContent) {
-		infoBtn.addEventListener('click', (e) => {
+		infoBtn.addEventListener('click', () => {
 			infoBtn.classList.toggle('active');
 			infoContent.classList.toggle('active');
 		});
@@ -210,7 +209,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	const challengeContent =
 		sectionList[itemIndex].querySelector('.challenge-content');
 	if (challengeContent) {
-		challengeBtn.addEventListener('click', (e) => {
+		challengeBtn.addEventListener('click', () => {
 			challengeBtn.classList.toggle('active');
 			challengeContent.classList.toggle('active');
 			if (itemIndex === 5) {
@@ -558,7 +557,8 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								'disabled'
 							);
 
-							e.path[2].querySelector('.wrong-cd').style.display = 'block';
+							e.path[2].querySelector('.wrong-cd').style.display =
+								'block';
 							setWrongCD(e.path[2].querySelector('.wrong-cd'), 3);
 							setTimeout(() => {
 								$(
@@ -567,7 +567,9 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								e.path[1]
 									.querySelector('.wrong')
 									.classList.remove('active');
-								e.path[2].querySelector('.wrong-cd').style.display = 'none';
+								e.path[2].querySelector(
+									'.wrong-cd'
+								).style.display = 'none';
 							}, 3000);
 						}
 					}
@@ -640,6 +642,7 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 	if (e.keyCode === 8) {
 		$('html, body').animate({ scrollTop: $('#top').offset().top - 100 }, 1);
 	}
+
 	if (e.keyCode === 13) {
 		const keyReceive = Number(e.path[0].value.trim());
 		let cntWrong = 0;
@@ -677,7 +680,7 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 		if (cntWrong === 6) {
 			e.path[1].querySelector('p').style.color = 'red';
 			e.path[1].querySelector('p').innerHTML = 'Key is invalid';
-			setTimeout(function () {
+			setTimeout(() => {
 				e.path[1].querySelector('p').innerHTML = '';
 			}, 2000);
 		}
@@ -692,11 +695,9 @@ document.querySelector('.banner input').addEventListener('keydown', (e) => {
 			if (e.path[1].className.includes('lilocked')) {
 				document.querySelector('.banner p').style.color =
 					'var(--color)';
-				document.querySelector('.banner p').innerHTML =
-					'Vui lòng điền key để làm bài này!!!';
-				setTimeout((e) => {
-					document.querySelector('.banner p').innerHTML = '';
-				}, 1300);
+				document.querySelector(
+					'.banner p'
+				).innerHTML = `Vui lòng điền key để làm bài ${e.target.hash}!!!`;
 				$('html, body').animate(
 					{ scrollTop: $('#top').offset().top - 100 },
 					1
