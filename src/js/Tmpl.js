@@ -31,22 +31,24 @@ $('.nav-overlay').on('click', function () {
 	$('#menu-bar2').removeClass('active');
 });
 
+(() => {
+	const toTop = document.querySelector('.to-top');
+	window.onscroll = () => {
+		if (
+			document.body.scrollTop > 220 ||
+			document.documentElement.scrollTop > 220
+		)
+			toTop.style.display = 'block';
+		else toTop.style.display = 'none';
+	};
+})();
+
 const correctAudio = document.querySelector('.correct-sound');
 const wrongAudio = document.querySelector('.fail-sound');
 const finishAudio = document.querySelector('.finish-sound');
 correctAudio.volume = 0.6;
 wrongAudio.volume = 0.6;
 finishAudio.volume = 0.6;
-
-window.onscroll = () => {
-	const toTop = document.querySelector('.to-top');
-	if (
-		document.body.scrollTop > 300 ||
-		document.documentElement.scrollTop > 300
-	)
-		toTop.style.display = 'block';
-	else toTop.style.display = 'none';
-};
 
 // Cooldown
 function setWrongCD(item, countDown) {
