@@ -1,4 +1,4 @@
-function check(e) {
+function check() {
 	const username = $('.user-name').val();
 	const password = $('.password').val();
 	if (username !== 'Admin' || password !== '1234') {
