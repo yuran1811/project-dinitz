@@ -27,6 +27,7 @@ fetch('./db/acc.json')
 			data.push({
 				name: `dinitzNo${item.id >= 10 ? item.id : '0' + item.id}`,
 				pass: decode(item.password),
+				link: `${item.link}`,
 			});
 		return data;
 	})
@@ -36,12 +37,22 @@ fetch('./db/acc.json')
 			const password = $('.password').value;
 
 			let isSuccess = false;
+			let thisUser = {};
 
-			for (let item of data)
+			for (let item of data) {
 				if (username == item.name && password == item.pass) {
 					isSuccess = true;
+					thisUser = item;
 					break;
 				}
+				if (username == 'Admin' && password == 1234) {
+					isSuccess = true;
+					thisUser = {
+						link: 'src/Test_Template.html',
+					};
+					break;
+				}
+			}
 
 			if (!isSuccess) {
 				$('#log-in').value = 'Đăng nhập thất bại';
@@ -50,7 +61,7 @@ fetch('./db/acc.json')
 				return;
 			}
 
-			$('#sign-in-btn a').setAttribute('href', 'src/Test_Template.html');
+			$('#sign-in-btn a').setAttribute('href', `${thisUser.link}`);
 			$('#sign-up-btn').classList.add('active');
 
 			$('#log-in').value = 'Đăng nhập thành công';
