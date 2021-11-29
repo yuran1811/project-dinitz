@@ -37,19 +37,17 @@ fetch('./db/acc.json')
 			const password = $('.password').value;
 
 			let isSuccess = false;
-			let thisUser = {};
+			let testLink = '';
 
 			for (let item of data) {
 				if (username == item.name && password == item.pass) {
 					isSuccess = true;
-					thisUser = item;
+					testLink = item.link;
 					break;
 				}
 				if (username == 'Admin' && password == 1234) {
 					isSuccess = true;
-					thisUser = {
-						link: 'src/Test_Template.html',
-					};
+					testLink = 'src/Test_Template.html';
 					break;
 				}
 			}
@@ -61,7 +59,7 @@ fetch('./db/acc.json')
 				return;
 			}
 
-			$('#sign-in-btn a').setAttribute('href', `${thisUser.link}`);
+			$('#sign-in-btn a').setAttribute('href', testLink);
 			$('#sign-up-btn').classList.add('active');
 
 			$('#log-in').value = 'Đăng nhập thành công';
