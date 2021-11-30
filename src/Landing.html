@@ -116,7 +116,7 @@
 			}
 
 			.footer {
-				font-size: 1.5rem;
+				font-size: 1.8rem;
 				margin-bottom: 15px;
 			}
 		</style>
@@ -133,15 +133,16 @@
 		</div>
 
 		<div class="footer">
-			A Product of
-			<a href="https://github.com/yuran1811" target="_blank">Yuran</a>
+			<a target="_blank" href="../src/MeetOurTeam.html">
+				Meet Our Team
+			</a>
 		</div>
 		<script>
 			document.body.addEventListener('mouseover', (e) => {
 				setTimeout(() => {
 					document.querySelector('.header').classList.add('active');
 					var countDownDate = new Date(
-						'Nov 18, 2021 7:00:00'
+						'Dec 15, 2021 7:00:00'
 					).getTime();
 					setTimeout(function () {
 						document.body.classList.add('active');
@@ -175,6 +176,8 @@
 
 							if (distance < 0) {
 								clearInterval(x);
+								document.querySelector('.title').innerHTML =
+									'Project: Dinitz';
 								document.querySelector(
 									'.count-down'
 								).innerHTML = 'Get Started';
