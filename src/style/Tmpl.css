@@ -55,6 +55,94 @@ audio {
 	display: none;
 }
 
+.bgm {
+	background-color: var(--color);
+	border-radius: 50%;
+	position: fixed;
+	top: 105px;
+	left: 15px;
+
+	width: 60px;
+	height: 60px;
+	z-index: 15;
+	transition: all 0.2s ease;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bgm > i {
+	color: var(--award-color);
+	cursor: pointer;
+}
+
+.bgm-info {
+	background-color: pink;
+	border-top-right-radius: 50px;
+	border-bottom-right-radius: 50px;
+
+	font-size: 1.3rem;
+
+	position: absolute;
+	top: 0;
+	left: 60px;
+
+	width: 0;
+	height: 60px;
+
+	transform: scaleX(0);
+	transition: all 0.3s ease;
+	transition-delay: 0.1s;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.bgm-info .track {
+	background-color: #1098ad;
+	color: white;
+	position: relative;
+
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+
+	opacity: 0;
+	cursor: pointer;
+
+	transition: all 0.2s ease;
+	transition-delay: 0.2s;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bgm:hover {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.bgm:hover .bgm-info {
+	width: 250px;
+	transform: scaleX(1);
+}
+.bgm:hover .bgm-info .track {
+	opacity: 1;
+}
+.bgm:hover .bgm-info .track:hover::after {
+	background-color: var(--award-color);
+	color: var(--color);
+	text-align: center;
+
+	content: attr(bgmName);
+	position: absolute;
+	bottom: -40px;
+
+	width: 100px;
+}
+
 /* <-- Timer --> */
 .wrong-cd,
 .timer {

@@ -3,7 +3,6 @@
 $('.nav-bar a').on('click', function (e) {
 	e.preventDefault();
 	const href = $(this).attr('href');
-	// const id = Number(href[href.length - 1]);
 	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 });
 
@@ -43,12 +42,68 @@ $('.nav-overlay').on('click', function () {
 	};
 })();
 
+(() => {
+	document.querySelectorAll('.lk').forEach((link) => {
+		link.classList.add('lilocked');
+		link.addEventListener('click', (e) => {
+			if (e.path[1].className.includes('lilocked')) {
+				document.querySelector('.banner p').style.color =
+					'var(--color)';
+				document.querySelector(
+					'.banner p'
+				).innerHTML = `Vui lòng điền key để làm bài ${e.target.hash}!!!`;
+				$('html, body').animate(
+					{ scrollTop: $('#top').offset().top - 100 },
+					1
+				);
+			}
+		});
+	});
+})();
+
+(() => {
+	const bgmItem = document.querySelector('.bgm');
+	const bgmIcon = document.querySelector('.bgm > i');
+	const allTrack = bgmItem.querySelectorAll('.track audio');
+	allTrack.forEach((item) => {
+		item.volume = 0.4;
+		item.loop = true;
+	});
+
+	const bgmItemChild = bgmItem.querySelectorAll('.track > i');
+	bgmItemChild.forEach((track) => {
+		track.addEventListener('click', (e) => {
+			bgmItemChild.forEach((item) => {
+				if (item !== e.target)
+					item.className = item.className.replace('fa-spin', '');
+			});
+			const thisTrack = e.path[1].querySelector('audio');
+			allTrack.forEach((item) => {
+				if (thisTrack !== item) {
+					item.pause();
+					item.currentTime = 0;
+				}
+			});
+
+			if (thisTrack.paused) {
+				if (!bgmIcon.className.includes('fa-spin'))
+					bgmIcon.className += ' fa-spin';
+				if (!e.target.className.includes('fa-spin'))
+					e.target.className += ' fa-spin';
+				thisTrack.play();
+			} else {
+				e.target.className = e.target.className.replace('fa-spin', '');
+				bgmIcon.className = bgmIcon.className.replace('fa-spin', '');
+				thisTrack.pause();
+			}
+		});
+	});
+})();
+
 const correctAudio = document.querySelector('.correct-sound');
 const wrongAudio = document.querySelector('.fail-sound');
 const finishAudio = document.querySelector('.finish-sound');
-correctAudio.volume = 0.6;
-wrongAudio.volume = 0.6;
-finishAudio.volume = 0.6;
+correctAudio.volume = wrongAudio.volume = finishAudio.volume = 0.6;
 
 // Cooldown
 function setWrongCD(item, countDown) {
@@ -93,21 +148,17 @@ const hintNo4 = [
 const allHint = [hintNo1, hintNo2, 0, hintNo4, 0, 0];
 
 function getHint(sectionItem, sectionId) {
-	const hintBtn = sectionItem.querySelector('.hint-btn');
-	hintBtn.classList.toggle('active');
-
-	const hintContent = sectionItem.querySelector('.allhint');
-	let hintList = allHint[sectionId];
-	var hintCnt = hintList.length;
-	var indexHint = 0;
+	sectionItem.querySelector('.hint-btn').classList.toggle('active');
 
 	const timerCountdown = sectionItem.querySelector('.timer');
 	const hintTime = 3;
 	let countDown = 2;
 
-	if (hintCnt > 0) {
-		timerCountdown.style.display = 'inline';
-	}
+	let hintList = allHint[sectionId];
+	var hintCnt = hintList.length;
+	var indexHint = 0;
+
+	if (hintCnt > 0) timerCountdown.style.display = 'inline';
 
 	let y = setInterval(() => {
 		timerCountdown.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
@@ -121,6 +172,7 @@ function getHint(sectionItem, sectionId) {
 		}
 	}, 1000);
 
+	const hintContent = sectionItem.querySelector('.allhint');
 	let x = setInterval(() => {
 		if (hintCnt > 0) {
 			if (indexHint >= hintCnt) clearInterval(x);
@@ -175,7 +227,7 @@ const ans6 = [
 ];
 const ansAll = [ans1, ans2, ans3, ans4, ans5, ans6];
 
-function deCode(ansArray) {
+function decode(ansArray) {
 	function getPow(a, b, p) {
 		if (!b) return 1;
 		let c = getPow(a, b / 2, p);
@@ -200,32 +252,28 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	const infoBtn = sectionList[itemIndex].querySelector('.info-btn');
 	const infoContent = sectionList[itemIndex].querySelector('.info');
 
-	if (infoBtn && infoContent) {
+	if (infoBtn && infoContent)
 		infoBtn.addEventListener('click', () => {
 			infoBtn.classList.toggle('active');
 			infoContent.classList.toggle('active');
 		});
-	}
 
 	const challengeBtn = sectionList[itemIndex].querySelector('.challenge-btn');
 	const challengeContent =
 		sectionList[itemIndex].querySelector('.challenge-content');
-	if (challengeContent) {
+	if (challengeContent)
 		challengeBtn.addEventListener('click', () => {
 			challengeBtn.classList.toggle('active');
 			challengeContent.classList.toggle('active');
-			if (itemIndex === 5) {
+			if (itemIndex === 5)
 				document.querySelector('.no6-part1').style.display = 'block';
-			}
 		});
-	}
 
 	let hintBtn = sectionList[itemIndex].querySelector('.hint-btn');
-	if (hintBtn) {
+	if (hintBtn)
 		hintBtn.addEventListener('click', (e) => {
 			getHint(e.path[3], Number(e.path[3].getAttribute('sectionId')));
 		});
-	}
 
 	let answerInputList =
 		sectionList[itemIndex].querySelectorAll('input[type="text"]');
@@ -272,11 +320,11 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 							.classList.add('active');
 						correctAudio.play();
 
-						if (indexSubmitBtn === 0) {
+						if (indexSubmitBtn === 0)
 							document.querySelector(
 								'#No3 .part2'
 							).style.display = 'block';
-						}
+
 						passCheck[indexSubmitBtn] = 1;
 						if (passCheck[0] === passCheck[1] && passCheck[0]) {
 							let navFin = e.path[8]
@@ -317,7 +365,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						e.path[0].value.trim().toLowerCase()
 					);
 					let path = Number(e.path[4].getAttribute('sectionId'));
-					let sysAnswer = Number(deCode(ansAll[path]));
+					let sysAnswer = Number(decode(ansAll[path]));
 					if (!(1 <= userAnswer && userAnswer <= 8192)) {
 						e.path[1]
 							.querySelector('.increase')
@@ -450,66 +498,70 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 			});
 		} else if (itemIndex === 4) {
 			let passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-			const submitBtn =
-				sectionList[itemIndex].querySelector('.submit-btn');
-			submitBtn.addEventListener('click', (e) => {
-				const path = Number(e.path[4].getAttribute('sectionId'));
-				const correctCnt = e.path[4].querySelector('.cnt-correct');
-				const wrongCnt = e.path[4].querySelector('.cnt-wrong');
+			sectionList[itemIndex]
+				.querySelector('.submit-btn')
+				.addEventListener('click', (e) => {
+					const path = Number(e.path[4].getAttribute('sectionId'));
+					const correctCnt = e.path[4].querySelector('.cnt-correct');
+					const wrongCnt = e.path[4].querySelector('.cnt-wrong');
 
-				for (let idAns = 0; idAns < ansLth; idAns++) {
-					let userAnswer = answerInputList[idAns].value
-						.trim()
-						.toLowerCase();
-					let idAnswer = Number(answerInputList[idAns].id);
-					let sysAnswer = deCode(ansAll[path][idAnswer]);
-					if (userAnswer == sysAnswer) {
-						passCheck[idAns] = 1;
+					for (let idAns = 0; idAns < ansLth; idAns++) {
+						let userAnswer = answerInputList[idAns].value
+							.trim()
+							.toLowerCase();
+						let idAnswer = Number(answerInputList[idAns].id);
+						let sysAnswer = decode(ansAll[path][idAnswer]);
+						if (userAnswer == sysAnswer) {
+							passCheck[idAns] = 1;
+						}
 					}
-				}
 
-				let cntAC = 0;
-				let cntWA = 0;
-				for (let idCheck = 0; idCheck < 12; idCheck++) {
-					if (passCheck[idCheck] === 1) cntAC++;
-					else cntWA++;
-				}
-				if (cntAC === 12) {
-					sectionList[path].classList.add('finish');
-					let navFin = document
-						.querySelector('.nav-links')
-						.getElementsByClassName('lk')[path];
-					navFin.classList.add('finish', 'lifin');
+					let cntAC = 0;
+					let cntWA = 0;
+					for (let idCheck = 0; idCheck < 12; idCheck++) {
+						if (passCheck[idCheck] === 1) cntAC++;
+						else cntWA++;
+					}
+					if (cntAC === 12) {
+						sectionList[path].classList.add('finish');
+						let navFin = document
+							.querySelector('.nav-links')
+							.getElementsByClassName('lk')[path];
+						navFin.classList.add('finish', 'lifin');
 
-					correctCnt.querySelector('p').innerHTML = '';
-					wrongCnt.querySelector('p').innerHTML = '';
-					wrongCnt.querySelector('.wrong').classList.remove('active');
-					finishAudio.play();
-				} else {
-					wrongAudio.play();
+						correctCnt.querySelector('p').innerHTML = '';
+						wrongCnt.querySelector('p').innerHTML = '';
+						wrongCnt
+							.querySelector('.wrong')
+							.classList.remove('active');
+						finishAudio.play();
+					} else {
+						wrongAudio.play();
 
-					$(`#No${path + 1} input[type='text']`).attr(
-						'disabled',
-						'disabled'
-					);
-
-					correctCnt.querySelector('p').innerHTML = cntAC;
-					wrongCnt.querySelector('p').innerHTML = cntWA;
-					correctCnt
-						.querySelector('.correct')
-						.classList.add('active');
-					wrongCnt.querySelector('.wrong').classList.add('active');
-
-					wrongCD.style.display = 'block';
-					setWrongCD(wrongCD, 3);
-					setTimeout(() => {
-						$(`#No${path + 1} input[type='text']`).removeAttr(
+						$(`#No${path + 1} input[type='text']`).attr(
+							'disabled',
 							'disabled'
 						);
-						wrongCD.style.display = 'none';
-					}, 3000);
-				}
-			});
+
+						correctCnt.querySelector('p').innerHTML = cntAC;
+						wrongCnt.querySelector('p').innerHTML = cntWA;
+						correctCnt
+							.querySelector('.correct')
+							.classList.add('active');
+						wrongCnt
+							.querySelector('.wrong')
+							.classList.add('active');
+
+						wrongCD.style.display = 'block';
+						setWrongCD(wrongCD, 3);
+						setTimeout(() => {
+							$(`#No${path + 1} input[type='text']`).removeAttr(
+								'disabled'
+							);
+							wrongCD.style.display = 'none';
+						}, 3000);
+					}
+				});
 		} else if (itemIndex === 5) {
 			let passCheck = [0, 0];
 			for (let indexInput = 0; indexInput < 2; indexInput++) {
@@ -518,7 +570,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						let userAnswer = e.path[0].value.trim().toLowerCase();
 						let path = Number(e.path[5].getAttribute('sectionId'));
 						let idAnswer = Number(e.path[0].getAttribute('idAns'));
-						let sysAnswer = deCode(ansAll[path][idAnswer]);
+						let sysAnswer = decode(ansAll[path][idAnswer]);
 						if (userAnswer == sysAnswer) {
 							if (!passCheck[0]) {
 								e.path[5].querySelector(
@@ -584,7 +636,7 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 						.trim()
 						.toLowerCase();
 					let path = Number(e.path[4].getAttribute('sectionId'));
-					let sysAnswer = deCode(ansAll[path]);
+					let sysAnswer = decode(ansAll[path]);
 					if (userAnswer == sysAnswer) {
 						finishAudio.play();
 						let navFin = e.path[6]
@@ -631,84 +683,6 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 	}
 }
 
-const unlockedKey = [
-	[1, 0],
-	[2, 1],
-	[3, 2],
-	[4, 3],
-	[5, 4],
-	[6, 5],
-];
-
-document.querySelector('.banner input').addEventListener('keydown', (e) => {
-	if (e.keyCode === 8) {
-		$('html, body').animate({ scrollTop: $('#top').offset().top - 100 }, 1);
-	}
-
-	if (e.keyCode === 13) {
-		const keyReceive = Number(e.path[0].value.trim());
-		let cntWrong = 0;
-		for (let keyItem of unlockedKey) {
-			if (keyReceive == keyItem[0]) {
-				sectionList[keyItem[1]].className = sectionList[
-					keyItem[1]
-				].className.replace(' locked', '');
-				const thisLink =
-					document.querySelectorAll('.nav-links .lk')[keyItem[1]];
-				thisLink.className = thisLink.className.replace(
-					' lilocked',
-					''
-				);
-				e.path[1].querySelector('p').style.color = '#32D700';
-				e.path[1].querySelector('p').innerHTML = `No${
-					keyItem[1] + 1
-				} đã mở khóa`;
-				$('html, body').animate(
-					{ scrollTop: $(`#No${keyItem[1] + 1}`).offset().top - 100 },
-					900
-				);
-				if (keyItem[1] === 5) {
-					document.querySelector('#No6 .contentp1').innerHTML +=
-						challengeNo6[0];
-				}
-				if (keyItem[1] === 2)
-					document.querySelector('#No3 .part1').style.display =
-						'block';
-
-				sectionList[keyItem[1]].querySelector('.lock').style.display =
-					'none';
-			} else cntWrong++;
-		}
-		if (cntWrong === 6) {
-			e.path[1].querySelector('p').style.color = 'red';
-			e.path[1].querySelector('p').innerHTML = 'Key is invalid';
-			setTimeout(() => {
-				e.path[1].querySelector('p').innerHTML = '';
-			}, 2000);
-		}
-	}
-});
-
-(function () {
-	const allLinks = document.querySelectorAll('.lk');
-	for (var link of allLinks) {
-		link.classList.add('lilocked');
-		link.addEventListener('click', (e) => {
-			if (e.path[1].className.includes('lilocked')) {
-				document.querySelector('.banner p').style.color =
-					'var(--color)';
-				document.querySelector(
-					'.banner p'
-				).innerHTML = `Vui lòng điền key để làm bài ${e.target.hash}!!!`;
-				$('html, body').animate(
-					{ scrollTop: $('#top').offset().top - 100 },
-					1
-				);
-			}
-		});
-	}
-})();
-
 function allowDrop(e) {
 	e.preventDefault();
 }
@@ -722,3 +696,83 @@ function drop(e) {
 	var data = e.dataTransfer.getData('text');
 	e.target.appendChild(document.getElementById(data));
 }
+
+fetch('../db/key.json')
+	.then((rsp) => rsp.json())
+	.then((rawData) => {
+		const testID = document.querySelector('.banner').getAttribute('id');
+
+		return rawData[testID == 'admin-acc' ? 0 : testID].key.map((item) => {
+			return [decode(item['challenge-key']), item['challenge-id'] - 1];
+		});
+	})
+	.then((unlockedKey) => {
+		document
+			.querySelector('.banner input')
+			.addEventListener('keydown', (e) => {
+				if (e.keyCode === 8)
+					$('html, body').animate(
+						{ scrollTop: $('#top').offset().top - 100 },
+						1
+					);
+
+				if (e.keyCode === 13) {
+					const keyReceive = e.path[0].value.trim();
+					let cntWrong = 0;
+					for (let keyItem of unlockedKey) {
+						if (keyReceive == keyItem[0]) {
+							sectionList[keyItem[1]].className = sectionList[
+								keyItem[1]
+							].className.replace(' locked', '');
+							const thisLink =
+								document.querySelectorAll('.nav-links .lk')[
+									keyItem[1]
+								];
+							thisLink.className = thisLink.className.replace(
+								' lilocked',
+								''
+							);
+							e.path[1].querySelector('p').style.color =
+								'#32D700';
+							e.path[1].querySelector('p').innerHTML = `No${
+								keyItem[1] + 1
+							} đã mở khóa`;
+							$('html, body').animate(
+								{
+									scrollTop:
+										$(`#No${keyItem[1] + 1}`).offset().top -
+										100,
+								},
+								900
+							);
+							if (keyItem[1] === 5) {
+								document.querySelector(
+									'#No6 .contentp1'
+								).innerHTML += challengeNo6[0];
+							}
+							if (keyItem[1] === 2)
+								document.querySelector(
+									'#No3 .part1'
+								).style.display = 'block';
+
+							sectionList[keyItem[1]].querySelector(
+								'.lock'
+							).style.display = 'none';
+						} else cntWrong++;
+					}
+
+					if (cntWrong === 6) {
+						e.path[1].querySelector('p').style.color = 'red';
+						e.path[1].querySelector('p').innerHTML =
+							'Key is invalid';
+						setTimeout(() => {
+							e.path[1].querySelector('p').innerHTML = '';
+						}, 2000);
+					}
+				}
+			});
+	})
+	.catch((err) => {
+		alert('Error on Load File. Please Reload The Page!!!');
+		console.log(err);
+	});
