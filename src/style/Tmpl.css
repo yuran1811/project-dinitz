@@ -868,6 +868,20 @@ body.dark #box10 {
 	background-size: inherit auto;
 }
 
+#drag1:hover,
+#drag2:hover,
+#drag3:hover,
+#drag4:hover,
+#drag5:hover,
+#drag6:hover,
+#drag7:hover,
+#drag8:hover,
+#drag9:hover,
+#drag10:hover,
+#drag11:hover {
+	background-size: 100% 100%;
+}
+
 /* <-- Footer --> */
 footer {
 	font-size: 1.7rem;
