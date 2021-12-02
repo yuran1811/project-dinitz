@@ -46,6 +46,11 @@
 				justify-content: space-between;
 			}
 
+			::selection {
+				background-color: aquamarine;
+				color: rgb(35, 88, 71);
+			}
+
 			.header {
 				background-color: white;
 				border-radius: 100px;
@@ -56,11 +61,26 @@
 			}
 
 			.header p {
-				font-size: 1.5rem;
+				position: relative;
+				font-size: 1.8rem;
 				opacity: 0;
 				color: black;
 				display: inline;
 				transition: 2s ease;
+			}
+			.header p::after {
+				content: '';
+				position: absolute;
+				bottom: -5px;
+				left: 0;
+				right: 0;
+				height: 6px;
+				transform: scale(0);
+				transition: all 0.3s ease;
+				background-color: black;
+			}
+			.header p:hover::after {
+				transform: scale(1);
 			}
 
 			.header img {
@@ -118,6 +138,11 @@
 			.footer {
 				font-size: 1.8rem;
 				margin-bottom: 15px;
+				text-decoration: none;
+				transition: all 0.3s ease;
+			}
+			.footer:hover {
+				font-size: 2.1rem;
 			}
 		</style>
 	</head>
