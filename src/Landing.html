@@ -34,11 +34,12 @@
 				background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
 				background-position: center;
 				background-size: cover;
-				min-height: 90%;
 				text-align: center;
+
+				min-height: 90%;
 				display: flex;
-				flex-direction: column;
 				align-items: center;
+				flex-direction: column;
 				justify-content: space-between;
 			}
 
@@ -50,8 +51,9 @@
 			.header {
 				background-color: white;
 				border-radius: 100px;
-				width: 50%;
 				margin-top: 10px;
+				width: 25%;
+
 				display: flex;
 				justify-content: center;
 			}
@@ -95,9 +97,9 @@
 			}
 
 			.title {
+				opacity: 0;
 				font-size: 6rem;
 				letter-spacing: 5px;
-				opacity: 0;
 				transform: translateY(-200px);
 				transition: 1.2s ease, transform 1.7s;
 			}
@@ -105,10 +107,11 @@
 				content: ' ';
 				display: block;
 				position: absolute;
-				height: 5px;
-				width: 0px;
 				left: 50%;
+
 				opacity: 0;
+				width: 0px;
+				height: 5px;
 				background-color: white;
 				transform: translateX(-50%);
 				transition: width 1.7s ease;
@@ -133,7 +136,7 @@
 
 			.footer {
 				font-size: 1.8rem;
-				margin-bottom: 15px;
+				margin: 0 0 15px;
 				text-decoration: none;
 				transition: all 0.3s ease;
 			}
@@ -157,15 +160,18 @@
 			</a>
 		</div>
 		<script>
+			const $ = document.querySelector.bind(document);
+
 			document.body.addEventListener('mouseover', (e) => {
 				setTimeout(() => {
-					document.querySelector('.header').classList.add('active');
+					$('.header').classList.add('active');
 					var countDownDate = new Date(
 						'Dec 15, 2021 7:00:00'
 					).getTime();
-					setTimeout(function () {
+
+					setTimeout(() => {
 						document.body.classList.add('active');
-						var x = setInterval(function () {
+						var x = setInterval(() => {
 							var now = new Date().getTime();
 
 							var distance = countDownDate - now;
@@ -183,7 +189,7 @@
 								(distance % (1000 * 60)) / 1000
 							);
 
-							document.querySelector('.count-down').innerHTML =
+							$('.count-down').innerHTML =
 								days +
 								'd ' +
 								hours +
@@ -195,11 +201,8 @@
 
 							if (distance < 0) {
 								clearInterval(x);
-								document.querySelector('.title').innerHTML =
-									'Project: Dinitz';
-								document.querySelector(
-									'.count-down'
-								).innerHTML = 'Get Started';
+								$('.title').innerHTML = 'Project: Dinitz';
+								$('.count-down').innerHTML = 'Get Started';
 								$('.content a').attr(
 									'href',
 									'https://yuran1811.github.io/project-dinitz/'

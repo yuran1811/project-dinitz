@@ -253,14 +253,17 @@ body {
 	border: 1px solid white;
 	border-radius: 49px;
 	outline: none;
+
+	text-transform: uppercase;
+	font-weight: 600;
 	cursor: pointer;
+	color: #fff;
+
 	margin: 12px 0;
-	padding: 7px;
+	padding: 12px 7px 7px;
 	width: auto;
 	height: 49px;
-	font-weight: 600;
-	color: #fff;
-	text-transform: uppercase;
+
 	transition: 0.5s;
 }
 
