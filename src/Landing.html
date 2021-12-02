@@ -12,14 +12,10 @@
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css?family=Raleway"
 		/>
-
-		<!-- Font Awesome -->
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
 		/>
-
-		<!-- jQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<title>Landing</title>
 		<style>
@@ -63,10 +59,11 @@
 			.header p {
 				position: relative;
 				font-size: 1.8rem;
-				opacity: 0;
-				color: black;
 				display: inline;
+				color: black;
+				opacity: 0;
 				transition: 2s ease;
+				line-height: 1;
 			}
 			.header p::after {
 				content: '';
@@ -85,7 +82,6 @@
 
 			.header img {
 				width: 70px;
-				height: auto;
 				transform: translateX(80px);
 				transition: transform 0.5s;
 			}
@@ -151,12 +147,10 @@
 			<img src="../Library/Dinitz_Logo.png" alt="Logo" />
 			<p>Project: Dinitz</p>
 		</div>
-
 		<div class="content">
 			<h1 class="title">COMING SOON</h1>
 			<a href="#" class="count-down">Time left</a>
 		</div>
-
 		<div class="footer">
 			<a target="_blank" href="../src/MeetOurTeam.html">
 				Meet Our Team
