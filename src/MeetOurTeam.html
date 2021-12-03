@@ -1127,7 +1127,7 @@
 				const team = [
 					{
 						name: 'Yuran Legends',
-						role: 'Web Developer | Designer',
+						role: ['Web Developer', 'Designer'],
 						desc: 'Nothing can stop me !!!',
 						photo: '../Library/imgMembers/YL.jpg',
 						email: 'mailto:trieuvanbd123@gmail.com',
@@ -1135,7 +1135,7 @@
 					},
 					{
 						name: 'Naot',
-						role: 'Chúa | Tester | GameMaster',
+						role: ['Chúa | Tester', 'Game Master'],
 						desc: 'Don’t say that I need a sugar daddy',
 						photo: '../Library/imgMembers/VVT.jpg',
 						email: 'mailto:toanvv.ti.1922@gmail.com',
@@ -1143,7 +1143,7 @@
 					},
 					{
 						name: 'Vinh Pham',
-						role: 'Engineer | GameMaster',
+						role: ['Engineer', 'Game Master'],
 						desc: 'Hello World',
 						photo: '../Library/imgMembers/VP.jpg',
 						email: 'mailto:vinhpt.ti.1922@gmail.com',
@@ -1151,7 +1151,7 @@
 					},
 					{
 						name: 'Vbee',
-						role: 'ProblemSetter | Engineer | GameMaster',
+						role: ['Engineer', 'Game Master', 'Problem Setter'],
 						desc: 'Nho truong lop ☹️',
 						photo: '../Library/imgMembers/VB.png',
 						email: 'mailto:baovg.a1.k2023@gmail.com',
@@ -1159,7 +1159,7 @@
 					},
 					{
 						name: 'Nantas',
-						role: 'ProblemSetter | GameMaster',
+						role: ['Challenge Creator', 'Game Master'],
 						desc: 'Five years alone',
 						photo: '../Library/imgMembers/NT.jpg',
 						email: 'mailto:thinhvt.ti.1922@gmail.com',
@@ -1167,7 +1167,7 @@
 					},
 					{
 						name: 'Jamie Nguyen',
-						role: 'ProblemSetter | GameMaster',
+						role: ['Challenge Creator', 'Problem Setter'],
 						desc: 'Uoc duoc A Calculus',
 						photo: '../Library/imgMembers/JN.png',
 						email: 'mailto:nguyennhatnam11022003@gmail.com',
@@ -1175,7 +1175,7 @@
 					},
 					{
 						name: 'Tuyen Nguyen',
-						role: 'ProblemSetter | GameMaster',
+						role: ['Challenge Creator', 'Game Master'],
 						desc: 'Uoc co tien',
 						photo: '../Library/imgMembers/TN.jpg',
 						email: 'mailto:tuyenntt.l.2023@gmail.com',
@@ -1184,7 +1184,7 @@
 					},
 					{
 						name: 'Tien Tran',
-						role: 'GameMaster',
+						role: ['Game Master'],
 						desc: 'Hello World',
 						photo: '../Library/imgMembers/TMT.jpg',
 						email: 'mailto:tientm.ti.2124@gmail.com',
@@ -1210,6 +1210,13 @@
 							photo = team[i].photo,
 							facebook = team[i].facebook,
 							email = team[i].email;
+
+						const roleHTML = role
+							.map((item) => {
+								return `<p class="role">${item}</p>`;
+							})
+							.join('');
+
 						const htmls = `
 									<div class="swiper-slide">
 										<div class="card">
@@ -1218,7 +1225,7 @@
 											<figure class="photo"><img src="${photo}"></figure>
 											<article class="text">
 												<p class="name">${name}</p>
-												<p class="role" style="word-break: keep-all;">${role}</p>
+												${roleHTML}
 												<p class="desc">${desc}</p>
 											</article>
 
