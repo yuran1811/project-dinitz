@@ -1,619 +1,407 @@
-'use strict';
-
-$('.nav-bar a').on('click', function (e) {
-	e.preventDefault();
-	const href = $(this).attr('href');
-	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
-});
-
-$('.to-top a').on('click', function (e) {
-	e.preventDefault();
-	const href = $(this).attr('href');
-	$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
-});
-
-$('.toggle-theme').on('click', function () {
-	$('body').toggleClass('dark');
-	$('.moon').toggleClass('active');
-	$('.sun').toggleClass('active');
-});
-
-$('.menu').on('click', function () {
-	$('.nav-bar').toggleClass('active');
-	$('#menu-bar1').toggleClass('active');
-	$('#menu-bar2').toggleClass('active');
-});
-
-$('.nav-overlay').on('click', function () {
-	$('.nav-bar').removeClass('active');
-	$('#menu-bar1').removeClass('active');
-	$('#menu-bar2').removeClass('active');
-});
-
-(() => {
-	const toTop = document.querySelector('.to-top');
-	window.onscroll = () => {
-		if (
-			document.body.scrollTop > 220 ||
-			document.documentElement.scrollTop > 220
-		)
-			toTop.style.display = 'block';
-		else toTop.style.display = 'none';
-	};
-})();
-
-(() => {
-	document.querySelectorAll('.lk').forEach((link) => {
-		link.classList.add('lilocked');
-		link.addEventListener('click', (e) => {
-			if (e.path[1].className.includes('lilocked')) {
-				document.querySelector('.banner p').style.color =
-					'var(--color)';
-				document.querySelector(
-					'.banner p'
-				).innerHTML = `Vui lòng điền key để làm bài ${e.target.hash}!!!`;
-				$('html, body').animate(
-					{ scrollTop: $('#top').offset().top - 100 },
-					1
-				);
-			}
-		});
-	});
-})();
-
-(() => {
-	const bgmItem = document.querySelector('.bgm');
-	const bgmIcon = document.querySelector('.bgm > i');
-	const allTrack = bgmItem.querySelectorAll('.track audio');
-	allTrack.forEach((item) => {
-		item.volume = 0.4;
-		item.loop = true;
+const templateHandle = () => {
+	$('.nav-bar a').on('click', function (e) {
+		e.preventDefault();
+		const href = $(this).attr('href');
+		$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 	});
 
-	const bgmItemChild = bgmItem.querySelectorAll('.track > i');
-	bgmItemChild.forEach((track) => {
-		track.addEventListener('click', (e) => {
-			bgmItemChild.forEach((item) => {
-				if (item !== e.target)
-					item.className = item.className.replace('fa-spin', '');
-			});
-			const thisTrack = e.path[1].querySelector('audio');
-			allTrack.forEach((item) => {
-				if (thisTrack !== item) {
-					item.pause();
-					item.currentTime = 0;
+	$('.to-top a').on('click', function (e) {
+		e.preventDefault();
+		const href = $(this).attr('href');
+		$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
+	});
+
+	$('.toggle-theme').on('click', function () {
+		$('body').toggleClass('dark');
+		$('.moon').toggleClass('active');
+		$('.sun').toggleClass('active');
+	});
+
+	$('.menu').on('click', function () {
+		$('.nav-bar').toggleClass('active');
+		$('#menu-bar1').toggleClass('active');
+		$('#menu-bar2').toggleClass('active');
+	});
+
+	$('.nav-overlay').on('click', function () {
+		$('.nav-bar').removeClass('active');
+		$('#menu-bar1').removeClass('active');
+		$('#menu-bar2').removeClass('active');
+	});
+
+	(() => {
+		const toTop = document.querySelector('.to-top');
+		window.onscroll = () => {
+			if (
+				document.body.scrollTop > 220 ||
+				document.documentElement.scrollTop > 220
+			)
+				toTop.style.display = 'block';
+			else toTop.style.display = 'none';
+		};
+	})();
+
+	(() => {
+		document.querySelectorAll('.lk').forEach((link) => {
+			link.classList.add('lilocked');
+			link.addEventListener('click', (e) => {
+				if (e.path[1].className.includes('lilocked')) {
+					document.querySelector('.banner p').style.color =
+						'var(--color)';
+					document.querySelector(
+						'.banner p'
+					).innerHTML = `Vui lòng điền key để làm bài ${e.target.hash}!!!`;
+					$('html, body').animate(
+						{ scrollTop: $('#top').offset().top - 100 },
+						1
+					);
 				}
 			});
-
-			if (thisTrack.paused) {
-				if (!bgmIcon.className.includes('fa-spin'))
-					bgmIcon.className += ' fa-spin';
-				if (!e.target.className.includes('fa-spin'))
-					e.target.className += ' fa-spin';
-				thisTrack.play();
-			} else {
-				e.target.className = e.target.className.replace('fa-spin', '');
-				bgmIcon.className = bgmIcon.className.replace('fa-spin', '');
-				thisTrack.pause();
-			}
 		});
-	});
-})();
+	})();
 
-const correctAudio = document.querySelector('.correct-sound');
-const wrongAudio = document.querySelector('.fail-sound');
-const finishAudio = document.querySelector('.finish-sound');
-correctAudio.volume = wrongAudio.volume = finishAudio.volume = 0.6;
-
-// Cooldown
-function setWrongCD(item, countDown) {
-	item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
-	let x = setInterval(() => {
-		item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
-		if (countDown < 0) clearInterval(x);
-	}, 1000);
-}
-
-// Hint Handle
-const hintNo1 = [
-	[
-		`<div class="hint"><h3>Gợi ý 1</h3><p> Naot đã liệt kê ra được <strong>một số</strong> trạng thái chiến thắng và một số trạng thái thua cuộc dành cho người chơi đầu tiên với Emag min với 3 chồng sỏi: </p> <table id="${'No1-hint1'}"> <tr> <th colspan="2">Trạng thái chiến thắng</th> <th colspan="2">Trạng thái thua cuộc</th> </tr> <tr> <td> <p> 1 1 1 <br /> 1 1 2 <br /> 1 1 3 <br /> 1 1 4 <br /> 1 2 1 <br /> 1 2 2 <br /> 1 2 4 <br /> 1 3 1 <br /> 1 3 3 </p> </td> <td> <p> 1 3 4 <br /> 1 4 1 <br /> 1 4 2 <br /> 1 4 3 <br /> 1 4 4 <br /> 2 1 1 <br /> 2 1 2 <br /> 2 1 4 <br /> 2 2 1 <br /> 2 2 2 </p> </td> <td> <p> 0 0 0 <br /> 0 1 1 <br /> 0 2 2 <br /> 0 3 3 <br /> 0 4 4 <br /> 1 0 1 <br /> 1 1 0 <br /> 1 2 3 <br /> 1 3 2 </p> </td> <td> <p> 2 0 2 <br /> 2 1 3 <br /> 2 2 0 <br /> 2 3 1 <br /> 3 0 3 <br /> 3 1 2 <br /> 3 2 1 <br /> 3 3 0 <br /> 4 0 4 <br /> 4 4 0 </p> </td> </tr> </table> </div>`,
-	],
-	[
-		`<div class="hint"> <h3>Gợi ý 2</h3> <p> Trong ví dụ 1, hãy tính tổng xor 3 số trong các trạng thái chiến thắng, nhận xét các tổng xor đó với tổng xor của các trạng thái thua cuộc, nhận xét tổng xor của các trạng thái chiến thắng và thua cuộc rồi từ đó suy ra kết quả. </p> </div>`,
-	],
-];
-const hintNo2 = [
-	[
-		`<div class="hint"> <h3>Gợi ý 1</h3> <p> Các bạn có thể áp dụng kiến thức về bao hàm loại trừ như trên hoặc là viết chương trình đơn giản để tính kết quả bài toán </p> </div>`,
-	],
-	[
-		`<div class="hint"> <h3>Gợi ý 2</h3> <p> Số lượng số chia hết cho một số x trong đoạn từ 1 đến n là: ⌊n / x⌋.<br /><strong>Note:</strong> ⌊u⌋: làm tròn xuống số nguyên lớn nhất bé hơn hoặc bằng u. Vd: ⌊2.3⌋ = 2, ⌊2.7⌋ = 2. </p> </div>`,
-	],
-	[
-		`<div class="hint"> <h3>Gợi ý 3</h3> <p> Gọi f(n) là số số chia hết cho n trong đoạn từ 1 đến 100000000.<br />Đáp án của bài toán là: f(2) + f(3) + f(5) - f(2 ⋂ 3) - f(3 ⋂ 5) - f(2 ⋂ 5) + f(2 ⋂ 3 ⋂ 5) </p> </div>`,
-	],
-];
-const hintNo4 = [
-	[
-		`<div class="hint"> <h3>Gợi ý 1</h3> Số lần phải nhập mật khẩu nếu nhập tối ưu là 13 lần. </div><br/>`,
-	],
-	[
-		`<div class="hint"> <h3>Gợi ý 2</h3> Nếu số bạn nhập vào lớn hơn mật khẩu gốc nghĩa là các số trong khoảng [1; số vừa nhập] sẽ không phải là mật khẩu, hãy tìm cách loại trừ nhiều số phải kiểm tra nhất có thể. </div><br/>`,
-	],
-	[
-		`<div class="hint"> <h3>Gợi ý 3</h3> Gọi đoạn chứa mật khẩu là [l, r] thì hãy nhập vào số mid = (l + r) / 2 (trung bình cộng), nếu: <ul> <li> Thông báo là “Lên đi em ưi” thì đoạn chứa mật khẩu mới là [mid + 1; r] </li> <li> Thông báo là “Xuống đi cao quá” thì đoạn chứa mật khẩu mới là [l, mid - 1] </li> <li> Thông báo là “Ghêk Ghêk” thì mid chính là mật khẩu. </li> </ul> </div>`,
-	],
-];
-const allHint = [hintNo1, hintNo2, 0, hintNo4, 0, 0];
-
-function getHint(sectionItem, sectionId) {
-	sectionItem.querySelector('.hint-btn').classList.toggle('active');
-
-	const timerCountdown = sectionItem.querySelector('.timer');
-	const hintTime = 3;
-	let countDown = 2;
-
-	let hintList = allHint[sectionId];
-	var hintCnt = hintList.length;
-	var indexHint = 0;
-
-	if (hintCnt > 0) timerCountdown.style.display = 'inline';
-
-	let y = setInterval(() => {
-		timerCountdown.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
-		if (countDown < 0) {
-			if (indexHint === hintCnt - 1) {
-				clearInterval(y);
-				let z = setTimeout(() => {
-					timerCountdown.innerHTML = 'Hết gợi ý rồi';
-				}, 1000);
-			} else countDown = hintTime;
-		}
-	}, 1000);
-
-	const hintContent = sectionItem.querySelector('.allhint');
-	let x = setInterval(() => {
-		if (hintCnt > 0) {
-			if (indexHint >= hintCnt) clearInterval(x);
-			else hintContent.innerHTML += hintList[indexHint++][0];
-		}
-	}, 4000);
-}
-
-// Challenge Handle
-const challengeNo6 = [
-	`<h3>Phần 1</h3> <p> Tưởng tượng bạn muốn gửi tin nhắn tỏ tình B. Bạn muốn chỉ B mới có thể đọc được tin nhắn này, còn lại không ai có thể đọc được, nên bạn tìm một cách để “mã hoá” nội dung tin nhắn. Bạn sẽ làm thế nào? </p> <p> Thật ra, bạn sẽ không phải nghĩ nhiều đâu, bởi, 3 học giả người Mỹ và Israel đã phát minh ra thuật toán Rivest–Shamir–Adleman (RSA). Đây là một thuật toán được sử dụng rộng rãi trong việc truyền thông tin dữ liệu một cách bảo mật. Một phép so sánh thực tế có thể được hiểu như sau: </p> <p> Bạn viết thư gửi cho B, để an toàn thì bạn cho bức thư vào một chiếc hộp có khóa, rồi khóa nó lại. Bạn gửi chiếc hộp đã khoá cho B.<br />Với tình huống này, nếu có người ăn cắp được chiếc hộp, người ta cũng không có cách nào mở khoá để đọc được nội dung bức thư vì không có chìa khoá.<br />Tuy nhiên vấn đề phát sinh lúc này là bạn phải tìm cách đưa chiếc chìa khoá cho B. Ta quay lại vấn đề ban đầu, bởi vì nếu một kẻ gian có thể ăn cắp được chiếc chìa khoá này, hắn ta cũng có thể mở khoá chiếc hộp rồi đọc nội dung thư.<br />Bạn có thể nghĩ ra một cách làm tốt hơn chứ? </p> <p> Trước tiên, bạn nhờ B gửi cho bạn một ổ khoá có thể khoá được mà không cần chìa (nhưng đã khoá rồi thì muốn mở khóa thì phải có chìa khoá - đương nhiên rồi). Bạn viết bức thư, cho vào hộp và khóa hộp bằng ổ của B, rồi đưa hộp cho B. Bây giờ, nếu có kẻ gian nào lấy được chiếc hộp thì hắn cũng không thể mở hộp, bởi người duy nhất có thể mở hộp là B vì B là người duy nhất có chìa khoá. Dễ thấy là B không cần cho bạn chiếc chìa khoá (thật ra là không thể gửi cho bạn chiếc chìa khoá). Do đó để ý rằng, khi bạn đã khoá chiếc hộp rồi thì chính bạn cũng không thể mở nó. </p> <p> Bạn muốn gửi tin nhắn “IUB” đến B. B cho bạn ổ khoá toán học là cặp số : (n, e) = (114791, 13) </p> <p> Bạn hãy tính toán phiên bản bị mã hoá của tin nhắn “IUB” bằng thuật toán sau: </p> <p> Bước 1: Chuyển nội dung tin nhắn từ dạng chữ sang dạng số. Ở đây ta quy ước A = 01, B = 02, …, Z = 26. Ví dụ như: “HAO” được chuyển sang dạng số thành 080115, còn “ABCXYZ” thì thành 010203242526. Gọi kết quả tính được là m. </p> <p> Bước 2: Tính<br /> c = m<sup>e</sup> mod n.<br />Trong đó phép tính mod có nghĩa là phần dư của phép chia.<br />Ví dụ: 10 mod 3 = 1 vì 10 chia 3 dư 1; 2<sup>10</sup> mod 100 = 24 vì 2<sup>10</sup> = 1024, sau đó 1024 chia 100 thì dư 24. </p> <p>Bước 3: Gửi kết quả c cho B.</p>`,
-
-	`<h3>Phần 2</h3> <p> Oh, B đã đọc được tâm tư tình cảm của bạn và phản hồi bạn bằng một lá thư… cũng bị mã hoá. À, bạn nhớ ra rằng bạn cũng từng đưa cho B một ổ khoá, là một cặp số (n’, p’) = (135931, 87353). Tin chắc rằng B đã khoá tin nhắn bằng chính chiếc ổ khoá này, bạn mò tìm lại chìa khóa của ổ, và may mắn thay bạn đã tìm ra chìa khoá, chính là q = 17<br />Tin nhắn đã mã hoá mà bạn nhận được từ B là c’ = 101811, bạn hãy theo dõi thuật toán sau để tìm lại thông điệp mà B đã nhắn cho bạn! </p> <p> Bước 1: Tính<br /> m = c’<sup>q</sup> mod n’ </p> <p> Bước 2: Chuyển số m vừa nhận được về dạng văn bản.<br />Ví dụ nếu số nhận được là 12251225 thì ta giải được văn bản là LYLY </p>`,
-];
-
-const ans1 = [53355, 13863, 29646, 447];
-const ans2 = [75807, 16720, 16720, 16720, 16720, 16720, 16720, 13863];
-const ans3 = [12, 28];
-const ans4 = [53355, 53355, 82345, 82345];
-const ans5 = [
-	[82749, 80695, 23161, 88939, 87286, 91751, 95361, 60752],
-	[
-		87286, 88027, 87699, 63021, 60319, 33047, 55140, 42383, 63021, 87699,
-		91751, 88027,
-	],
-	[91751, 95361, 4753, 63021, 87699, 87286, 88027],
-	[
-		82749, 80695, 55950, 10344, 92134, 60752, 63021, 91751, 80695, 63021,
-		88695,
-	],
-	[29617, 55950, 95361],
-	[
-		83387, 25017, 55140, 87699, 63021, 92134, 22060, 87699, 10344, 92134,
-		25017, 63021,
-	],
-	[24339, 41444, 63021, 60319, 87699, 72439, 7589, 10344],
-	[87286, 91751, 95361, 80695, 63021, 60319],
-	[73166, 50765, 87699, 55087, 33047, 55140],
-	[
-		91751, 91350, 38237, 87699, 88939, 80695, 98172, 38237, 87699, 63021,
-		92134, 22060, 87699, 10344, 92134, 25017, 63021,
-	],
-	[73166, 89258, 87699, 91751, 92134, 22060],
-	[
-		60752, 72439, 60752, 63021, 87699, 91751, 33047, 95361, 80695, 63021,
-		60319,
-	],
-];
-const ans6 = [
-	[79584, 82345, 37564, 40513, 79584],
-	[92134, 55950, 88939],
-];
-const ansAll = [ans1, ans2, ans3, ans4, ans5, ans6];
-
-function decode(ansArray) {
-	function getPow(a, b, p) {
-		if (!b) return 1;
-		let c = getPow(a, b / 2, p);
-		c = (c * c) % p;
-		if (b & 1) c = (c * a) % p;
-		return c;
-	}
-	let res = [];
-	for (let item of ansArray)
-		res.push(String.fromCharCode(getPow(item, 42143, 98473)));
-	return res.join('');
-}
-
-// Content Handle
-const sectionList = document.querySelectorAll('section');
-const sectionListLth = sectionList.length;
-
-for (let item of sectionList)
-	item.innerHTML += `<i class="fas fa-lock lock" style="display: block"></i>`;
-
-for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
-	const infoBtn = sectionList[itemIndex].querySelector('.info-btn');
-	const infoContent = sectionList[itemIndex].querySelector('.info');
-
-	if (infoBtn && infoContent)
-		infoBtn.addEventListener('click', () => {
-			infoBtn.classList.toggle('active');
-			infoContent.classList.toggle('active');
+	(() => {
+		const bgmItem = document.querySelector('.bgm');
+		const bgmIcon = document.querySelector('.bgm > i');
+		const allTrack = bgmItem.querySelectorAll('.track audio');
+		allTrack.forEach((item) => {
+			item.volume = 0.4;
+			item.loop = true;
 		});
 
-	const challengeBtn = sectionList[itemIndex].querySelector('.challenge-btn');
-	const challengeContent =
-		sectionList[itemIndex].querySelector('.challenge-content');
-	if (challengeContent)
-		challengeBtn.addEventListener('click', () => {
-			challengeBtn.classList.toggle('active');
-			challengeContent.classList.toggle('active');
-			if (itemIndex === 5)
-				document.querySelector('.no6-part1').style.display = 'block';
-		});
-
-	let hintBtn = sectionList[itemIndex].querySelector('.hint-btn');
-	if (hintBtn)
-		hintBtn.addEventListener('click', (e) => {
-			getHint(e.path[3], Number(e.path[3].getAttribute('sectionId')));
-		});
-
-	let answerInputList =
-		sectionList[itemIndex].querySelectorAll('input[type="text"]');
-	let ansLth = answerInputList.length;
-
-	let submitBtnList = sectionList[itemIndex].querySelectorAll('.submit-btn');
-	let submitListLength = submitBtnList.length;
-
-	let wrongCD = sectionList[itemIndex].querySelector('.wrong-cd');
-
-	if (ansLth || submitListLength) {
-		if (itemIndex === 2) {
-			const numPath = [3, 4];
-			let passCheck = [0, 0];
-			for (let submitBtn of submitBtnList) {
-				submitBtn.addEventListener('click', (e) => {
-					const path = Number(e.path[6].getAttribute('sectionId'));
-					let indexSubmitBtn = Number(
-						e.path[0].getAttribute('idSubmit')
-					);
-					let boxList = e.path[1].querySelectorAll('.box');
-					let cntCorrectBox = 0;
-					let cntCillBox = 0;
-
-					for (let boxItem of boxList) {
-						let itemInBox = boxItem.querySelector('.item');
-						if (!itemInBox) continue;
-
-						let numberItem = itemInBox.getAttribute('catch');
-						let numberBox = boxItem.getAttribute('try');
-						if (numberItem == numberBox) cntCorrectBox++;
-						cntCillBox++;
+		const bgmItemChild = bgmItem.querySelectorAll('.track > i');
+		bgmItemChild.forEach((track) => {
+			track.addEventListener('click', (e) => {
+				bgmItemChild.forEach((item) => {
+					if (item !== e.target)
+						item.className = item.className.replace('fa-spin', '');
+				});
+				const thisTrack = e.path[1].querySelector('audio');
+				allTrack.forEach((item) => {
+					if (thisTrack !== item) {
+						item.pause();
+						item.currentTime = 0;
 					}
+				});
 
-					if (
-						cntCorrectBox === numPath[indexSubmitBtn] &&
-						cntCillBox === cntCorrectBox
-					) {
-						e.path[2]
-							.querySelector('.wrong')
-							.classList.remove('active');
-						e.path[2]
-							.querySelector('.correct')
-							.classList.add('active');
-						correctAudio.play();
+				if (thisTrack.paused) {
+					if (!bgmIcon.className.includes('fa-spin'))
+						bgmIcon.className += ' fa-spin';
+					if (!e.target.className.includes('fa-spin'))
+						e.target.className += ' fa-spin';
+					thisTrack.play();
+				} else {
+					e.target.className = e.target.className.replace(
+						'fa-spin',
+						''
+					);
+					bgmIcon.className = bgmIcon.className.replace(
+						'fa-spin',
+						''
+					);
+					thisTrack.pause();
+				}
+			});
+		});
+	})();
 
-						if (indexSubmitBtn === 0)
-							document.querySelector(
-								'#No3 .part2'
-							).style.display = 'block';
+	const correctAudio = document.querySelector('.correct-sound');
+	const wrongAudio = document.querySelector('.fail-sound');
+	const finishAudio = document.querySelector('.finish-sound');
+	correctAudio.volume = wrongAudio.volume = finishAudio.volume = 0.6;
 
-						passCheck[indexSubmitBtn] = 1;
-						if (passCheck[0] === passCheck[1] && passCheck[0]) {
-							let navFin = e.path[8]
-								.querySelector('.nav-links')
-								.getElementsByClassName('lk')[path];
-							navFin.classList.add('finish', 'lifin');
-							e.path[6].classList.add('finish');
-							finishAudio.play();
+	// Cooldown
+	function setWrongCD(item, countDown) {
+		item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
+		let x = setInterval(() => {
+			item.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
+			if (countDown < 0) clearInterval(x);
+		}, 1000);
+	}
+
+	// Hint Handle
+	const hintNo1 = [
+		[
+			`<div class="hint"><h3>Gợi ý 1</h3><p> Naot đã liệt kê ra được <strong>một số</strong> trạng thái chiến thắng và một số trạng thái thua cuộc dành cho người chơi đầu tiên với Emag min với 3 chồng sỏi: </p> <table id="${'No1-hint1'}"> <tr> <th colspan="2">Trạng thái chiến thắng</th> <th colspan="2">Trạng thái thua cuộc</th> </tr> <tr> <td> <p> 1 1 1 <br /> 1 1 2 <br /> 1 1 3 <br /> 1 1 4 <br /> 1 2 1 <br /> 1 2 2 <br /> 1 2 4 <br /> 1 3 1 <br /> 1 3 3 </p> </td> <td> <p> 1 3 4 <br /> 1 4 1 <br /> 1 4 2 <br /> 1 4 3 <br /> 1 4 4 <br /> 2 1 1 <br /> 2 1 2 <br /> 2 1 4 <br /> 2 2 1 <br /> 2 2 2 </p> </td> <td> <p> 0 0 0 <br /> 0 1 1 <br /> 0 2 2 <br /> 0 3 3 <br /> 0 4 4 <br /> 1 0 1 <br /> 1 1 0 <br /> 1 2 3 <br /> 1 3 2 </p> </td> <td> <p> 2 0 2 <br /> 2 1 3 <br /> 2 2 0 <br /> 2 3 1 <br /> 3 0 3 <br /> 3 1 2 <br /> 3 2 1 <br /> 3 3 0 <br /> 4 0 4 <br /> 4 4 0 </p> </td> </tr> </table> </div>`,
+		],
+		[
+			`<div class="hint"> <h3>Gợi ý 2</h3> <p> Trong ví dụ 1, hãy tính tổng xor 3 số trong các trạng thái chiến thắng, nhận xét các tổng xor đó với tổng xor của các trạng thái thua cuộc, nhận xét tổng xor của các trạng thái chiến thắng và thua cuộc rồi từ đó suy ra kết quả. </p> </div>`,
+		],
+	];
+	const hintNo2 = [
+		[
+			`<div class="hint"> <h3>Gợi ý 1</h3> <p> Các bạn có thể áp dụng kiến thức về bao hàm loại trừ như trên hoặc là viết chương trình đơn giản để tính kết quả bài toán </p> </div>`,
+		],
+		[
+			`<div class="hint"> <h3>Gợi ý 2</h3> <p> Số lượng số chia hết cho một số x trong đoạn từ 1 đến n là: ⌊n / x⌋.<br /><strong>Note:</strong> ⌊u⌋: làm tròn xuống số nguyên lớn nhất bé hơn hoặc bằng u. Vd: ⌊2.3⌋ = 2, ⌊2.7⌋ = 2. </p> </div>`,
+		],
+		[
+			`<div class="hint"> <h3>Gợi ý 3</h3> <p> Gọi f(n) là số số chia hết cho n trong đoạn từ 1 đến 100000000.<br />Đáp án của bài toán là: f(2) + f(3) + f(5) - f(2 ⋂ 3) - f(3 ⋂ 5) - f(2 ⋂ 5) + f(2 ⋂ 3 ⋂ 5) </p> </div>`,
+		],
+	];
+	const hintNo4 = [
+		[
+			`<div class="hint"> <h3>Gợi ý 1</h3> Số lần phải nhập mật khẩu nếu nhập tối ưu là 13 lần. </div><br/>`,
+		],
+		[
+			`<div class="hint"> <h3>Gợi ý 2</h3> Nếu số bạn nhập vào lớn hơn mật khẩu gốc nghĩa là các số trong khoảng [1; số vừa nhập] sẽ không phải là mật khẩu, hãy tìm cách loại trừ nhiều số phải kiểm tra nhất có thể. </div><br/>`,
+		],
+		[
+			`<div class="hint"> <h3>Gợi ý 3</h3> Gọi đoạn chứa mật khẩu là [l, r] thì hãy nhập vào số mid = (l + r) / 2 (trung bình cộng), nếu: <ul> <li> Thông báo là “Lên đi em ưi” thì đoạn chứa mật khẩu mới là [mid + 1; r] </li> <li> Thông báo là “Xuống đi cao quá” thì đoạn chứa mật khẩu mới là [l, mid - 1] </li> <li> Thông báo là “Ghêk Ghêk” thì mid chính là mật khẩu. </li> </ul> </div>`,
+		],
+	];
+	const allHint = [hintNo1, hintNo2, 0, hintNo4, 0, 0];
+
+	function getHint(sectionItem, sectionId) {
+		sectionItem.querySelector('.hint-btn').classList.toggle('active');
+
+		const timerCountdown = sectionItem.querySelector('.timer');
+		const hintTime = 3;
+		let countDown = 2;
+
+		let hintList = allHint[sectionId];
+		var hintCnt = hintList.length;
+		var indexHint = 0;
+
+		if (hintCnt > 0) timerCountdown.style.display = 'inline';
+
+		let y = setInterval(() => {
+			timerCountdown.innerHTML = `<i class="bx bx-alarm bx-tada"></i> ${countDown--}`;
+			if (countDown < 0) {
+				if (indexHint === hintCnt - 1) {
+					clearInterval(y);
+					let z = setTimeout(() => {
+						timerCountdown.innerHTML = 'Hết gợi ý rồi';
+					}, 1000);
+				} else countDown = hintTime;
+			}
+		}, 1000);
+
+		const hintContent = sectionItem.querySelector('.allhint');
+		let x = setInterval(() => {
+			if (hintCnt > 0) {
+				if (indexHint >= hintCnt) clearInterval(x);
+				else hintContent.innerHTML += hintList[indexHint++][0];
+			}
+		}, 4000);
+	}
+
+	// Challenge Handle
+	const challengeNo6 = [
+		`<h3>Phần 1</h3> <p> Tưởng tượng bạn muốn gửi tin nhắn tỏ tình B. Bạn muốn chỉ B mới có thể đọc được tin nhắn này, còn lại không ai có thể đọc được, nên bạn tìm một cách để “mã hoá” nội dung tin nhắn. Bạn sẽ làm thế nào? </p> <p> Thật ra, bạn sẽ không phải nghĩ nhiều đâu, bởi, 3 học giả người Mỹ và Israel đã phát minh ra thuật toán Rivest–Shamir–Adleman (RSA). Đây là một thuật toán được sử dụng rộng rãi trong việc truyền thông tin dữ liệu một cách bảo mật. Một phép so sánh thực tế có thể được hiểu như sau: </p> <p> Bạn viết thư gửi cho B, để an toàn thì bạn cho bức thư vào một chiếc hộp có khóa, rồi khóa nó lại. Bạn gửi chiếc hộp đã khoá cho B.<br />Với tình huống này, nếu có người ăn cắp được chiếc hộp, người ta cũng không có cách nào mở khoá để đọc được nội dung bức thư vì không có chìa khoá.<br />Tuy nhiên vấn đề phát sinh lúc này là bạn phải tìm cách đưa chiếc chìa khoá cho B. Ta quay lại vấn đề ban đầu, bởi vì nếu một kẻ gian có thể ăn cắp được chiếc chìa khoá này, hắn ta cũng có thể mở khoá chiếc hộp rồi đọc nội dung thư.<br />Bạn có thể nghĩ ra một cách làm tốt hơn chứ? </p> <p> Trước tiên, bạn nhờ B gửi cho bạn một ổ khoá có thể khoá được mà không cần chìa (nhưng đã khoá rồi thì muốn mở khóa thì phải có chìa khoá - đương nhiên rồi). Bạn viết bức thư, cho vào hộp và khóa hộp bằng ổ của B, rồi đưa hộp cho B. Bây giờ, nếu có kẻ gian nào lấy được chiếc hộp thì hắn cũng không thể mở hộp, bởi người duy nhất có thể mở hộp là B vì B là người duy nhất có chìa khoá. Dễ thấy là B không cần cho bạn chiếc chìa khoá (thật ra là không thể gửi cho bạn chiếc chìa khoá). Do đó để ý rằng, khi bạn đã khoá chiếc hộp rồi thì chính bạn cũng không thể mở nó. </p> <p> Bạn muốn gửi tin nhắn “IUB” đến B. B cho bạn ổ khoá toán học là cặp số : (n, e) = (114791, 13) </p> <p> Bạn hãy tính toán phiên bản bị mã hoá của tin nhắn “IUB” bằng thuật toán sau: </p> <p> Bước 1: Chuyển nội dung tin nhắn từ dạng chữ sang dạng số. Ở đây ta quy ước A = 01, B = 02, …, Z = 26. Ví dụ như: “HAO” được chuyển sang dạng số thành 080115, còn “ABCXYZ” thì thành 010203242526. Gọi kết quả tính được là m. </p> <p> Bước 2: Tính<br /> c = m<sup>e</sup> mod n.<br />Trong đó phép tính mod có nghĩa là phần dư của phép chia.<br />Ví dụ: 10 mod 3 = 1 vì 10 chia 3 dư 1; 2<sup>10</sup> mod 100 = 24 vì 2<sup>10</sup> = 1024, sau đó 1024 chia 100 thì dư 24. </p> <p>Bước 3: Gửi kết quả c cho B.</p>`,
+
+		`<h3>Phần 2</h3> <p> Oh, B đã đọc được tâm tư tình cảm của bạn và phản hồi bạn bằng một lá thư… cũng bị mã hoá. À, bạn nhớ ra rằng bạn cũng từng đưa cho B một ổ khoá, là một cặp số (n’, p’) = (135931, 87353). Tin chắc rằng B đã khoá tin nhắn bằng chính chiếc ổ khoá này, bạn mò tìm lại chìa khóa của ổ, và may mắn thay bạn đã tìm ra chìa khoá, chính là q = 17<br />Tin nhắn đã mã hoá mà bạn nhận được từ B là c’ = 101811, bạn hãy theo dõi thuật toán sau để tìm lại thông điệp mà B đã nhắn cho bạn! </p> <p> Bước 1: Tính<br /> m = c’<sup>q</sup> mod n’ </p> <p> Bước 2: Chuyển số m vừa nhận được về dạng văn bản.<br />Ví dụ nếu số nhận được là 12251225 thì ta giải được văn bản là LYLY </p>`,
+	];
+
+	const ans1 = [53355, 13863, 29646, 447];
+	const ans2 = [75807, 16720, 16720, 16720, 16720, 16720, 16720, 13863];
+	const ans3 = [12, 28];
+	const ans4 = [53355, 53355, 82345, 82345];
+	const ans5 = [
+		[82749, 80695, 23161, 88939, 87286, 91751, 95361, 60752],
+		[
+			87286, 88027, 87699, 63021, 60319, 33047, 55140, 42383, 63021,
+			87699, 91751, 88027,
+		],
+		[91751, 95361, 4753, 63021, 87699, 87286, 88027],
+		[
+			82749, 80695, 55950, 10344, 92134, 60752, 63021, 91751, 80695,
+			63021, 88695,
+		],
+		[29617, 55950, 95361],
+		[
+			83387, 25017, 55140, 87699, 63021, 92134, 22060, 87699, 10344,
+			92134, 25017, 63021,
+		],
+		[24339, 41444, 63021, 60319, 87699, 72439, 7589, 10344],
+		[87286, 91751, 95361, 80695, 63021, 60319],
+		[73166, 50765, 87699, 55087, 33047, 55140],
+		[
+			91751, 91350, 38237, 87699, 88939, 80695, 98172, 38237, 87699,
+			63021, 92134, 22060, 87699, 10344, 92134, 25017, 63021,
+		],
+		[73166, 89258, 87699, 91751, 92134, 22060],
+		[
+			60752, 72439, 60752, 63021, 87699, 91751, 33047, 95361, 80695,
+			63021, 60319,
+		],
+	];
+	const ans6 = [
+		[79584, 82345, 37564, 40513, 79584],
+		[92134, 55950, 88939],
+	];
+	const ansAll = [ans1, ans2, ans3, ans4, ans5, ans6];
+
+	function decode(ansArray) {
+		function getPow(a, b, p) {
+			if (!b) return 1;
+			let c = getPow(a, b / 2, p);
+			c = (c * c) % p;
+			if (b & 1) c = (c * a) % p;
+			return c;
+		}
+		let res = [];
+		for (let item of ansArray)
+			res.push(String.fromCharCode(getPow(item, 42143, 98473)));
+		return res.join('');
+	}
+
+	// Content Handle
+	const sectionList = document.querySelectorAll('section');
+	const sectionListLth = sectionList.length;
+
+	for (let item of sectionList)
+		item.innerHTML += `<i class="fas fa-lock lock" style="display: block"></i>`;
+
+	for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
+		const infoBtn = sectionList[itemIndex].querySelector('.info-btn');
+		const infoContent = sectionList[itemIndex].querySelector('.info');
+
+		if (infoBtn && infoContent)
+			infoBtn.addEventListener('click', () => {
+				infoBtn.classList.toggle('active');
+				infoContent.classList.toggle('active');
+			});
+
+		const challengeBtn =
+			sectionList[itemIndex].querySelector('.challenge-btn');
+		const challengeContent =
+			sectionList[itemIndex].querySelector('.challenge-content');
+		if (challengeContent)
+			challengeBtn.addEventListener('click', () => {
+				challengeBtn.classList.toggle('active');
+				challengeContent.classList.toggle('active');
+				if (itemIndex === 5)
+					document.querySelector('.no6-part1').style.display =
+						'block';
+			});
+
+		let hintBtn = sectionList[itemIndex].querySelector('.hint-btn');
+		if (hintBtn)
+			hintBtn.addEventListener('click', (e) => {
+				getHint(e.path[3], Number(e.path[3].getAttribute('sectionId')));
+			});
+
+		let answerInputList =
+			sectionList[itemIndex].querySelectorAll('input[type="text"]');
+		let ansLth = answerInputList.length;
+
+		let submitBtnList =
+			sectionList[itemIndex].querySelectorAll('.submit-btn');
+		let submitListLength = submitBtnList.length;
+
+		let wrongCD = sectionList[itemIndex].querySelector('.wrong-cd');
+
+		if (ansLth || submitListLength) {
+			if (itemIndex === 2) {
+				const numPath = [3, 4];
+				let passCheck = [0, 0];
+				for (let submitBtn of submitBtnList) {
+					submitBtn.addEventListener('click', (e) => {
+						const path = Number(
+							e.path[6].getAttribute('sectionId')
+						);
+						let indexSubmitBtn = Number(
+							e.path[0].getAttribute('idSubmit')
+						);
+						let boxList = e.path[1].querySelectorAll('.box');
+						let cntCorrectBox = 0;
+						let cntCillBox = 0;
+
+						for (let boxItem of boxList) {
+							let itemInBox = boxItem.querySelector('.item');
+							if (!itemInBox) continue;
+
+							let numberItem = itemInBox.getAttribute('catch');
+							let numberBox = boxItem.getAttribute('try');
+							if (numberItem == numberBox) cntCorrectBox++;
+							cntCillBox++;
 						}
-					} else {
-						wrongAudio.play();
-						e.path[2]
-							.querySelector('.wrong')
-							.classList.add('active');
-						e.path[2]
-							.querySelector('.correct')
-							.classList.remove('active');
 
-						submitBtn.style.display = 'none';
-						e.path[3].querySelector('.wrong-cd').style.display =
-							'block';
-						setWrongCD(e.path[3].querySelector('.wrong-cd'), 3);
-						setTimeout(() => {
+						if (
+							cntCorrectBox === numPath[indexSubmitBtn] &&
+							cntCillBox === cntCorrectBox
+						) {
 							e.path[2]
 								.querySelector('.wrong')
 								.classList.remove('active');
-							submitBtn.style.display = 'block';
-							e.path[3].querySelector('.wrong-cd').style.display =
-								'none';
-						}, 3000);
-					}
-				});
-			}
-		} else if (itemIndex === 3) {
-			answerInputList[0].addEventListener('keydown', (e) => {
-				if (e.keyCode === 13) {
-					let userAnswer = Number(
-						e.path[0].value.trim().toLowerCase()
-					);
-					let path = Number(e.path[4].getAttribute('sectionId'));
-					let sysAnswer = Number(decode(ansAll[path]));
-					if (!(1 <= userAnswer && userAnswer <= 8192)) {
-						e.path[1]
-							.querySelector('.increase')
-							.classList.remove('active');
-						e.path[1]
-							.querySelector('.decrease')
-							.classList.remove('active');
-						e.path[1]
-							.querySelector('.correct')
-							.classList.remove('active');
-						e.path[1]
-							.querySelector('.wrong')
-							.classList.add('active');
-						wrongAudio.play();
-
-						e.path[1].querySelector('p').innerHTML =
-							'Em đi xa quá, em đi đi xa Dinitz quá!!!';
-
-						$(`#No${path + 1} input[type='text']`).attr(
-							'disabled',
-							'disabled'
-						);
-
-						wrongCD.style.display = 'block';
-						setWrongCD(wrongCD, 3);
-						setTimeout(() => {
-							$(`#No${path + 1} input[type='text']`).removeAttr(
-								'disabled'
-							);
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.remove('active');
-							e.path[1].querySelector('p').innerHTML = '';
-							wrongCD.style.display = 'none';
-						}, 3000);
-					} else {
-						if (userAnswer > sysAnswer) {
-							e.path[1]
-								.querySelector('.increase')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.decrease')
-								.classList.add('active');
-							e.path[1]
-								.querySelector('.correct')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.remove('active');
-							wrongAudio.play();
-
-							e.path[1].querySelector('p').innerHTML =
-								'Xuống đi, cao quá!!!';
-
-							$(`#No${path + 1} input[type='text']`).attr(
-								'disabled',
-								'disabled'
-							);
-
-							wrongCD.style.display = 'block';
-							setWrongCD(wrongCD, 3);
-							setTimeout(() => {
-								$(
-									`#No${path + 1} input[type='text']`
-								).removeAttr('disabled');
-								e.path[1]
-									.querySelector('.decrease')
-									.classList.remove('active');
-								e.path[1].querySelector('p').innerHTML = '';
-								wrongCD.style.display = 'none';
-							}, 3000);
-						} else if (userAnswer < sysAnswer) {
-							e.path[1]
-								.querySelector('.increase')
-								.classList.add('active');
-							e.path[1]
-								.querySelector('.decrease')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.correct')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.remove('active');
-							e.path[1].querySelector('p').innerHTML =
-								'Lên đi em ưi!!!';
-							wrongAudio.play();
-
-							$(`#No${path + 1} input[type='text']`).attr(
-								'disabled',
-								'disabled'
-							);
-
-							wrongCD.style.display = 'block';
-							setWrongCD(wrongCD, 3);
-							setTimeout(() => {
-								$(
-									`#No${path + 1} input[type='text']`
-								).removeAttr('disabled');
-								e.path[1]
-									.querySelector('.increase')
-									.classList.remove('active');
-								e.path[1].querySelector('p').innerHTML = '';
-								wrongCD.style.display = 'none';
-							}, 3000);
-						} else {
-							let navFin = e.path[6]
-								.querySelector('.nav-links')
-								.getElementsByClassName('lk')[path];
-							navFin.classList.add('finish', 'lifin');
-							e.path[4].classList.add('finish');
-							e.path[1]
-								.querySelector('.correct')
-								.classList.add('active');
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.increase')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.decrease')
-								.classList.remove('active');
-							e.path[1].querySelector('p').innerHTML =
-								'Ghêk Ghêk';
-							finishAudio.play();
-						}
-					}
-				}
-			});
-		} else if (itemIndex === 4) {
-			let passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-			sectionList[itemIndex]
-				.querySelector('.submit-btn')
-				.addEventListener('click', (e) => {
-					const path = Number(e.path[4].getAttribute('sectionId'));
-					const correctCnt = e.path[4].querySelector('.cnt-correct');
-					const wrongCnt = e.path[4].querySelector('.cnt-wrong');
-
-					for (let idAns = 0; idAns < ansLth; idAns++) {
-						let userAnswer = answerInputList[idAns].value
-							.trim()
-							.toLowerCase();
-						let idAnswer = Number(answerInputList[idAns].id);
-						let sysAnswer = decode(ansAll[path][idAnswer]);
-						if (userAnswer == sysAnswer) {
-							passCheck[idAns] = 1;
-						}
-					}
-
-					let cntAC = 0;
-					let cntWA = 0;
-					for (let idCheck = 0; idCheck < 12; idCheck++) {
-						if (passCheck[idCheck] === 1) cntAC++;
-						else cntWA++;
-					}
-					if (cntAC === 12) {
-						sectionList[path].classList.add('finish');
-						let navFin = document
-							.querySelector('.nav-links')
-							.getElementsByClassName('lk')[path];
-						navFin.classList.add('finish', 'lifin');
-
-						correctCnt.querySelector('p').innerHTML = '';
-						wrongCnt.querySelector('p').innerHTML = '';
-						wrongCnt
-							.querySelector('.wrong')
-							.classList.remove('active');
-						finishAudio.play();
-					} else {
-						wrongAudio.play();
-
-						$(`#No${path + 1} input[type='text']`).attr(
-							'disabled',
-							'disabled'
-						);
-
-						correctCnt.querySelector('p').innerHTML = cntAC;
-						wrongCnt.querySelector('p').innerHTML = cntWA;
-						correctCnt
-							.querySelector('.correct')
-							.classList.add('active');
-						wrongCnt
-							.querySelector('.wrong')
-							.classList.add('active');
-
-						wrongCD.style.display = 'block';
-						setWrongCD(wrongCD, 3);
-						setTimeout(() => {
-							$(`#No${path + 1} input[type='text']`).removeAttr(
-								'disabled'
-							);
-							wrongCD.style.display = 'none';
-						}, 3000);
-					}
-				});
-		} else if (itemIndex === 5) {
-			let passCheck = [0, 0];
-			for (let indexInput = 0; indexInput < 2; indexInput++) {
-				answerInputList[indexInput].addEventListener('keydown', (e) => {
-					if (e.keyCode === 13) {
-						let userAnswer = e.path[0].value.trim().toLowerCase();
-						let path = Number(e.path[5].getAttribute('sectionId'));
-						let idAnswer = Number(e.path[0].getAttribute('idAns'));
-						let sysAnswer = decode(ansAll[path][idAnswer]);
-						if (userAnswer == sysAnswer) {
-							if (!passCheck[0]) {
-								e.path[5].querySelector(
-									'.no6-part2 .contentp2'
-								).innerHTML += challengeNo6[1];
-								e.path[5].querySelector(
-									'.no6-part2 input'
-								).style.display = 'block';
-							}
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.remove('active');
-							e.path[1]
+							e.path[2]
 								.querySelector('.correct')
 								.classList.add('active');
 							correctAudio.play();
 
-							passCheck[indexInput] = 1;
+							if (indexSubmitBtn === 0)
+								document.querySelector(
+									'#No3 .part2'
+								).style.display = 'block';
+
+							passCheck[indexSubmitBtn] = 1;
 							if (passCheck[0] === passCheck[1] && passCheck[0]) {
-								e.path[5].classList.add('finish');
-								let navFin = document
+								let navFin = e.path[8]
 									.querySelector('.nav-links')
 									.getElementsByClassName('lk')[path];
 								navFin.classList.add('finish', 'lifin');
+								e.path[6].classList.add('finish');
 								finishAudio.play();
 							}
 						} else {
 							wrongAudio.play();
-							e.path[1]
+							e.path[2]
 								.querySelector('.wrong')
 								.classList.add('active');
+							e.path[2]
+								.querySelector('.correct')
+								.classList.remove('active');
+
+							submitBtn.style.display = 'none';
+							e.path[3].querySelector('.wrong-cd').style.display =
+								'block';
+							setWrongCD(e.path[3].querySelector('.wrong-cd'), 3);
+							setTimeout(() => {
+								e.path[2]
+									.querySelector('.wrong')
+									.classList.remove('active');
+								submitBtn.style.display = 'block';
+								e.path[3].querySelector(
+									'.wrong-cd'
+								).style.display = 'none';
+							}, 3000);
+						}
+					});
+				}
+			} else if (itemIndex === 3) {
+				answerInputList[0].addEventListener('keydown', (e) => {
+					if (e.keyCode === 13) {
+						let userAnswer = Number(
+							e.path[0].value.trim().toLowerCase()
+						);
+						let path = Number(e.path[4].getAttribute('sectionId'));
+						let sysAnswer = Number(decode(ansAll[path]));
+						if (!(1 <= userAnswer && userAnswer <= 8192)) {
+							e.path[1]
+								.querySelector('.increase')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.decrease')
+								.classList.remove('active');
 							e.path[1]
 								.querySelector('.correct')
 								.classList.remove('active');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.add('active');
+							wrongAudio.play();
+
+							e.path[1].querySelector('p').innerHTML =
+								'Em đi xa quá, em đi đi xa Dinitz quá!!!';
 
 							$(`#No${path + 1} input[type='text']`).attr(
 								'disabled',
 								'disabled'
 							);
 
-							e.path[2].querySelector('.wrong-cd').style.display =
-								'block';
-							setWrongCD(e.path[2].querySelector('.wrong-cd'), 3);
+							wrongCD.style.display = 'block';
+							setWrongCD(wrongCD, 3);
 							setTimeout(() => {
 								$(
 									`#No${path + 1} input[type='text']`
@@ -621,158 +409,406 @@ for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 								e.path[1]
 									.querySelector('.wrong')
 									.classList.remove('active');
-								e.path[2].querySelector(
-									'.wrong-cd'
-								).style.display = 'none';
+								e.path[1].querySelector('p').innerHTML = '';
+								wrongCD.style.display = 'none';
+							}, 3000);
+						} else {
+							if (userAnswer > sysAnswer) {
+								e.path[1]
+									.querySelector('.increase')
+									.classList.remove('active');
+								e.path[1]
+									.querySelector('.decrease')
+									.classList.add('active');
+								e.path[1]
+									.querySelector('.correct')
+									.classList.remove('active');
+								e.path[1]
+									.querySelector('.wrong')
+									.classList.remove('active');
+								wrongAudio.play();
+
+								e.path[1].querySelector('p').innerHTML =
+									'Xuống đi, cao quá!!!';
+
+								$(`#No${path + 1} input[type='text']`).attr(
+									'disabled',
+									'disabled'
+								);
+
+								wrongCD.style.display = 'block';
+								setWrongCD(wrongCD, 3);
+								setTimeout(() => {
+									$(
+										`#No${path + 1} input[type='text']`
+									).removeAttr('disabled');
+									e.path[1]
+										.querySelector('.decrease')
+										.classList.remove('active');
+									e.path[1].querySelector('p').innerHTML = '';
+									wrongCD.style.display = 'none';
+								}, 3000);
+							} else if (userAnswer < sysAnswer) {
+								e.path[1]
+									.querySelector('.increase')
+									.classList.add('active');
+								e.path[1]
+									.querySelector('.decrease')
+									.classList.remove('active');
+								e.path[1]
+									.querySelector('.correct')
+									.classList.remove('active');
+								e.path[1]
+									.querySelector('.wrong')
+									.classList.remove('active');
+								e.path[1].querySelector('p').innerHTML =
+									'Lên đi em ưi!!!';
+								wrongAudio.play();
+
+								$(`#No${path + 1} input[type='text']`).attr(
+									'disabled',
+									'disabled'
+								);
+
+								wrongCD.style.display = 'block';
+								setWrongCD(wrongCD, 3);
+								setTimeout(() => {
+									$(
+										`#No${path + 1} input[type='text']`
+									).removeAttr('disabled');
+									e.path[1]
+										.querySelector('.increase')
+										.classList.remove('active');
+									e.path[1].querySelector('p').innerHTML = '';
+									wrongCD.style.display = 'none';
+								}, 3000);
+							} else {
+								let navFin = e.path[6]
+									.querySelector('.nav-links')
+									.getElementsByClassName('lk')[path];
+								navFin.classList.add('finish', 'lifin');
+								e.path[4].classList.add('finish');
+								e.path[1]
+									.querySelector('.correct')
+									.classList.add('active');
+								e.path[1]
+									.querySelector('.wrong')
+									.classList.remove('active');
+								e.path[1]
+									.querySelector('.increase')
+									.classList.remove('active');
+								e.path[1]
+									.querySelector('.decrease')
+									.classList.remove('active');
+								e.path[1].querySelector('p').innerHTML =
+									'Ghêk Ghêk';
+								finishAudio.play();
+							}
+						}
+					}
+				});
+			} else if (itemIndex === 4) {
+				let passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+				sectionList[itemIndex]
+					.querySelector('.submit-btn')
+					.addEventListener('click', (e) => {
+						const path = Number(
+							e.path[4].getAttribute('sectionId')
+						);
+						const correctCnt =
+							e.path[4].querySelector('.cnt-correct');
+						const wrongCnt = e.path[4].querySelector('.cnt-wrong');
+
+						for (let idAns = 0; idAns < ansLth; idAns++) {
+							let userAnswer = answerInputList[idAns].value
+								.trim()
+								.toLowerCase();
+							let idAnswer = Number(answerInputList[idAns].id);
+							let sysAnswer = decode(ansAll[path][idAnswer]);
+							if (userAnswer == sysAnswer) {
+								passCheck[idAns] = 1;
+							}
+						}
+
+						let cntAC = 0;
+						let cntWA = 0;
+						for (let idCheck = 0; idCheck < 12; idCheck++) {
+							if (passCheck[idCheck] === 1) cntAC++;
+							else cntWA++;
+						}
+						if (cntAC === 12) {
+							sectionList[path].classList.add('finish');
+							let navFin = document
+								.querySelector('.nav-links')
+								.getElementsByClassName('lk')[path];
+							navFin.classList.add('finish', 'lifin');
+
+							correctCnt.querySelector('p').innerHTML = '';
+							wrongCnt.querySelector('p').innerHTML = '';
+							wrongCnt
+								.querySelector('.wrong')
+								.classList.remove('active');
+							finishAudio.play();
+						} else {
+							wrongAudio.play();
+
+							$(`#No${path + 1} input[type='text']`).attr(
+								'disabled',
+								'disabled'
+							);
+
+							correctCnt.querySelector('p').innerHTML = cntAC;
+							wrongCnt.querySelector('p').innerHTML = cntWA;
+							correctCnt
+								.querySelector('.correct')
+								.classList.add('active');
+							wrongCnt
+								.querySelector('.wrong')
+								.classList.add('active');
+
+							wrongCD.style.display = 'block';
+							setWrongCD(wrongCD, 3);
+							setTimeout(() => {
+								$(
+									`#No${path + 1} input[type='text']`
+								).removeAttr('disabled');
+								wrongCD.style.display = 'none';
+							}, 3000);
+						}
+					});
+			} else if (itemIndex === 5) {
+				let passCheck = [0, 0];
+				for (let indexInput = 0; indexInput < 2; indexInput++) {
+					answerInputList[indexInput].addEventListener(
+						'keydown',
+						(e) => {
+							if (e.keyCode === 13) {
+								let userAnswer = e.path[0].value
+									.trim()
+									.toLowerCase();
+								let path = Number(
+									e.path[5].getAttribute('sectionId')
+								);
+								let idAnswer = Number(
+									e.path[0].getAttribute('idAns')
+								);
+								let sysAnswer = decode(ansAll[path][idAnswer]);
+								if (userAnswer == sysAnswer) {
+									if (!passCheck[0]) {
+										e.path[5].querySelector(
+											'.no6-part2 .contentp2'
+										).innerHTML += challengeNo6[1];
+										e.path[5].querySelector(
+											'.no6-part2 input'
+										).style.display = 'block';
+									}
+									e.path[1]
+										.querySelector('.wrong')
+										.classList.remove('active');
+									e.path[1]
+										.querySelector('.correct')
+										.classList.add('active');
+									correctAudio.play();
+
+									passCheck[indexInput] = 1;
+									if (
+										passCheck[0] === passCheck[1] &&
+										passCheck[0]
+									) {
+										e.path[5].classList.add('finish');
+										let navFin = document
+											.querySelector('.nav-links')
+											.getElementsByClassName('lk')[path];
+										navFin.classList.add('finish', 'lifin');
+										finishAudio.play();
+									}
+								} else {
+									wrongAudio.play();
+									e.path[1]
+										.querySelector('.wrong')
+										.classList.add('active');
+									e.path[1]
+										.querySelector('.correct')
+										.classList.remove('active');
+
+									$(`#No${path + 1} input[type='text']`).attr(
+										'disabled',
+										'disabled'
+									);
+
+									e.path[2].querySelector(
+										'.wrong-cd'
+									).style.display = 'block';
+									setWrongCD(
+										e.path[2].querySelector('.wrong-cd'),
+										3
+									);
+									setTimeout(() => {
+										$(
+											`#No${path + 1} input[type='text']`
+										).removeAttr('disabled');
+										e.path[1]
+											.querySelector('.wrong')
+											.classList.remove('active');
+										e.path[2].querySelector(
+											'.wrong-cd'
+										).style.display = 'none';
+									}, 3000);
+								}
+							}
+						}
+					);
+				}
+			} else {
+				answerInputList[0].addEventListener('keydown', (e) => {
+					if (e.keyCode === 13) {
+						let userAnswer = answerInputList[0].value
+							.trim()
+							.toLowerCase();
+						let path = Number(e.path[4].getAttribute('sectionId'));
+						let sysAnswer = decode(ansAll[path]);
+						if (userAnswer == sysAnswer) {
+							finishAudio.play();
+							let navFin = e.path[6]
+								.querySelector('.nav-links')
+								.getElementsByClassName('lk')[path];
+							navFin.classList.add('finish', 'lifin');
+
+							e.path[4].classList.add('finish');
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.remove('active');
+							e.path[1]
+								.querySelector('.correct')
+								.classList.add('active');
+						} else {
+							wrongAudio.play();
+							e.path[1]
+								.querySelector('.wrong')
+								.classList.add('active');
+							e.path[1]
+								.querySelector('.correct')
+								.classList.remove('active');
+
+							$(`#No${path + 1} input[type='text']`).attr(
+								'disabled',
+								'disabled'
+							);
+
+							wrongCD.style.display = 'block';
+							setWrongCD(wrongCD, 3);
+							setTimeout(() => {
+								$(
+									`#No${path + 1} input[type='text']`
+								).removeAttr('disabled');
+								e.path[1]
+									.querySelector('.wrong')
+									.classList.remove('active');
+								wrongCD.style.display = 'none';
 							}, 3000);
 						}
 					}
 				});
 			}
-		} else {
-			answerInputList[0].addEventListener('keydown', (e) => {
-				if (e.keyCode === 13) {
-					let userAnswer = answerInputList[0].value
-						.trim()
-						.toLowerCase();
-					let path = Number(e.path[4].getAttribute('sectionId'));
-					let sysAnswer = decode(ansAll[path]);
-					if (userAnswer == sysAnswer) {
-						finishAudio.play();
-						let navFin = e.path[6]
-							.querySelector('.nav-links')
-							.getElementsByClassName('lk')[path];
-						navFin.classList.add('finish', 'lifin');
-
-						e.path[4].classList.add('finish');
-						e.path[1]
-							.querySelector('.wrong')
-							.classList.remove('active');
-						e.path[1]
-							.querySelector('.correct')
-							.classList.add('active');
-					} else {
-						wrongAudio.play();
-						e.path[1]
-							.querySelector('.wrong')
-							.classList.add('active');
-						e.path[1]
-							.querySelector('.correct')
-							.classList.remove('active');
-
-						$(`#No${path + 1} input[type='text']`).attr(
-							'disabled',
-							'disabled'
-						);
-
-						wrongCD.style.display = 'block';
-						setWrongCD(wrongCD, 3);
-						setTimeout(() => {
-							$(`#No${path + 1} input[type='text']`).removeAttr(
-								'disabled'
-							);
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.remove('active');
-							wrongCD.style.display = 'none';
-						}, 3000);
-					}
-				}
-			});
 		}
 	}
-}
 
-function allowDrop(e) {
-	e.preventDefault();
-}
+	function allowDrop(e) {
+		e.preventDefault();
+	}
 
-function drag(e) {
-	e.dataTransfer.setData('text', e.target.id);
-}
+	function drag(e) {
+		e.dataTransfer.setData('text', e.target.id);
+	}
 
-function drop(e) {
-	e.preventDefault();
-	var data = e.dataTransfer.getData('text');
-	e.target.appendChild(document.getElementById(data));
-}
+	function drop(e) {
+		e.preventDefault();
+		var data = e.dataTransfer.getData('text');
+		e.target.appendChild(document.getElementById(data));
+	}
 
-fetch('../db/key.json')
-	.then((rsp) => rsp.json())
-	.then((rawData) => {
-		const testID = document.querySelector('.banner').getAttribute('id');
+	fetch('db/key.json')
+		.then((rsp) => rsp.json())
+		.then((rawData) => {
+			const testID = document.querySelector('.banner').getAttribute('id');
 
-		return rawData[testID == 'admin-acc' ? 0 : testID].key.map((item) => {
-			return [decode(item['challenge-key']), item['challenge-id'] - 1];
-		});
-	})
-	.then((unlockedKey) => {
-		document
-			.querySelector('.banner input')
-			.addEventListener('keydown', (e) => {
-				if (e.keyCode === 8)
-					$('html, body').animate(
-						{ scrollTop: $('#top').offset().top - 100 },
-						1
-					);
-
-				if (e.keyCode === 13) {
-					const keyReceive = e.path[0].value.trim();
-					let cntWrong = 0;
-					for (let keyItem of unlockedKey) {
-						if (keyReceive == keyItem[0]) {
-							sectionList[keyItem[1]].className = sectionList[
-								keyItem[1]
-							].className.replace(' locked', '');
-							const thisLink =
-								document.querySelectorAll('.nav-links .lk')[
-									keyItem[1]
-								];
-							thisLink.className = thisLink.className.replace(
-								' lilocked',
-								''
-							);
-							e.path[1].querySelector('p').style.color =
-								'#32D700';
-							e.path[1].querySelector('p').innerHTML = `No${
-								keyItem[1] + 1
-							} đã mở khóa`;
-							$('html, body').animate(
-								{
-									scrollTop:
-										$(`#No${keyItem[1] + 1}`).offset().top -
-										100,
-								},
-								900
-							);
-							if (keyItem[1] === 5) {
-								document.querySelector(
-									'#No6 .contentp1'
-								).innerHTML += challengeNo6[0];
-							}
-							if (keyItem[1] === 2)
-								document.querySelector(
-									'#No3 .part1'
-								).style.display = 'block';
-
-							sectionList[keyItem[1]].querySelector(
-								'.lock'
-							).style.display = 'none';
-						} else cntWrong++;
-					}
-
-					if (cntWrong === 6) {
-						e.path[1].querySelector('p').style.color = 'red';
-						e.path[1].querySelector('p').innerHTML =
-							'Key is invalid';
-						setTimeout(() => {
-							e.path[1].querySelector('p').innerHTML = '';
-						}, 2000);
-					}
+			return rawData[testID == 'admin-acc' ? 0 : testID].key.map(
+				(item) => {
+					return [
+						decode(item['challenge-key']),
+						item['challenge-id'] - 1,
+					];
 				}
-			});
-	})
-	.catch((err) => {
-		alert('Error on Load File. Please Reload The Page!!!');
-		console.log(err);
-	});
+			);
+		})
+		.then((unlockedKey) => {
+			document
+				.querySelector('.banner input')
+				.addEventListener('keydown', (e) => {
+					if (e.keyCode === 8)
+						$('html, body').animate(
+							{ scrollTop: $('#top').offset().top - 100 },
+							1
+						);
+
+					if (e.keyCode === 13) {
+						const keyReceive = e.path[0].value.trim();
+						let cntWrong = 0;
+						for (let keyItem of unlockedKey) {
+							if (keyReceive == keyItem[0]) {
+								sectionList[keyItem[1]].className = sectionList[
+									keyItem[1]
+								].className.replace(' locked', '');
+								const thisLink =
+									document.querySelectorAll('.nav-links .lk')[
+										keyItem[1]
+									];
+								thisLink.className = thisLink.className.replace(
+									' lilocked',
+									''
+								);
+								e.path[1].querySelector('p').style.color =
+									'#32D700';
+								e.path[1].querySelector('p').innerHTML = `No${
+									keyItem[1] + 1
+								} đã mở khóa`;
+								$('html, body').animate(
+									{
+										scrollTop:
+											$(`#No${keyItem[1] + 1}`).offset()
+												.top - 100,
+									},
+									900
+								);
+								if (keyItem[1] === 5) {
+									document.querySelector(
+										'#No6 .contentp1'
+									).innerHTML += challengeNo6[0];
+								}
+								if (keyItem[1] === 2)
+									document.querySelector(
+										'#No3 .part1'
+									).style.display = 'block';
+
+								sectionList[keyItem[1]].querySelector(
+									'.lock'
+								).style.display = 'none';
+							} else cntWrong++;
+						}
+
+						if (cntWrong === 6) {
+							e.path[1].querySelector('p').style.color = 'red';
+							e.path[1].querySelector('p').innerHTML =
+								'Key is invalid';
+							setTimeout(() => {
+								e.path[1].querySelector('p').innerHTML = '';
+							}, 2000);
+						}
+					}
+				});
+		})
+		.catch((err) => {
+			alert('Error on Load File. Please Reload The Page!!!');
+			console.log(err);
+		});
+};
