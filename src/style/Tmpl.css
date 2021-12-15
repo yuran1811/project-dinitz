@@ -458,7 +458,7 @@ audio {
 }
 
 .banner .avatar::after {
-	content: 'Admin';
+	content: attr(data-userID);
 	position: absolute;
 	font-size: 2rem;
 	text-align: center;

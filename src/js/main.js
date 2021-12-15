@@ -28,6 +28,7 @@ fetch('./db/acc.json')
 		return data;
 	})
 	.then((data) => {
+		let userID = -1;
 		const check = () => {
 			const username = _$('.user-name').value;
 			const password = _$('.password').value;
@@ -35,11 +36,12 @@ fetch('./db/acc.json')
 			for (let item of data) {
 				if (username == item.name && password == item.pass) {
 					isSuccess = true;
-					testLink = item.link;
+					userID = item.id;
 					break;
 				}
 				if (username == 'Admin' && password == 1234) {
 					isSuccess = true;
+					userID = 13;
 					break;
 				}
 			}
@@ -55,16 +57,16 @@ fetch('./db/acc.json')
 			_$('#log-in').classList.add('correct');
 		};
 
-		$$_('.input-field').forEach((item) => {
+		$$_('.input-field').forEach((item) =>
 			item.addEventListener('keydown', (e) => {
 				if (e.keyCode === 13) check();
-			});
-		});
+			})
+		);
 		_$('#log-in').addEventListener('click', check);
 
-		_$('#sign-up-btn').addEventListener('click', () => {
-			_$('.container').classList.add('sign-up-mode');
-		});
+		_$('#sign-up-btn').addEventListener('click', () =>
+			_$('.container').classList.add('sign-up-mode')
+		);
 
 		const reRender = () => {
 			const htmls = `
@@ -138,7 +140,7 @@ fetch('./db/acc.json')
 				</span>
 			</div>
 			<div class="banner" id="admin-acc">
-				<div class="avatar">
+				<div class="avatar" data-userID=${userID === 13 ? 'Admin' : `Đội ${userID}`}>
 					<img
 						src="https://miro.medium.com/fit/c/1360/1360/2*Y4aq3TeFNG8yjWcJHpz0pA.png"
 						alt="avatar"
