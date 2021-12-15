@@ -6,17 +6,8 @@
 		<link rel="icon" href="../Library/Dinitz_Logo.png" />
 		<link
 			rel="stylesheet"
-			href="https://www.w3schools.com/w3css/4/w3.css"
-		/>
-		<link
-			rel="stylesheet"
 			href="https://fonts.googleapis.com/css?family=Raleway"
 		/>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-		/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<title>Landing</title>
 		<style>
 			* {
@@ -203,10 +194,8 @@
 								clearInterval(x);
 								$('.title').innerHTML = 'Project: Dinitz';
 								$('.count-down').innerHTML = 'Get Started';
-								$('.content a').attr(
-									'href',
-									'https://yuran1811.github.io/project-dinitz/'
-								);
+								$('.content a').href =
+									'https://yuran1811.github.io/project-dinitz/';
 							}
 						}, 1000);
 					}, 300);
