@@ -23,10 +23,11 @@
 
 			body {
 				background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+				background-repeat: no-repeat;
 				background-position: center;
-				background-size: cover;
+				background-size: 120% 120%;
 				text-align: center;
-
+				overflow: hidden;
 				min-height: 90%;
 				display: flex;
 				align-items: center;
@@ -44,7 +45,6 @@
 				border-radius: 100px;
 				margin-top: 10px;
 				width: 25%;
-
 				display: flex;
 				justify-content: center;
 			}
@@ -55,8 +55,8 @@
 				display: inline;
 				color: black;
 				opacity: 0;
-				transition: 2s ease;
 				line-height: 1;
+				transition: 2s ease;
 			}
 			.header p::after {
 				content: '';
@@ -90,6 +90,7 @@
 			.title {
 				opacity: 0;
 				font-size: 6rem;
+				margin: 15px auto;
 				letter-spacing: 5px;
 				transform: translateY(-200px);
 				transition: 1.2s ease, transform 1.7s;
@@ -99,7 +100,6 @@
 				display: block;
 				position: absolute;
 				left: 50%;
-
 				opacity: 0;
 				width: 0px;
 				height: 5px;
@@ -126,13 +126,23 @@
 			}
 
 			.footer {
-				font-size: 1.8rem;
 				margin: 0 0 15px;
+				font-size: 1.8rem;
 				text-decoration: none;
 				transition: all 0.3s ease;
 			}
 			.footer:hover {
 				font-size: 2.1rem;
+			}
+
+			@media (max-width: 1100px) {
+				.header p {
+					display: none;
+				}
+
+				.title {
+					font-size: 4rem;
+				}
 			}
 		</style>
 	</head>
