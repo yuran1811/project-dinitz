@@ -896,6 +896,7 @@ body.dark #box10 {
 #drag9:hover,
 #drag10:hover,
 #drag11:hover {
+	transition: all 0.3s ease;
 	background-size: 100% 100%;
 }
 

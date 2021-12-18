@@ -421,7 +421,6 @@ const templateHandle = () => {
 	for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
 		const infoBtn = sectionList[itemIndex].querySelector('.info-btn');
 		const infoContent = sectionList[itemIndex].querySelector('.info');
-
 		if (infoBtn && infoContent)
 			infoBtn.addEventListener('click', () => {
 				infoBtn.classList.toggle('active');
@@ -448,20 +447,27 @@ const templateHandle = () => {
 
 		let answerInputList =
 			sectionList[itemIndex].querySelectorAll('input[type="text"]');
-		let ansLth = answerInputList.length;
-
 		let submitBtnList =
 			sectionList[itemIndex].querySelectorAll('.submit-btn');
-		let submitListLength = submitBtnList.length;
 
+		let ansLth = answerInputList.length;
+		let submitListLth = submitBtnList.length;
 		let wrongCD = sectionList[itemIndex].querySelector('.wrong-cd');
 
-		if (ansLth || submitListLength) {
+		if (ansLth || submitListLth) {
 			if (itemIndex === 2) {
 				const numPath = [3, 4];
 				let passCheck = [0, 0];
-				for (let submitBtn of submitBtnList) {
-					submitBtn.addEventListener('click', (e) => {
+				function clickEvent(e) {
+					console.log(e);
+				}
+
+				submitBtnList.forEach((submitBtn) => {
+					submitBtn.onclick = (e) => {
+						console.log('hello');
+						Hello(e);
+					};
+					function Hello(e) {
 						const path = Number(
 							e.path[6].getAttribute('sectionId')
 						);
@@ -531,8 +537,9 @@ const templateHandle = () => {
 								).style.display = 'none';
 							}, 3000);
 						}
-					});
-				}
+					}
+					console.log([submitBtn, submitBtn.onclick]);
+				});
 			} else if (itemIndex === 3) {
 				answerInputList[0].addEventListener('keydown', (e) => {
 					if (e.keyCode === 13) {
@@ -824,7 +831,7 @@ const templateHandle = () => {
 					);
 				}
 			} else {
-				answerInputList[0].addEventListener('keydown', (e) => {
+				answerInputList[0].onkeydown = (e) => {
 					if (e.keyCode === 13) {
 						let userAnswer = answerInputList[0].value
 							.trim()
@@ -872,21 +879,9 @@ const templateHandle = () => {
 							}, 3000);
 						}
 					}
-				});
+				};
 			}
 		}
-	}
-
-	function allowDrop(e) {
-		e.preventDefault();
-	}
-	function drag(e) {
-		e.dataTransfer.setData('text', e.target.id);
-	}
-	function drop(e) {
-		e.preventDefault();
-		var data = e.dataTransfer.getData('text');
-		e.target.appendChild(document.getElementById(data));
 	}
 
 	fetch('db/key.json')
@@ -986,3 +981,15 @@ const templateHandle = () => {
 			console.log(err);
 		});
 };
+
+function allowDrop(e) {
+	e.preventDefault();
+}
+function drag(e) {
+	e.dataTransfer.setData('text', e.target.id);
+}
+function drop(e) {
+	e.preventDefault();
+	var data = e.dataTransfer.getData('text');
+	e.target.appendChild(document.getElementById(data));
+}
