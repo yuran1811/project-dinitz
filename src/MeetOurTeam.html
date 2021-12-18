@@ -76,16 +76,23 @@
 				background: white;
 			}
 
+			.wrapper {
+				position: absolute;
+				inset: 0;
+				width: 100%;
+				height: 100%;
+			}
+
 			.wrapper .module-team {
 				position: relative;
 			}
 
 			.wrapper .module-team:before {
-				width: 100%;
-				height: 380px;
-				background-color: #eaeaea;
+				/* background-color: #eaeaea; */
 				content: '';
 				position: absolute;
+				width: 100%;
+				height: 380px;
 				z-index: -1;
 			}
 
@@ -108,30 +115,29 @@
 			}
 
 			.wrapper .module-team .team .title {
-				text-align: center;
-				margin-bottom: 80px;
-				color: #6f7073;
-				font-size: 44px;
-				line-height: normal;
-				text-transform: uppercase;
-				font-weight: bold;
-				letter-spacing: 1.3px;
 				position: relative;
+				margin-bottom: 80px;
+				height: 100px;
+				color: #fff;
+				font-size: 44px;
+				font-weight: bold;
+				text-align: center;
+				line-height: normal;
+				letter-spacing: 1.3px;
+				text-transform: uppercase;
 				display: flex;
 				justify-content: center;
 				align-items: flex-start;
-				height: 100px;
 			}
-
 			.wrapper .module-team .team .title:before {
 				content: '';
 				position: absolute;
+				bottom: 0;
 				width: 280px;
 				height: 10px;
-				background: #6f7073;
+				opacity: 0.7;
+				background: rgb(231, 231, 231);
 				border-radius: 50px;
-				bottom: 0;
-				opacity: 0.2;
 			}
 
 			@media screen and (max-width: 799px) {
@@ -143,26 +149,25 @@
 
 			@media screen and (max-width: 799px) {
 				.wrapper .module-team .team .title {
-					font-size: 32px;
 					height: 60px;
+					font-size: 32px;
 					margin-bottom: 40px;
 				}
 			}
 
 			.wrapper .module-team .team .team-cards {
 				position: relative;
-				display: flex;
-				justify-content: center;
-				align-items: center;
 				overflow: hidden;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 			}
 
 			.wrapper .module-team .team .team-cards .swiper-container {
-				max-width: 920px;
 				height: 360px;
 				padding: 0 20px;
+				max-width: 920px;
 				cursor: default;
-				/* Card */
 			}
 
 			@media screen and (max-width: 1180px) {
@@ -1115,6 +1120,8 @@
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
+		<script src="js/particleBG.js"></script>
 		<script>
 			const $ = document.querySelector.bind(document);
 			const $$ = document.querySelectorAll.bind(document);
@@ -1187,7 +1194,6 @@
 						facebook: 'https://www.facebook.com/tranminhtien.1404',
 					},
 				];
-
 				const icons = [
 					{
 						iFacebook: '../Library/imgMembers/facebook.svg',
@@ -1208,11 +1214,8 @@
 							email = team[i].email;
 
 						const roleHTML = role
-							.map((item) => {
-								return `<p class="role">${item}</p>`;
-							})
+							.map((item) => `<p class="role">${item}</p>`)
 							.join('');
-
 						const htmls = `
 									<div class="swiper-slide">
 										<div class="card">
@@ -1238,7 +1241,6 @@
 											</div>
 										</div>
 									</div>`;
-
 						swiperWrapper.insertAdjacentHTML('beforeend', htmls);
 					}
 				})();
