@@ -893,18 +893,14 @@ const templateHandle = () => {
 		.then((rsp) => rsp.json())
 		.then((rawData) => {
 			const testID = document.querySelector('.banner').getAttribute('id');
-
 			return rawData[testID == 'admin-acc' ? 0 : testID].key.map(
-				(item) => {
-					return [
-						decode(item['challenge-key']),
-						item['challenge-id'] - 1,
-					];
-				}
+				(item) => [
+					decode(item['challenge-key']),
+					item['challenge-id'] - 1,
+				]
 			);
 		})
 		.then((unlockedKey) => {
-			console.log('unlockedKey: ', unlockedKey);
 			document
 				.querySelector('.banner input')
 				.addEventListener('keydown', (e) => {
