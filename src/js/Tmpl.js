@@ -1,34 +1,29 @@
-const templateHandle = () => {
+const shitsHandle = () => {
 	$('.nav-bar a').on('click', function (e) {
 		e.preventDefault();
 		const href = $(this).attr('href');
 		$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 	});
-
 	$('.to-top a').on('click', function (e) {
 		e.preventDefault();
 		const href = $(this).attr('href');
 		$('html, body').animate({ scrollTop: $(href).offset().top - 100 }, 1);
 	});
-
 	$('.toggle-theme').on('click', function () {
 		$('body').toggleClass('dark');
 		$('.moon').toggleClass('active');
 		$('.sun').toggleClass('active');
 	});
-
 	$('.menu').on('click', function () {
 		$('.nav-bar').toggleClass('active');
 		$('#menu-bar1').toggleClass('active');
 		$('#menu-bar2').toggleClass('active');
 	});
-
 	$('.nav-overlay').on('click', function () {
 		$('.nav-bar').removeClass('active');
 		$('#menu-bar1').removeClass('active');
 		$('#menu-bar2').removeClass('active');
 	});
-
 	(() => {
 		const toTop = document.querySelector('.to-top');
 		window.onscroll = () => {
@@ -40,7 +35,6 @@ const templateHandle = () => {
 			else toTop.style.display = 'none';
 		};
 	})();
-
 	(() => {
 		document.querySelectorAll('.lk').forEach((link) => {
 			link.classList.add('lilocked');
@@ -59,13 +53,12 @@ const templateHandle = () => {
 			});
 		});
 	})();
-
 	(() => {
 		const bgmItem = document.querySelector('.bgm');
 		const bgmIcon = document.querySelector('.bgm > i');
 		const allTrack = bgmItem.querySelectorAll('.track audio');
 		allTrack.forEach((item) => {
-			item.volume = 0.4;
+			item.volume = 0.2;
 			item.loop = true;
 		});
 
@@ -104,11 +97,15 @@ const templateHandle = () => {
 			});
 		});
 	})();
+};
 
-	const correctAudio = document.querySelector('.correct-sound');
+const templateHandle = () => {
+	shitsHandle();
+
 	const wrongAudio = document.querySelector('.fail-sound');
 	const finishAudio = document.querySelector('.finish-sound');
-	correctAudio.volume = wrongAudio.volume = finishAudio.volume = 0.6;
+	const correctAudio = document.querySelector('.correct-sound');
+	correctAudio.volume = wrongAudio.volume = finishAudio.volume = 0.4;
 
 	// Cooldown
 	function setWrongCD(item, countDown) {
@@ -151,7 +148,6 @@ const templateHandle = () => {
 		],
 	];
 	const allHint = [hintNo1, hintNo2, 0, hintNo4, 0, 0];
-
 	function getHint(sectionItem, sectionId) {
 		sectionItem.querySelector('.hint-btn').classList.toggle('active');
 
@@ -186,7 +182,7 @@ const templateHandle = () => {
 		}, 4000);
 	}
 
-	// Challenge Handle
+	// Main Event Handle
 	const challengeNo1 = `<p>
 								“Chào mừng các thành viên của đội chơi đã đến với
 								thử thách “Emag min”, vì sợ các bạn nhàm chán nên
@@ -396,7 +392,6 @@ const templateHandle = () => {
 		[92134, 55950, 88939],
 	];
 	const ansAll = [ans1, ans2, ans3, ans4, ans5, ans6];
-
 	function decode(ansArray) {
 		function getPow(a, b, p) {
 			if (!b) return 1;
@@ -411,162 +406,159 @@ const templateHandle = () => {
 		return res.join('');
 	}
 
-	// Content Handle
-	const sectionList = document.querySelectorAll('section');
-	const sectionListLth = sectionList.length;
+	const sections = document.querySelectorAll('section');
 
-	for (let item of sectionList)
-		item.innerHTML += `<i class="fas fa-lock lock" style="display: block"></i>`;
+	const mainEventHandle = () => {
+		sections.forEach((section, index) => {
+			section.innerHTML += `<i class="fas fa-lock lock"></i>`;
 
-	for (var itemIndex = 0; itemIndex < sectionListLth; itemIndex++) {
-		const infoBtn = sectionList[itemIndex].querySelector('.info-btn');
-		const infoContent = sectionList[itemIndex].querySelector('.info');
-		if (infoBtn && infoContent)
-			infoBtn.addEventListener('click', () => {
-				infoBtn.classList.toggle('active');
-				infoContent.classList.toggle('active');
-			});
+			const infoBtn = section.querySelector('.info-btn');
+			const infoContent = section.querySelector('.info');
+			if (infoBtn && infoContent)
+				infoBtn.onclick = () => (
+					infoBtn.classList.toggle('active'),
+					infoContent.classList.toggle('active')
+				);
 
-		const challengeBtn =
-			sectionList[itemIndex].querySelector('.challenge-btn');
-		const challengeContent =
-			sectionList[itemIndex].querySelector('.challenge-content');
-		if (challengeContent)
-			challengeBtn.addEventListener('click', () => {
-				challengeBtn.classList.toggle('active');
-				challengeContent.classList.toggle('active');
-				if (itemIndex === 5)
-					document.querySelector('.no6-part1').style.display =
-						'block';
-			});
+			const challengeBtn = section.querySelector('.challenge-btn');
+			const challengeContent =
+				section.querySelector('.challenge-content');
+			if (challengeContent)
+				challengeBtn.onclick = () => {
+					challengeBtn.classList.toggle('active');
+					challengeContent.classList.toggle('active');
+					if (index === 5)
+						section.querySelector('.no6-part1').style.display =
+							'block';
+				};
 
-		let hintBtn = sectionList[itemIndex].querySelector('.hint-btn');
-		if (hintBtn)
-			hintBtn.onclick = (e) =>
-				getHint(e.path[3], Number(e.path[3].getAttribute('sectionId')));
+			let hintBtn = section.querySelector('.hint-btn');
+			if (hintBtn) hintBtn.onclick = () => getHint(section, index);
 
-		let answerInputList =
-			sectionList[itemIndex].querySelectorAll('input[type="text"]');
-		let submitBtnList =
-			sectionList[itemIndex].querySelectorAll('.submit-btn');
+			let answerInputList =
+				section.querySelectorAll('input[type="text"]');
+			let submitBtnList = section.querySelectorAll('.submit-btn');
+			let ansLth = answerInputList.length;
+			let submitListLth = submitBtnList.length;
+			let wrongCD = section.querySelector('.wrong-cd');
 
-		let ansLth = answerInputList.length;
-		let submitListLth = submitBtnList.length;
-		let wrongCD = sectionList[itemIndex].querySelector('.wrong-cd');
+			if (ansLth || submitListLth) {
+				if (index === 2) {
+					const numPath = [3, 4];
+					let passCheck = [0, 0];
 
-		if (ansLth || submitListLth) {
-			if (itemIndex === 2) {
-				const numPath = [3, 4];
-				let passCheck = [0, 0];
-				function clickEvent(e) {
-					console.log(e);
-				}
+					// submitBtnList.forEach((submitBtn) => {
+					// 	submitBtn.onclick = (event) => {
+					// 		function Hello(e) {
+					// 			const path = Number(
+					// 				e.path[6].getAttribute('sectionId')
+					// 			);
+					// 			let indexSubmitBtn = Number(
+					// 				e.target.getAttribute('idSubmit')
+					// 			);
+					// 			let boxList =
+					// 				e.path[1].querySelectorAll('.box');
+					// 			let cntCorrectBox = 0;
+					// 			let cntFillBox = 0;
 
-				submitBtnList.forEach((submitBtn) => {
-					submitBtn.onclick = (e) => {
-						console.log('hello');
-						Hello(e);
-					};
-					function Hello(e) {
-						const path = Number(
-							e.path[6].getAttribute('sectionId')
-						);
-						let indexSubmitBtn = Number(
-							e.path[0].getAttribute('idSubmit')
-						);
-						let boxList = e.path[1].querySelectorAll('.box');
-						let cntCorrectBox = 0;
-						let cntCillBox = 0;
+					// 			for (let boxItem of boxList) {
+					// 				let itemInBox =
+					// 					boxItem.querySelector('.item');
+					// 				if (!itemInBox) continue;
 
-						for (let boxItem of boxList) {
-							let itemInBox = boxItem.querySelector('.item');
-							if (!itemInBox) continue;
+					// 				let numberItem =
+					// 					itemInBox.getAttribute('catch');
+					// 				let numberBox = boxItem.getAttribute('try');
+					// 				if (numberItem == numberBox)
+					// 					cntCorrectBox++;
+					// 				cntFillBox++;
+					// 			}
 
-							let numberItem = itemInBox.getAttribute('catch');
-							let numberBox = boxItem.getAttribute('try');
-							if (numberItem == numberBox) cntCorrectBox++;
-							cntCillBox++;
-						}
+					// 			if (
+					// 				cntCorrectBox === numPath[indexSubmitBtn] &&
+					// 				cntFillBox === cntCorrectBox
+					// 			) {
+					// 				e.path[2]
+					// 					.querySelector('.wrong')
+					// 					.classList.remove('active');
+					// 				e.path[2]
+					// 					.querySelector('.correct')
+					// 					.classList.add('active');
+					// 				correctAudio.play();
 
-						if (
-							cntCorrectBox === numPath[indexSubmitBtn] &&
-							cntCillBox === cntCorrectBox
-						) {
-							e.path[2]
-								.querySelector('.wrong')
-								.classList.remove('active');
-							e.path[2]
-								.querySelector('.correct')
-								.classList.add('active');
-							correctAudio.play();
+					// 				if (indexSubmitBtn === 0)
+					// 					document.querySelector(
+					// 						'#No3 .part2'
+					// 					).style.display = 'block';
 
-							if (indexSubmitBtn === 0)
-								document.querySelector(
-									'#No3 .part2'
-								).style.display = 'block';
+					// 				passCheck[indexSubmitBtn] = 1;
+					// 				if (
+					// 					passCheck[0] === passCheck[1] &&
+					// 					passCheck[0]
+					// 				) {
+					// 					let navFin = e.path[8]
+					// 						.querySelector('.nav-links')
+					// 						.getElementsByClassName('lk')[path];
+					// 					navFin.classList.add('finish', 'lifin');
+					// 					e.path[6].classList.add('finish');
+					// 					finishAudio.play();
+					// 				}
+					// 			} else {
+					// 				wrongAudio.play();
+					// 				e.path[2]
+					// 					.querySelector('.wrong')
+					// 					.classList.add('active');
+					// 				e.path[2]
+					// 					.querySelector('.correct')
+					// 					.classList.remove('active');
 
-							passCheck[indexSubmitBtn] = 1;
-							if (passCheck[0] === passCheck[1] && passCheck[0]) {
-								let navFin = e.path[8]
-									.querySelector('.nav-links')
-									.getElementsByClassName('lk')[path];
-								navFin.classList.add('finish', 'lifin');
-								e.path[6].classList.add('finish');
-								finishAudio.play();
-							}
-						} else {
-							wrongAudio.play();
-							e.path[2]
-								.querySelector('.wrong')
-								.classList.add('active');
-							e.path[2]
-								.querySelector('.correct')
-								.classList.remove('active');
+					// 				submitBtn.style.display = 'none';
+					// 				e.path[3].querySelector(
+					// 					'.wrong-cd'
+					// 				).style.display = 'block';
+					// 				setWrongCD(
+					// 					e.path[3].querySelector('.wrong-cd'),
+					// 					3
+					// 				);
+					// 				setTimeout(() => {
+					// 					e.path[2]
+					// 						.querySelector('.wrong')
+					// 						.classList.remove('active');
+					// 					submitBtn.style.display = 'block';
+					// 					e.path[3].querySelector(
+					// 						'.wrong-cd'
+					// 					).style.display = 'none';
+					// 				}, 3000);
+					// 			}
+					// 		}
+					// 	};
+					// 	console.log([submitBtn, submitBtn.onclick]);
+					// });
+				} else if (index === 3) {
+					answerInputList[0].addEventListener('keydown', (e) => {
+						if (e.keyCode !== 13) return;
 
-							submitBtn.style.display = 'none';
-							e.path[3].querySelector('.wrong-cd').style.display =
-								'block';
-							setWrongCD(e.path[3].querySelector('.wrong-cd'), 3);
-							setTimeout(() => {
-								e.path[2]
-									.querySelector('.wrong')
-									.classList.remove('active');
-								submitBtn.style.display = 'block';
-								e.path[3].querySelector(
-									'.wrong-cd'
-								).style.display = 'none';
-							}, 3000);
-						}
-					}
-					console.log([submitBtn, submitBtn.onclick]);
-				});
-			} else if (itemIndex === 3) {
-				answerInputList[0].addEventListener('keydown', (e) => {
-					if (e.keyCode === 13) {
+						const increaseIco = section.querySelector('.increase');
+						const decreaseIco = section.querySelector('.decrease');
+						const correctIco = section.querySelector('.correct');
+						const wrongIco = section.querySelector('.wrong');
+						const ansLog = section.querySelector('p');
+
 						let userAnswer = Number(
-							e.path[0].value.trim().toLowerCase()
+							e.target.value.trim().toLowerCase()
 						);
-						let path = Number(e.path[4].getAttribute('sectionId'));
-						let sysAnswer = Number(decode(ansAll[path]));
+						let sysAnswer = Number(decode(ansAll[index]));
 						if (!(1 <= userAnswer && userAnswer <= 8192)) {
-							e.path[1]
-								.querySelector('.increase')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.decrease')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.correct')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.add('active');
+							increaseIco.classList.remove('active');
+							decreaseIco.classList.remove('active');
+							correctIco.classList.remove('active');
+							wrongIco.classList.add('active');
 							wrongAudio.play();
 
-							e.path[1].querySelector('p').innerHTML =
+							ansLog.innerHTML =
 								'Em đi xa quá, em đi đi xa Dinitz quá!!!';
 
-							$(`#No${path + 1} input[type='text']`).attr(
+							$(`#No${index + 1} input[type='text']`).attr(
 								'disabled',
 								'disabled'
 							);
@@ -575,34 +567,23 @@ const templateHandle = () => {
 							setWrongCD(wrongCD, 3);
 							setTimeout(() => {
 								$(
-									`#No${path + 1} input[type='text']`
+									`#No${index + 1} input[type='text']`
 								).removeAttr('disabled');
-								e.path[1]
-									.querySelector('.wrong')
-									.classList.remove('active');
-								e.path[1].querySelector('p').innerHTML = '';
+								wrongIco.classList.remove('active');
 								wrongCD.style.display = 'none';
+								ansLog.innerHTML = '';
 							}, 3000);
 						} else {
 							if (userAnswer > sysAnswer) {
-								e.path[1]
-									.querySelector('.increase')
-									.classList.remove('active');
-								e.path[1]
-									.querySelector('.decrease')
-									.classList.add('active');
-								e.path[1]
-									.querySelector('.correct')
-									.classList.remove('active');
-								e.path[1]
-									.querySelector('.wrong')
-									.classList.remove('active');
+								increaseIco.classList.remove('active');
+								correctIco.classList.remove('active');
+								decreaseIco.classList.add('active');
+								wrongIco.classList.remove('active');
 								wrongAudio.play();
 
-								e.path[1].querySelector('p').innerHTML =
-									'Xuống đi, cao quá!!!';
+								ansLog.innerHTML = 'Xuống đi, cao quá!!!';
 
-								$(`#No${path + 1} input[type='text']`).attr(
+								$(`#No${index + 1} input[type='text']`).attr(
 									'disabled',
 									'disabled'
 								);
@@ -611,32 +592,21 @@ const templateHandle = () => {
 								setWrongCD(wrongCD, 3);
 								setTimeout(() => {
 									$(
-										`#No${path + 1} input[type='text']`
+										`#No${index + 1} input[type='text']`
 									).removeAttr('disabled');
-									e.path[1]
-										.querySelector('.decrease')
-										.classList.remove('active');
-									e.path[1].querySelector('p').innerHTML = '';
+									decreaseIco.classList.remove('active');
 									wrongCD.style.display = 'none';
+									ansLog.innerHTML = '';
 								}, 3000);
 							} else if (userAnswer < sysAnswer) {
-								e.path[1]
-									.querySelector('.increase')
-									.classList.add('active');
-								e.path[1]
-									.querySelector('.decrease')
-									.classList.remove('active');
-								e.path[1]
-									.querySelector('.correct')
-									.classList.remove('active');
-								e.path[1]
-									.querySelector('.wrong')
-									.classList.remove('active');
-								e.path[1].querySelector('p').innerHTML =
-									'Lên đi em ưi!!!';
+								increaseIco.classList.add('active');
+								decreaseIco.classList.remove('active');
+								correctIco.classList.remove('active');
+								wrongIco.classList.remove('active');
+								ansLog.innerHTML = 'Lên đi em ưi!!!';
 								wrongAudio.play();
 
-								$(`#No${path + 1} input[type='text']`).attr(
+								$(`#No${index + 1} input[type='text']`).attr(
 									'disabled',
 									'disabled'
 								);
@@ -645,198 +615,216 @@ const templateHandle = () => {
 								setWrongCD(wrongCD, 3);
 								setTimeout(() => {
 									$(
-										`#No${path + 1} input[type='text']`
+										`#No${index + 1} input[type='text']`
 									).removeAttr('disabled');
-									e.path[1]
-										.querySelector('.increase')
-										.classList.remove('active');
-									e.path[1].querySelector('p').innerHTML = '';
+									increaseIco.classList.remove('active');
+									ansLog.innerHTML = '';
 									wrongCD.style.display = 'none';
 								}, 3000);
 							} else {
 								let navFin = e.path[6]
 									.querySelector('.nav-links')
-									.getElementsByClassName('lk')[path];
+									.getElementsByClassName('lk')[index];
 								navFin.classList.add('finish', 'lifin');
-								e.path[4].classList.add('finish');
-								e.path[1]
-									.querySelector('.correct')
-									.classList.add('active');
-								e.path[1]
-									.querySelector('.wrong')
-									.classList.remove('active');
-								e.path[1]
-									.querySelector('.increase')
-									.classList.remove('active');
-								e.path[1]
-									.querySelector('.decrease')
-									.classList.remove('active');
-								e.path[1].querySelector('p').innerHTML =
-									'Ghêk Ghêk';
+								section.classList.add('finish');
+
+								correctIco.classList.add('active');
+								wrongIco.classList.remove('active');
+								increaseIco.classList.remove('active');
+								decreaseIco.classList.remove('active');
+
+								ansLog.innerHTML = 'Ghêk Ghêk';
 								finishAudio.play();
 							}
 						}
-					}
-				});
-			} else if (itemIndex === 4) {
-				let passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-				sectionList[itemIndex]
-					.querySelector('.submit-btn')
-					.addEventListener('click', (e) => {
-						const path = Number(
-							e.path[4].getAttribute('sectionId')
-						);
-						const correctCnt =
-							e.path[4].querySelector('.cnt-correct');
-						const wrongCnt = e.path[4].querySelector('.cnt-wrong');
-
-						for (let idAns = 0; idAns < ansLth; idAns++) {
-							let userAnswer = answerInputList[idAns].value
-								.trim()
-								.toLowerCase();
-							let idAnswer = Number(answerInputList[idAns].id);
-							let sysAnswer = decode(ansAll[path][idAnswer]);
-							if (userAnswer == sysAnswer) {
-								passCheck[idAns] = 1;
-							}
-						}
-
-						let cntAC = 0;
-						let cntWA = 0;
-						for (let idCheck = 0; idCheck < 12; idCheck++) {
-							if (passCheck[idCheck] === 1) cntAC++;
-							else cntWA++;
-						}
-						if (cntAC === 12) {
-							sectionList[path].classList.add('finish');
-							let navFin = document
-								.querySelector('.nav-links')
-								.getElementsByClassName('lk')[path];
-							navFin.classList.add('finish', 'lifin');
-
-							correctCnt.querySelector('p').innerHTML = '';
-							wrongCnt.querySelector('p').innerHTML = '';
-							wrongCnt
-								.querySelector('.wrong')
-								.classList.remove('active');
-							finishAudio.play();
-						} else {
-							wrongAudio.play();
-
-							$(`#No${path + 1} input[type='text']`).attr(
-								'disabled',
-								'disabled'
-							);
-
-							correctCnt.querySelector('p').innerHTML = cntAC;
-							wrongCnt.querySelector('p').innerHTML = cntWA;
-							correctCnt
-								.querySelector('.correct')
-								.classList.add('active');
-							wrongCnt
-								.querySelector('.wrong')
-								.classList.add('active');
-
-							wrongCD.style.display = 'block';
-							setWrongCD(wrongCD, 3);
-							setTimeout(() => {
-								$(
-									`#No${path + 1} input[type='text']`
-								).removeAttr('disabled');
-								wrongCD.style.display = 'none';
-							}, 3000);
-						}
 					});
-			} else if (itemIndex === 5) {
-				let passCheck = [0, 0];
-				for (let indexInput = 0; indexInput < 2; indexInput++) {
-					answerInputList[indexInput].addEventListener(
-						'keydown',
-						(e) => {
-							if (e.keyCode === 13) {
-								let userAnswer = e.path[0].value
+				} else if (index === 4) {
+					let passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+					section
+						.querySelector('.submit-btn')
+						.addEventListener('click', (e) => {
+							const path = Number(
+								e.target.offsetParent.getAttribute('sectionId')
+							);
+							const correctCnt =
+								e.target.offsetParent.querySelector(
+									'.cnt-correct'
+								);
+							const wrongCnt =
+								e.target.offsetParent.querySelector(
+									'.cnt-wrong'
+								);
+
+							for (let idAns = 0; idAns < ansLth; idAns++) {
+								let userAnswer = answerInputList[idAns].value
 									.trim()
 									.toLowerCase();
-								let path = Number(
-									e.path[5].getAttribute('sectionId')
-								);
 								let idAnswer = Number(
-									e.path[0].getAttribute('idAns')
+									answerInputList[idAns].id
 								);
 								let sysAnswer = decode(ansAll[path][idAnswer]);
 								if (userAnswer == sysAnswer) {
-									if (!passCheck[0]) {
-										e.path[5].querySelector(
-											'.no6-part2 .contentp2'
-										).innerHTML += challengeNo6[1];
-										e.path[5].querySelector(
-											'.no6-part2 input'
-										).style.display = 'block';
-									}
-									e.path[1]
-										.querySelector('.wrong')
-										.classList.remove('active');
-									e.path[1]
-										.querySelector('.correct')
-										.classList.add('active');
-									correctAudio.play();
-
-									passCheck[indexInput] = 1;
-									if (
-										passCheck[0] === passCheck[1] &&
-										passCheck[0]
-									) {
-										e.path[5].classList.add('finish');
-										let navFin = document
-											.querySelector('.nav-links')
-											.getElementsByClassName('lk')[path];
-										navFin.classList.add('finish', 'lifin');
-										finishAudio.play();
-									}
-								} else {
-									wrongAudio.play();
-									e.path[1]
-										.querySelector('.wrong')
-										.classList.add('active');
-									e.path[1]
-										.querySelector('.correct')
-										.classList.remove('active');
-
-									$(`#No${path + 1} input[type='text']`).attr(
-										'disabled',
-										'disabled'
-									);
-
-									e.path[2].querySelector(
-										'.wrong-cd'
-									).style.display = 'block';
-									setWrongCD(
-										e.path[2].querySelector('.wrong-cd'),
-										3
-									);
-									setTimeout(() => {
-										$(
-											`#No${path + 1} input[type='text']`
-										).removeAttr('disabled');
-										e.path[1]
-											.querySelector('.wrong')
-											.classList.remove('active');
-										e.path[2].querySelector(
-											'.wrong-cd'
-										).style.display = 'none';
-									}, 3000);
+									passCheck[idAns] = 1;
 								}
 							}
-						}
-					);
-				}
-			} else {
-				answerInputList[0].onkeydown = (e) => {
+
+							let cntAC = 0;
+							let cntWA = 0;
+							for (let idCheck = 0; idCheck < 12; idCheck++) {
+								if (passCheck[idCheck] === 1) cntAC++;
+								else cntWA++;
+							}
+							if (cntAC === 12) {
+								sections[path].classList.add('finish');
+								let navFin = document
+									.querySelector('.nav-links')
+									.getElementsByClassName('lk')[path];
+								navFin.classList.add('finish', 'lifin');
+
+								correctCnt.querySelector('p').innerHTML = '';
+								wrongCnt.querySelector('p').innerHTML = '';
+								wrongCnt
+									.querySelector('.wrong')
+									.classList.remove('active');
+								finishAudio.play();
+							} else {
+								wrongAudio.play();
+
+								$(`#No${path + 1} input[type='text']`).attr(
+									'disabled',
+									'disabled'
+								);
+
+								correctCnt.querySelector('p').innerHTML = cntAC;
+								wrongCnt.querySelector('p').innerHTML = cntWA;
+								correctCnt
+									.querySelector('.correct')
+									.classList.add('active');
+								wrongCnt
+									.querySelector('.wrong')
+									.classList.add('active');
+
+								wrongCD.style.display = 'block';
+								setWrongCD(wrongCD, 3);
+								setTimeout(() => {
+									$(
+										`#No${path + 1} input[type='text']`
+									).removeAttr('disabled');
+									wrongCD.style.display = 'none';
+								}, 3000);
+							}
+						});
+				} else if (index === 5) {
+					let passCheck = [0, 0];
+					for (let indexInput = 0; indexInput < 2; indexInput++) {
+						answerInputList[indexInput].addEventListener(
+							'keydown',
+							(e) => {
+								if (e.keyCode === 13) {
+									let userAnswer = e.target.value
+										.trim()
+										.toLowerCase();
+									let path = Number(
+										e.target.offsetParent.getAttribute(
+											'sectionId'
+										)
+									);
+									let idAnswer = Number(
+										e.target.getAttribute('idAns')
+									);
+									let sysAnswer = decode(
+										ansAll[path][idAnswer]
+									);
+									if (userAnswer == sysAnswer) {
+										if (!passCheck[0]) {
+											e.target.offsetParent.querySelector(
+												'.no6-part2 .contentp2'
+											).innerHTML += challengeNo6[1];
+											e.target.offsetParent.querySelector(
+												'.no6-part2 input'
+											).style.display = 'block';
+										}
+										e.target
+											.closest('.answer-area')
+											.querySelector('.wrong')
+											.classList.remove('active');
+										e.target
+											.closest('.answer-area')
+											.querySelector('.correct')
+											.classList.add('active');
+										correctAudio.play();
+
+										passCheck[indexInput] = 1;
+										if (
+											passCheck[0] === passCheck[1] &&
+											passCheck[0]
+										) {
+											e.target.offsetParent.classList.add(
+												'finish'
+											);
+											let navFin = document
+												.querySelector('.nav-links')
+												.getElementsByClassName('lk')[
+												path
+											];
+											navFin.classList.add(
+												'finish',
+												'lifin'
+											);
+											finishAudio.play();
+										}
+									} else {
+										wrongAudio.play();
+										e.target
+											.closest('.answer-area')
+											.querySelector('.wrong')
+											.classList.add('active');
+										e.target
+											.closest('.answer-area')
+											.querySelector('.correct')
+											.classList.remove('active');
+
+										$(
+											`#No${path + 1} input[type='text']`
+										).attr('disabled', 'disabled');
+
+										e.path[2].querySelector(
+											'.wrong-cd'
+										).style.display = 'block';
+										setWrongCD(
+											e.path[2].querySelector(
+												'.wrong-cd'
+											),
+											3
+										);
+										setTimeout(() => {
+											$(
+												`#No${
+													path + 1
+												} input[type='text']`
+											).removeAttr('disabled');
+											e.target
+												.closest('.answer-area')
+												.querySelector('.wrong')
+												.classList.remove('active');
+											e.path[2].querySelector(
+												'.wrong-cd'
+											).style.display = 'none';
+										}, 3000);
+									}
+								}
+							}
+						);
+					}
+				} else {
+					/* answerInputList[0].onkeydown = (e) => {
 					if (e.keyCode === 13) {
 						let userAnswer = answerInputList[0].value
 							.trim()
 							.toLowerCase();
-						let path = Number(e.path[4].getAttribute('sectionId'));
+						let path = Number(
+							e.target.offsetParent.getAttribute('sectionId')
+						);
 						let sysAnswer = decode(ansAll[path]);
 						if (userAnswer == sysAnswer) {
 							finishAudio.play();
@@ -879,10 +867,11 @@ const templateHandle = () => {
 							}, 3000);
 						}
 					}
-				};
+				}; */
+				}
 			}
-		}
-	}
+		});
+	};
 
 	fetch('db/key.json')
 		.then((rsp) => rsp.json())
@@ -896,89 +885,77 @@ const templateHandle = () => {
 			);
 		})
 		.then((unlockedKey) => {
-			document
-				.querySelector('.banner input')
-				.addEventListener('keydown', (e) => {
-					if (e.keyCode === 8)
+			const keyInput = document.querySelector('.banner input');
+			const keyLog = document.querySelector('.banner p');
+
+			var validKeyHandle = (id, canScroll = 0) => {
+				sections[id].className = sections[id].className.replace(
+					' locked',
+					''
+				);
+
+				const link = document.querySelectorAll('.nav-links .lk')[id];
+				link.className = link.className.replace(' lilocked', '');
+
+				keyLog.style.color = '#32D700';
+				keyLog.innerHTML = `No${id + 1} đã mở khóa`;
+
+				if (canScroll)
+					$('html, body').animate(
+						{
+							scrollTop: $(`#No${id + 1}`).offset().top - 100,
+						},
+						900
+					);
+
+				if ([0, 1, 2].includes(id)) {
+					sections[id].querySelector('.challenge-content').innerHTML =
+						challengeContent[id] +
+						sections[id].querySelector('.challenge-content')
+							.innerHTML;
+				}
+				if (id === 5) {
+					document.querySelector('#No6 .contentp1').innerHTML +=
+						challengeNo6[0];
+				}
+				if (id === 2)
+					document.querySelector('#No3 .part1').style.display =
+						'block';
+			};
+			for (let i = 0; i < 6; i++)
+				if (localStorage.getItem(`keyItem${i}`) === '1')
+					validKeyHandle(i, 0);
+
+			keyInput.addEventListener('keydown', (e) => {
+				if (e.keyCode === 8)
+					if (keyInput.value)
 						$('html, body').animate(
 							{ scrollTop: $('#top').offset().top - 100 },
 							1
 						);
-
-					if (e.keyCode === 13) {
-						const keyReceive = e.path[0].value.trim();
-						let cntWrong = 0;
-						for (let keyItem of unlockedKey) {
-							if (keyReceive == keyItem[0]) {
-								sectionList[keyItem[1]].className = sectionList[
-									keyItem[1]
-								].className.replace(' locked', '');
-								const thisLink =
-									document.querySelectorAll('.nav-links .lk')[
-										keyItem[1]
-									];
-								thisLink.className = thisLink.className.replace(
-									' lilocked',
-									''
-								);
-								e.path[1].querySelector('p').style.color =
-									'#32D700';
-								e.path[1].querySelector('p').innerHTML = `No${
-									keyItem[1] + 1
-								} đã mở khóa`;
-								$('html, body').animate(
-									{
-										scrollTop:
-											$(`#No${keyItem[1] + 1}`).offset()
-												.top - 100,
-									},
-									900
-								);
-
-								if (
-									keyItem[1] === 0 ||
-									keyItem[1] === 1 ||
-									keyItem[1] === 2
-								) {
-									sectionList[keyItem[1]].querySelector(
-										'.challenge-content'
-									).innerHTML =
-										challengeContent[keyItem[1]] +
-										sectionList[keyItem[1]].querySelector(
-											'.challenge-content'
-										).innerHTML;
-								}
-
-								if (keyItem[1] === 5) {
-									document.querySelector(
-										'#No6 .contentp1'
-									).innerHTML += challengeNo6[0];
-								}
-								if (keyItem[1] === 2)
-									document.querySelector(
-										'#No3 .part1'
-									).style.display = 'block';
-
-								sectionList[keyItem[1]].querySelector(
-									'.lock'
-								).style.display = 'none';
-							} else cntWrong++;
-						}
-
-						if (cntWrong === 6) {
-							e.path[1].querySelector('p').style.color = 'red';
-							e.path[1].querySelector('p').innerHTML =
-								'Key is invalid';
-							setTimeout(() => {
-								e.path[1].querySelector('p').innerHTML = '';
-							}, 2000);
-						}
+				if (e.keyCode === 13) {
+					const keyReceive = e.target.value.trim();
+					let cntWrong = 0;
+					for (let keyItem of unlockedKey) {
+						if (keyReceive == keyItem[0]) {
+							localStorage.setItem(`keyItem${keyItem[1]}`, 1);
+							validKeyHandle(keyItem[1], 1);
+						} else cntWrong++;
 					}
-				});
+
+					if (cntWrong === 6) {
+						keyLog.style.color = 'red';
+						keyLog.innerHTML = 'Key is invalid';
+						setTimeout(() => (keyLog.innerHTML = ''), 2000);
+					}
+				}
+			});
+
+			mainEventHandle();
 		})
 		.catch((err) => {
 			alert('Error on Load File. Please Reload The Page!!!');
-			console.log(err);
+			console.error(err);
 		});
 };
 
