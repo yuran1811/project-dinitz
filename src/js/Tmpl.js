@@ -447,93 +447,74 @@ const templateHandle = () => {
 					const numPath = [3, 4];
 					let passCheck = [0, 0];
 
-					// submitBtnList.forEach((submitBtn) => {
-					// 	submitBtn.onclick = (event) => {
-					// 		function Hello(e) {
-					// 			const path = Number(
-					// 				e.path[6].getAttribute('sectionId')
-					// 			);
-					// 			let indexSubmitBtn = Number(
-					// 				e.target.getAttribute('idSubmit')
-					// 			);
-					// 			let boxList =
-					// 				e.path[1].querySelectorAll('.box');
-					// 			let cntCorrectBox = 0;
-					// 			let cntFillBox = 0;
+					submitBtnList.forEach((submitBtn) => {
+						submitBtn.onclick = (e) => {
+							const path = index;
+							const cdInner =
+								e.path[3].querySelector('.wrong-cd');
+							const wrongIco = e.path[2].querySelector('.wrong');
+							const correctIco =
+								e.path[2].querySelector('.correct');
 
-					// 			for (let boxItem of boxList) {
-					// 				let itemInBox =
-					// 					boxItem.querySelector('.item');
-					// 				if (!itemInBox) continue;
+							let boxList = e.path[1].querySelectorAll('.box');
+							let indexSubmitBtn = Number(
+								e.target.getAttribute('idSubmit')
+							);
+							let cntCorrectBox = 0;
+							let cntFillBox = 0;
 
-					// 				let numberItem =
-					// 					itemInBox.getAttribute('catch');
-					// 				let numberBox = boxItem.getAttribute('try');
-					// 				if (numberItem == numberBox)
-					// 					cntCorrectBox++;
-					// 				cntFillBox++;
-					// 			}
+							for (let boxItem of boxList) {
+								let itemInBox = boxItem.querySelector('.item');
+								if (!itemInBox) continue;
 
-					// 			if (
-					// 				cntCorrectBox === numPath[indexSubmitBtn] &&
-					// 				cntFillBox === cntCorrectBox
-					// 			) {
-					// 				e.path[2]
-					// 					.querySelector('.wrong')
-					// 					.classList.remove('active');
-					// 				e.path[2]
-					// 					.querySelector('.correct')
-					// 					.classList.add('active');
-					// 				correctAudio.play();
+								let numberItem =
+									itemInBox.getAttribute('catch');
+								let numberBox = boxItem.getAttribute('try');
+								if (numberItem == numberBox) cntCorrectBox++;
+								cntFillBox++;
+							}
 
-					// 				if (indexSubmitBtn === 0)
-					// 					document.querySelector(
-					// 						'#No3 .part2'
-					// 					).style.display = 'block';
+							if (
+								cntCorrectBox === numPath[indexSubmitBtn] &&
+								cntFillBox === cntCorrectBox
+							) {
+								wrongIco.classList.remove('active');
+								correctIco.classList.add('active');
+								correctAudio.play();
 
-					// 				passCheck[indexSubmitBtn] = 1;
-					// 				if (
-					// 					passCheck[0] === passCheck[1] &&
-					// 					passCheck[0]
-					// 				) {
-					// 					let navFin = e.path[8]
-					// 						.querySelector('.nav-links')
-					// 						.getElementsByClassName('lk')[path];
-					// 					navFin.classList.add('finish', 'lifin');
-					// 					e.path[6].classList.add('finish');
-					// 					finishAudio.play();
-					// 				}
-					// 			} else {
-					// 				wrongAudio.play();
-					// 				e.path[2]
-					// 					.querySelector('.wrong')
-					// 					.classList.add('active');
-					// 				e.path[2]
-					// 					.querySelector('.correct')
-					// 					.classList.remove('active');
+								if (indexSubmitBtn === 0)
+									document.querySelector(
+										'#No3 .part2'
+									).style.display = 'block';
 
-					// 				submitBtn.style.display = 'none';
-					// 				e.path[3].querySelector(
-					// 					'.wrong-cd'
-					// 				).style.display = 'block';
-					// 				setWrongCD(
-					// 					e.path[3].querySelector('.wrong-cd'),
-					// 					3
-					// 				);
-					// 				setTimeout(() => {
-					// 					e.path[2]
-					// 						.querySelector('.wrong')
-					// 						.classList.remove('active');
-					// 					submitBtn.style.display = 'block';
-					// 					e.path[3].querySelector(
-					// 						'.wrong-cd'
-					// 					).style.display = 'none';
-					// 				}, 3000);
-					// 			}
-					// 		}
-					// 	};
-					// 	console.log([submitBtn, submitBtn.onclick]);
-					// });
+								passCheck[indexSubmitBtn] = 1;
+								if (
+									passCheck[0] === passCheck[1] &&
+									passCheck[0]
+								) {
+									let navFin = e.path[8]
+										.querySelector('.nav-links')
+										.getElementsByClassName('lk')[path];
+									navFin.classList.add('finish', 'lifin');
+									section.classList.add('finish');
+									finishAudio.play();
+								}
+							} else {
+								wrongAudio.play();
+								wrongIco.classList.add('active');
+								correctIco.classList.remove('active');
+
+								submitBtn.style.display = 'none';
+								cdInner.style.display = 'block';
+								setWrongCD(cdInner, 3);
+								setTimeout(() => {
+									wrongIco.classList.remove('active');
+									submitBtn.style.display = 'block';
+									cdInner.style.display = 'none';
+								}, 3000);
+							}
+						};
+					});
 				} else if (index === 3) {
 					answerInputList[0].addEventListener('keydown', (e) => {
 						if (e.keyCode !== 13) return;
@@ -543,6 +524,19 @@ const templateHandle = () => {
 						const correctIco = section.querySelector('.correct');
 						const wrongIco = section.querySelector('.wrong');
 						const ansLog = section.querySelector('p');
+
+						const CDHandle = () => {
+							wrongCD.style.display = 'block';
+							setWrongCD(wrongCD, 3);
+							setTimeout(() => {
+								$(
+									`#No${index + 1} input[type='text']`
+								).removeAttr('disabled');
+								wrongIco.classList.remove('active');
+								wrongCD.style.display = 'none';
+								ansLog.innerHTML = '';
+							}, 3000);
+						};
 
 						let userAnswer = Number(
 							e.target.value.trim().toLowerCase()
@@ -554,6 +548,7 @@ const templateHandle = () => {
 							correctIco.classList.remove('active');
 							wrongIco.classList.add('active');
 							wrongAudio.play();
+							CDHandle();
 
 							ansLog.innerHTML =
 								'Em đi xa quá, em đi đi xa Dinitz quá!!!';
@@ -562,17 +557,6 @@ const templateHandle = () => {
 								'disabled',
 								'disabled'
 							);
-
-							wrongCD.style.display = 'block';
-							setWrongCD(wrongCD, 3);
-							setTimeout(() => {
-								$(
-									`#No${index + 1} input[type='text']`
-								).removeAttr('disabled');
-								wrongIco.classList.remove('active');
-								wrongCD.style.display = 'none';
-								ansLog.innerHTML = '';
-							}, 3000);
 						} else {
 							if (userAnswer > sysAnswer) {
 								increaseIco.classList.remove('active');
@@ -580,6 +564,7 @@ const templateHandle = () => {
 								decreaseIco.classList.add('active');
 								wrongIco.classList.remove('active');
 								wrongAudio.play();
+								CDHandle();
 
 								ansLog.innerHTML = 'Xuống đi, cao quá!!!';
 
@@ -587,17 +572,6 @@ const templateHandle = () => {
 									'disabled',
 									'disabled'
 								);
-
-								wrongCD.style.display = 'block';
-								setWrongCD(wrongCD, 3);
-								setTimeout(() => {
-									$(
-										`#No${index + 1} input[type='text']`
-									).removeAttr('disabled');
-									decreaseIco.classList.remove('active');
-									wrongCD.style.display = 'none';
-									ansLog.innerHTML = '';
-								}, 3000);
 							} else if (userAnswer < sysAnswer) {
 								increaseIco.classList.add('active');
 								decreaseIco.classList.remove('active');
@@ -605,28 +579,19 @@ const templateHandle = () => {
 								wrongIco.classList.remove('active');
 								ansLog.innerHTML = 'Lên đi em ưi!!!';
 								wrongAudio.play();
+								CDHandle();
 
 								$(`#No${index + 1} input[type='text']`).attr(
 									'disabled',
 									'disabled'
 								);
-
-								wrongCD.style.display = 'block';
-								setWrongCD(wrongCD, 3);
-								setTimeout(() => {
-									$(
-										`#No${index + 1} input[type='text']`
-									).removeAttr('disabled');
-									increaseIco.classList.remove('active');
-									ansLog.innerHTML = '';
-									wrongCD.style.display = 'none';
-								}, 3000);
 							} else {
 								let navFin = e.path[6]
 									.querySelector('.nav-links')
 									.getElementsByClassName('lk')[index];
 								navFin.classList.add('finish', 'lifin');
 								section.classList.add('finish');
+								finishAudio.play();
 
 								correctIco.classList.add('active');
 								wrongIco.classList.remove('active');
@@ -634,86 +599,71 @@ const templateHandle = () => {
 								decreaseIco.classList.remove('active');
 
 								ansLog.innerHTML = 'Ghêk Ghêk';
-								finishAudio.play();
 							}
 						}
 					});
 				} else if (index === 4) {
 					let passCheck = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-					section
-						.querySelector('.submit-btn')
-						.addEventListener('click', (e) => {
-							const path = Number(
-								e.target.offsetParent.getAttribute('sectionId')
+					section.querySelector('.submit-btn').onclick = () => {
+						const correctCnt =
+							section.querySelector('.cnt-correct');
+						const wrongCnt = section.querySelector('.cnt-wrong');
+
+						for (let idAns = 0; idAns < ansLth; idAns++) {
+							let userAnswer = answerInputList[idAns].value
+								.trim()
+								.toLowerCase();
+							let idAnswer = Number(answerInputList[idAns].id);
+							let sysAnswer = decode(ansAll[index][idAnswer]);
+							if (userAnswer == sysAnswer) passCheck[idAns] = 1;
+						}
+
+						let cntAC = 0;
+						let cntWA = 0;
+						for (let idCheck = 0; idCheck < 12; idCheck++)
+							if (passCheck[idCheck] === 1) cntAC++;
+							else cntWA++;
+
+						if (cntAC === 12) {
+							sections[index].classList.add('finish');
+							let navFin = document
+								.querySelector('.nav-links')
+								.getElementsByClassName('lk')[index];
+							navFin.classList.add('finish', 'lifin');
+
+							correctCnt.querySelector('p').innerHTML = '';
+							wrongCnt.querySelector('p').innerHTML = '';
+							wrongCnt
+								.querySelector('.wrong')
+								.classList.remove('active');
+							finishAudio.play();
+						} else {
+							wrongAudio.play();
+
+							$(`#No${index + 1} input[type='text']`).attr(
+								'disabled',
+								'disabled'
 							);
-							const correctCnt =
-								e.target.offsetParent.querySelector(
-									'.cnt-correct'
-								);
-							const wrongCnt =
-								e.target.offsetParent.querySelector(
-									'.cnt-wrong'
-								);
 
-							for (let idAns = 0; idAns < ansLth; idAns++) {
-								let userAnswer = answerInputList[idAns].value
-									.trim()
-									.toLowerCase();
-								let idAnswer = Number(
-									answerInputList[idAns].id
-								);
-								let sysAnswer = decode(ansAll[path][idAnswer]);
-								if (userAnswer == sysAnswer) {
-									passCheck[idAns] = 1;
-								}
-							}
+							correctCnt.querySelector('p').innerHTML = cntAC;
+							wrongCnt.querySelector('p').innerHTML = cntWA;
+							correctCnt
+								.querySelector('.correct')
+								.classList.add('active');
+							wrongCnt
+								.querySelector('.wrong')
+								.classList.add('active');
 
-							let cntAC = 0;
-							let cntWA = 0;
-							for (let idCheck = 0; idCheck < 12; idCheck++) {
-								if (passCheck[idCheck] === 1) cntAC++;
-								else cntWA++;
-							}
-							if (cntAC === 12) {
-								sections[path].classList.add('finish');
-								let navFin = document
-									.querySelector('.nav-links')
-									.getElementsByClassName('lk')[path];
-								navFin.classList.add('finish', 'lifin');
-
-								correctCnt.querySelector('p').innerHTML = '';
-								wrongCnt.querySelector('p').innerHTML = '';
-								wrongCnt
-									.querySelector('.wrong')
-									.classList.remove('active');
-								finishAudio.play();
-							} else {
-								wrongAudio.play();
-
-								$(`#No${path + 1} input[type='text']`).attr(
-									'disabled',
-									'disabled'
-								);
-
-								correctCnt.querySelector('p').innerHTML = cntAC;
-								wrongCnt.querySelector('p').innerHTML = cntWA;
-								correctCnt
-									.querySelector('.correct')
-									.classList.add('active');
-								wrongCnt
-									.querySelector('.wrong')
-									.classList.add('active');
-
-								wrongCD.style.display = 'block';
-								setWrongCD(wrongCD, 3);
-								setTimeout(() => {
-									$(
-										`#No${path + 1} input[type='text']`
-									).removeAttr('disabled');
-									wrongCD.style.display = 'none';
-								}, 3000);
-							}
-						});
+							wrongCD.style.display = 'block';
+							setWrongCD(wrongCD, 3);
+							setTimeout(() => {
+								$(
+									`#No${index + 1} input[type='text']`
+								).removeAttr('disabled');
+								wrongCD.style.display = 'none';
+							}, 3000);
+						}
+					};
 				} else if (index === 5) {
 					let passCheck = [0, 0];
 					for (let indexInput = 0; indexInput < 2; indexInput++) {
@@ -724,16 +674,11 @@ const templateHandle = () => {
 									let userAnswer = e.target.value
 										.trim()
 										.toLowerCase();
-									let path = Number(
-										e.target.offsetParent.getAttribute(
-											'sectionId'
-										)
-									);
 									let idAnswer = Number(
 										e.target.getAttribute('idAns')
 									);
 									let sysAnswer = decode(
-										ansAll[path][idAnswer]
+										ansAll[index][idAnswer]
 									);
 									if (userAnswer == sysAnswer) {
 										if (!passCheck[0]) {
@@ -759,13 +704,11 @@ const templateHandle = () => {
 											passCheck[0] === passCheck[1] &&
 											passCheck[0]
 										) {
-											e.target.offsetParent.classList.add(
-												'finish'
-											);
+											section.classList.add('finish');
 											let navFin = document
 												.querySelector('.nav-links')
 												.getElementsByClassName('lk')[
-												path
+												index
 											];
 											navFin.classList.add(
 												'finish',
@@ -785,14 +728,14 @@ const templateHandle = () => {
 											.classList.remove('active');
 
 										$(
-											`#No${path + 1} input[type='text']`
+											`#No${index + 1} input[type='text']`
 										).attr('disabled', 'disabled');
 
-										e.path[2].querySelector(
+										e.index[2].querySelector(
 											'.wrong-cd'
 										).style.display = 'block';
 										setWrongCD(
-											e.path[2].querySelector(
+											e.index[2].querySelector(
 												'.wrong-cd'
 											),
 											3
@@ -800,14 +743,14 @@ const templateHandle = () => {
 										setTimeout(() => {
 											$(
 												`#No${
-													path + 1
+													index + 1
 												} input[type='text']`
 											).removeAttr('disabled');
 											e.target
 												.closest('.answer-area')
 												.querySelector('.wrong')
 												.classList.remove('active');
-											e.path[2].querySelector(
+											e.index[2].querySelector(
 												'.wrong-cd'
 											).style.display = 'none';
 										}, 3000);
@@ -817,14 +760,15 @@ const templateHandle = () => {
 						);
 					}
 				} else {
-					/* answerInputList[0].onkeydown = (e) => {
-					if (e.keyCode === 13) {
+					answerInputList[0].onkeydown = (e) => {
+						if (e.keyCode !== 13) return;
+						const wrongIco = e.path[1].querySelector('.wrong');
+						const correctIco = e.path[1].querySelector('.correct');
+
 						let userAnswer = answerInputList[0].value
 							.trim()
 							.toLowerCase();
-						let path = Number(
-							e.target.offsetParent.getAttribute('sectionId')
-						);
+						let path = index;
 						let sysAnswer = decode(ansAll[path]);
 						if (userAnswer == sysAnswer) {
 							finishAudio.play();
@@ -832,22 +776,13 @@ const templateHandle = () => {
 								.querySelector('.nav-links')
 								.getElementsByClassName('lk')[path];
 							navFin.classList.add('finish', 'lifin');
-
-							e.path[4].classList.add('finish');
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.remove('active');
-							e.path[1]
-								.querySelector('.correct')
-								.classList.add('active');
+							section.classList.add('finish');
+							wrongIco.classList.remove('active');
+							correctIco.classList.add('active');
 						} else {
 							wrongAudio.play();
-							e.path[1]
-								.querySelector('.wrong')
-								.classList.add('active');
-							e.path[1]
-								.querySelector('.correct')
-								.classList.remove('active');
+							wrongIco.classList.add('active');
+							correctIco.classList.remove('active');
 
 							$(`#No${path + 1} input[type='text']`).attr(
 								'disabled',
@@ -860,14 +795,11 @@ const templateHandle = () => {
 								$(
 									`#No${path + 1} input[type='text']`
 								).removeAttr('disabled');
-								e.path[1]
-									.querySelector('.wrong')
-									.classList.remove('active');
+								wrongIco.classList.remove('active');
 								wrongCD.style.display = 'none';
 							}, 3000);
 						}
-					}
-				}; */
+					};
 				}
 			}
 		});

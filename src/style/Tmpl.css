@@ -549,13 +549,19 @@ section:hover::after {
 	}
 }
 
-.locked {
+section.locked {
 	background-color: var(--lock-section);
 	min-height: 100px;
 	opacity: 1;
 }
-.locked .content,
-.locked .title {
+section.locked .content,
+section.locked .title {
+	display: none;
+}
+section.locked .lock {
+	display: block;
+}
+section .lock {
 	display: none;
 }
 
