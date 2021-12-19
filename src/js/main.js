@@ -171,7 +171,7 @@ fetch('./db/acc.json')
 			</div>`;
 			const bannerCpn = `
 			<div class="banner" id="admin-acc">
-				<div class="avatar" data-userID=${userID === 13 ? 'Admin' : `Đội ${userID}`}>
+				<div class="avatar" data-userID=`${userID === 13 ? 'Admin' : `Đội ${userID}`}`>
 					<img src="https://miro.medium.com/fit/c/1360/1360/2*Y4aq3TeFNG8yjWcJHpz0pA.png"
 					alt="avatar" width="200" height="200" />
 				</div>
