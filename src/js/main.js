@@ -26,6 +26,7 @@ fetch('./db/acc.json')
 				name: `dinitzNo${item.id >= 10 ? item.id : '0' + item.id}`,
 				pass: decode(item.password),
 				link: `${item.link}`,
+				id: item.id,
 			});
 		return data;
 	})
@@ -56,7 +57,7 @@ fetch('./db/acc.json')
 			};
 		};
 		const validHandle = (user, pass) => {
-			if (user === -1) localStorage.clear();
+			if (userID === -1) localStorage.clear();
 			localStorage.setItem('userID', String(userID));
 			localStorage.setItem('isLogIn', '1');
 			localStorage.setItem('user', user);
