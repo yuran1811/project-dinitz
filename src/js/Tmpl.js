@@ -148,10 +148,10 @@ const templateHandle = () => {
 		],
 	];
 	const allHint = [hintNo1, hintNo2, 0, hintNo4, 0, 0];
-	function getHint(sectionItem, sectionId) {
-		sectionItem.querySelector('.hint-btn').classList.toggle('active');
+	function getHint(section, sectionId) {
+		section.querySelector('.hint-btn').classList.toggle('active');
 
-		const timerCountdown = sectionItem.querySelector('.timer');
+		const timerCountdown = section.querySelector('.timer');
 		const hintTime = 3;
 		let countDown = 2;
 
@@ -173,7 +173,7 @@ const templateHandle = () => {
 			}
 		}, 1000);
 
-		const hintContent = sectionItem.querySelector('.allhint');
+		const hintContent = section.querySelector('.allhint');
 		let x = setInterval(() => {
 			if (hintCnt > 0) {
 				if (indexHint >= hintCnt) clearInterval(x);
@@ -407,6 +407,14 @@ const templateHandle = () => {
 	}
 
 	const sections = document.querySelectorAll('section');
+	sections.forEach((section, index) => {
+		if (localStorage.getItem(`finishChallenge${index}`) === '1') {
+			section.classList.add('finish');
+			let navFin =
+				document.body.querySelectorAll('.nav-links .lk')[index];
+			navFin.classList.add('finish', 'lifin');
+		}
+	});
 
 	const mainEventHandle = () => {
 		sections.forEach((section, index) => {
@@ -446,7 +454,6 @@ const templateHandle = () => {
 				if (index === 2) {
 					const numPath = [3, 4];
 					let passCheck = [0, 0];
-
 					submitBtnList.forEach((submitBtn) => {
 						submitBtn.onclick = (e) => {
 							const path = index;
@@ -497,6 +504,10 @@ const templateHandle = () => {
 										.getElementsByClassName('lk')[path];
 									navFin.classList.add('finish', 'lifin');
 									section.classList.add('finish');
+									localStorage.setItem(
+										`finishChallenge${index}`,
+										1
+									);
 									finishAudio.play();
 								}
 							} else {
@@ -591,13 +602,16 @@ const templateHandle = () => {
 									.getElementsByClassName('lk')[index];
 								navFin.classList.add('finish', 'lifin');
 								section.classList.add('finish');
+								localStorage.setItem(
+									`finishChallenge${index}`,
+									1
+								);
 								finishAudio.play();
 
 								correctIco.classList.add('active');
 								wrongIco.classList.remove('active');
 								increaseIco.classList.remove('active');
 								decreaseIco.classList.remove('active');
-
 								ansLog.innerHTML = 'Ghêk Ghêk';
 							}
 						}
@@ -636,6 +650,7 @@ const templateHandle = () => {
 							wrongCnt
 								.querySelector('.wrong')
 								.classList.remove('active');
+							localStorage.setItem(`finishChallenge${index}`, 1);
 							finishAudio.play();
 						} else {
 							wrongAudio.play();
@@ -714,6 +729,10 @@ const templateHandle = () => {
 												'finish',
 												'lifin'
 											);
+											localStorage.setItem(
+												`finishChallenge${index}`,
+												1
+											);
 											finishAudio.play();
 										}
 									} else {
@@ -779,6 +798,7 @@ const templateHandle = () => {
 							section.classList.add('finish');
 							wrongIco.classList.remove('active');
 							correctIco.classList.add('active');
+							localStorage.setItem(`finishChallenge${index}`, 1);
 						} else {
 							wrongAudio.play();
 							wrongIco.classList.add('active');

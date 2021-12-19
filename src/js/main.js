@@ -56,6 +56,12 @@ fetch('./db/acc.json')
 			};
 		};
 		const validHandle = (user, pass) => {
+			if (user === -1) localStorage.clear();
+			localStorage.setItem('userID', String(userID));
+			localStorage.setItem('isLogIn', '1');
+			localStorage.setItem('user', user);
+			localStorage.setItem('pass', pass);
+
 			_$('#sign-up-btn').classList.add('active');
 			logIn.value = 'Đăng nhập thành công';
 			logIn.classList.remove('wrong');
@@ -71,13 +77,8 @@ fetch('./db/acc.json')
 		};
 		const logInHandle = () => {
 			const { success, user, pass } = check();
-			if (success) {
-				localStorage.setItem('userID', String(userID));
-				localStorage.setItem('isLogIn', '1');
-				localStorage.setItem('user', user);
-				localStorage.setItem('pass', pass);
-				validHandle(user, pass);
-			} else failureHandle();
+			if (success) validHandle(user, pass);
+			else failureHandle();
 		};
 
 		if (!JSON.parse(localStorage.getItem('isLogIn'))) {
