@@ -71,10 +71,10 @@ fetch('./db/acc.json')
 			_$('.password').value = pass;
 		};
 		const failureHandle = () => {
-			localStorage.setItem('isLogIn', '0');
 			logIn.value = 'Đăng nhập thất bại';
 			logIn.classList.remove('correct');
 			logIn.classList.add('wrong');
+			localStorage.clear();
 		};
 		const logInHandle = () => {
 			const { success, user, pass } = check();
@@ -82,14 +82,19 @@ fetch('./db/acc.json')
 			else failureHandle();
 		};
 
-		if (!JSON.parse(localStorage.getItem('isLogIn'))) {
-			$$_('.input-field').forEach((item) =>
-				item.addEventListener('keydown', (e) => {
+		$$_('.input-field').forEach(
+			(item) =>
+				(item.onkeydown = (e) => {
 					if (e.keyCode === 13) logInHandle();
+					else {
+						logIn.classList.remove('correct', 'wrong');
+						logIn.value = 'Đăng nhập';
+					}
 				})
-			);
-			logIn.addEventListener('click', logInHandle);
-		} else {
+		);
+		logIn.addEventListener('click', logInHandle);
+
+		if (JSON.parse(localStorage.getItem('isLogIn'))) {
 			const user = localStorage.getItem('user');
 			const pass = localStorage.getItem('pass');
 			validHandle(user, pass);
@@ -171,7 +176,7 @@ fetch('./db/acc.json')
 			</div>`;
 			const bannerCpn = `
 			<div class="banner" id="admin-acc">
-				<div class="avatar" data-userID=`${userID === 13 ? 'Admin' : `Đội ${userID}`}`>
+				<div class="avatar" data-userID="${userID === 13 ? 'Admin' : `Đội ${userID}`}">
 					<img src="https://miro.medium.com/fit/c/1360/1360/2*Y4aq3TeFNG8yjWcJHpz0pA.png"
 					alt="avatar" width="200" height="200" />
 				</div>
@@ -582,94 +587,30 @@ fetch('./db/acc.json')
 								<p>
 									<img
 										src="https://cdn.discordapp.com/attachments/724194394475069461/907134741160022026/unknown.png"
-										alt="map1"
-										style="max-width: 80%; height: auto"
+										alt="map1" style="max-width: 80%; height: auto"
 									/>
 								</p>
 							</div>
 
 							<div class="answer-area">
-								<i
-									class="fa-2x fas fa-check-circle correct"
-								></i>
+								<i class="fa-2x fas fa-check-circle correct"></i>
 								<i class="fa-2x fas fa-times-circle wrong"></i>
 								<div class="allBox">
-									<div
-										try="1"
-										class="box box-answer"
-										id="box1"
-										ondrop="drop(event)"
-										ondragover="allowDrop(event)"
-									></div>
-									<div
-										try="2"
-										class="box box-answer"
-										id="box2"
-										ondrop="drop(event)"
-										ondragover="allowDrop(event)"
-									></div>
-									<div
-										try="3"
-										class="box box-answer"
-										id="box3"
-										ondrop="drop(event)"
-										ondragover="allowDrop(event)"
-									></div>
-									<div
-										try="4"
-										class="box box-answer"
-										id="box4"
-										ondrop="drop(event)"
-										ondragover="allowDrop(event)"
-									></div>
-									<div
-										try="5"
-										class="box box-answer"
-										id="box5"
-										ondrop="drop(event)"
-										ondragover="allowDrop(event)"
-									></div>
-									<div class="submit-btn" idSubmit="0">
-										Submit
-									</div>
-									<i
-										class="
-											fa-2x
-											fas
-											fa-check-circle
-											correct
-										"
-									></i>
-									<i
-										class="fa-2x fas fa-times-circle wrong"
-									></i>
+									<div try="1" class="box box-answer" id="box1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div try="2" class="box box-answer" id="box2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div try="3" class="box box-answer" id="box3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div try="4" class="box box-answer" id="box4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div try="5" class="box box-answer" id="box5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+									<div class="submit-btn" idSubmit="0"> Submit </div>
+									<i class=" fa-2x fas fa-check-circle correct"></i>
+									<i class="fa-2x fas fa-times-circle wrong"></i>
 								</div>
 								<div class="allItem">
-									<div
-										class="itemBox"
-										ondrop="drop(event)"
-										ondragover="allowDrop(event)"
-									>
-										<div
-											catch="1"
-											class="item"
-											draggable="true"
-											ondragstart="drag(event)"
-											id="drag1"
-										></div>
+									<div class="itemBox" ondrop="drop(event)" ondragover="allowDrop(event)">
+										<div catch="1" class="item" draggable="true" ondragstart="drag(event)" id="drag1"></div>
 									</div>
-									<div
-										class="itemBox"
-										ondrop="drop(event)"
-										ondragover="allowDrop(event)"
-									>
-										<div
-											catch="99"
-											class="item"
-											draggable="true"
-											ondragstart="drag(event)"
-											id="drag2"
-										></div>
+									<div class="itemBox" ondrop="drop(event)" ondragover="allowDrop(event)">
+										<div catch="99" class="item" draggable="true" ondragstart="drag(event)" id="drag2"></div>
 									</div>
 									<div
 										class="itemBox"
@@ -1167,10 +1108,11 @@ fetch('./db/acc.json')
 
 			const allLink = document.head.querySelectorAll('link');
 			allLink[allLink.length - 1].href = 'src/style/Tmpl.css';
-
+		};
+		_$('#sign-in-btn').onclick = () => {
+			reRender();
 			templateHandle();
 		};
-		_$('#sign-in-btn').onclick = () => reRender();
 	})
 	.catch(() => {
 		alert('Error on Load Data. Please Reload the Page!!!');

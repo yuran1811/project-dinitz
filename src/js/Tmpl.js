@@ -346,7 +346,7 @@ const templateHandle = () => {
 								<b>không xếp chồng</b> các nước lên nhau và xếp theo
 								thứ tự từ 1 tới n, với n là số nước tạo thành lộ
 								trình trong đáp án của bạn)
-							</div>`;
+							</div><br>`;
 	const challengeNo6 = [
 		`<h3>Phần 1</h3> <p> Tưởng tượng bạn muốn gửi tin nhắn tỏ tình B. Bạn muốn chỉ B mới có thể đọc được tin nhắn này, còn lại không ai có thể đọc được, nên bạn tìm một cách để “mã hoá” nội dung tin nhắn. Bạn sẽ làm thế nào? </p> <p> Thật ra, bạn sẽ không phải nghĩ nhiều đâu, bởi, 3 học giả người Mỹ và Israel đã phát minh ra thuật toán Rivest–Shamir–Adleman (RSA). Đây là một thuật toán được sử dụng rộng rãi trong việc truyền thông tin dữ liệu một cách bảo mật. Một phép so sánh thực tế có thể được hiểu như sau: </p> <p> Bạn viết thư gửi cho B, để an toàn thì bạn cho bức thư vào một chiếc hộp có khóa, rồi khóa nó lại. Bạn gửi chiếc hộp đã khoá cho B.<br />Với tình huống này, nếu có người ăn cắp được chiếc hộp, người ta cũng không có cách nào mở khoá để đọc được nội dung bức thư vì không có chìa khoá.<br />Tuy nhiên vấn đề phát sinh lúc này là bạn phải tìm cách đưa chiếc chìa khoá cho B. Ta quay lại vấn đề ban đầu, bởi vì nếu một kẻ gian có thể ăn cắp được chiếc chìa khoá này, hắn ta cũng có thể mở khoá chiếc hộp rồi đọc nội dung thư.<br />Bạn có thể nghĩ ra một cách làm tốt hơn chứ? </p> <p> Trước tiên, bạn nhờ B gửi cho bạn một ổ khoá có thể khoá được mà không cần chìa (nhưng đã khoá rồi thì muốn mở khóa thì phải có chìa khoá - đương nhiên rồi). Bạn viết bức thư, cho vào hộp và khóa hộp bằng ổ của B, rồi đưa hộp cho B. Bây giờ, nếu có kẻ gian nào lấy được chiếc hộp thì hắn cũng không thể mở hộp, bởi người duy nhất có thể mở hộp là B vì B là người duy nhất có chìa khoá. Dễ thấy là B không cần cho bạn chiếc chìa khoá (thật ra là không thể gửi cho bạn chiếc chìa khoá). Do đó để ý rằng, khi bạn đã khoá chiếc hộp rồi thì chính bạn cũng không thể mở nó. </p> <p> Bạn muốn gửi tin nhắn “IUB” đến B. B cho bạn ổ khoá toán học là cặp số : (n, e) = (114791, 13) </p> <p> Bạn hãy tính toán phiên bản bị mã hoá của tin nhắn “IUB” bằng thuật toán sau: </p> <p> Bước 1: Chuyển nội dung tin nhắn từ dạng chữ sang dạng số. Ở đây ta quy ước A = 01, B = 02, …, Z = 26. Ví dụ như: “HAO” được chuyển sang dạng số thành 080115, còn “ABCXYZ” thì thành 010203242526. Gọi kết quả tính được là m. </p> <p> Bước 2: Tính<br /> c = m<sup>e</sup> mod n.<br />Trong đó phép tính mod có nghĩa là phần dư của phép chia.<br />Ví dụ: 10 mod 3 = 1 vì 10 chia 3 dư 1; 2<sup>10</sup> mod 100 = 24 vì 2<sup>10</sup> = 1024, sau đó 1024 chia 100 thì dư 24. </p> <p>Bước 3: Gửi kết quả c cho B.</p>`,
 
@@ -454,14 +454,17 @@ const templateHandle = () => {
 				if (index === 2) {
 					const numPath = [3, 4];
 					let passCheck = [0, 0];
-					submitBtnList.forEach((submitBtn) => {
+					submitBtnList.forEach((submitBtn, btnId) => {
 						submitBtn.onclick = (e) => {
 							const path = index;
 							const cdInner =
-								e.path[3].querySelector('.wrong-cd');
-							const wrongIco = e.path[2].querySelector('.wrong');
-							const correctIco =
-								e.path[2].querySelector('.correct');
+								section.querySelectorAll('.wrong-cd')[btnId];
+							const wrongIco = e.target
+								.closest('.answer-area')
+								.querySelector('.wrong');
+							const correctIco = e.target
+								.closest('.answer-area')
+								.querySelector('.correct');
 
 							let boxList = e.path[1].querySelectorAll('.box');
 							let indexSubmitBtn = Number(
@@ -514,7 +517,6 @@ const templateHandle = () => {
 								wrongAudio.play();
 								wrongIco.classList.add('active');
 								correctIco.classList.remove('active');
-
 								submitBtn.style.display = 'none';
 								cdInner.style.display = 'block';
 								setWrongCD(cdInner, 3);
@@ -536,14 +538,14 @@ const templateHandle = () => {
 						const wrongIco = section.querySelector('.wrong');
 						const ansLog = section.querySelector('p');
 
-						const CDHandle = () => {
+						const CDHandle = (ico) => {
 							wrongCD.style.display = 'block';
 							setWrongCD(wrongCD, 3);
 							setTimeout(() => {
 								$(
 									`#No${index + 1} input[type='text']`
 								).removeAttr('disabled');
-								wrongIco.classList.remove('active');
+								ico.classList.remove('active');
 								wrongCD.style.display = 'none';
 								ansLog.innerHTML = '';
 							}, 3000);
@@ -557,9 +559,9 @@ const templateHandle = () => {
 							increaseIco.classList.remove('active');
 							decreaseIco.classList.remove('active');
 							correctIco.classList.remove('active');
-							wrongIco.classList.add('active');
 							wrongAudio.play();
-							CDHandle();
+							wrongIco.classList.add('active');
+							CDHandle(wrongIco);
 
 							ansLog.innerHTML =
 								'Em đi xa quá, em đi đi xa Dinitz quá!!!';
@@ -572,10 +574,10 @@ const templateHandle = () => {
 							if (userAnswer > sysAnswer) {
 								increaseIco.classList.remove('active');
 								correctIco.classList.remove('active');
-								decreaseIco.classList.add('active');
 								wrongIco.classList.remove('active');
 								wrongAudio.play();
-								CDHandle();
+								decreaseIco.classList.add('active');
+								CDHandle(decreaseIco);
 
 								ansLog.innerHTML = 'Xuống đi, cao quá!!!';
 
@@ -584,13 +586,13 @@ const templateHandle = () => {
 									'disabled'
 								);
 							} else if (userAnswer < sysAnswer) {
-								increaseIco.classList.add('active');
 								decreaseIco.classList.remove('active');
 								correctIco.classList.remove('active');
 								wrongIco.classList.remove('active');
 								ansLog.innerHTML = 'Lên đi em ưi!!!';
 								wrongAudio.play();
-								CDHandle();
+								increaseIco.classList.add('active');
+								CDHandle(increaseIco);
 
 								$(`#No${index + 1} input[type='text']`).attr(
 									'disabled',
@@ -697,10 +699,10 @@ const templateHandle = () => {
 									);
 									if (userAnswer == sysAnswer) {
 										if (!passCheck[0]) {
-											e.target.offsetParent.querySelector(
+											section.querySelector(
 												'.no6-part2 .contentp2'
 											).innerHTML += challengeNo6[1];
-											e.target.offsetParent.querySelector(
+											section.querySelector(
 												'.no6-part2 input'
 											).style.display = 'block';
 										}
@@ -750,15 +752,12 @@ const templateHandle = () => {
 											`#No${index + 1} input[type='text']`
 										).attr('disabled', 'disabled');
 
-										e.index[2].querySelector(
-											'.wrong-cd'
-										).style.display = 'block';
-										setWrongCD(
-											e.index[2].querySelector(
+										const wrongCD =
+											e.path[2].querySelector(
 												'.wrong-cd'
-											),
-											3
-										);
+											);
+										wrongCD.style.display = 'block';
+										setWrongCD(wrongCD, 3);
 										setTimeout(() => {
 											$(
 												`#No${
@@ -769,9 +768,7 @@ const templateHandle = () => {
 												.closest('.answer-area')
 												.querySelector('.wrong')
 												.classList.remove('active');
-											e.index[2].querySelector(
-												'.wrong-cd'
-											).style.display = 'none';
+											wrongCD.style.display = 'none';
 										}, 3000);
 									}
 								}
@@ -779,21 +776,19 @@ const templateHandle = () => {
 						);
 					}
 				} else {
-					answerInputList[0].onkeydown = (e) => {
+					const thisInput = answerInputList[0];
+					thisInput.onkeydown = (e) => {
 						if (e.keyCode !== 13) return;
-						const wrongIco = e.path[1].querySelector('.wrong');
-						const correctIco = e.path[1].querySelector('.correct');
+						const wrongIco = section.querySelector('.wrong');
+						const correctIco = section.querySelector('.correct');
 
-						let userAnswer = answerInputList[0].value
-							.trim()
-							.toLowerCase();
-						let path = index;
-						let sysAnswer = decode(ansAll[path]);
+						let userAnswer = thisInput.value.trim().toLowerCase();
+						let sysAnswer = decode(ansAll[index]);
 						if (userAnswer == sysAnswer) {
 							finishAudio.play();
 							let navFin = e.path[6]
 								.querySelector('.nav-links')
-								.getElementsByClassName('lk')[path];
+								.getElementsByClassName('lk')[index];
 							navFin.classList.add('finish', 'lifin');
 							section.classList.add('finish');
 							wrongIco.classList.remove('active');
@@ -804,7 +799,7 @@ const templateHandle = () => {
 							wrongIco.classList.add('active');
 							correctIco.classList.remove('active');
 
-							$(`#No${path + 1} input[type='text']`).attr(
+							$(`#No${index + 1} input[type='text']`).attr(
 								'disabled',
 								'disabled'
 							);
@@ -813,7 +808,7 @@ const templateHandle = () => {
 							setWrongCD(wrongCD, 3);
 							setTimeout(() => {
 								$(
-									`#No${path + 1} input[type='text']`
+									`#No${index + 1} input[type='text']`
 								).removeAttr('disabled');
 								wrongIco.classList.remove('active');
 								wrongCD.style.display = 'none';
@@ -824,6 +819,7 @@ const templateHandle = () => {
 			}
 		});
 	};
+	mainEventHandle();
 
 	fetch('db/key.json')
 		.then((rsp) => rsp.json())
@@ -861,10 +857,12 @@ const templateHandle = () => {
 					);
 
 				if ([0, 1, 2].includes(id)) {
-					sections[id].querySelector('.challenge-content').innerHTML =
-						challengeContent[id] +
-						sections[id].querySelector('.challenge-content')
-							.innerHTML;
+					sections[id]
+						.querySelector('.challenge-content .answer-area')
+						.insertAdjacentHTML(
+							'beforebegin',
+							challengeContent[id]
+						);
 				}
 				if (id === 5) {
 					document.querySelector('#No6 .contentp1').innerHTML +=
@@ -902,8 +900,6 @@ const templateHandle = () => {
 					}
 				}
 			});
-
-			mainEventHandle();
 		})
 		.catch((err) => {
 			alert('Error on Load File. Please Reload The Page!!!');
