@@ -41,15 +41,18 @@ body.dark {
 	--link-color: rgb(154, 214, 253);
 }
 
-body::-webkit-scrollbar {
-	/* width: 0.5rem; */
-	width: 0;
+*::-webkit-scrollbar {
+	width: 0.5rem;
+	/* width: 0; */
 }
-body::-webkit-scrollbar-thumb {
-	outline: 0px solid slategrey;
+*::-webkit-scrollbar-thumb {
+	/* outline: 0px solid slategrey; */
 	/* outline: 0.1px solid slategrey; */
-	background-color: darkgrey;
+	background-color: transparent;
 	border-radius: 5px;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
 }
 
 .info a:link,
@@ -360,6 +363,7 @@ audio {
 }
 
 .title {
+	position: relative;
 	width: auto;
 	text-align: center;
 }
@@ -379,7 +383,7 @@ audio {
 }
 
 .title:hover::after {
-	width: 200px;
+	width: 100%;
 }
 
 .lk a::after,
@@ -441,6 +445,7 @@ audio {
 	justify-content: center;
 	position: relative;
 	margin-top: 8rem;
+	user-select: none;
 }
 
 .avatar {
@@ -533,7 +538,7 @@ section:hover::after {
 	);
 	border-radius: calc(2 * var(--borderWidth));
 	background-size: 300% 300%;
-	animation: animatedgradient 3s ease alternate infinite;
+	animation: animatedgradient 2s ease alternate infinite;
 	z-index: -1;
 }
 
@@ -638,7 +643,7 @@ section.finish .title {
 }
 section.finish .title::after {
 	background-color: var(--award-background-color);
-	width: 200px;
+	width: 100%;
 }
 
 .answer-area {
