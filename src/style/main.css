@@ -291,7 +291,7 @@ body {
 	font-size: 1.2rem;
 	width: 0px;
 	opacity: 0;
-	transition: 1 ease, width 1.2s ease;
+	transition: width 1.2s ease;
 }
 
 #sign-up-btn.active {
