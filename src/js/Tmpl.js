@@ -407,6 +407,26 @@ const templateHandle = () => {
 	}
 
 	const sections = document.querySelectorAll('section');
+	const navLinks = document.querySelectorAll('.lk');
+	// Scroll Active Handle
+	window.addEventListener('scroll', () => {
+		const isInView = (el) => {
+			const rect = el.getBoundingClientRect();
+			if (el.className.includes('No1') && rect.y > 125) {
+				navLinks.forEach((item) => item.classList.remove('liactive'));
+				return false;
+			}
+			return rect.y <= 125 && rect.bottom >= 0;
+		};
+
+		sections.forEach((section, index) => {
+			if (isInView(section)) {
+				navLinks.forEach((item) => item.classList.remove('liactive'));
+				navLinks[index].classList.add('liactive');
+			}
+		});
+	});
+	// Import Data from Local
 	sections.forEach((section, index) => {
 		if (localStorage.getItem(`finishChallenge${index}`) === '1') {
 			section.classList.add('finish');
