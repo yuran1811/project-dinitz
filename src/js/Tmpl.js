@@ -24,6 +24,7 @@ const shitsHandle = () => {
 		$('#menu-bar1').removeClass('active');
 		$('#menu-bar2').removeClass('active');
 	});
+
 	(() => {
 		const toTop = document.querySelector('.to-top');
 		window.onscroll = () => {
@@ -36,9 +37,10 @@ const shitsHandle = () => {
 		};
 	})();
 	(() => {
-		document.querySelectorAll('.lk').forEach((link) => {
+		document.querySelectorAll('.lk').forEach((link, index) => {
 			link.classList.add('lilocked');
 			link.addEventListener('click', (e) => {
+				e.preventDefault();
 				if (e.path[1].className.includes('lilocked')) {
 					document.querySelector('.banner p').style.color =
 						'var(--color)';
@@ -49,6 +51,11 @@ const shitsHandle = () => {
 						{ scrollTop: $('#top').offset().top - 100 },
 						1
 					);
+				} else {
+					document
+						.querySelectorAll('section')
+						[index].classList.remove('hidden');
+					link.classList.remove('lihidden');
 				}
 			});
 		});
@@ -422,10 +429,13 @@ const templateHandle = () => {
 		sections.forEach((section, index) => {
 			if (isInView(section)) {
 				navLinks.forEach((item) => item.classList.remove('liactive'));
-				navLinks[index].classList.add('liactive');
+				const nowLink = navLinks[index];
+				if (!nowLink.className.includes('.lihidden'))
+					nowLink.classList.add('liactive');
 			}
 		});
 	});
+
 	// Import Data from Local
 	sections.forEach((section, index) => {
 		if (localStorage.getItem(`finishChallenge${index}`) === '1') {
@@ -439,6 +449,13 @@ const templateHandle = () => {
 	const mainEventHandle = () => {
 		sections.forEach((section, index) => {
 			section.innerHTML += `<i class="fas fa-lock lock"></i>`;
+
+			const hiddenBtn = section.querySelector('i.fas.fa-eye-slash');
+			if (hiddenBtn)
+				hiddenBtn.onclick = () => {
+					section.classList.add('hidden');
+					navLinks[index].classList.add('lihidden');
+				};
 
 			const infoBtn = section.querySelector('.info-btn');
 			const infoContent = section.querySelector('.info');

@@ -13,6 +13,7 @@
 			* {
 				font-family: 'Raleway', sans-serif;
 				box-sizing: border-box;
+				user-select: none;
 				color: white;
 			}
 
@@ -52,6 +53,7 @@
 			.header p {
 				position: relative;
 				font-size: 1.8rem;
+				margin-left: 7px;
 				display: inline;
 				color: black;
 				opacity: 0;
@@ -65,12 +67,12 @@
 				left: 0;
 				right: 0;
 				height: 6px;
-				transform: scale(0);
+				transform: scaleX(0);
 				transition: all 0.3s ease;
 				background-color: black;
 			}
 			.header p:hover::after {
-				transform: scale(1);
+				transform: scaleX(1);
 			}
 
 			.header img {

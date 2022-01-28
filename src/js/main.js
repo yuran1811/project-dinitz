@@ -188,6 +188,7 @@ fetch('./db/acc.json')
 			</div>`;
 			const section1Cpn = `
 			<section sectionId="0" id="No1" class="No1 locked">
+				<i class="fas fa-eye-slash"></i>
 				<h2 class="title">
 					<i class="passed fas fa-award"></i> Nim Game
 				</h2>
@@ -408,6 +409,7 @@ fetch('./db/acc.json')
 			</section>`;
 			const section2Cpn = `
 			<section sectionId="1" id="No2" class="No2 locked">
+				<i class="fas fa-eye-slash"></i>
 				<h2 class="title"><i class="passed fas fa-award"></i> IE</h2>
 				<div class="content">
 					<h2>
@@ -573,6 +575,7 @@ fetch('./db/acc.json')
 			</section>`;
 			const section3Cpn = `
 			<section sectionId="2" id="No3" class="No3 locked">
+				<i class="fas fa-eye-slash"></i>
 				<h2 class="title">
 					<i class="passed fas fa-award"></i> Du lịch
 				</h2>
@@ -818,6 +821,7 @@ fetch('./db/acc.json')
 			</section>`;
 			const section4Cpn = `
 			<section sectionId="3" id="No4" class="No4 locked">
+				<i class="fas fa-eye-slash"></i>
 				<h2 class="title">
 					<i class="passed fas fa-award"></i> Mật khẩu là gì?
 				</h2>
@@ -858,6 +862,7 @@ fetch('./db/acc.json')
 			</section>`;
 			const section5Cpn = `
 			<section sectionId="4" id="No5" class="No5 locked">
+				<i class="fas fa-eye-slash"></i>
 				<h2 class="title">
 					<i class="passed fas fa-award"></i> Trạm vui vẻ
 				</h2>
@@ -1040,6 +1045,7 @@ fetch('./db/acc.json')
 			</section>`;
 			const section6Cpn = `
 			<section sectionId="5" id="No6" class="No6 locked">
+				<i class="fas fa-eye-slash"></i>
 				<h2 class="title">
 					<i class="passed fas fa-award"></i> Love Letter
 				</h2>

@@ -16,10 +16,22 @@
 	font-family: 'Oswald', sans-serif;
 	box-sizing: border-box;
 }
-
-::selection {
+*::selection {
 	background-color: var(--color);
 	color: var(--background-color);
+}
+*::-webkit-scrollbar {
+	width: 0.5rem;
+	/* width: 0; */
+}
+*::-webkit-scrollbar-thumb {
+	/* outline: 0px solid slategrey; */
+	/* outline: 0.1px solid slategrey; */
+	background-color: transparent;
+	border-radius: 5px;
+}
+*::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
 }
 
 body {
@@ -41,20 +53,6 @@ body.dark {
 	--link-color: rgb(154, 214, 253);
 }
 
-*::-webkit-scrollbar {
-	width: 0.5rem;
-	/* width: 0; */
-}
-*::-webkit-scrollbar-thumb {
-	/* outline: 0px solid slategrey; */
-	/* outline: 0.1px solid slategrey; */
-	background-color: transparent;
-	border-radius: 5px;
-}
-*::-webkit-scrollbar-thumb {
-	background-color: darkgrey;
-}
-
 .info a:link,
 .info a:visited,
 .info a:hover,
@@ -63,7 +61,7 @@ body.dark {
 	color: var(--link-color);
 }
 
-/* <-- Audio --> */
+/* <-- BMG */
 audio {
 	display: none;
 }
@@ -84,12 +82,10 @@ audio {
 	align-items: center;
 	justify-content: center;
 }
-
 .bgm > i {
 	color: var(--award-color);
 	cursor: pointer;
 }
-
 .bgm-info {
 	background-color: pink;
 	border-top-right-radius: 50px;
@@ -112,7 +108,6 @@ audio {
 	align-items: center;
 	justify-content: space-around;
 }
-
 .bgm-info .track {
 	background-color: #1098ad;
 	color: white;
@@ -132,7 +127,6 @@ audio {
 	align-items: center;
 	justify-content: center;
 }
-
 .bgm:hover {
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
@@ -155,16 +149,18 @@ audio {
 
 	width: 100px;
 }
+/*BGM --> */
 
-/* <-- Timer --> */
+/* <-- Timer */
 .wrong-cd,
 .timer {
 	color: var(--hint-color);
 	font-size: 1.5em;
 	display: none;
 }
+/* Timer --> */
 
-/* <-- To Top --> */
+/* <-- To Top */
 /* .to-top {
 	position: fixed;
 	bottom: 0;
@@ -180,11 +176,9 @@ audio {
 .to-top:hover {
 	opacity: 1;
 } */
-
 .to-top a {
 	text-decoration: none;
 }
-
 .to-top a:link,
 .to-top a:visited,
 .to-top a:hover,
@@ -208,9 +202,6 @@ audio {
 
 	z-index: 10;
 }
-.to-top:hover {
-	cursor: default;
-}
 
 .to-top::after,
 .to-top::before {
@@ -223,11 +214,6 @@ audio {
 	height: 5px;
 	transition: all 0.5s ease;
 }
-.to-top:hover::after,
-.to-top:hover::before {
-	transform: rotateZ(0);
-}
-
 .to-top::after {
 	left: 0;
 	transform: rotateZ(-225deg);
@@ -235,6 +221,14 @@ audio {
 .to-top::before {
 	right: 0;
 	transform: rotateZ(225deg);
+}
+
+.to-top:hover {
+	cursor: default;
+}
+.to-top:hover::after,
+.to-top:hover::before {
+	transform: rotateZ(0);
 }
 
 .to-top .content {
@@ -255,8 +249,9 @@ audio {
 .to-top:hover .content {
 	display: block;
 }
+/* To Top --> */
 
-/* <-- Toggle Theme --> */
+/* <-- Toggle Theme */
 .toggle-theme {
 	position: absolute;
 	left: 2%;
@@ -276,13 +271,11 @@ audio {
 	margin: auto;
 	z-index: 50;
 }
-
 .moon {
 	opacity: 0;
 	transform: rotateZ(180deg);
 	transition: opacity 0.5s ease, transform 0.5s ease;
 }
-
 .sun {
 	opacity: 1;
 	transform: rotateZ(180deg);
@@ -293,13 +286,13 @@ audio {
 	opacity: 1;
 	transform: rotateZ(0deg);
 }
-
 .sun.active {
 	opacity: 0;
 	transform: rotateZ(0deg);
 }
+/* Toggle Theme --> */
 
-/* <-- Nav Bar --> */
+/* <-- Nav Bar */
 .menu-icon {
 	position: absolute;
 	top: 32px;
@@ -307,6 +300,9 @@ audio {
 	opacity: 0;
 	color: var(--color);
 	z-index: 55;
+}
+.nav-overlay {
+	display: none;
 }
 
 .nav-bar {
@@ -325,10 +321,6 @@ audio {
 	left: 0;
 	right: 0;
 	z-index: 50;
-}
-
-.nav-overlay {
-	display: none;
 }
 
 .nav-links ul {
@@ -367,23 +359,20 @@ audio {
 	width: auto;
 	text-align: center;
 }
-
 .title::after {
 	background-color: var(--navbar-color);
 	position: absolute;
+}
+.title:hover::after {
+	width: 100%;
 }
 
 .title .fa-info-circle {
 	opacity: 0;
 	transition: 0.7s ease;
 }
-
 .title:hover .fa-info-circle {
 	opacity: 1;
-}
-
-.title:hover::after {
-	width: 100%;
 }
 
 .lk a::after,
@@ -402,10 +391,6 @@ audio {
 	background-color: var(--navbar-color);
 }
 
-.lilocked a {
-	background-color: rgb(71, 71, 71);
-	color: rgb(107, 107, 107);
-}
 .liactive a {
 	background-color: var(--navbar-color);
 	color: var(--navbar-background-color);
@@ -413,6 +398,11 @@ audio {
 .lifin a {
 	color: var(--award-background-color);
 	background-color: var(--award-color);
+}
+.lilocked a,
+.lihidden a {
+	background-color: rgb(71, 71, 71);
+	color: rgb(107, 107, 107);
 }
 
 .lilocked:hover a {
@@ -436,8 +426,12 @@ audio {
 .lk a:hover::after {
 	width: 50px;
 }
+.lihidden a::after {
+	width: 0;
+}
+/* Nav Bar --> */
 
-/* <-- Banner --> */
+/* <-- Banner */
 .banner {
 	display: flex;
 	flex-direction: column;
@@ -447,21 +441,19 @@ audio {
 	margin-top: 8rem;
 	user-select: none;
 }
-
-.avatar {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: auto;
-	position: relative;
-}
-
 .banner input {
 	margin-top: 15px;
 	font-size: 1.5rem;
 	max-width: 130px;
 }
 
+.banner .avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: auto;
+	position: relative;
+}
 .banner .avatar::after {
 	content: attr(data-userID);
 	position: absolute;
@@ -479,10 +471,10 @@ audio {
 	align-items: center;
 	justify-content: center;
 }
-
 .banner .avatar:hover::after {
 	opacity: 0.7;
 }
+/* Banner --> */
 
 /* <-- Content --> */
 .main {
@@ -509,8 +501,23 @@ section {
 	align-items: center;
 	color: var(--color);
 }
+section .fa-eye-slash {
+	margin-bottom: 10px;
+	cursor: pointer;
+	z-index: 10;
+}
+section.hidden {
+	height: 0;
+}
+section.hidden:hover:after,
+section.hidden::after {
+	all: unset;
+}
+section.hidden * {
+	display: none;
+}
 
-/* <-- Animated Border --> */
+/* <-- Animated Border */
 section {
 	--borderWidth: 8px;
 	background-color: var(--background-color);
@@ -553,11 +560,15 @@ section:hover::after {
 		background-position: 0% 50%;
 	}
 }
+/* Animated Border --> */
 
 section.locked {
 	background-color: var(--lock-section);
 	min-height: 100px;
 	opacity: 1;
+}
+section.locked > .fa-eye-slash {
+	display: none;
 }
 section.locked .content,
 section.locked .title {
