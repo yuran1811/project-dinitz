@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+* {
+	font-family: 'Raleway', sans-serif;
+	box-sizing: border-box;
+	user-select: none;
+	color: white;
+	&::selection {
+		background-color: aquamarine;
+		color: rgb(35, 88, 71);
+	}
+}
+
+.container {
+	background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	object-fit: cover;
+	position: absolute;
+	inset: 0;
+	min-height: 90%;
+	overflow: hidden;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+	&.active {
+		.content .title {
+			opacity: 1;
+			transform: translateY(0);
+			&::after {
+				opacity: 1;
+				width: 350px;
+			}
+		}
+	}
+
+	.header {
+		background-color: white;
+		border-radius: 100px;
+		margin-top: 10px;
+		width: 25%;
+		display: flex;
+		justify-content: center;
+		&.active {
+			img {
+				transform: translateX(0);
+			}
+			p {
+				opacity: 1;
+			}
+		}
+
+		img {
+			width: 70px;
+			transform: translateX(80px);
+			transition: transform 0.5s;
+		}
+		p {
+			position: relative;
+			font-size: 1.8rem;
+			margin-left: 7px;
+			display: inline;
+			color: black;
+			opacity: 0;
+			line-height: 1;
+			transition: 2s ease;
+			&:hover::after {
+				transform: scaleX(1);
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				bottom: -5px;
+				left: 0;
+				right: 0;
+				height: 6px;
+				transform: scaleX(0);
+				transition: all 0.3s ease;
+				background-color: black;
+			}
+		}
+	}
+	.content {
+		.title {
+			opacity: 0;
+			font-size: 6rem;
+			margin: 15px auto;
+			letter-spacing: 5px;
+			transform: translateY(-200px);
+			transition: 1.2s ease, transform 1.7s;
+			&::after {
+				content: ' ';
+				display: block;
+				position: absolute;
+				left: 50%;
+				opacity: 0;
+				width: 0px;
+				height: 5px;
+				background-color: white;
+				transform: translateX(-50%);
+				transition: width 1.7s ease;
+			}
+		}
+		.count-down {
+			font-size: 3rem;
+			text-decoration: none;
+		}
+	}
+	.footer {
+		margin: 0 0 15px;
+		font-size: 1.8rem;
+		text-decoration: none;
+		transition: all 0.3s ease;
+		&:hover {
+			font-size: 2.1rem;
+		}
+	}
+}
+
+@media (max-width: 500px) {
+	.container {
+		.content {
+			.title {
+				font-size: 3rem;
+			}
+			.count-down {
+				font-size: 2rem;
+			}
+		}
+		.footer {
+			font-size: 1.3rem;
+			&:hover {
+				font-size: 1.6rem;
+			}
+		}
+	}
+}
+@media (max-width: 1100px) {
+	.container {
+		.header {
+			img {
+				transform: unset;
+			}
+			p {
+				display: none;
+			}
+		}
+		.content {
+			.title {
+				font-size: 4rem;
+			}
+			.count-down {
+				font-size: 2.5rem;
+			}
+		}
+	}
+}
