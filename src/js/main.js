@@ -2,7 +2,7 @@ const _$ = document.querySelector.bind(document);
 const $$_ = document.querySelectorAll.bind(document);
 
 fetch('./db/acc.json')
-	.then((rsp) => rsp.json())
+	.then((res) => res.json())
 	.then((rawData) => {
 		document.body.innerHTML = `<div class="container"> <div class="forms-container"> <div class="signin-menulist"> <div id="form1" class="sign-in"> <h2 class="title">Đăng nhập</h2> <div class="input-field"> <i class="fas fa-user"></i> <input class="user-name" type="text" placeholder="Username" required /> </div> <div class="input-field"> <i class="fas fa-lock"></i> <input class="password" type="password" placeholder="Password" required /> </div> <input type="submit" value="Đăng nhập" class="log-in btn solid" id="log-in" /> </div> <div id="form2" class="sign-up"> <h2 class="title"> Những thử thách bạn phải hoàn thành: </h2> <div class="list-item"> <ul> <li class="item01"> <a href="#"> <i class="fas fa-check"></i> Nim Game</a > <span class="item-info" id="info1" >About</span > </li> <li class="item02"> <a href="#"> <i class="fas fa-check"></i> IE</a > <span class="item-info" id="info2" >About</span > </li> <li class="item03"> <a href="#"> <i class="fas fa-check"></i> Du lịch</a > <span class="item-info" id="info3" >About</span > </li> <li class="item04"> <a href="#"> <i class="fas fa-check"></i> Mật khẩu là gì </a> <span class="item-info" id="info4" >About</span > </li> <li class="item05"> <a href="#"> <i class="fas fa-check"></i> Trạm vui vẻ</a > <span class="item-info" id="info5" >About</span > </li> <li class="item06"> <a href="#"> <i class="fas fa-check"></i> Love Letter</a > <span class="item-info" id="info6" >About</span > </li> </ul> </div> </div> </div> </div> <div class="panels-container"> <div class="panel left-panel"> <div class="content"> <h3 class="panel-title">Đăng nhập để tiếp tục</h3> <p>Chúc bạn có những phút giây vui vẻ!!!</p> <div class="btn" id="sign-up-btn"> Xem danh sách các thử thách </div> </div> </div> <div class="panel right-panel"> <div class="content"> <h3 class="panel-title">Bạn đã sẵn sàng?</h3> <br /> <div class="btn" id="sign-in-btn">Đi thôi</div> </div> </div> </div> </div>`;
 
@@ -1113,7 +1113,7 @@ fetch('./db/acc.json')
 			document.body.innerHTML = htmls;
 
 			const allLink = document.head.querySelectorAll('link');
-			allLink[allLink.length - 1].href = 'src/style/Tmpl.css';
+			allLink[allLink.length - 1].href = './src/css/Tmpl.css';
 		};
 		_$('#sign-in-btn').onclick = () => {
 			reRender();
@@ -1122,5 +1122,6 @@ fetch('./db/acc.json')
 	})
 	.catch(() => {
 		alert('Error on Load Data. Please Reload the Page!!!');
-		_$('html').innerHTML = 'Error on Load Data. Please Reload the Page!!!';
+		_$('html').innerHTML =
+			'<h1 style="text-align:center">Error on Load Data. Please Reload the Page!!!</h1>';
 	});

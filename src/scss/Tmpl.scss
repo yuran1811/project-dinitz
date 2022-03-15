@@ -11,54 +11,52 @@
 	--lock-section: rgb(197, 197, 197);
 	--link-color: rgb(64, 144, 197);
 }
-
 * {
 	font-family: 'Oswald', sans-serif;
 	box-sizing: border-box;
+	&::selection {
+		background-color: var(--color);
+		color: var(--background-color);
+	}
+	&::-webkit-scrollbar {
+		width: 0.5rem;
+		/* width: 0; */
+		&-thumb {
+			/* outline: 0px solid slategrey; */
+			/* outline: 0.1px solid slategrey; */
+			// background-color: transparent;
+			background-color: darkgrey;
+			border-radius: 5px;
+		}
+	}
 }
-*::selection {
-	background-color: var(--color);
-	color: var(--background-color);
-}
-*::-webkit-scrollbar {
-	width: 0.5rem;
-	/* width: 0; */
-}
-*::-webkit-scrollbar-thumb {
-	/* outline: 0px solid slategrey; */
-	/* outline: 0.1px solid slategrey; */
-	background-color: transparent;
-	border-radius: 5px;
-}
-*::-webkit-scrollbar-thumb {
-	background-color: darkgrey;
-}
-
 body {
 	font-size: 62.5%;
-	background-color: var(--background-color);
 	transition: all 0.3s ease;
-}
-body.dark {
-	--color: white;
-	--background-color: rgb(48, 48, 48);
-	--navbar-color: rgb(117, 181, 253);
-	--navbar-background-color: rgb(0, 58, 97);
-	--border-color: rgba(255, 255, 255, 0.514);
-	--award-color: rgb(245, 173, 17);
-	--award-background-color: #fff77a;
-	--hint-color: rgb(235, 66, 66);
-	--totop: rgb(184, 255, 255);
-	--lock-section: rgb(87, 87, 87);
-	--link-color: rgb(154, 214, 253);
+	background-color: var(--background-color);
+	&.dark {
+		--color: white;
+		--background-color: rgb(48, 48, 48);
+		--navbar-color: rgb(117, 181, 253);
+		--navbar-background-color: rgb(0, 58, 97);
+		--border-color: rgba(255, 255, 255, 0.514);
+		--award-color: rgb(245, 173, 17);
+		--award-background-color: #fff77a;
+		--hint-color: rgb(235, 66, 66);
+		--totop: rgb(184, 255, 255);
+		--lock-section: rgb(87, 87, 87);
+		--link-color: rgb(154, 214, 253);
+	}
 }
 
-.info a:link,
-.info a:visited,
-.info a:hover,
-.info a:active,
-.info a:focus {
-	color: var(--link-color);
+.info {
+	a:link,
+	a:visited,
+	a:hover,
+	a:active,
+	a:focus {
+		color: var(--link-color);
+	}
 }
 
 /* <-- BMG */
@@ -81,10 +79,10 @@ audio {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-.bgm > i {
-	color: var(--award-color);
-	cursor: pointer;
+	& > i {
+		color: var(--award-color);
+		cursor: pointer;
+	}
 }
 .bgm-info {
 	background-color: pink;
@@ -186,7 +184,6 @@ audio {
 .to-top a:focus {
 	color: var(--totop);
 }
-
 .to-top {
 	display: none;
 
@@ -233,7 +230,7 @@ audio {
 
 .to-top .content {
 	font-size: 2rem;
-	font-weight: 700;
+	font-weight: bold;
 	text-align: center;
 	padding: 0;
 	margin: 0;

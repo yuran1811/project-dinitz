@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@100;200;300&display=swap');
 
 /* <--=== CONFIG */
 $SIZE1: 1200px;
@@ -56,40 +56,6 @@ body {
 		transition: 1.8s ease-in-out;
 		border-radius: 50%;
 		background-image: linear-gradient(-45deg, #2e528f 0%, #04befe 100%);
-	}
-	&.sign-up-mode {
-		&::before {
-			transform: translate(100%, -50%);
-			right: 52%;
-		}
-
-		.left-panel {
-			pointer-events: none;
-			.image,
-			.content {
-				transform: translateX(-800px);
-			}
-		}
-		.right-panel {
-			pointer-events: all;
-			.image,
-			.content {
-				transform: translateX(0%);
-			}
-		}
-		.signin-menulist {
-			left: 25%;
-		}
-		.sign {
-			&-up {
-				opacity: 1;
-				z-index: 2;
-			}
-			&-in {
-				opacity: 0;
-				z-index: 1;
-			}
-		}
 	}
 
 	.forms-container {
@@ -286,6 +252,28 @@ body {
 									}
 								}
 							}
+
+							@include Responsive($SIZE2) {
+								margin: 1.4rem 1.2rem;
+								&:hover .item-info::after {
+									width: 70px;
+								}
+
+								a {
+									font-size: 1.3rem;
+									padding: 0.8rem;
+									letter-spacing: 1px;
+									transition: background 0.5s ease;
+								}
+								.item-info {
+									left: 94%;
+									font-size: 1.3rem;
+									max-width: 35vw;
+									min-width: 27vw;
+									padding: 1rem 0.3rem;
+									margin: 1.4rem 0;
+								}
+							}
 						}
 						#info {
 							&1::before {
@@ -305,28 +293,6 @@ body {
 							}
 							&6::before {
 								content: 'Tôi yêu em nhưng tôi không muốn để FBI biết';
-							}
-						}
-
-						@include Responsive($SIZE2) {
-							margin: 1.4rem 1.2rem;
-							&:hover .item-info::after {
-								width: 70px;
-							}
-
-							a {
-								font-size: 1.3rem;
-								padding: 0.8rem;
-								letter-spacing: 1px;
-								transition: background 0.5s ease;
-							}
-							.item-info {
-								left: 94%;
-								font-size: 1.3rem;
-								max-width: 35vw;
-								min-width: 27vw;
-								padding: 1rem 0.3rem;
-								margin: 1.4rem 0;
 							}
 						}
 					}
@@ -353,35 +319,6 @@ body {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 
-		.left-panel {
-			pointer-events: all;
-			padding: 2rem 27% 15% 0;
-			@include Responsive($SIZE2) {
-				grid-row: 1 / 2;
-			}
-		}
-		.right-panel {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			pointer-events: none;
-			padding: 3rem 8% 2rem 17%;
-			@include Responsive($SIZE2) {
-				grid-row: 3 / 4;
-			}
-
-			.content {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-			}
-			.image,
-			.content {
-				transform: translateX(800px);
-			}
-		}
 		.panel {
 			display: flex;
 			flex-direction: column;
@@ -439,6 +376,9 @@ body {
 					&.active:hover {
 						animation: none;
 					}
+					@include Responsive($SIZE2) {
+						font-size: 1rem;
+					}
 				}
 			}
 
@@ -467,7 +407,78 @@ body {
 					padding: 1.2em 1rem;
 				}
 			}
+
+			&.left-panel {
+				pointer-events: all;
+				padding: 2rem 27% 15% 1rem;
+				@include Responsive($SIZE2) {
+					grid-row: 1 / 2;
+				}
+			}
+			&.right-panel {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				pointer-events: none;
+				padding: 3rem 8% 2rem 17%;
+				@include Responsive($SIZE2) {
+					grid-row: 3 / 4;
+				}
+
+				.content {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+				}
+				.image,
+				.content {
+					transform: translateX(800px);
+				}
+			}
+
+			&.left-panel,
+			&.right-panel {
+				@include Responsive($SIZE2) {
+					flex-direction: row;
+					justify-content: space-around;
+					align-items: center;
+					padding: 4rem 8% 9rem;
+					grid-column: 1 / 2;
+
+					.content {
+						padding-right: 15%;
+						transition: transform 0.9s ease-in-out;
+						transition-delay: 0.8s;
+					}
+					h3 {
+						font-size: 1.8rem;
+					}
+					p {
+						font-size: 1.2rem;
+						padding: 0.5rem 0;
+					}
+				}
+				@include Responsive($SIZE3) {
+					.content {
+						padding: 1.2em 1rem;
+					}
+				}
+			}
+
+			&.left-panel {
+				@include Responsive($SIZE2) {
+					padding-left: 1%;
+					padding-right: 15%;
+				}
+				@include Responsive($SIZE3) {
+					padding-left: unset;
+					padding-right: unset;
+				}
+			}
 		}
+
 		@include Responsive($SIZE2) {
 			grid-template-columns: 1fr;
 			grid-template-rows: 1fr 2fr 1fr;
@@ -513,6 +524,47 @@ body {
 		}
 	}
 
+	&.sign-up-mode {
+		&::before {
+			transform: translate(100%, -50%);
+			right: 52%;
+		}
+
+		.forms-container {
+			.signin-menulist {
+				left: 25%;
+			}
+			.sign {
+				&-up {
+					opacity: 1;
+					z-index: 2;
+				}
+				&-in {
+					opacity: 0;
+					z-index: 1;
+				}
+			}
+		}
+		.panels-container {
+			.panel {
+				&.left-panel {
+					pointer-events: none;
+					.image,
+					.content {
+						transform: translateX(-800px);
+					}
+				}
+				&.right-panel {
+					pointer-events: all;
+					.image,
+					.content {
+						transform: translateX(0);
+					}
+				}
+			}
+		}
+	}
+
 	@include Responsive($SIZE2) {
 		min-height: 800px;
 		height: 100vh;
@@ -541,14 +593,19 @@ body {
 				}
 			}
 			.panels-container {
-				.left-panel .image,
-				.left-panel .content {
-					transform: translateY(-300px);
-				}
-
-				.right-panel .image,
-				.right-panel .content {
-					transform: translateY(0px);
+				.panel {
+					&.left-panel {
+						.image,
+						.content {
+							transform: translateY(-300px);
+						}
+					}
+					&.right-panel {
+						.image,
+						.content {
+							transform: translateY(0);
+						}
+					}
 				}
 			}
 		}

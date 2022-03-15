@@ -1,4 +1,8 @@
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
 const htmls = `
+	<canvas></canvas>
 	<div class="wrapper">
 		<section class="module-team">
 			<div class="team">
@@ -16,13 +20,9 @@ const htmls = `
 			</div>
 		</section>
 	</div>`;
-
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
-
 document.body.innerHTML = htmls + document.body.innerHTML;
 
-window.addEventListener('load', (event) => {
+const swiperGenerator = () => {
 	const team = [
 		{
 			name: 'Yuran Legends',
@@ -89,77 +89,63 @@ window.addEventListener('load', (event) => {
 			facebook: 'https://www.facebook.com/tranminhtien.1404',
 		},
 	];
-	const icons = [
-		{
-			iFacebook: '../Library/imgMembers/facebook.svg',
-			iEmail: '../Library/imgMembers/envelope.svg',
-		},
-	];
-	const iFacebook = icons[0].iFacebook;
-	const iEmail = icons[0].iEmail;
+	const icons = {
+		iFacebook: '../Library/imgMembers/facebook.svg',
+		iEmail: '../Library/imgMembers/envelope.svg',
+	};
+	const { iFacebook, iEmail } = icons;
 
 	const swiperWrapper = $('.swiper-wrapper');
-	(() => {
-		for (let i = 0; i < team.length; i++) {
-			const name = team[i].name,
-				role = team[i].role,
-				desc = team[i].desc,
-				photo = team[i].photo,
-				facebook = team[i].facebook,
-				email = team[i].email;
+	team.forEach((member) => {
+		const { name, role, desc, photo, facebook, email } = member;
+		const roleHTML = role
+			.map((item) => `<p class="role">${item}</p>`)
+			.join('');
+		const htmls = `
+			<div class="swiper-slide">
+				<div class="card">
+					<span class="bg"></span>
+					<span class="more"></span>
+					<figure class="photo"><img src="${photo}"></figure>
+					<article class="text">
+						<p class="name">${name}</p>
+						${roleHTML}
+						<p class="desc">${desc}</p>
+					</article>
 
-			const roleHTML = role
-				.map((item) => `<p class="role">${item}</p>`)
-				.join('');
-			const htmls = `
-									<div class="swiper-slide">
-										<div class="card">
-											<span class="bg"></span>
-											<span class="more"></span>
-											<figure class="photo"><img src="${photo}"></figure>
-											<article class="text">
-												<p class="name">${name}</p>
-												${roleHTML}
-												<p class="desc">${desc}</p>
-											</article>
+					<div class="social">
+						<span class="pointer"></span>
+						<div class="icons">
+							<a class="icon" href="${email}" target="_blank" rel="noopener" data-index="1">
+								<img src="${iEmail}" alt="mail">
+							</a>
+							<a class="icon" href="${facebook}" target="_blank" rel="noopener" data-index="2">
+								<img src="${iFacebook}" alt="fb">
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>`;
+		swiperWrapper.insertAdjacentHTML('beforeend', htmls);
+	});
 
-											<div class="social">
-												<span class="pointer"></span>
-												<div class="icons">
-													<a class="icon" href="${email}" target="_blank"  rel="noopener" data-index="1">
-														<img src="${iEmail}">
-													</a>
-													<a class="icon" href="${facebook}" target="_blank"  rel="noopener" data-index="2">
-														<img src="${iFacebook}">
-													</a>
-												</div>
-											</div>
-										</div>
-									</div>`;
-			swiperWrapper.insertAdjacentHTML('beforeend', htmls);
-		}
-	})();
-
-	var mySwiper = new Swiper('.swiper-container', {
+	new Swiper('.swiper-container', {
 		direction: 'horizontal',
-		loop: true,
-		centeredSlides: false,
 		speed: 800,
+		threshold: 5,
 		slidesPerView: 3,
 		spaceBetween: 40,
-		threshold: 5,
+		centeredSlides: false,
 
-		// If we need pagination
 		pagination: {
 			el: '.swiper-pagination',
 			clickable: true,
 		},
-
-		// Navigation arrows
 		navigation: {
 			nextEl: '.swiper-button-next',
 			prevEl: '.swiper-button-prev',
 		},
+
 		breakpoints: {
 			1180: {
 				slidesPerView: 2,
@@ -170,29 +156,32 @@ window.addEventListener('load', (event) => {
 				slidesPerView: 1,
 				spaceBetween: 20,
 				centeredSlides: true,
-				loop: true,
 			},
 		},
 	});
+};
 
-	$$('.card .photo').forEach((item) => {
-		item.addEventListener('click', (e) => {
-			e.path[1].closest('.swiper-slide').classList.toggle('show-more');
-		});
+onload = () => {
+	swiperGenerator();
+
+	[...$$('.card .photo'), ...$$('.more')].forEach((item) => {
+		item.onclick = () => {
+			const last = $('.show-more');
+			const par = item.closest('.swiper-slide');
+			if (last && last !== par)
+				last.className = last.className.replace(' show-more', '');
+			par.classList.toggle('show-more');
+		};
 	});
-	$$('.more').forEach((item) => {
-		item.addEventListener('click', (e) => {
-			e.target.closest('.swiper-slide').classList.toggle('show-more');
-		});
-	});
+
 	$$('.icon').forEach((item) => {
-		item.addEventListener('mouseenter', (e) => {
-			let pointer = e.currentTarget
+		item.onmouseenter = (e) => {
+			const pointer = e.currentTarget
 				.closest('.swiper-slide')
 				.querySelector('.pointer');
-			let index = e.currentTarget.dataset.index;
-			let sizeIcon = 102 * index - 38;
+			const index = e.currentTarget.dataset.index;
+			const sizeIcon = 102 * index - 38;
 			pointer.style.transform = `translateX(${sizeIcon}px)`;
-		});
+		};
 	});
-});
+};

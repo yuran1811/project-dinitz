@@ -1,62 +1,113 @@
-const particles = [];
-function setup() {
-	createCanvas(window.innerWidth, window.innerHeight);
+(() => {
+	const canvas = document.querySelector('canvas');
+	const c = canvas.getContext('2d');
 
-	const particlesLength = Math.min(Math.floor(window.innerWidth / 10), 100);
-	for (let i = 0; i < particlesLength; i++) particles.push(new Particle());
-}
+	const NUM_PARTICLES = innerWidth / 40;
+	const STROKE_WIDTH = 0.8;
+	const PARTICLE_RADIUS = 5;
+	const PARTICLE_COLOR = 'rgba(120, 120, 120, 1)';
 
-function draw() {
-	background(20);
+	canvas.height = innerHeight;
+	canvas.width = innerWidth;
 
-	particles.forEach((particle, idx) => {
-		particle.update();
-		particle.draw();
-		particle.checkParticles(particles.slice(idx));
-	});
-}
+	const canStroke = (a, b) => (b.x - a.x) ** 2 + (b.y - a.y) ** 2 <= 200 ** 2;
 
-class Particle {
-	constructor() {
-		this.pos = createVector(random(width), random(height));
-		this.vel = createVector(random(-2, 2), random(-2, 2));
-		this.size = 5;
-	}
+	const drawEdges = (a, b) => {
+		if (a === b) return;
+		if (!canStroke(a, b)) return;
+		c.beginPath();
+		c.moveTo(a.x, a.y);
+		c.lineTo(b.x, b.y);
+		c.strokeStyle = PARTICLE_COLOR;
+		c.lineWidth = STROKE_WIDTH;
+		c.stroke();
+		c.closePath();
+	};
 
-	update() {
-		this.pos.add(this.vel);
-		this.edges();
-	}
-
-	draw() {
-		noStroke();
-		fill('rgba(255, 255, 255, 0.5)');
-		circle(this.pos.x, this.pos.y, this.size * 2);
-	}
-
-	edges() {
-		if (this.pos.x < 0 || this.pos.x > width) {
-			this.vel.x *= -1;
+	class Particle {
+		constructor(x, y, radius, color, velocity) {
+			this.x = x;
+			this.y = y;
+			this.radius = radius;
+			this.color = color;
+			this.velocity = velocity;
 		}
 
-		if (this.pos.y < 0 || this.pos.y > height) {
-			this.vel.y *= -1;
+		draw() {
+			c.beginPath();
+			c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+			c.fillStyle = this.color;
+			c.fill();
+			c.closePath();
+		}
+
+		update() {
+			this.draw();
+			if (
+				this.x - PARTICLE_RADIUS < 0 ||
+				this.x + PARTICLE_RADIUS > innerWidth
+			)
+				this.velocity.x *= -1;
+			if (
+				this.y - PARTICLE_RADIUS < 0 ||
+				this.y + PARTICLE_RADIUS > innerHeight
+			)
+				this.velocity.y *= -1;
+			this.x += this.velocity.x;
+			this.y += this.velocity.y;
 		}
 	}
 
-	checkParticles(particles) {
-		particles.forEach((particle) => {
-			const d = dist(
-				this.pos.x,
-				this.pos.y,
-				particle.pos.x,
-				particle.pos.y
+	const particles = [];
+	const mouse = {
+		x: undefined,
+		y: undefined,
+	};
+
+	onmousemove = (e) => {
+		mouse.x = e.clientX;
+		mouse.y = e.clientY;
+	};
+	onresize = () => {
+		c.save();
+		canvas.width = innerWidth;
+		canvas.height = innerHeight;
+		c.restore();
+	};
+
+	const init = () => {
+		for (let i = 1; i <= NUM_PARTICLES; i++) {
+			const x = Math.random() * innerWidth;
+			const y = Math.random() * innerHeight;
+			const randNum = {
+				x: Math.random() * 4 - 2,
+				y: Math.random() * 4 - 2,
+			};
+			const velocity = {
+				x: randNum.x ? randNum.x : Math.random() * 2 + 1,
+				y: randNum.y ? randNum.y : Math.random() * 2 + 1,
+			};
+			particles.push(
+				new Particle(x, y, PARTICLE_RADIUS, PARTICLE_COLOR, velocity)
 			);
-			if (d < 120) {
-				const alpha = map(d, 0, 120, 0, 0.25);
-				stroke(`rgba(255, 255, 255, ${alpha})`);
-				line(this.pos.x, this.pos.y, particle.pos.x, particle.pos.y);
-			}
+		}
+	};
+
+	const animation = () => {
+		requestAnimationFrame(animation);
+		// c.clearRect(0, 0, innerWidth, innerHeight);
+		c.fillStyle = `rgba(20, 20, 20, 1)`;
+		c.fillRect(0, 0, innerWidth, innerHeight);
+
+		particles.forEach((item, index) => {
+			item.update();
+			particles.slice(index).forEach((adj) => drawEdges(item, adj));
 		});
-	}
-}
+		particles.forEach((item) => {
+			drawEdges(item, mouse);
+		});
+	};
+
+	init();
+	animation();
+})();
