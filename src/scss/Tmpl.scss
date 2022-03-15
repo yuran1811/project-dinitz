@@ -29,11 +29,7 @@ $SIZE2: 550px;
 	}
 	&::-webkit-scrollbar {
 		width: 0.5rem;
-		/* width: 0; */
 		&-thumb {
-			/* outline: 0px solid slategrey; */
-			/* outline: 0.1px solid slategrey; */
-			// background-color: transparent;
 			background-color: darkgrey;
 			border-radius: 5px;
 		}
@@ -57,7 +53,6 @@ body {
 		--link-color: rgb(154, 214, 253);
 	}
 }
-
 .info {
 	a:link,
 	a:visited,
@@ -150,7 +145,6 @@ body {
 		}
 	}
 }
-
 .to-top {
 	display: none;
 	position: fixed;
@@ -219,14 +213,6 @@ body {
 		}
 	}
 }
-
-.wrong-cd,
-.timer {
-	color: var(--hint-color);
-	font-size: 1.5em;
-	display: none;
-}
-
 .toggle-theme {
 	position: absolute;
 	left: 2%;
@@ -262,6 +248,13 @@ body {
 			transform: rotateZ(0deg);
 		}
 	}
+}
+
+.wrong-cd,
+.timer {
+	color: var(--hint-color);
+	font-size: 1.5em;
+	display: none;
 }
 
 /* <-- Nav Bar */
@@ -422,7 +415,7 @@ body {
 		justify-content: center;
 		margin: auto;
 		position: relative;
-		*::after {
+		&::after {
 			content: attr(data-userID);
 			position: absolute;
 			font-size: 2rem;
@@ -439,7 +432,7 @@ body {
 			align-items: center;
 			justify-content: center;
 		}
-		*:hover::after {
+		&:hover::after {
 			opacity: 0.7;
 		}
 	}
@@ -747,14 +740,14 @@ body.dark #box10 {
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
-}
-.status-log > div {
-	display: flex;
-	margin: 7px 0;
-	align-items: center;
-}
-.status-log > div > i + p {
-	margin: 0 7px;
+	& > div {
+		display: flex;
+		margin: 7px 0;
+		align-items: center;
+		& > i + p {
+			margin: 0 7px;
+		}
+	}
 }
 
 .submit-btn {
@@ -799,76 +792,78 @@ body.dark #box10 {
 	height: 100px;
 	background-clip: border-box;
 }
-#drag1 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/230px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png')
-		center;
-	background-size: inherit inherit;
-}
-#drag7,
-#drag2 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/225px-Flag_of_the_People%27s_Republic_of_China.svg.png')
-		top left;
-	background-size: inherit inherit;
-}
-#drag3 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Flag_of_Laos.svg/225px-Flag_of_Laos.svg.png')
-		center;
-	background-size: inherit inherit;
-}
-#drag4 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_Cambodia.svg/235px-Flag_of_Cambodia.svg.png')
-		center;
-	background-size: inherit inherit;
-}
-#drag6,
-#drag5 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_Thailand.svg/1280px-Flag_of_Thailand.svg.png')
-		center;
-	background-size: cover;
-}
-#drag8 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Flag_of_Myanmar.svg/225px-Flag_of_Myanmar.svg.png')
-		center;
-	background-size: inherit inherit;
-}
-#drag9 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Flag_of_Bhutan.svg/225px-Flag_of_Bhutan.svg.png')
-		center;
-	background-size: inherit auto;
-}
-#drag10 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/250px-Flag_of_Bangladesh.svg.png')
-		center;
-	background-size: inherit auto;
-}
-#drag11 {
-	background: no-repeat
-		url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/225px-Flag_of_India.svg.png')
-		center;
-	background-size: inherit auto;
-}
+#drag {
+	&1 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg/230px-Flag_of_North_Vietnam_%281955%E2%80%931976%29.svg.png')
+			center;
+		background-size: inherit inherit;
+	}
+	&7,
+	&2 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Flag_of_the_People%27s_Republic_of_China.svg/225px-Flag_of_the_People%27s_Republic_of_China.svg.png')
+			top left;
+		background-size: inherit inherit;
+	}
+	&3 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Flag_of_Laos.svg/225px-Flag_of_Laos.svg.png')
+			center;
+		background-size: inherit inherit;
+	}
+	&4 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_Cambodia.svg/235px-Flag_of_Cambodia.svg.png')
+			center;
+		background-size: inherit inherit;
+	}
+	&6,
+	&5 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Flag_of_Thailand.svg/1280px-Flag_of_Thailand.svg.png')
+			center;
+		background-size: cover;
+	}
+	&8 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Flag_of_Myanmar.svg/225px-Flag_of_Myanmar.svg.png')
+			center;
+		background-size: inherit inherit;
+	}
+	&9 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Flag_of_Bhutan.svg/225px-Flag_of_Bhutan.svg.png')
+			center;
+		background-size: inherit auto;
+	}
+	&10 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Flag_of_Bangladesh.svg/250px-Flag_of_Bangladesh.svg.png')
+			center;
+		background-size: inherit auto;
+	}
+	&11 {
+		background: no-repeat
+			url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_India.svg/225px-Flag_of_India.svg.png')
+			center;
+		background-size: inherit auto;
+	}
 
-#drag1:hover,
-#drag2:hover,
-#drag3:hover,
-#drag4:hover,
-#drag5:hover,
-#drag6:hover,
-#drag7:hover,
-#drag8:hover,
-#drag9:hover,
-#drag10:hover,
-#drag11:hover {
-	transition: all 0.3s ease;
-	background-size: 100% 100%;
+	&1:hover,
+	&2:hover,
+	&3:hover,
+	&4:hover,
+	&5:hover,
+	&6:hover,
+	&7:hover,
+	&8:hover,
+	&9:hover,
+	&10:hover,
+	&11:hover {
+		transition: all 0.3s ease;
+		background-size: 100% 100%;
+	}
 }
 
 footer {
