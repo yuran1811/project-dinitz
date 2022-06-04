@@ -190,170 +190,168 @@ const templateHandle = () => {
 	}
 
 	// Main Event Handle
-	const challengeNo1 = `<p>
-								“Chào mừng các thành viên của đội chơi đã đến với
-								thử thách “Emag min”, vì sợ các bạn nhàm chán nên
-								chúng tôi - “Tổ chức điểm cộng phi lợi nhuận giấu
-								tên không ai biết đại diện cho những nhân vật phản
-								diện đầy khả ái và ngây ngất lòng người” - đã chuẩn
-								bị trước một số trò chơi cho các bạn cùng thưởng
-								thức.”
-							</p>
-							<p>
-								Giọng nói ồn ào phát ra từ vô định vang lên ngay sau
-								khi chúng tôi hoàn thành thử thách, cánh cửa của
-								trạm đóng sầm lại, Naot hoảng loạn chạy ra kiểm tra
-								cửa thì thấy rằng trên cửa có một khóa mật khẩu bao
-								gồm các ký tự số từ 1 đến 9. Đang loay hoay không
-								biết mật khẩu mở như thế nào thì có thành viên phát
-								hiện một mẩu giấy trên bàn được đặt giữa trạm được
-								viết bằng tiếng Trung. Hoang mang không biết mẫu
-								giấy viết gì thì Naot đã tự nhận mình là “Pháp sư
-								Trung Hoa” và dịch mẫu giấy như sau:
-							</p>
-							<p>
-								“Emag min” là một trò chơi có từ thời nào không
-								biết, thế nhưng Emag min lại là một trong những trò
-								chơi cơ sở đặt nền móng cho lĩnh vực lý thuyết trò
-								chơi hết sức quan trọng, Emag min trong đề bài lần
-								này được phát biểu như sau:
-							</p>
-							<p>
-								Trước mặt bạn là <i>n</i> chồng sỏi, chồng sỏi thứ
-								<i>i</i> có
-								<i> a<sub>i</sub> </i>
-								viên sỏi
-								<i> (1 &le; i &le; n) </i>
-								, Emag min sẽ bao gồm 2 người chơi luân phiên thực
-								hiện các bước đi, một bước đi hợp lệ phát biểu như
-								sau:
-							</p>
-							<ul>
-								<li>
-									Chọn duy nhất một chồng sỏi bất kì có dương số
-									sỏi
-								</li>
-								<li>
-									Bốc ra một số nguyên dương viên sỏi ra khỏi
-									chồng sỏi
-								</li>
-								<li>Kết thúc lượt đi</li>
-							</ul>
-							<p>
-								Trò chơi sẽ kết thúc nếu người chơi không thể thực
-								hiện thêm bất kỳ bước đi hợp lệ nào nữa, người thua
-								cuộc sẽ là người không thể thực hiện bước đi, người
-								còn lại sẽ là người thắng cuộc.
-							</p>
-							<p>
-								Ví dụ về một Emag min với 3 chồng sỏi (lưu ý, 2
-								người chơi không tối ưu):
-							</p>
-							<ul>
-								<li>Trạng thái ban đầu: 3 3 3</li>
-								<li>
-									Lượt 1: 3 3 1 (người chơi 1 bốc 2 viên sỏi ở
-									chồng sỏi 3)
-								</li>
-								<li>
-									Lượt 2: 0 3 1 (người chơi 2 bốc 3 viên sỏi ở
-									chồng sỏi 1)
-								</li>
-								<li>
-									Lượt 3: 0 1 1 (người chơi 1 bốc 2 viên sỏi ở
-									chồng sỏi 2)
-								</li>
-								<li>
-									Lượt 4: 0 0 1 (người chơi 2 bốc 1 viên sỏi ở
-									chồng sỏi 2)
-								</li>
-								<li>
-									Lượt 5: 0 0 0 (người chơi 1 bốc 1 viên sỏi ở
-									chồng sỏi 3)
-								</li>
-								<li>
-									Lượt 6: 0 0 0, người chơi 2 không thể thực hiện
-									bước đi hợp lệ, thua cuộc
-								</li>
-							</ul>
-							<p>Kết quả: Người chơi 1 chiến thắng.</p>
-							<p>
-								Vừa dịch xong mẫu giấy, một cánh cửa khác mở ra dẫn
-								đội chơi đến với một căn phòng gồm 8 bàn được đánh
-								số từ 1 đến 8, mỗi bàn được bày sẵn một Emag min với
-								4 chồng sỏi, nhiệm vụ của đội chơi là tìm ra 4 bàn
-								khác nhau với chỉ số các bàn là bé nhất sao cho khi
-								đội của bạn chơi Emag min trên 4 bàn đó với vai trò
-								là người đi đầu tiên thì chắc chắn chiến thắng, biết
-								rằng đối thủ của bạn luôn luôn thực hiện các bước đi
-								tối ưu.
-							</p>
-							<p>
-								Mật khẩu trên cánh cửa bao gồm
-								<b> <i> 4 chữ số liên tiếp (không có khoảng trắng) </i> </b>
-								, được viết theo thứ tự tăng dần, chỉ có một mật
-								khẩu duy nhất có thể vượt qua được cánh cửa đó.
-							</p>
-							<p>
-								Nếu các bạn đang bối rối về việc tại sao chỉ có thể
-								có một mật khẩu duy nhất thì chứng minh được rằng
-								với mỗi Emag min biết trước trạng thái ban đầu thì
-								luôn xác định được thắng thua trước khi chơi.
-							</p>
-							<p>
-								Nào, vì điểm cộng, các bạn hãy cố gắng vượt qua trạm
-								này nhé!!!
-							</p>
-							<ul>
-								<li>Trạng thái các chồng sỏi bàn 1: 4 1 1 4</li>
-								<li>Trạng thái các chồng sỏi bàn 2: 1 3 3 6</li>
-								<li>Trạng thái các chồng sỏi bàn 3: 3 4 2 5</li>
-								<li>Trạng thái các chồng sỏi bàn 4: 8 6 6 6</li>
-								<li>Trạng thái các chồng sỏi bàn 5: 6 6 1 3</li>
-								<li>Trạng thái các chồng sỏi bàn 6: 4 4 7 7</li>
-								<li>Trạng thái các chồng sỏi bàn 7: 6 2 3 7</li>
-								<li>Trạng thái các chồng sỏi bàn 8: 1 1 1 2</li>
-							</ul>`;
-	const challengeNo2 = `<p>
-								“Chào mừng các thành viên của đội chơi đã đến với
-								thử thách “IE”, vì sợ các bạn nhàm chán nên chúng
-								tôi - “Tổ chức điểm cộng phi lợi nhuận giấu tên
-								không ai biết đại diện cho những nhân vật phản diện
-								đầy khả ái và ngây ngất lòng người” - đã chuẩn bị
-								trước một trò chơi cho các bạn cùng thưởng thức.”
-							</p>
-							<p>
-								Các bạn đã được đưa tới 1 cây cầu trên không được
-								tạo nên từ các ván gỗ đánh số từ 1 tới 100000000. Vì
-								cây cầu đã được xây dựng nhiều năm về trước nên một
-								số ván gỗ đã bị mục, có thể gãy nếu có người đứng
-								trên nó. Các bạn đang đứng ở một bên cầu (được đánh
-								số 0) và muốn đi sang phía bên kia cầu (được đánh số
-								100000001). Biết rằng các ván được đánh số chia hết
-								cho 2, 3 hoặc 5 thì vẫn còn chắc chắn và có thể qua
-								được), hãy cho biết số ván gỗ còn chắc chắn trên cây
-								cầu để đảm bảo các bạn có thể qua được bờ bên kia.
-							</p>
-							<h2>Cách trả lời</h2>
-							<p>
-								Đội chơi điền duy nhất 1 số hệ thập phân là kết quả
-								của trò chơi trên.
-							</p>`;
-	const challengeNo3 = `Năm châu bốn bể thật nhiều nơi để đi qua. Bạn được BTC
-							cung cấp sơ đồ giản lược của một số quốc gia và chi phí
-							tương ứng để bay giữa các quốc gia. Naot muốn đi qua các
-							nước sau: Việt Nam -> Thái Lan -> Ấn Độ. Đi thẳng từ
-							nước này sang nước khác cũng được thôi, nhưng Naot muốn
-							tiết kiệm tiền để còn đi paylak toàn cầu, nên hãy thiết
-							kế cho Naot một lộ trình đi qua các nước sao cho tổng
-							chi phí bay là nhỏ nhất nhé.
-							<div class="how-to-answer">
-								<h2>Cách trả lời</h2>
-								Đội chơi trả lời lộ trình tốt nhất ( Lưu ý:
-								<b>không xếp chồng</b> các nước lên nhau và xếp theo
-								thứ tự từ 1 tới n, với n là số nước tạo thành lộ
-								trình trong đáp án của bạn)
-							</div><br>`;
+	const challengeNo1 = `
+	<p>
+		“Chào mừng các thành viên của đội chơi đã đến với
+		thử thách “Emag min”, vì sợ các bạn nhàm chán nên
+		chúng tôi - “Tổ chức điểm cộng phi lợi nhuận giấu
+		tên không ai biết đại diện cho những nhân vật phản
+		diện đầy khả ái và ngây ngất lòng người” - đã chuẩn
+		bị trước một số trò chơi cho các bạn cùng thưởng
+		thức.”
+	</p>
+	<p>
+		Giọng nói ồn ào phát ra từ vô định vang lên ngay sau
+		khi chúng tôi hoàn thành thử thách, cánh cửa của
+		trạm đóng sầm lại, Naot hoảng loạn chạy ra kiểm tra
+		cửa thì thấy rằng trên cửa có một khóa mật khẩu bao
+		gồm các ký tự số từ 1 đến 9. Đang loay hoay không
+		biết mật khẩu mở như thế nào thì có thành viên phát
+		hiện một mẩu giấy trên bàn được đặt giữa trạm được
+		viết bằng tiếng Trung. Hoang mang không biết mẫu
+		giấy viết gì thì Naot đã tự nhận mình là “Pháp sư
+		Trung Hoa” và dịch mẫu giấy như sau:
+	</p>
+	<p>
+		“Emag min” là một trò chơi có từ thời nào không
+		biết, thế nhưng Emag min lại là một trong những trò
+		chơi cơ sở đặt nền móng cho lĩnh vực lý thuyết trò
+		chơi hết sức quan trọng, Emag min trong đề bài lần
+		này được phát biểu như sau:
+	</p>
+	<p>
+		Trước mặt bạn là <i>n</i> chồng sỏi, chồng sỏi thứ
+		<i>i</i> có
+		<i> a<sub>i</sub> </i>
+		viên sỏi
+		<i> (1 &le; i &le; n) </i>
+		, Emag min sẽ bao gồm 2 người chơi luân phiên thực
+		hiện các bước đi, một bước đi hợp lệ phát biểu như
+		sau:
+	</p>
+	<ul>
+		<li>
+			Chọn duy nhất một chồng sỏi bất kì có dương số
+			sỏi
+		</li>
+		<li>
+			Bốc ra một số nguyên dương viên sỏi ra khỏi
+			chồng sỏi
+		</li>
+		<li>Kết thúc lượt đi</li>
+	</ul>
+	<p>
+		Trò chơi sẽ kết thúc nếu người chơi không thể thực
+		hiện thêm bất kỳ bước đi hợp lệ nào nữa, người thua
+		cuộc sẽ là người không thể thực hiện bước đi, người
+		còn lại sẽ là người thắng cuộc.
+	</p>
+	<p>
+		Ví dụ về một Emag min với 3 chồng sỏi (lưu ý, 2
+		người chơi không tối ưu):
+	</p>
+	<ul>
+		<li>Trạng thái ban đầu: 3 3 3</li>
+		<li>
+			Lượt 1: 3 3 1 (người chơi 1 bốc 2 viên sỏi ở
+			chồng sỏi 3)
+		</li>
+		<li>
+			Lượt 2: 0 3 1 (người chơi 2 bốc 3 viên sỏi ở
+			chồng sỏi 1)
+		</li>
+		<li>
+			Lượt 3: 0 1 1 (người chơi 1 bốc 2 viên sỏi ở
+			chồng sỏi 2)
+		</li>
+		<li>
+			Lượt 4: 0 0 1 (người chơi 2 bốc 1 viên sỏi ở
+			chồng sỏi 2)
+		</li>
+		<li>
+			Lượt 5: 0 0 0 (người chơi 1 bốc 1 viên sỏi ở
+			chồng sỏi 3)
+		</li>
+		<li>
+			Lượt 6: 0 0 0, người chơi 2 không thể thực hiện
+			bước đi hợp lệ, thua cuộc
+		</li>
+	</ul>
+	<p>Kết quả: Người chơi 1 chiến thắng.</p>
+	<p>
+		Vừa dịch xong mẫu giấy, một cánh cửa khác mở ra dẫn
+		đội chơi đến với một căn phòng gồm 8 bàn được đánh
+		số từ 1 đến 8, mỗi bàn được bày sẵn một Emag min với
+		4 chồng sỏi, nhiệm vụ của đội chơi là tìm ra 4 bàn
+		khác nhau với chỉ số các bàn là bé nhất sao cho khi
+		đội của bạn chơi Emag min trên 4 bàn đó với vai trò
+		là người đi đầu tiên thì chắc chắn chiến thắng, biết
+		rằng đối thủ của bạn luôn luôn thực hiện các bước đi
+		tối ưu.
+	</p>
+	<p>
+		Mật khẩu trên cánh cửa bao gồm
+		<b> <i> 4 chữ số liên tiếp (không có khoảng trắng) </i> </b>
+		, được viết theo thứ tự tăng dần, chỉ có một mật
+		khẩu duy nhất có thể vượt qua được cánh cửa đó.
+	</p>
+	<p>
+		Nếu các bạn đang bối rối về việc tại sao chỉ có thể
+		có một mật khẩu duy nhất thì chứng minh được rằng
+		với mỗi Emag min biết trước trạng thái ban đầu thì
+		luôn xác định được thắng thua trước khi chơi.
+	</p>
+	<p>
+		Nào, vì điểm cộng, các bạn hãy cố gắng vượt qua trạm
+		này nhé!!!
+	</p>
+	<ul>
+		<li>Trạng thái các chồng sỏi bàn 1: 4 1 1 4</li>
+		<li>Trạng thái các chồng sỏi bàn 2: 1 3 3 6</li>
+		<li>Trạng thái các chồng sỏi bàn 3: 3 4 2 5</li>
+		<li>Trạng thái các chồng sỏi bàn 4: 8 6 6 6</li>
+		<li>Trạng thái các chồng sỏi bàn 5: 6 6 1 3</li>
+		<li>Trạng thái các chồng sỏi bàn 6: 4 4 7 7</li>
+		<li>Trạng thái các chồng sỏi bàn 7: 6 2 3 7</li>
+		<li>Trạng thái các chồng sỏi bàn 8: 1 1 1 2</li>
+	</ul>`;
+	const challengeNo2 = `
+	<p>
+		“Chào mừng các thành viên của đội chơi đã đến với
+		thử thách “IE”, vì sợ các bạn nhàm chán nên chúng
+		tôi - “Tổ chức điểm cộng phi lợi nhuận giấu tên
+		không ai biết đại diện cho những nhân vật phản diện
+		đầy khả ái và ngây ngất lòng người” - đã chuẩn bị
+		trước một trò chơi cho các bạn cùng thưởng thức.”
+	</p>
+	<p>
+		Các bạn đã được đưa tới 1 cây cầu trên không được
+		tạo nên từ các ván gỗ đánh số từ 1 tới 100000000. Vì
+		cây cầu đã được xây dựng nhiều năm về trước nên một
+		số ván gỗ đã bị mục, có thể gãy nếu có người đứng
+		trên nó. Các bạn đang đứng ở một bên cầu (được đánh
+		số 0) và muốn đi sang phía bên kia cầu (được đánh số
+		100000001). Biết rằng các ván được đánh số chia hết
+		cho 2, 3 hoặc 5 thì vẫn còn chắc chắn và có thể qua
+		được), hãy cho biết số ván gỗ còn chắc chắn trên cây
+		cầu để đảm bảo các bạn có thể qua được bờ bên kia.
+	</p>
+	<h2>Cách trả lời</h2>
+	<p>
+		Đội chơi điền duy nhất 1 số hệ thập phân là kết quả
+		của trò chơi trên.
+	</p>`;
+	const challengeNo3 = `
+	Năm châu bốn bể thật nhiều nơi để đi qua. Bạn được BTC cung cấp sơ đồ giản lược của một số quốc gia và chi phí
+	tương ứng để bay giữa các quốc gia. Naot muốn đi qua các nước sau: Việt Nam -> Thái Lan -> Ấn Độ. Đi thẳng từ
+	nước này sang nước khác cũng được thôi, nhưng Naot muốn tiết kiệm tiền để còn đi paylak toàn cầu, nên hãy thiết
+	kế cho Naot một lộ trình đi qua các nước sao cho tổng chi phí bay là nhỏ nhất nhé.
+	<div class="how-to-answer">
+		<h2>Cách trả lời</h2>
+		Đội chơi trả lời lộ trình tốt nhất ( Lưu ý: <b>không xếp chồng</b> các nước lên nhau và
+		xếp theo thứ tự từ 1 tới n, với n là số nước tạo thành lộ trình trong đáp án của bạn)
+	</div>
+	<br />`;
 	const challengeNo6 = [
 		`<h3>Phần 1</h3> <p> Tưởng tượng bạn muốn gửi tin nhắn tỏ tình B. Bạn muốn chỉ B mới có thể đọc được tin nhắn này, còn lại không ai có thể đọc được, nên bạn tìm một cách để “mã hoá” nội dung tin nhắn. Bạn sẽ làm thế nào? </p> <p> Thật ra, bạn sẽ không phải nghĩ nhiều đâu, bởi, 3 học giả người Mỹ và Israel đã phát minh ra thuật toán Rivest–Shamir–Adleman (RSA). Đây là một thuật toán được sử dụng rộng rãi trong việc truyền thông tin dữ liệu một cách bảo mật. Một phép so sánh thực tế có thể được hiểu như sau: </p> <p> Bạn viết thư gửi cho B, để an toàn thì bạn cho bức thư vào một chiếc hộp có khóa, rồi khóa nó lại. Bạn gửi chiếc hộp đã khoá cho B.<br />Với tình huống này, nếu có người ăn cắp được chiếc hộp, người ta cũng không có cách nào mở khoá để đọc được nội dung bức thư vì không có chìa khoá.<br />Tuy nhiên vấn đề phát sinh lúc này là bạn phải tìm cách đưa chiếc chìa khoá cho B. Ta quay lại vấn đề ban đầu, bởi vì nếu một kẻ gian có thể ăn cắp được chiếc chìa khoá này, hắn ta cũng có thể mở khoá chiếc hộp rồi đọc nội dung thư.<br />Bạn có thể nghĩ ra một cách làm tốt hơn chứ? </p> <p> Trước tiên, bạn nhờ B gửi cho bạn một ổ khoá có thể khoá được mà không cần chìa (nhưng đã khoá rồi thì muốn mở khóa thì phải có chìa khoá - đương nhiên rồi). Bạn viết bức thư, cho vào hộp và khóa hộp bằng ổ của B, rồi đưa hộp cho B. Bây giờ, nếu có kẻ gian nào lấy được chiếc hộp thì hắn cũng không thể mở hộp, bởi người duy nhất có thể mở hộp là B vì B là người duy nhất có chìa khoá. Dễ thấy là B không cần cho bạn chiếc chìa khoá (thật ra là không thể gửi cho bạn chiếc chìa khoá). Do đó để ý rằng, khi bạn đã khoá chiếc hộp rồi thì chính bạn cũng không thể mở nó. </p> <p> Bạn muốn gửi tin nhắn “IUB” đến B. B cho bạn ổ khoá toán học là cặp số : (n, e) = (114791, 13) </p> <p> Bạn hãy tính toán phiên bản bị mã hoá của tin nhắn “IUB” bằng thuật toán sau: </p> <p> Bước 1: Chuyển nội dung tin nhắn từ dạng chữ sang dạng số. Ở đây ta quy ước A = 01, B = 02, …, Z = 26. Ví dụ như: “HAO” được chuyển sang dạng số thành 080115, còn “ABCXYZ” thì thành 010203242526. Gọi kết quả tính được là m. </p> <p> Bước 2: Tính<br /> c = m<sup>e</sup> mod n.<br />Trong đó phép tính mod có nghĩa là phần dư của phép chia.<br />Ví dụ: 10 mod 3 = 1 vì 10 chia 3 dư 1; 2<sup>10</sup> mod 100 = 24 vì 2<sup>10</sup> = 1024, sau đó 1024 chia 100 thì dư 24. </p> <p>Bước 3: Gửi kết quả c cho B.</p>`,
 
@@ -416,7 +414,7 @@ const templateHandle = () => {
 	const sections = document.querySelectorAll('section');
 	const navLinks = document.querySelectorAll('.lk');
 	// Scroll Active Handle
-	window.addEventListener('scroll', () => {
+	addEventListener('scroll', () => {
 		const isInView = (el) => {
 			const rect = el.getBoundingClientRect();
 			if (el.className.includes('No1') && rect.y > 125) {
@@ -440,7 +438,7 @@ const templateHandle = () => {
 	sections.forEach((section, index) => {
 		if (localStorage.getItem(`finishChallenge${index}`) === '1') {
 			section.classList.add('finish');
-			let navFin =
+			const navFin =
 				document.body.querySelectorAll('.nav-links .lk')[index];
 			navFin.classList.add('finish', 'lifin');
 		}
@@ -939,7 +937,7 @@ const templateHandle = () => {
 			});
 		})
 		.catch((err) => {
-			alert('Error on Load File. Please Reload The Page!!!');
+			alert('Error on Load Data. Please Reload the Page!!!');
 			console.error(err);
 		});
 };
@@ -952,6 +950,6 @@ function drag(e) {
 }
 function drop(e) {
 	e.preventDefault();
-	var data = e.dataTransfer.getData('text');
+	const data = e.dataTransfer.getData('text');
 	e.target.appendChild(document.getElementById(data));
 }

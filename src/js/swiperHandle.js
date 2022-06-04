@@ -2,24 +2,24 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 const htmls = `
-	<canvas></canvas>
-	<div class="wrapper">
-		<section class="module-team">
-			<div class="team">
-				<h2 class="title">Project: Dinitz Team</h2>
-				<div class="team-cards">
-					<div class="swiper-container">
-						<div class="swiper-wrapper"></div>
-					</div>
-					<div class="swiper-pagination"></div>
-					<div class="navigation">
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-button-next"></div>
-					</div>
+<canvas></canvas>
+<div class="wrapper">
+	<section class="module-team">
+		<div class="team">
+			<h2 class="title">Project: Dinitz Team</h2>
+			<div class="team-cards">
+				<div class="swiper-container">
+					<div class="swiper-wrapper"></div>
+				</div>
+				<div class="swiper-pagination"></div>
+				<div class="navigation">
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-button-next"></div>
 				</div>
 			</div>
-		</section>
-	</div>`;
+		</div>
+	</section>
+</div>`;
 document.body.innerHTML = htmls + document.body.innerHTML;
 
 const swiperGenerator = () => {
@@ -102,30 +102,30 @@ const swiperGenerator = () => {
 			.map((item) => `<p class="role">${item}</p>`)
 			.join('');
 		const htmls = `
-			<div class="swiper-slide">
-				<div class="card">
-					<span class="bg"></span>
-					<span class="more"></span>
-					<figure class="photo"><img src="${photo}"></figure>
-					<article class="text">
-						<p class="name">${name}</p>
-						${roleHTML}
-						<p class="desc">${desc}</p>
-					</article>
+		<div class="swiper-slide">
+			<div class="card">
+				<span class="bg"></span>
+				<span class="more"></span>
+				<figure class="photo"><img src="${photo}"></figure>
+				<article class="text">
+					<p class="name">${name}</p>
+					${roleHTML}
+					<p class="desc">${desc}</p>
+				</article>
 
-					<div class="social">
-						<span class="pointer"></span>
-						<div class="icons">
-							<a class="icon" href="${email}" target="_blank" rel="noopener" data-index="1">
-								<img src="${iEmail}" alt="mail">
-							</a>
-							<a class="icon" href="${facebook}" target="_blank" rel="noopener" data-index="2">
-								<img src="${iFacebook}" alt="fb">
-							</a>
-						</div>
+				<div class="social">
+					<span class="pointer"></span>
+					<div class="icons">
+						<a class="icon" href="${email}" target="_blank" rel="noopener" data-index="1">
+							<img src="${iEmail}" alt="mail">
+						</a>
+						<a class="icon" href="${facebook}" target="_blank" rel="noopener" data-index="2">
+							<img src="${iFacebook}" alt="fb">
+						</a>
 					</div>
 				</div>
-			</div>`;
+			</div>
+		</div>`;
 		swiperWrapper.insertAdjacentHTML('beforeend', htmls);
 	});
 

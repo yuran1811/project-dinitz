@@ -14,13 +14,14 @@ fetch('./db/acc.json')
 				if (b & 1) c = (c * a) % p;
 				return c;
 			}
-			let res = [];
+
+			const res = [];
 			for (let item of ansArr)
 				res.push(String.fromCharCode(getPow(item, 42143, 98473)));
 			return res.join('');
 		};
 
-		let data = [];
+		const data = [];
 		for (let item of rawData)
 			data.push({
 				name: `dinitzNo${item.id >= 10 ? item.id : '0' + item.id}`,
@@ -82,16 +83,15 @@ fetch('./db/acc.json')
 			else failureHandle();
 		};
 
-		$$_('.input-field').forEach(
-			(item) =>
-				(item.onkeydown = (e) => {
-					if (e.keyCode === 13) logInHandle();
-					else {
-						logIn.classList.remove('correct', 'wrong');
-						logIn.value = 'Đăng nhập';
-					}
-				})
-		);
+		$$_('.input-field').forEach((item) => {
+			item.onkeydown = (e) => {
+				if (e.key === 'Enter') logInHandle();
+				else {
+					logIn.classList.remove('correct', 'wrong');
+					logIn.value = 'Đăng nhập';
+				}
+			};
+		});
 		logIn.addEventListener('click', logInHandle);
 
 		if (JSON.parse(localStorage.getItem('isLogIn'))) {
@@ -176,9 +176,11 @@ fetch('./db/acc.json')
 			</div>`;
 			const bannerCpn = `
 			<div class="banner" id="admin-acc">
-				<div class="avatar" data-userID="${userID === 13 ? 'Admin' : `Đội ${userID}`}">
-					<img src="https://miro.medium.com/fit/c/1360/1360/2*Y4aq3TeFNG8yjWcJHpz0pA.png"
-					alt="avatar" width="200" height="200" />
+				<div
+					class="avatar"
+					data-userID="${userID === 13 ? 'Admin' : `Đội ${userID}`}"
+					style="background: url('./Library/Dinitz_Logo.png') center no-repeat;background-size: cover;"
+				>
 				</div>
 				<input type="password" placeholder="Nhập mã khóa" />
 				<p style="font-size: 1.7rem"></p>
@@ -1120,8 +1122,9 @@ fetch('./db/acc.json')
 			templateHandle();
 		};
 	})
-	.catch(() => {
+	.catch((e) => {
+		console.log(e);
 		alert('Error on Load Data. Please Reload the Page!!!');
 		_$('html').innerHTML =
-			'<h1 style="text-align:center">Error on Load Data. Please Reload the Page!!!</h1>';
+			'<h1 style="text-align:center">Error on loading data. Please RELOAD the page!!!</h1>';
 	});

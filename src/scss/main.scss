@@ -3,6 +3,7 @@
 $SIZE1: 1200px;
 $SIZE2: 900px;
 $SIZE3: 600px;
+
 @mixin Responsive($size) {
 	@media (max-width: $size) {
 		@content;
@@ -58,6 +59,7 @@ body {
 		left: 0;
 		width: 100%;
 		height: 100%;
+
 		.signin-menulist {
 			position: absolute;
 			top: 50%;
@@ -82,14 +84,16 @@ body {
 					padding: 0rem 3.2rem;
 					transition: all 0.2s 0.7s;
 				}
+
 				&2 {
 					align-items: flex-start;
 				}
 			}
 			.sign {
 				&-in {
-					z-index: 2;
 					@extend %TITLE_CPN;
+					z-index: 2;
+
 					.input-field {
 						background-color: #f0f0f0;
 						position: relative;
@@ -101,6 +105,7 @@ body {
 						border-radius: 55px;
 						display: grid;
 						grid-template-columns: 15% 85%;
+
 						i {
 							font-size: 1.1rem;
 							text-align: center;
@@ -143,20 +148,26 @@ body {
 					}
 				}
 				&-up {
-					opacity: 0;
-					z-index: 1;
 					@extend %TITLE_CPN;
+					z-index: 1;
+					opacity: 0;
+
 					.list-item {
 						position: relative;
+						height: 100%;
 						left: 4%;
+
 						ul li {
 							list-style: none;
 							margin: 1.8rem 0.1rem;
+
 							&:hover .item-info {
 								visibility: visible;
 								opacity: 1;
+
 								&::after {
 									width: 100px;
+
 									@include Responsive($SIZE1) {
 										width: 10vw;
 									}
@@ -196,23 +207,31 @@ body {
 								text-align: center;
 								font-size: 1.6rem;
 
-								margin-top: 1rem;
-
 								position: absolute;
 								top: 0;
 								left: 102%;
-								z-index: 10;
-
 								max-width: 20vw;
 								min-width: 15vw;
-								height: 55vh;
-								min-height: 270px;
+								height: 90%;
 								padding: 15px 0;
+								margin-top: 1rem;
 
 								opacity: 0;
+								z-index: 10;
 								visibility: hidden;
 								display: inline-block;
 								transition: 0.5s ease;
+
+								&::before {
+									position: absolute;
+									top: 60px;
+									right: 10px;
+									bottom: 60px;
+									left: 10px;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								}
 								&::after {
 									content: ' ';
 									display: block;
@@ -224,23 +243,13 @@ body {
 									transform: translateX(-50%);
 									transition: width 0.5s ease;
 								}
-								&::before {
-									position: absolute;
-									top: 60px;
-									bottom: 60px;
-									left: 10px;
-									right: 10px;
-									display: flex;
-									align-items: center;
-									justify-content: center;
-								}
 
 								@include Responsive($SIZE1) {
 									font-size: calc(1.2vw + 1.2vh);
 									left: 102%;
-									height: 27vw;
 									padding: 2vw 0;
 									margin-top: 1.8rem;
+
 									&::after {
 										height: 5px;
 									}
@@ -292,6 +301,7 @@ body {
 					}
 				}
 			}
+
 			@include Responsive($SIZE2) {
 				top: 80%;
 				left: 50%;
@@ -315,9 +325,9 @@ body {
 
 		.panel {
 			display: flex;
-			flex-direction: column;
 			align-items: flex-end;
 			justify-content: space-around;
+			flex-direction: column;
 			text-align: center;
 			z-index: 6;
 
@@ -479,25 +489,25 @@ body {
 		}
 	}
 	.btn {
-		background-color: transparent;
-		border: 1px solid white;
-		border-radius: 49px;
-		outline: none;
-
-		text-transform: uppercase;
-		font-weight: 600;
 		cursor: pointer;
 		color: #fff;
-
+		background-color: transparent;
+		outline: none;
+		border: 1px solid white;
+		border-radius: 49px;
 		margin: 12px 0;
 		padding: 12px 7px;
+		text-transform: uppercase;
+		transition: 0.5s;
+		font-weight: 600;
 		width: auto;
 
-		transition: 0.5s;
-		&:hover a,
 		&:hover {
-			background-color: white;
-			color: #2c5294;
+			&,
+			a {
+				background-color: white;
+				color: #2c5294;
+			}
 		}
 		&.transparent {
 			background: none;
@@ -509,6 +519,7 @@ body {
 			font-weight: 600;
 			font-size: 0.8rem;
 		}
+
 		@include Responsive($SIZE2) {
 			&.transparent {
 				width: auto;

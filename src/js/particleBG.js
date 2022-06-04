@@ -7,6 +7,12 @@
 	const PARTICLE_RADIUS = 5;
 	const PARTICLE_COLOR = 'rgba(120, 120, 120, 1)';
 
+	const particles = [];
+	const mouse = {
+		x: undefined,
+		y: undefined,
+	};
+
 	canvas.height = innerHeight;
 	canvas.width = innerWidth;
 
@@ -57,12 +63,6 @@
 			this.y += this.velocity.y;
 		}
 	}
-
-	const particles = [];
-	const mouse = {
-		x: undefined,
-		y: undefined,
-	};
 
 	onmousemove = (e) => {
 		mouse.x = e.clientX;

@@ -14,10 +14,17 @@
 
 $SIZE1: 820px;
 $SIZE2: 550px;
+
 @mixin Responsive($size) {
 	@media (max-width: $size) {
 		@content;
 	}
+}
+
+%flexCenter {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 * {
@@ -39,6 +46,7 @@ body {
 	font-size: 62.5%;
 	transition: all 0.3s ease;
 	background-color: var(--background-color);
+
 	&.dark {
 		--color: white;
 		--background-color: rgb(48, 48, 48);
@@ -53,6 +61,7 @@ body {
 		--link-color: rgb(154, 214, 253);
 	}
 }
+
 .info {
 	a:link,
 	a:visited,
@@ -62,8 +71,8 @@ body {
 		color: var(--link-color);
 	}
 }
-
 .bgm {
+	@extend %flexCenter;
 	background-color: var(--color);
 	border-radius: 50%;
 	position: fixed;
@@ -73,9 +82,7 @@ body {
 	height: 60px;
 	z-index: 15;
 	transition: all 0.2s ease;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+
 	& > i {
 		color: var(--award-color);
 		cursor: pointer;
@@ -103,6 +110,7 @@ body {
 		align-items: center;
 		justify-content: space-around;
 		.track {
+			@extend %flexCenter;
 			cursor: pointer;
 			color: white;
 			background-color: #1098ad;
@@ -112,9 +120,6 @@ body {
 			border-radius: 50%;
 			opacity: 0;
 			transition: all 0.2s 0.2s ease;
-			display: flex;
-			align-items: center;
-			justify-content: center;
 
 			audio {
 				display: none;
@@ -214,14 +219,12 @@ body {
 	}
 }
 .toggle-theme {
+	@extend %flexCenter;
 	position: absolute;
 	left: 2%;
 	width: 50px;
 	height: 50px;
 	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	z-index: 100;
 	.moon,
 	.sun {
@@ -289,12 +292,10 @@ body {
 }
 
 .nav-links ul {
+	@extend %flexCenter;
+	list-style-type: none;
 	width: 100%;
 	height: auto;
-	list-style-type: none;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	padding: 0;
 	z-index: 50;
 }
@@ -397,25 +398,26 @@ body {
 /* Nav Bar --> */
 
 .banner {
-	display: flex;
+	@extend %flexCenter;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 	position: relative;
 	margin-top: 8rem;
 	user-select: none;
+
 	input {
 		margin-top: 15px;
 		font-size: 1.5rem;
-		max-width: 130px;
+		max-width: 220px;
 	}
 	.avatar {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		margin: auto;
+		@extend %flexCenter;
 		position: relative;
+		margin: auto;
+		width: 200px;
+		height: 200px;
+
 		&::after {
+			@extend %flexCenter;
 			content: attr(data-userID);
 			position: absolute;
 			font-size: 2rem;
@@ -423,14 +425,11 @@ body {
 			background-color: black;
 			color: white;
 			top: 0;
-			left: 0;
-			bottom: 0;
 			right: 0;
+			bottom: 0;
+			left: 0;
 			opacity: 0;
 			transition: opacity 0.5s ease;
-			display: flex;
-			align-items: center;
-			justify-content: center;
 		}
 		&:hover::after {
 			opacity: 0.7;
@@ -443,10 +442,14 @@ body {
 	width: 100%;
 }
 
-input[class='answer'] {
-	min-width: 170px;
-	height: 50px;
-	font-size: 1.5rem;
+input {
+	padding: 7px 10px;
+
+	&[class='answer'] {
+		min-width: 170px;
+		height: 50px;
+		font-size: 1.5rem;
+	}
 }
 button[class='submit-btn'] {
 	margin: 5px;
@@ -612,17 +615,15 @@ section.hidden {
 }
 
 .whole-answerarea {
-	display: flex;
+	@extend %flexCenter;
 	flex-flow: row wrap;
-	align-items: center;
-	justify-content: center;
+
 	.answer-area {
+		@extend %flexCenter;
 		margin: 0 5px;
 		flex: 1;
-		display: flex;
-		align-items: center;
-		justify-content: center;
 		flex-flow: row nowrap;
+
 		p {
 			width: 60px;
 		}
@@ -677,10 +678,8 @@ td {
 }
 
 #No3 .answer-area {
-	display: flex;
+	@extend %flexCenter;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 }
 
 #box1,
@@ -736,10 +735,9 @@ body.dark #box10 {
 }
 
 .status-log {
-	display: flex;
-	align-items: center;
+	@extend %flexCenter;
 	flex-direction: column;
-	justify-content: center;
+
 	& > div {
 		display: flex;
 		margin: 7px 0;
@@ -767,12 +765,10 @@ body.dark #box10 {
 
 .allBox,
 .allItem {
+	@extend %flexCenter;
+	flex-flow: row wrap;
 	width: 100%;
 	height: auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-flow: row wrap;
 }
 
 .itemBox,
